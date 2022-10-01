@@ -18,7 +18,7 @@ export default defineConfig({
   },
   plugins: [
     Vue({
-      reactivityTransform: true,
+      // reactivityTransform: true,
     }), 
     PluginTs(),
 
@@ -27,13 +27,13 @@ export default defineConfig({
     Unocss(),
 
     // https://github.com/antfu/unplugin-auto-import
-    AutoImport({
-      imports: [
-        'vue/macros',
-      ],
-      dts: 'src/typings/vue-macros.d.ts',
-      vueTemplate: true,
-    })
+    // AutoImport({
+    //   imports: [
+    //     // 'vue/macros',
+    //   ],
+    //   dts: 'src/typings/vue-macros.d.ts',
+    //   vueTemplate: true,
+    // })
   ],
   server: {
     host: '0.0.0.0',
