@@ -6,6 +6,7 @@ export interface CardItem {
   promptZH: string;
   promptEN: string;
   imgName?: string;
+  isSelected?: boolean;
 }
 
 export interface DpiOptions {

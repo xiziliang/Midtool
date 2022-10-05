@@ -53,8 +53,8 @@ function translation() {}
       选择作画风格
       <div i-carbon:add></div>
     </div>
-    <div class="more" overflow-auto flex="~ gap-3" justify-start items-stretch>
-      <Card :data="cardList"></Card>
+    <div class="more" overflow-auto flex="~ gap-4" justify-start items-stretch>
+      <Card v-model:data="cardList"></Card>
     </div>
   </main>
 </template>

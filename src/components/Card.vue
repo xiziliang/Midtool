@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { computed } from "vue";
+import { useVModel, useVModels } from "@vueuse/core";
 interface List {
   // Level1Label: string;
   // KeyWord: string;
@@ -7,16 +9,34 @@ interface List {
   promptZH: string;
   promptEN: string;
   imgName?: string;
+  isSelected?: boolean;
 }
 
-defineProps<{
+const props = defineProps<{
   data: List[];
 }>();
+
+const emit = defineEmits(["update:data"]);
+
+const list = useVModel(props, "data", emit, {
+  passive: true,
+  deep: true,
+});
+
+function onTrigger(item: List) {
+  item.isSelected = !item.isSelected;
+}
 </script>
 <template>
-  <div class="card" mt-2 v-for="item in data">
+  <div
+    class="card"
+    mt-2
+    v-for="item in list"
+    @click="onTrigger(item)"
+    :class="{ selected: item.isSelected }"
+  >
     <div class="card-img">
-      <img :src="item.imgName" />
+      <img height="160" width="156" :src="item.imgName" />
     </div>
     <div class="card-name" p-2>{{ item.promptZH }}</div>
     <div class="card-enname" p-2>{{ item.promptEN }}</div>
@@ -24,7 +44,7 @@ defineProps<{
 </template>
 <style scoped lang="scss">
 .card {
-  width: 9.38rem;
+  width: 10rem;
   background-color: #26292e;
   color: #fff;
 
@@ -42,10 +62,13 @@ defineProps<{
     background-color: #1a1c1f;
   }
 
+  .card-img,
   img {
-    width: 100%;
     border-top-left-radius: calc(0.25rem - 1px);
     border-top-right-radius: calc(0.25rem - 1px);
+  }
+  img {
+    width: 100%;
   }
 }
 </style>
