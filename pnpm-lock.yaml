@@ -1,6 +1,7 @@
 lockfileVersion: 5.3
 
 specifiers:
+  '@element-plus/icons-vue': ^2.0.9
   '@iconify-json/carbon': ^1.1.8
   '@iconify-json/logos': ^1.1.16
   '@iconify-json/mdi': ^1.1.33
@@ -22,6 +23,7 @@ specifiers:
   vue-tsc: ^0.40.4
 
 dependencies:
+  '@element-plus/icons-vue': 2.0.9_vue@3.2.39
   '@iconify-json/carbon': 1.1.8
   '@iconify-json/logos': 1.1.16
   '@iconify-json/mdi': 1.1.33
