@@ -1,0 +1,19 @@
+@forward 'element-plus/theme-chalk/src/common/var.scss' with (
+  $common-component-size: (
+    'default': 36px,
+  ),
+);
+
+@use "element-plus/theme-chalk/src/index.scss" as *;
+
+// tooltip style
+.el-popper.is-customized {
+  color: #ecf5ff;
+  padding: 6px 12px;
+  background: linear-gradient(90deg, #409eff, #79bbff);
+}
+
+.el-popper.is-customized .el-popper__arrow::before {
+  background: linear-gradient(45deg, #409eff, #79bbff);
+  right: 0;
+}

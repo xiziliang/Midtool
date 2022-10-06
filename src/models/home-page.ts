@@ -11,8 +11,8 @@ export interface CardItem {
 
 export interface DpiOptions {
   options: string;
-  width: number;
-  height: number;
+  width?: number;
+  height?: number;
 }
 
 export type OptionType = 'none' | 'textbox' | 'selector'| 'drag' | 'percentage';

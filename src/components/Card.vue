@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { ref } from "vue";
 import { useVModel } from "@vueuse/core";
 import { Check } from "@element-plus/icons-vue";
 
@@ -25,6 +25,7 @@ const propsList = useVModel(props, "data", emit, {
   deep: true,
 });
 
+const selectedRef = ref<Element | null>(null);
 // 已选list
 const selectedList = ref(propsList.value.filter((x) => x.isSelected));
 // 未选list
@@ -45,11 +46,11 @@ function onTrigger(item: List) {
   <TransitionGroup name="animate__fadeInRight">
     <div
       class="card"
-      mt-4
       v-for="item in selectedList"
       :key="item.promptEN"
-      @click="onTrigger(item)"
       :class="{ selected: item.isSelected }"
+      :ref="(el) => (selectedRef = el as Element)"
+      @click="onTrigger(item)"
     >
       <el-button
         v-if="item.isSelected"
@@ -67,11 +68,10 @@ function onTrigger(item: List) {
   </TransitionGroup>
   <div
     class="card"
-    mt-4
     v-for="item in remainList"
     :key="item.promptEN"
-    @click="onTrigger(item)"
     :class="{ selected: item.isSelected }"
+    @click="onTrigger(item)"
   >
     <el-button
       v-if="item.isSelected"
@@ -101,6 +101,7 @@ function onTrigger(item: List) {
   word-wrap: break-word;
   background-clip: border-box; // 使background覆盖border
   border-radius: 0.25rem;
+
   cursor: pointer;
 
   &:hover {
@@ -115,11 +116,5 @@ function onTrigger(item: List) {
   img {
     width: 100%;
   }
-}
-
-.check-icon {
-  position: absolute;
-  top: -16px;
-  right: -16px;
 }
 </style>

@@ -5,6 +5,12 @@ body,
   padding: 0;
 }
 
+:root {
+  --animate-duration: 1s;
+  --animate-delay: 1s;
+  --animate-repeat: 1;
+}
+
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
@@ -30,18 +36,9 @@ h1 {
   }
 }
 
-:root {
-  --animate-duration: 1s;
-  --animate-delay: 1s;
-  --animate-repeat: 1;
-}
-
+// selected 卡片的过度动画
 .animate__animated {
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
-  -webkit-animation-duration: var(--animate-duration);
   animation-duration: var(--animate-duration);
-  -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
 }
 
@@ -72,13 +69,31 @@ h1 {
 }
 
 .animate__fadeInRight-enter-active {
-  animation-duration: 1s;
+  animation-duration: .5s;
   animation-fill-mode: both;
   animation-name: fadeInRight;
 }
 
 .animate__fadeInRight-leave-active {
-  animation-duration: .5s;
+  animation-duration: .3s;
   animation-fill-mode: both;
   animation-name: fadeOutRight;
+}
+
+// selected icon style
+.check-icon.el-button {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  height: 24px;
+  padding: 4px;
+}
+
+.delete-icon.el-button {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  height: 20px;
+  padding: 2px;
+  width: 20px;
 }

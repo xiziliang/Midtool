@@ -58,3 +58,16 @@ export const cardlist = [
     imgName: 'https://d3v6oh1fdmotvf.cloudfront.net/0-7-0/mj/landscape/by_Fernando_Botero.webp',
   },
 ]
+
+export const keywordlist = [];
+
+export const dpiList = [
+  {
+    options: 'A4',
+    width: 2480,
+    height: 3508,
+  },
+  {
+    options: '自定义'
+  }
+];
