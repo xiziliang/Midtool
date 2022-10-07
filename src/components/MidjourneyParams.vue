@@ -51,18 +51,17 @@ watch(
             cursor-pointer
             @click="item.checked = !item.checked"
           >
-            <strong color-gray-3 mr-2>{{ item.options }}</strong>
+            <strong color-gray-300 mr-2>{{ item.options }}</strong>
             <small
-              class="text-[0.95em]"
+              text="[0.95em]"
               inline-block
-              px-2
-              py-1
+              p="x-2 y-1"
               rounded
               color-gray-3
               bg-gray-600
               >{{ item.parameter }}</small
             >
-            <small class="text-[0.95em]" inline-block color-gray-5 p-3>{{
+            <small text="[0.95em]" inline-block color-gray-5 p-3>{{
               item.describe
             }}</small>
           </label>

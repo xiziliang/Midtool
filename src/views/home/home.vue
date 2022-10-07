@@ -47,7 +47,7 @@ function onSelectParams() {
     <h2 text-3xl font-mono>Midtool 米涂</h2>
     <p class="description" mt-8 color-gray-400>{{ description }}</p>
   </div>
-  <header class="container-input" py-4 px-2>
+  <header class="container-input" p="y-4 x-2">
     <div class="input-group" flex="~" justify-center items-stretch w="100%">
       <div
         class="sm:max-w-400px lg:max-w-800px xl:max-w-1000px 2xl:max-w-1300px"
@@ -67,7 +67,7 @@ function onSelectParams() {
         <el-button type="primary" size="default" @click="copy">
           <div class="i-carbon-copy"></div>
         </el-button>
-        <div flex="~ gap-3" py-2 pb-0>
+        <div flex="~ gap-3" p="y-2 b-0">
           <Tag content="填写"></Tag>
           <Tag content="多彩的云"></Tag>
           <Tag content="宫崎骏"></Tag>
@@ -119,7 +119,7 @@ function onSelectParams() {
       <Tag content="填写"></Tag>
       <Tag v-for="item in keyWordList" :content="item"></Tag>
     </div>
-    <div flex="~" mt-4 mb-4 class="readmore-title">
+    <div flex="~" m="t-4 b-4" class="readmore-title">
       <div cursor-pointer flex @click="">
         <p>选择画面比例</p>
         <div i-carbon:add></div>

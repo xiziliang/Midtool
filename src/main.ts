@@ -8,8 +8,6 @@ import '@unocss/reset/tailwind.css'
 import ElementPlus from 'element-plus'
 
 import "./styles/index.scss"
-import 'uno.css'
-
 
 const app = createApp(App)
 const pinia = createPinia()

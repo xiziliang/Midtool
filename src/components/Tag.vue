@@ -35,4 +35,3 @@ defineProps<{
     </span>
   </el-tooltip>
 </template>
-<style scoped lang="scss"></style>

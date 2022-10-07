@@ -24,7 +24,9 @@ export default defineConfig({
 
     // https://github.com/antfu/unocss
     // see unocss.config.ts for config
-    Unocss(),
+    Unocss({
+      mode: 'vue-scoped',
+    }),
 
     // https://github.com/antfu/unplugin-auto-import
     // AutoImport({
