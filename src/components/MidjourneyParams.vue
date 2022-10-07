@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch } from "vue";
+import { ref, watch, computed } from "vue";
 
 type OptionType = "none" | "textbox" | "selector" | "drag" | "percentage";
 
@@ -15,19 +15,24 @@ interface Options {
   index?: number;
   value?: number;
   checked?: boolean;
+  isShow?: boolean;
 }
 const props = defineProps<{
-  data?: Options[];
+  data: Options[];
+  dialogVisible: boolean;
   isHideNoSelected?: boolean;
 }>();
 
 const data = ref();
 
 watch(
-  () => props.data,
+  () => props.dialogVisible,
   (value) => {
-    if (!value) return;
-    data.value = value.map((x) => ({ ...x, isShow: x.checked }));
+    if (value && !props.isHideNoSelected) {
+      data.value = props.data;
+    } else {
+      data.value = props.data?.filter((x) => x.checked);
+    }
   },
   {
     immediate: true,
@@ -38,14 +43,28 @@ watch(
 <template>
   <div class="params-list" flex="~ col" border-rd-1>
     <div v-for="item in data" :key="item.options" class="params-list-container">
-      <div class="params-list-item" v-if="!isHideNoSelected ? true : item.isShow">
-        <el-checkbox v-model="item.checked" @change="">
-          <label class="params-list-text text-ellipsis">
+      <div class="params-list-item">
+        <el-checkbox v-model="item.checked">
+          <label
+            class="params-list-text"
+            text-ellipsis
+            cursor-pointer
+            @click="item.checked = !item.checked"
+          >
             <strong color-gray-3 mr-2>{{ item.options }}</strong>
-            <small class="text-[0.95em]" px-2 py-1 rounded color-gray-3 bg-gray-600>{{
-              item.parameter
+            <small
+              class="text-[0.95em]"
+              inline-block
+              px-2
+              py-1
+              rounded
+              color-gray-3
+              bg-gray-600
+              >{{ item.parameter }}</small
+            >
+            <small class="text-[0.95em]" inline-block color-gray-5 p-3>{{
+              item.describe
             }}</small>
-            <small class="text-[0.95em]" color-gray-5 p-3>{{ item.describe }}</small>
           </label>
         </el-checkbox>
         <template v-if="item.type === 'textbox'">

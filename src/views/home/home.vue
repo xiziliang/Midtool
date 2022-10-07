@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, reactive } from "vue";
+
 import Card from "@/components/Card.vue";
 import Tag from "@/components/Tag.vue";
 import Parameters from "@/components/MidjourneyParams.vue";
 import { cardlist, keywordlist, dpiList, paramslist } from "@/assets/data";
-
 import type { DpiOptions, Options } from "@/models";
 
 const description = ref("搜罗好词、词图预览、一键翻译，让AI画家更好的作画。");
@@ -20,8 +20,10 @@ const dpiParams = ref({
 
 const cardList = ref(cardlist);
 const keyWordList = ref(keywordlist);
-
 const paramsList = ref((paramslist as unknown) as Options[]);
+const dialogVisible = reactive({
+  params: false,
+});
 
 function copy() {}
 
@@ -31,6 +33,10 @@ function dpiChange(value: string) {
   if (value === "自定义") {
     dpiCustom.value = true;
   } else dpiCustom.value = false;
+}
+
+function onSelectParams() {
+  dialogVisible.params = true;
 }
 </script>
 
@@ -139,14 +145,55 @@ function dpiChange(value: string) {
         </div>
       </div>
     </div>
-    <div flex="~" mt-4 mb-4 cursor-pointer class="readmore-title">
+    <div flex="~" mt-4 mb-4 cursor-pointer class="readmore-title" @click="onSelectParams">
       选择作画参数
       <div i-carbon:add></div>
     </div>
     <div class="more">
-      <Parameters :data="paramsList" :is-hide-no-selected="true"></Parameters>
+      <Parameters
+        :data="paramsList"
+        :is-hide-no-selected="true"
+        :dialog-visible="dialogVisible.params"
+      ></Parameters>
+    </div>
+    <div flex="~" mt-4 mb-4 cursor-pointer class="readmore-title" @click="">
+      参考图片网址
+      <div i-carbon:add></div>
+    </div>
+    <div
+      class="more"
+      overflow-auto
+      flex="~ gap-4"
+      justify-start
+      items-stretch
+      will-change-scroll
+    >
+      <Card v-model:data="cardList"></Card>
     </div>
   </main>
+  <footer>
+    <el-divider />
+  </footer>
+  <!-- dialog start -->
+  <el-dialog
+    v-model="dialogVisible.params"
+    top="30px"
+    title="作画参数"
+    width="80%"
+    center
+  >
+    <Parameters :data="paramsList" :dialog-visible="dialogVisible.params"></Parameters>
+    <template #footer>
+      <span class="dialog-footer">
+        <el-button
+          type="primary"
+          :disabled="!paramsList.some((x) => x.checked)"
+          @click="dialogVisible.params = false"
+          >完成</el-button
+        >
+      </span>
+    </template>
+  </el-dialog>
 </template>
 
 <style lang="scss" scoped>

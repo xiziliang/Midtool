@@ -118,6 +118,28 @@ export const paramslist = [
     checked: false,
   },
   {
+    options: "创意模式", 
+    type: "none",
+    describe: "会使结果更有创意，通常也会更混乱。",
+    parameter: "--creative",
+    min: "10",
+    max: "100",
+    gap: "1",
+    option:"",
+    checked: false,
+  },
+  {
+    options: "无缝纹理", 
+    type: "none",
+    describe: "将创建一个可以放置在自身旁边的可平铺纹理，而不会在图像副本之间创建明显的接缝、连接或边界。",
+    parameter: "--tile",
+    min: "10",
+    max: "100",
+    gap: "1",
+    option:"",
+    checked: false,
+  },
+  {
     options: "质量", 
     type: "selector", // drag
     describe: "默认图像权重为 0.25。Midjourney 仅支持单个图片权重参数，并且您必须至少有一个图片提示。",

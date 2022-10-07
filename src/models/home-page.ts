@@ -32,4 +32,5 @@ export interface Options {
   gap: string;
   index?: number;
   value?: number;
+  checked?: boolean;
 }
