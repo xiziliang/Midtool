@@ -2,8 +2,10 @@
 import { ref } from "vue";
 import Card from "@/components/Card.vue";
 import Tag from "@/components/Tag.vue";
-import { cardlist, keywordlist, dpiList } from "@/assets/data";
-import type { DpiOptions } from "@/models";
+import Parameters from "@/components/MidjourneyParams.vue";
+import { cardlist, keywordlist, dpiList, paramslist } from "@/assets/data";
+
+import type { DpiOptions, Options } from "@/models";
 
 const description = ref("搜罗好词、词图预览、一键翻译，让AI画家更好的作画。");
 const translationResult = ref("大家好大啊啊啊大大啊 大大啊啊啊大啊");
@@ -12,12 +14,14 @@ const dpiValue = ref("");
 const dpiOptions = ref<DpiOptions[] | null>(dpiList);
 const dpiCustom = ref(false);
 const dpiParams = ref({
-  width: 1,
-  height: 1,
+  width: undefined,
+  height: undefined,
 });
 
 const cardList = ref(cardlist);
 const keyWordList = ref(keywordlist);
+
+const paramsList = ref((paramslist as unknown) as Options[]);
 
 function copy() {}
 
@@ -85,7 +89,7 @@ function dpiChange(value: string) {
       <div i-carbon:add></div>
     </div>
     <div flex="~ gap-3 wrap" justify-start items-stretch class="more">
-      <Tag content="填写xxxx"></Tag>
+      <Tag content="填写"></Tag>
       <Tag v-for="item in keyWordList" :content="item"></Tag>
     </div>
     <div flex="~" mt-4 mb-4 cursor-pointer class="readmore-title">
@@ -112,7 +116,7 @@ function dpiChange(value: string) {
           <div class="dpi-custom-text">
             <el-input-number
               v-model="dpiParams.width"
-              placeholder="宽度"
+              placeholder="Width"
               :controls="false"
               :min="0"
               :max="999999"
@@ -125,7 +129,7 @@ function dpiChange(value: string) {
           <div class="dpi-custom-text">
             <el-input-number
               v-model="dpiParams.height"
-              placeholder="高度"
+              placeholder="Height"
               :controls="false"
               :min="0"
               :max="999999"
@@ -139,6 +143,9 @@ function dpiChange(value: string) {
       选择作画参数
       <div i-carbon:add></div>
     </div>
+    <div class="more">
+      <Parameters :data="paramsList" :is-hide-no-selected="true"></Parameters>
+    </div>
   </main>
 </template>
 
@@ -146,7 +153,8 @@ function dpiChange(value: string) {
 .container-input {
   position: sticky;
   top: 0;
-  // z-index: 99;
+  z-index: 99;
+  background-color: var(--el-fill-color-blank);
 }
 .readmore-title {
   color: rgba(0, 0, 0, 0.5);

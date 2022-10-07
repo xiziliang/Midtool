@@ -27,7 +27,9 @@ export interface Options {
   describe: string;
   parameter: string;
   option: Option;
-  min?: string;
-  max?: string;
-  gap?: string;
+  min: string;
+  max: string;
+  gap: string;
+  index?: number;
+  value?: number;
 }

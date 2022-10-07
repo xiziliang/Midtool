@@ -1,7 +1,15 @@
 @forward 'element-plus/theme-chalk/src/common/var.scss' with (
+  $colors: (
+    'primary': (
+      'base': #0cb035,
+    ),
+  ),
   $common-component-size: (
     'default': 36px,
   ),
+  $checkbox: (
+    'font-size': 16px,
+  )
 );
 
 @use "element-plus/theme-chalk/src/index.scss" as *;
