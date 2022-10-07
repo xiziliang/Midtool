@@ -27,7 +27,9 @@ const dialogVisible = reactive({
 
 function copy() {}
 
-function translation() {}
+function translation() {
+  console.log("translation");
+}
 
 function dpiChange(value: string) {
   if (value === "自定义") {
@@ -46,17 +48,32 @@ function onSelectParams() {
     <p class="description" mt-8 color-gray-400>{{ description }}</p>
   </div>
   <header class="container-input" py-4 px-2>
-    <div class="input-group" flex="~" items-stretch w="100%">
-      <el-input
-        flex-1
-        v-model="inputValue"
-        placeholder="The prompt will appear as it gets built. Give this your favorite AI!"
-      ></el-input>
-      <el-button class="copy" type="primary" size="default" @click="copy">
-        <div class="i-carbon-copy"></div>
-      </el-button>
-
-      <el-button type="primary" size="default" @click="translation"> 翻译 </el-button>
+    <div class="input-group" flex="~" justify-center items-stretch w="100%">
+      <div
+        class="sm:max-w-400px lg:max-w-800px xl:max-w-1000px 2xl:max-w-1300px"
+        h-auto
+        p-2
+        flex="~ grow shrink wrap gap-2"
+        border="3 gray-800 rounded-2"
+      >
+        <el-input
+          style="width: calc(100% - 4rem)"
+          v-model="inputValue"
+          :autosize="{ minRows: 1, maxRows: 3 }"
+          type="textarea"
+          placeholder="The prompt will appear as it gets built. Give this your favorite AI!"
+          @keypress.enter.prevent="translation"
+        />
+        <el-button type="primary" size="default" @click="copy">
+          <div class="i-carbon-copy"></div>
+        </el-button>
+        <div flex="~ gap-3" py-2 pb-0>
+          <Tag content="填写"></Tag>
+          <Tag content="多彩的云"></Tag>
+          <Tag content="宫崎骏"></Tag>
+        </div>
+      </div>
+      <!-- <el-button type="primary" size="default" @click="translation"> 翻译 </el-button> -->
     </div>
     <div class="translation-result" flex="~" px-4 mt-8 justify-center items-center>
       <p color-gray-500 mr-4>翻译结果:</p>
@@ -75,9 +92,11 @@ function onSelectParams() {
   <main
     class="container-params ma px-4 sm:max-w-600px lg:max-w-1000px xl:max-w-1200px 2xl:max-w-1480px"
   >
-    <div flex="~" mt-4 cursor-pointer class="readmore-title">
-      选择作画风格
-      <div i-carbon:add></div>
+    <div flex="~" mt-4 class="readmore-title">
+      <div cursor-pointer flex @click="">
+        <p>选择作画风格</p>
+        <div i-carbon:add></div>
+      </div>
     </div>
     <div
       overflow-auto
@@ -90,17 +109,21 @@ function onSelectParams() {
     >
       <Card v-model:data="cardList"></Card>
     </div>
-    <div flex="~" mt-4 mb-4 cursor-pointer class="readmore-title">
-      选择提示词
-      <div i-carbon:add></div>
+    <div flex="~" mt-4 mb-4 class="readmore-title">
+      <div cursor-pointer flex @click="">
+        <p>选择提示词</p>
+        <div i-carbon:add></div>
+      </div>
     </div>
     <div flex="~ gap-3 wrap" justify-start items-stretch class="more">
       <Tag content="填写"></Tag>
       <Tag v-for="item in keyWordList" :content="item"></Tag>
     </div>
-    <div flex="~" mt-4 mb-4 cursor-pointer class="readmore-title">
-      选择画面比例
-      <div i-carbon:add></div>
+    <div flex="~" mt-4 mb-4 class="readmore-title">
+      <div cursor-pointer flex @click="">
+        <p>选择画面比例</p>
+        <div i-carbon:add></div>
+      </div>
     </div>
     <div class="more">
       <el-select v-model="dpiValue" placeholder="请选择画面比例" @change="dpiChange">
@@ -145,9 +168,11 @@ function onSelectParams() {
         </div>
       </div>
     </div>
-    <div flex="~" mt-4 mb-4 cursor-pointer class="readmore-title" @click="onSelectParams">
-      选择作画参数
-      <div i-carbon:add></div>
+    <div flex="~" mt-4 mb-4 class="readmore-title">
+      <div cursor-pointer flex @click="onSelectParams">
+        <p>选择作画参数</p>
+        <div i-carbon:add></div>
+      </div>
     </div>
     <div class="more">
       <Parameters
@@ -156,9 +181,11 @@ function onSelectParams() {
         :dialog-visible="dialogVisible.params"
       ></Parameters>
     </div>
-    <div flex="~" mt-4 mb-4 cursor-pointer class="readmore-title" @click="">
-      参考图片网址
-      <div i-carbon:add></div>
+    <div flex="~" mt-4 mb-4 class="readmore-title" @click="">
+      <div cursor-pointer flex @click="">
+        <p>参考图片网址</p>
+        <div i-carbon:add></div>
+      </div>
     </div>
     <div
       class="more"

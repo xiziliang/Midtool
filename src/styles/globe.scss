@@ -31,9 +31,6 @@ h1 {
       border-bottom-left-radius: 0;
     }
   }
-  .el-button {
-    height: auto;
-  }
 }
 
 // selected 卡片的过度动画
@@ -96,4 +93,12 @@ h1 {
   height: 20px;
   padding: 2px;
   width: 20px;
+}
+
+// textarea style
+.input-group {
+  .el-textarea__inner {
+    resize: none; // NOTE: 取消textarea右下角
+    box-shadow: none;
+  }
 }

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref, computed } from "vue";
 import { Check, Delete } from "@element-plus/icons-vue";
 
 defineProps<{
