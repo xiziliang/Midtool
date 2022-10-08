@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch, computed } from "vue";
+import { ref, watch } from "vue";
 
 type OptionType = "none" | "textbox" | "selector" | "drag" | "percentage";
 
@@ -24,6 +24,10 @@ const props = defineProps<{
 }>();
 
 const data = ref();
+
+defineExpose({
+  data,
+});
 
 watch(
   () => props.dialogVisible,
@@ -102,7 +106,6 @@ watch(
               class="w-130px flex-shrink-0"
               v-model="item.value"
               disabled
-              @change=""
             ></el-input>
           </div>
         </template>

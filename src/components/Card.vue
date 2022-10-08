@@ -1,13 +1,12 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import { useVModel } from "@vueuse/core";
+import { ref, watch } from "vue";
 import { Check } from "@element-plus/icons-vue";
 
 interface List {
-  // Level1Label: string;
-  // KeyWord: string;
-  // KeyWord2: string;
-  // SecondLabel: string;
+  Level1Label: string;
+  KeyWord: string;
+  KeyWord2: string;
+  SecondLabel: string;
   promptZH: string;
   promptEN: string;
   imgName?: string;
@@ -18,29 +17,32 @@ const props = defineProps<{
   data: List[];
 }>();
 
-const emit = defineEmits(["update:data"]);
-
-const propsList = useVModel(props, "data", emit, {
-  passive: true,
-  deep: true,
-});
-
-const selectedRef = ref<Element | null>(null);
 // 已选list
-const selectedList = ref(propsList.value.filter((x) => x.isSelected));
+const selectedList = ref<List[]>();
 // 未选list
-const remainList = ref(propsList.value.filter((x) => !x.isSelected));
+const remainList = ref<List[]>();
 
 function onTrigger(item: List) {
   if (item.isSelected) {
-    selectedList.value = selectedList.value.filter((x) => x.promptEN !== item.promptEN);
-    remainList.value.unshift(item);
+    selectedList.value = selectedList.value!.filter((x) => x.promptEN !== item.promptEN);
+    remainList.value!.unshift(item);
   } else {
-    selectedList.value.push(item);
-    remainList.value = remainList.value.filter((x) => x.promptEN !== item.promptEN);
+    selectedList.value!.push(item);
+    remainList.value = remainList.value!.filter((x) => x.promptEN !== item.promptEN);
   }
   item.isSelected = !item.isSelected;
 }
+
+watch(
+  () => props.data,
+  (value) => {
+    if (value) {
+      selectedList.value = value.filter((x) => x.isSelected);
+      remainList.value = value.filter((x) => !x.isSelected);
+    }
+  },
+  { immediate: true }
+);
 </script>
 <template>
   <TransitionGroup name="animate__fadeInRight">
@@ -49,7 +51,6 @@ function onTrigger(item: List) {
       v-for="item in selectedList"
       :key="item.promptEN"
       :class="{ selected: item.isSelected }"
-      :ref="(el) => (selectedRef = el as Element)"
       @click="onTrigger(item)"
     >
       <el-button

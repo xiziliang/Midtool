@@ -1,29 +1,51 @@
 <script setup lang="ts">
 import { ref, reactive } from "vue";
+import { cloneDeep } from "lodash";
 
 import Card from "@/components/Card.vue";
 import Tag from "@/components/Tag.vue";
 import Parameters from "@/components/MidjourneyParams.vue";
-import { cardlist, keywordlist, dpiList, paramslist } from "@/assets/data";
-import type { DpiOptions, Options } from "@/models";
+import { getDpiList, getParamslist } from "@/assets/data";
+import type { DpiOptions, Options, KeyWord, CardItem } from "@/models";
+
+import { useFetch } from "@vueuse/core";
+
+const parameterRef = ref<InstanceType<typeof Parameters> | null>(null);
 
 const description = ref("搜罗好词、词图预览、一键翻译，让AI画家更好的作画。");
 const translationResult = ref("大家好大啊啊啊大大啊 大大啊啊啊大啊");
 const inputValue = ref("");
 const dpiValue = ref("");
-const dpiOptions = ref<DpiOptions[] | null>(dpiList);
+const dpiOptions = ref<DpiOptions[]>(getDpiList());
 const dpiCustom = ref(false);
 const dpiParams = ref({
   width: undefined,
   height: undefined,
 });
 
-const cardList = ref(cardlist);
-const keyWordList = ref(keywordlist);
-const paramsList = ref((paramslist as unknown) as Options[]);
+const cardList = ref<CardItem[]>([]);
+const keyWordList = ref<Partial<KeyWord>[]>([]);
+const paramsList = ref((getParamslist() as unknown) as Options[]);
 const dialogVisible = reactive({
   params: false,
 });
+
+fetch();
+
+async function fetchKeyWordData() {
+  const { data } = await useFetch("/json/tishici.json");
+  keyWordList.value = JSON.parse(data.value as string);
+}
+
+async function fetchCardListData() {
+  const { data } = await useFetch("/json/zuohuafengge.json");
+  cardList.value = JSON.parse(data.value as string);
+}
+
+function fetch() {
+  fetchKeyWordData();
+  fetchCardListData();
+}
 
 function copy() {}
 
@@ -31,14 +53,18 @@ function translation() {
   console.log("translation");
 }
 
-function dpiChange(value: string) {
-  if (value === "自定义") {
+function onClickTag(item: DpiOptions) {
+  if (item.options === "自定义") {
     dpiCustom.value = true;
   } else dpiCustom.value = false;
 }
 
 function onSelectParams() {
   dialogVisible.params = true;
+}
+
+function onCloseParamsDialog() {
+  dialogVisible.params = false;
 }
 </script>
 
@@ -107,7 +133,7 @@ function onSelectParams() {
       pt-4
       class="more"
     >
-      <Card v-model:data="cardList"></Card>
+      <Card :data="cardList"></Card>
     </div>
     <div flex="~" mt-4 mb-4 class="readmore-title">
       <div cursor-pointer flex @click="">
@@ -117,7 +143,7 @@ function onSelectParams() {
     </div>
     <div flex="~ gap-3 wrap" justify-start items-stretch class="more">
       <Tag content="填写"></Tag>
-      <Tag v-for="item in keyWordList" :content="item"></Tag>
+      <Tag v-for="item in keyWordList" :content="item.promptZH!" slice></Tag>
     </div>
     <div flex="~" m="t-4 b-4" class="readmore-title">
       <div cursor-pointer flex @click="">
@@ -125,20 +151,12 @@ function onSelectParams() {
         <div i-carbon:add></div>
       </div>
     </div>
-    <div class="more">
-      <el-select v-model="dpiValue" placeholder="请选择画面比例" @change="dpiChange">
-        <el-option
-          v-for="item in dpiOptions"
-          :key="item.options"
-          :label="item.options"
-          :value="item.options"
-        >
-          <span style="float: left">{{ item.options }}</span>
-          <span v-if="item.width && item.height" style="float: right; font-size: 13px">{{
-            item.width + " * " + item.height
-          }}</span>
-        </el-option>
-      </el-select>
+    <div flex="~ gap-3 wrap" items-start class="more">
+      <Tag
+        v-for="item in dpiOptions"
+        :content="item.options"
+        @click="onClickTag(item)"
+      ></Tag>
       <div v-if="dpiCustom" class="dpi-custom" flex="~" pl-2>
         <div mt-2>
           <p mb-2 text-neutral class="text-4.5">Width</p>
@@ -195,7 +213,7 @@ function onSelectParams() {
       items-stretch
       will-change-scroll
     >
-      <Card v-model:data="cardList"></Card>
+      <Card :data="cardList"></Card>
     </div>
   </main>
   <footer>
@@ -208,14 +226,22 @@ function onSelectParams() {
     title="作画参数"
     width="80%"
     center
+    :close-on-click-modal="false"
+    @close="onCloseParamsDialog"
   >
-    <Parameters :data="paramsList" :dialog-visible="dialogVisible.params"></Parameters>
+    <Parameters
+      ref="parameterRef"
+      :data="cloneDeep(paramsList)"
+      :dialog-visible="dialogVisible.params"
+    ></Parameters>
     <template #footer>
       <span class="dialog-footer">
         <el-button
           type="primary"
-          :disabled="!paramsList.some((x) => x.checked)"
-          @click="dialogVisible.params = false"
+          @click="
+            dialogVisible.params = false;
+            paramsList = parameterRef?.data;
+          "
           >完成</el-button
         >
       </span>

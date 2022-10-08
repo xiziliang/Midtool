@@ -10,10 +10,22 @@ export interface CardItem {
 }
 
 export interface DpiOptions {
+  SecondLabel?: string | null;
+  KeyWord2?: string | null;
   options: string;
-  width?: number;
-  height?: number;
+  width?: string;
+  height?: string;
 }
+
+export interface KeyWord {
+  Level1Label: string;
+  KeyWord: string;
+  SecondLabel: string;
+  KeyWord2: string;
+  promptZH: string;
+  promptEN: string;
+}
+
 
 export type OptionType = 'none' | 'textbox' | 'selector'| 'drag' | 'percentage';
 

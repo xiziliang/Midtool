@@ -1,0 +1,82 @@
+﻿ [{
+         "Level1Label": "goutu",
+         "KeyWord": "构图",
+         "SecondLabel": "Shijiao",
+         "KeyWord2": "视角",
+         "promptZH": "俯视图",
+         "promptEN": "Overhead view",
+         "": ""
+     },
+     {
+         "Level1Label": "goutu",
+         "KeyWord": "构图",
+         "SecondLabel": "Shijiao",
+         "KeyWord2": "视角",
+         "promptZH": "仰视图",
+         "promptEN": "Low angle",
+         "": ""
+     },
+     {
+         "Level1Label": "goutu",
+         "KeyWord": "构图",
+         "SecondLabel": "Shijiao",
+         "KeyWord2": "视角",
+         "promptZH": "鸟瞰图",
+         "promptEN": "Aerial view",
+         "": ""
+     },
+     {
+         "Level1Label": "goutu",
+         "KeyWord": "构图",
+         "SecondLabel": "Shijiao",
+         "KeyWord2": "视角",
+         "promptZH": "斜倾视图",
+         "promptEN": "Tilted frame",
+         "": ""
+     },
+     {
+         "Level1Label": "goutu",
+         "KeyWord": "构图",
+         "SecondLabel": "Shijiao",
+         "KeyWord2": "视角",
+         "promptZH": "跃肩视图",
+         "promptEN": "Over-the-shoulder shot",
+         "": ""
+     },
+     {
+         "Level1Label": "goutu",
+         "KeyWord": "构图",
+         "SecondLabel": "yuanjin",
+         "KeyWord2": "远近",
+         "promptZH": "特写",
+         "promptEN": "Extreme close-up",
+         "": ""
+     },
+     {
+         "Level1Label": "goutu",
+         "KeyWord": "构图",
+         "SecondLabel": "yuanjin",
+         "KeyWord2": "远近",
+         "promptZH": "近景",
+         "promptEN": "close-up",
+         "": ""
+     },
+     {
+         "Level1Label": "goutu",
+         "KeyWord": "构图",
+         "SecondLabel": "yuanjin",
+         "KeyWord2": "远近",
+         "promptZH": "中景",
+         "promptEN": "Medium shot",
+         "": ""
+     },
+     {
+         "Level1Label": "goutu",
+         "KeyWord": "构图",
+         "SecondLabel": "yuanjin",
+         "KeyWord2": "远近",
+         "promptZH": "全景",
+         "promptEN": "Long shot",
+         "": ""
+     }
+ ]

@@ -1,0 +1,83 @@
+﻿[
+    {
+        "Level1Label": "Modern painters",
+        "KeyWord": "现代画家",
+        "SecondLabel": "cartoon",
+        "KeyWord2": "卡通",
+        "promptZH": "宫崎骏",
+        "promptEN": "Hayao miyazaki",
+        "": ""
+    },
+    {
+        "Level1Label": "Modern painters",
+        "KeyWord": "现代画家",
+        "SecondLabel": "cartoon",
+        "KeyWord2": "卡通",
+        "promptZH": "手冢治虫",
+        "promptEN": "Osamu Tezuka",
+        "": ""
+    },
+    {
+        "Level1Label": "Modern painters",
+        "KeyWord": "现代画家",
+        "SecondLabel": "cartoon",
+        "KeyWord2": "卡通",
+        "promptZH": "井上彦雄",
+        "promptEN": "Inoue Takehiko",
+        "": ""
+    },
+    {
+        "Level1Label": "Modern painters",
+        "KeyWord": "现代画家",
+        "SecondLabel": "cartoon",
+        "KeyWord2": "卡通",
+        "promptZH": "荒木飞吕彦",
+        "promptEN": "Hirohiko Araki",
+        "": ""
+    },
+    {
+        "Level1Label": "Modern painters",
+        "KeyWord": "现代画家",
+        "SecondLabel": "cartoon",
+        "KeyWord2": "卡通",
+        "promptZH": "富坚义博",
+        "promptEN": "Togashi Yoshihiro",
+        "": ""
+    },
+    {
+        "Level1Label": "Modern painters",
+        "KeyWord": "现代画家",
+        "SecondLabel": "cartoon",
+        "KeyWord2": "卡通",
+        "promptZH": "村田雄介",
+        "promptEN": "Murata Yusuke",
+        "": ""
+    },
+    {
+        "Level1Label": "Modern painters",
+        "KeyWord": "现代画家",
+        "SecondLabel": "cartoon",
+        "KeyWord2": "卡通",
+        "promptZH": "谏山创",
+        "promptEN": "Isayama Hajime",
+        "": ""
+    },
+    {
+        "Level1Label": "Style",
+        "KeyWord": "风格",
+        "SecondLabel": "Painting style",
+        "KeyWord2": "主题风格",
+        "promptZH": "蒸汽波",
+        "promptEN": "Vaporwave",
+        "": ""
+    },
+    {
+        "Level1Label": "Style",
+        "KeyWord": "风格",
+        "SecondLabel": "Monochrome style",
+        "KeyWord2": "单色风格",
+        "promptZH": "圆珠笔素描",
+        "promptEN": "Ballpoint pen art",
+        "": ""
+    }
+]
