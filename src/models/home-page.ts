@@ -15,7 +15,10 @@ export interface DpiOptions {
   options: string;
   width?: string;
   height?: string;
+  isSelected?: boolean;
 }
+
+
 
 export interface KeyWord {
   Level1Label: string;
@@ -24,8 +27,12 @@ export interface KeyWord {
   KeyWord2: string;
   promptZH: string;
   promptEN: string;
+  isSelected: boolean;
 }
 
+ export interface CustomKeyWord extends KeyWord {
+  isCustom: boolean;
+}
 
 export type OptionType = 'none' | 'textbox' | 'selector'| 'drag' | 'percentage';
 

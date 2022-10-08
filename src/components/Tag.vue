@@ -9,8 +9,11 @@ import { Check, Delete } from "@element-plus/icons-vue";
 
 const props = defineProps<{
   content: string;
-  isDelete?: boolean;
+  /** 是否选中 */
   isSelected?: boolean;
+  /** 是否是自定义 */
+  isCustom?: boolean;
+  /** 是否裁剪 */
   slice?: boolean;
 }>();
 
@@ -41,7 +44,7 @@ const isDisable = computed(() => (!props.slice ? true : props.content.length < 5
         circle
       />
       <el-button
-        v-if="isDelete"
+        v-if="isCustom && !isSelected"
         class="delete-icon"
         type="danger"
         :icon="Delete"

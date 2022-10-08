@@ -19,7 +19,9 @@ interface Options {
 }
 const props = defineProps<{
   data: Options[];
+  /** 模态框是否关闭 */
   dialogVisible: boolean;
+  /** 是否隐藏没选元素 */
   isHideNoSelected?: boolean;
 }>();
 

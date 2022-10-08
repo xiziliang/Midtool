@@ -6,7 +6,7 @@ import Card from "@/components/Card.vue";
 import Tag from "@/components/Tag.vue";
 import Parameters from "@/components/MidjourneyParams.vue";
 import { getDpiList, getParamslist } from "@/assets/data";
-import type { DpiOptions, Options, KeyWord, CardItem } from "@/models";
+import type { DpiOptions, Options, CustomKeyWord, CardItem } from "@/models";
 
 import { useFetch } from "@vueuse/core";
 
@@ -15,19 +15,22 @@ const parameterRef = ref<InstanceType<typeof Parameters> | null>(null);
 const description = ref("搜罗好词、词图预览、一键翻译，让AI画家更好的作画。");
 const translationResult = ref("大家好大啊啊啊大大啊 大大啊啊啊大啊");
 const inputValue = ref("");
-const dpiValue = ref("");
 const dpiOptions = ref<DpiOptions[]>(getDpiList());
 const dpiCustom = ref(false);
-const dpiParams = ref({
-  width: undefined,
-  height: undefined,
-});
 
 const cardList = ref<CardItem[]>([]);
-const keyWordList = ref<Partial<KeyWord>[]>([]);
+const keyWordList = ref<Partial<CustomKeyWord>[]>([]);
 const paramsList = ref((getParamslist() as unknown) as Options[]);
+
+const newKeyWordValue = ref<string>("");
+
 const dialogVisible = reactive({
   params: false,
+  keyWord: false,
+});
+const dpiParams = reactive({
+  width: undefined,
+  height: undefined,
 });
 
 fetch();
@@ -54,9 +57,13 @@ function translation() {
 }
 
 function onClickTag(item: DpiOptions) {
+  dpiOptions.value.forEach((x) => (x.isSelected = false));
   if (item.options === "自定义") {
     dpiCustom.value = true;
-  } else dpiCustom.value = false;
+  } else {
+    dpiCustom.value = false;
+    item.isSelected = !item.isSelected;
+  }
 }
 
 function onSelectParams() {
@@ -65,6 +72,10 @@ function onSelectParams() {
 
 function onCloseParamsDialog() {
   dialogVisible.params = false;
+}
+
+function onAddTag() {
+  dialogVisible.keyWord = true;
 }
 </script>
 
@@ -136,14 +147,20 @@ function onCloseParamsDialog() {
       <Card :data="cardList"></Card>
     </div>
     <div flex="~" mt-4 mb-4 class="readmore-title">
-      <div cursor-pointer flex @click="">
+      <div cursor-pointer flex @click="onAddTag">
         <p>选择提示词</p>
         <div i-carbon:add></div>
       </div>
     </div>
     <div flex="~ gap-3 wrap" justify-start items-stretch class="more">
-      <Tag content="填写"></Tag>
-      <Tag v-for="item in keyWordList" :content="item.promptZH!" slice></Tag>
+      <Tag content="填写" @click="onAddTag"></Tag>
+      <Tag
+        slice
+        v-for="item in keyWordList"
+        :content="item.promptZH!"
+        :is-selected="item.isSelected"
+        @click="item.isSelected = !item.isSelected"
+      ></Tag>
     </div>
     <div flex="~" m="t-4 b-4" class="readmore-title">
       <div cursor-pointer flex @click="">
@@ -155,6 +172,7 @@ function onCloseParamsDialog() {
       <Tag
         v-for="item in dpiOptions"
         :content="item.options"
+        :is-selected="item.isSelected"
         @click="onClickTag(item)"
       ></Tag>
       <div v-if="dpiCustom" class="dpi-custom" flex="~" pl-2>
@@ -241,6 +259,42 @@ function onCloseParamsDialog() {
           @click="
             dialogVisible.params = false;
             paramsList = parameterRef?.data;
+          "
+          >完成</el-button
+        >
+      </span>
+    </template>
+  </el-dialog>
+
+  <el-dialog
+    title="输入提示词"
+    v-model="dialogVisible.keyWord"
+    center
+    width="35%"
+    destroy-on-close
+    :close-on-click-modal="false"
+  >
+    <el-input
+      type="textarea"
+      v-model="newKeyWordValue"
+      maxlength="30"
+      show-word-limit
+      placeholder="请输入"
+    ></el-input>
+
+    <template #footer>
+      <span>
+        <el-button
+          :disabled="newKeyWordValue.length < 1"
+          type="primary"
+          @click="
+            dialogVisible.keyWord = false;
+            keyWordList.push({
+              promptZH: newKeyWordValue,
+              isSelected: true,
+              isCustom: true,
+            });
+            newKeyWordValue = '';
           "
           >完成</el-button
         >
