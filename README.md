@@ -18,3 +18,10 @@ pnpm i # 如果你没装过 pnpm, 可以先运行: npm install -g pnpm
 
 pnpm run dev
 ```
+
+### 项目预览
+
+<div style="display: flex; justify-content: center">
+<img style="width: 900px; height: 700px" src="./src/assets/img1.png"></img>
+</div>
+
