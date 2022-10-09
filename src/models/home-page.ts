@@ -16,6 +16,7 @@ export interface DpiOptions {
   width?: string;
   height?: string;
   isSelected?: boolean;
+  isShow?: boolean;
 }
 
 

@@ -1,32 +1,62 @@
 <script setup lang="ts">
-import { ref, reactive } from "vue";
+import { ref, reactive, watch, computed, nextTick } from "vue";
 import { cloneDeep } from "lodash";
 
 import Card from "@/components/Card.vue";
 import Tag from "@/components/Tag.vue";
 import Parameters from "@/components/MidjourneyParams.vue";
+import DpiDialog from "@/components/DpiDialog.vue";
 import { getDpiList, getParamslist } from "@/assets/data";
 import type { DpiOptions, Options, CustomKeyWord, CardItem } from "@/models";
+import {
+  DPI_CUSTOM_LIST,
+  CARD_CUSTOM_LIST,
+  KEYWORD_CUSTOM_LIST,
+  PARAM_CUSTOM_LIST,
+} from "@/constants";
 
-import { useFetch } from "@vueuse/core";
+import { useFetch, useStorage, useStorageAsync } from "@vueuse/core";
 
 const parameterRef = ref<InstanceType<typeof Parameters> | null>(null);
+const dpiDialogRef = ref<InstanceType<typeof DpiDialog> | null>(null);
 
 const description = ref("搜罗好词、词图预览、一键翻译，让AI画家更好的作画。");
 const translationResult = ref("大家好大啊啊啊大大啊 大大啊啊啊大啊");
 const inputValue = ref("");
-const dpiOptions = ref<DpiOptions[]>(getDpiList());
 const dpiCustom = ref(false);
 
 const cardList = ref<CardItem[]>([]);
 const keyWordList = ref<Partial<CustomKeyWord>[]>([]);
 const paramsList = ref((getParamslist() as unknown) as Options[]);
+const dpiList = ref<DpiOptions[]>(getDpiList());
+
+const cardCustomList = useStorageAsync<CardItem[]>(CARD_CUSTOM_LIST, null, localStorage);
+const keyWordCustomList = useStorageAsync<CustomKeyWord[]>(
+  KEYWORD_CUSTOM_LIST,
+  [],
+  localStorage,
+  {
+    mergeDefaults: true,
+  }
+);
+const dpiCustomsList = useStorage<DpiOptions[]>(DPI_CUSTOM_LIST, [], localStorage);
+
+const paramCustomsList = useStorageAsync<Options[]>(PARAM_CUSTOM_LIST, [], localStorage, {
+  mergeDefaults: true,
+});
+
+// const defaultCardList = computed(() => [...cardCustomList.value]);
+// const defaultKeyWordList = computed(() => [...keyWordCustomList.value]);
+const defaultDpiList = computed(() => [...dpiCustomsList.value]);
+// const defaultParamList = computed(() => [...paramCustomsList.value]);
 
 const newKeyWordValue = ref<string>("");
 
 const dialogVisible = reactive({
   params: false,
   keyWord: false,
+  dpi: false,
+  card: false,
 });
 const dpiParams = reactive({
   width: undefined,
@@ -57,7 +87,7 @@ function translation() {
 }
 
 function onClickTag(item: DpiOptions) {
-  dpiOptions.value.forEach((x) => (x.isSelected = false));
+  dpiList.value.forEach((x) => (x.isSelected = false));
   if (item.options === "自定义") {
     dpiCustom.value = true;
   } else {
@@ -74,8 +104,17 @@ function onCloseParamsDialog() {
   dialogVisible.params = false;
 }
 
+async function onCloseDpiDialog() {
+  dialogVisible.dpi = false;
+  await nextTick();
+  dpiCustomsList.value = dpiDialogRef.value?.dpiCustomsList;
+}
 function onAddTag() {
   dialogVisible.keyWord = true;
+}
+
+function onSelectDpi() {
+  dialogVisible.dpi = true;
 }
 </script>
 
@@ -147,7 +186,7 @@ function onAddTag() {
       <Card :data="cardList"></Card>
     </div>
     <div flex="~" mt-4 mb-4 class="readmore-title">
-      <div cursor-pointer flex @click="onAddTag">
+      <div cursor-pointer flex>
         <p>选择提示词</p>
         <div i-carbon:add></div>
       </div>
@@ -163,14 +202,14 @@ function onAddTag() {
       ></Tag>
     </div>
     <div flex="~" m="t-4 b-4" class="readmore-title">
-      <div cursor-pointer flex @click="">
+      <div cursor-pointer flex @click="onSelectDpi">
         <p>选择画面比例</p>
         <div i-carbon:add></div>
       </div>
     </div>
     <div flex="~ gap-3 wrap" items-start class="more">
       <Tag
-        v-for="item in dpiOptions"
+        v-for="item in defaultDpiList"
         :content="item.options"
         :is-selected="item.isSelected"
         @click="onClickTag(item)"
@@ -298,6 +337,25 @@ function onAddTag() {
           "
           >完成</el-button
         >
+      </span>
+    </template>
+  </el-dialog>
+  <el-dialog
+    title="画面比例"
+    v-model="dialogVisible.dpi"
+    center
+    width="40%"
+    destroy-on-close
+    :close-on-click-modal="false"
+  >
+    <DpiDialog
+      ref="dpiDialogRef"
+      :list="dpiList"
+      :dialog-visible="dialogVisible.dpi"
+    ></DpiDialog>
+    <template #footer>
+      <span>
+        <el-button type="primary" @click="onCloseDpiDialog">完成</el-button>
       </span>
     </template>
   </el-dialog>
