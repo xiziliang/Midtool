@@ -45,7 +45,7 @@ export interface KeyWord {
 
 export type OptionType = 'none' | 'textbox' | 'selector'| 'drag' | 'percentage';
 
-export type AIParams = 'card' | 'keyword' | 'params' | 'dpi';
+export type AIParams = 'card' | 'keyword' | 'params' | 'dpi' | 'img';
 
 interface Option {
   [key: string]: string;
@@ -63,4 +63,10 @@ export interface Options {
   index?: number;
   value?: number;
   checked?: boolean;
+}
+
+export interface ImgOptions {
+  img: string;
+  isSelected: boolean;
+  isCustom: boolean;
 }

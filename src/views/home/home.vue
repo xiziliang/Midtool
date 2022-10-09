@@ -9,12 +9,20 @@ import DpiDialog from "@/components/DpiDialog.vue";
 import KeywordDialog from "@/components/KeywordDialog.vue";
 import CardDialog from "@/components/CardDialog.vue";
 import { getDpiList, getParamslist } from "@/assets/data";
-import type { DpiOptions, Options, CustomKeyWord, CardItem, AIParams } from "@/models";
+import type {
+  DpiOptions,
+  Options,
+  CustomKeyWord,
+  CardItem,
+  AIParams,
+  ImgOptions,
+} from "@/models";
 import {
   DPI_CUSTOM_LIST,
   CARD_CUSTOM_LIST,
   KEYWORD_CUSTOM_LIST,
   PARAM_CUSTOM_LIST,
+  IMG_CUSTOM_LIST,
 } from "@/constants";
 
 import { useFetch, useStorage } from "@vueuse/core";
@@ -32,6 +40,7 @@ const dpiCustom = ref(false);
 // input value
 const inputValue = ref("");
 const newKeyWordValue = ref<string>("");
+const newImgAddressValue = ref<string>("");
 
 // data
 const cardList = ref<CardItem[]>([]);
@@ -47,11 +56,13 @@ const keyWordCustomList = useStorage<CustomKeyWord[]>(
 );
 const dpiCustomsList = useStorage<DpiOptions[]>(DPI_CUSTOM_LIST, [], localStorage);
 const paramCustomsList = useStorage<Options[]>(PARAM_CUSTOM_LIST, [], localStorage);
+const imgCustomsList = useStorage<ImgOptions[]>(IMG_CUSTOM_LIST, [], localStorage);
 
 const defaultCardList = computed(() => [...cardCustomList.value]);
 const defaultKeyWordList = computed(() => [...keyWordCustomList.value]);
 const defaultDpiList = computed(() => [...dpiCustomsList.value]);
 const defaultParamList = computed(() => [...paramCustomsList.value]);
+const defaultImgList = computed(() => [...imgCustomsList.value]);
 
 // reactive
 const dialogVisible = reactive({
@@ -60,6 +71,7 @@ const dialogVisible = reactive({
   keyWord: false,
   dpi: false,
   card: false,
+  img: false,
 });
 const dpiParams = reactive({
   width: undefined,
@@ -133,6 +145,10 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
       break;
     case "params":
       dialogVisible.params = true;
+
+      break;
+    case "img":
+      dialogVisible.img = true;
 
       break;
     case "writekeyword":
@@ -284,8 +300,8 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
         :dialog-visible="dialogVisible.params"
       ></Parameters>
     </div>
-    <div flex="~" mt-4 mb-4 class="readmore-title" @click="">
-      <div cursor-pointer flex @click="">
+    <div flex="~" mt-4 mb-4 class="readmore-title">
+      <div cursor-pointer flex @click="onSelectAIParams('img')">
         <p>参考图片网址</p>
         <div i-carbon:add></div>
       </div>
@@ -303,49 +319,48 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
   </main>
   <footer>
     <el-divider />
-  </footer>
-  <!-- dialog start ----------------- -->
-  <el-dialog
-    v-model="dialogVisible.card"
-    top="30px"
-    title="作画风格"
-    width="70%"
-    center
-    :close-on-click-modal="false"
-  >
-    <CardDialog
-      ref="cardDialogRef"
-      :list="cardList"
-      :dialog-visible="dialogVisible.card"
-    ></CardDialog>
-    <template #footer>
-      <span class="dialog-footer">
-        <el-button type="primary" @click="onCloseCardDialog">完成</el-button>
-      </span>
-    </template>
-  </el-dialog>
-  <el-dialog
-    title="输入提示词"
-    v-model="dialogVisible.writeKeyWord"
-    center
-    width="35%"
-    destroy-on-close
-    :close-on-click-modal="false"
-  >
-    <el-input
-      type="textarea"
-      v-model="newKeyWordValue"
-      maxlength="30"
-      show-word-limit
-      placeholder="请输入"
-    ></el-input>
+    <!-- dialog start ----------------- -->
+    <el-dialog
+      v-model="dialogVisible.card"
+      top="30px"
+      title="作画风格"
+      width="70%"
+      center
+      :close-on-click-modal="false"
+    >
+      <CardDialog
+        ref="cardDialogRef"
+        :list="cardList"
+        :dialog-visible="dialogVisible.card"
+      ></CardDialog>
+      <template #footer>
+        <span class="dialog-footer">
+          <el-button type="primary" @click="onCloseCardDialog">完成</el-button>
+        </span>
+      </template>
+    </el-dialog>
+    <el-dialog
+      title="输入提示词"
+      v-model="dialogVisible.writeKeyWord"
+      center
+      width="35%"
+      destroy-on-close
+      :close-on-click-modal="false"
+    >
+      <el-input
+        type="textarea"
+        v-model="newKeyWordValue"
+        maxlength="30"
+        show-word-limit
+        placeholder="请输入"
+      ></el-input>
 
-    <template #footer>
-      <span>
-        <el-button
-          :disabled="newKeyWordValue.length < 1"
-          type="primary"
-          @click="
+      <template #footer>
+        <span>
+          <el-button
+            :disabled="newKeyWordValue.length < 1"
+            type="primary"
+            @click="
             dialogVisible.writeKeyWord = false;
             defaultKeyWordList.push({
               promptZH: newKeyWordValue,
@@ -354,75 +369,112 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
             } as CustomKeyWord);
             newKeyWordValue = '';
           "
-          >完成</el-button
-        >
-      </span>
-    </template>
-  </el-dialog>
-  <el-dialog
-    title="提示词"
-    v-model="dialogVisible.keyWord"
-    center
-    width="50%"
-    destroy-on-close
-    :close-on-click-modal="false"
-  >
-    <KeywordDialog
-      ref="keywordDialogRef"
-      :list="keyWordList"
-      :dialog-visible="dialogVisible.keyWord"
-    ></KeywordDialog>
-    <template #footer>
-      <span>
-        <el-button type="primary" @click="onCloseKeyWordDialog">完成</el-button>
-      </span>
-    </template>
-  </el-dialog>
-  <el-dialog
-    title="画面比例"
-    v-model="dialogVisible.dpi"
-    center
-    width="40%"
-    destroy-on-close
-    :close-on-click-modal="false"
-  >
-    <DpiDialog
-      ref="dpiDialogRef"
-      :list="dpiList"
-      :dialog-visible="dialogVisible.dpi"
-    ></DpiDialog>
-    <template #footer>
-      <span>
-        <el-button type="primary" @click="onCloseDpiDialog">完成</el-button>
-      </span>
-    </template>
-  </el-dialog>
-  <el-dialog
-    v-model="dialogVisible.params"
-    top="30px"
-    title="作画参数"
-    width="80%"
-    center
-    :close-on-click-modal="false"
-  >
-    <Parameters
-      ref="parameterRef"
-      :data="cloneDeep(paramsList)"
-      :dialog-visible="dialogVisible.params"
-    ></Parameters>
-    <template #footer>
-      <span class="dialog-footer">
-        <el-button
-          type="primary"
-          @click="
-            dialogVisible.params = false;
-            paramsList = parameterRef?.data;
-          "
-          >完成</el-button
-        >
-      </span>
-    </template>
-  </el-dialog>
+            >完成</el-button
+          >
+        </span>
+      </template>
+    </el-dialog>
+    <el-dialog
+      title="提示词"
+      v-model="dialogVisible.keyWord"
+      center
+      width="50%"
+      destroy-on-close
+      :close-on-click-modal="false"
+    >
+      <KeywordDialog
+        ref="keywordDialogRef"
+        :list="keyWordList"
+        :dialog-visible="dialogVisible.keyWord"
+      ></KeywordDialog>
+      <template #footer>
+        <span>
+          <el-button type="primary" @click="onCloseKeyWordDialog">完成</el-button>
+        </span>
+      </template>
+    </el-dialog>
+    <el-dialog
+      title="画面比例"
+      v-model="dialogVisible.dpi"
+      center
+      width="40%"
+      destroy-on-close
+      :close-on-click-modal="false"
+    >
+      <DpiDialog
+        ref="dpiDialogRef"
+        :list="dpiList"
+        :dialog-visible="dialogVisible.dpi"
+      ></DpiDialog>
+      <template #footer>
+        <span>
+          <el-button type="primary" @click="onCloseDpiDialog">完成</el-button>
+        </span>
+      </template>
+    </el-dialog>
+    <el-dialog
+      v-model="dialogVisible.params"
+      top="30px"
+      title="作画参数"
+      width="80%"
+      center
+      :close-on-click-modal="false"
+    >
+      <Parameters
+        ref="parameterRef"
+        :data="cloneDeep(paramsList)"
+        :dialog-visible="dialogVisible.params"
+      ></Parameters>
+      <template #footer>
+        <span class="dialog-footer">
+          <el-button
+            type="primary"
+            @click="
+              dialogVisible.params = false;
+              paramsList = parameterRef?.data;
+            "
+            >完成</el-button
+          >
+        </span>
+      </template>
+    </el-dialog>
+    <el-dialog
+      title="输入图片网址"
+      v-model="dialogVisible.img"
+      center
+      width="40%"
+      destroy-on-close
+      :close-on-click-modal="false"
+    >
+      <el-input
+        type="textarea"
+        v-model="newImgAddressValue"
+        maxlength="300"
+        show-word-limit
+        placeholder="请输入网址"
+        :autosize="{ minRows: 3, maxRows: 3 }"
+      ></el-input>
+
+      <template #footer>
+        <span>
+          <el-button
+            :disabled="newImgAddressValue.length < 1"
+            type="primary"
+            @click="
+              dialogVisible.img = false;
+              imgCustomsList.push({
+                img: newImgAddressValue,
+                isSelected: true,
+                isCustom: true,
+              });
+              newImgAddressValue = '';
+            "
+            >完成</el-button
+          >
+        </span>
+      </template>
+    </el-dialog>
+  </footer>
 </template>
 
 <style lang="scss" scoped>
