@@ -102,3 +102,33 @@ h1 {
     box-shadow: none;
   }
 }
+
+.card {
+  width: 10rem;
+  background-color: #26292e;
+  color: #fff;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex-shrink: 0;
+  word-wrap: break-word;
+  background-clip: border-box; // 使background覆盖border
+  border-radius: 0.25rem;
+
+  cursor: pointer;
+
+  &:hover {
+    background-color: #1a1c1f;
+  }
+
+  .card-img,
+  img {
+    border-top-left-radius: calc(0.25rem - 1px);
+    border-top-right-radius: calc(0.25rem - 1px);
+  }
+  img {
+    width: 100%;
+  }
+}

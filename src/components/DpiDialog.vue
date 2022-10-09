@@ -16,7 +16,7 @@ const dpiCustomsList = useStorage<DpiOptions[]>(DPI_CUSTOM_LIST, [], localStorag
 
 const formatList = computed<Record<string, DpiOptions[]>>(() => {
   const obj: any = {};
-  // NOTE: cloneDeep 可以中断响应式
+  // NOTE: cloneDeep 会使数据变为非响应式
   reactive(cloneDeep(props.list)).forEach((x) => {
     if (x.KeyWord2) {
       dpiCustomsList.value.some((item) => item.options === x.options)
@@ -34,7 +34,6 @@ const formatList = computed<Record<string, DpiOptions[]>>(() => {
 
 watchEffect(() => {
   if (!props.dialogVisible) {
-    console.log(1);
     dpiCustomsList.value = Object.values(formatList.value)
       .flat()
       .filter((x) => x.isShow);
@@ -47,7 +46,7 @@ defineExpose({
 </script>
 <template>
   <div p-4 v-for="(dpilist, label) in formatList">
-    <div flex="~" mt-4 mb-4 class="readmore-title">
+    <div flex="~" mb-4 class="readmore-title">
       <div flex>
         <p>{{ label }}</p>
       </div>

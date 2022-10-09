@@ -1,13 +1,15 @@
 <script setup lang="ts">
-import { ref, reactive, watch, computed, nextTick } from "vue";
+import { ref, reactive, computed, nextTick } from "vue";
 import { cloneDeep } from "lodash";
 
 import Card from "@/components/Card.vue";
 import Tag from "@/components/Tag.vue";
 import Parameters from "@/components/MidjourneyParams.vue";
 import DpiDialog from "@/components/DpiDialog.vue";
+import KeywordDialog from "@/components/KeywordDialog.vue";
+import CardDialog from "@/components/CardDialog.vue";
 import { getDpiList, getParamslist } from "@/assets/data";
-import type { DpiOptions, Options, CustomKeyWord, CardItem } from "@/models";
+import type { DpiOptions, Options, CustomKeyWord, CardItem, AIParams } from "@/models";
 import {
   DPI_CUSTOM_LIST,
   CARD_CUSTOM_LIST,
@@ -15,45 +17,46 @@ import {
   PARAM_CUSTOM_LIST,
 } from "@/constants";
 
-import { useFetch, useStorage, useStorageAsync } from "@vueuse/core";
+import { useFetch, useStorage } from "@vueuse/core";
 
+// instance
 const parameterRef = ref<InstanceType<typeof Parameters> | null>(null);
 const dpiDialogRef = ref<InstanceType<typeof DpiDialog> | null>(null);
+const keywordDialogRef = ref<InstanceType<typeof KeywordDialog> | null>(null);
+const cardDialogRef = ref<InstanceType<typeof CardDialog> | null>(null);
 
-const description = ref("搜罗好词、词图预览、一键翻译，让AI画家更好的作画。");
+const description = ref("搜罗好词、词图预览、一键翻译,让AI画家更好的作画。");
 const translationResult = ref("大家好大啊啊啊大大啊 大大啊啊啊大啊");
-const inputValue = ref("");
 const dpiCustom = ref(false);
 
+// input value
+const inputValue = ref("");
+const newKeyWordValue = ref<string>("");
+
+// data
 const cardList = ref<CardItem[]>([]);
 const keyWordList = ref<Partial<CustomKeyWord>[]>([]);
 const paramsList = ref((getParamslist() as unknown) as Options[]);
 const dpiList = ref<DpiOptions[]>(getDpiList());
 
-const cardCustomList = useStorageAsync<CardItem[]>(CARD_CUSTOM_LIST, null, localStorage);
-const keyWordCustomList = useStorageAsync<CustomKeyWord[]>(
+const cardCustomList = useStorage<CardItem[]>(CARD_CUSTOM_LIST, [], localStorage);
+const keyWordCustomList = useStorage<CustomKeyWord[]>(
   KEYWORD_CUSTOM_LIST,
   [],
-  localStorage,
-  {
-    mergeDefaults: true,
-  }
+  localStorage
 );
 const dpiCustomsList = useStorage<DpiOptions[]>(DPI_CUSTOM_LIST, [], localStorage);
+const paramCustomsList = useStorage<Options[]>(PARAM_CUSTOM_LIST, [], localStorage);
 
-const paramCustomsList = useStorageAsync<Options[]>(PARAM_CUSTOM_LIST, [], localStorage, {
-  mergeDefaults: true,
-});
-
-// const defaultCardList = computed(() => [...cardCustomList.value]);
-// const defaultKeyWordList = computed(() => [...keyWordCustomList.value]);
+const defaultCardList = computed(() => [...cardCustomList.value]);
+const defaultKeyWordList = computed(() => [...keyWordCustomList.value]);
 const defaultDpiList = computed(() => [...dpiCustomsList.value]);
-// const defaultParamList = computed(() => [...paramCustomsList.value]);
+const defaultParamList = computed(() => [...paramCustomsList.value]);
 
-const newKeyWordValue = ref<string>("");
-
+// reactive
 const dialogVisible = reactive({
   params: false,
+  writeKeyWord: false,
   keyWord: false,
   dpi: false,
   card: false,
@@ -96,12 +99,10 @@ function onClickTag(item: DpiOptions) {
   }
 }
 
-function onSelectParams() {
-  dialogVisible.params = true;
-}
-
-function onCloseParamsDialog() {
-  dialogVisible.params = false;
+async function onCloseCardDialog() {
+  dialogVisible.card = false;
+  await nextTick();
+  cardCustomList.value = cardDialogRef.value?.cardCustomList;
 }
 
 async function onCloseDpiDialog() {
@@ -109,12 +110,36 @@ async function onCloseDpiDialog() {
   await nextTick();
   dpiCustomsList.value = dpiDialogRef.value?.dpiCustomsList;
 }
-function onAddTag() {
-  dialogVisible.keyWord = true;
+
+async function onCloseKeyWordDialog() {
+  dialogVisible.keyWord = false;
+  await nextTick();
+  keyWordCustomList.value = keywordDialogRef.value?.keyWordCustomList;
 }
 
-function onSelectDpi() {
-  dialogVisible.dpi = true;
+function onSelectAIParams(type: AIParams | "writekeyword") {
+  switch (type) {
+    case "card":
+      dialogVisible.card = true;
+
+      break;
+    case "keyword":
+      dialogVisible.keyWord = true;
+
+      break;
+    case "dpi":
+      dialogVisible.dpi = true;
+
+      break;
+    case "params":
+      dialogVisible.params = true;
+
+      break;
+    case "writekeyword":
+      dialogVisible.writeKeyWord = true;
+
+      break;
+  }
 }
 </script>
 
@@ -169,7 +194,7 @@ function onSelectDpi() {
     class="container-params ma px-4 sm:max-w-600px lg:max-w-1000px xl:max-w-1200px 2xl:max-w-1480px"
   >
     <div flex="~" mt-4 class="readmore-title">
-      <div cursor-pointer flex @click="">
+      <div cursor-pointer flex @click="onSelectAIParams('card')">
         <p>选择作画风格</p>
         <div i-carbon:add></div>
       </div>
@@ -183,37 +208,40 @@ function onSelectDpi() {
       pt-4
       class="more"
     >
-      <Card :data="cardList"></Card>
+      <Card :data="defaultCardList"></Card>
     </div>
-    <div flex="~" mt-4 mb-4 class="readmore-title">
+    <div flex="~" mt-4 mb-4 class="readmore-title" @click="onSelectAIParams('keyword')">
       <div cursor-pointer flex>
         <p>选择提示词</p>
         <div i-carbon:add></div>
       </div>
     </div>
     <div flex="~ gap-3 wrap" justify-start items-stretch class="more">
-      <Tag content="填写" @click="onAddTag"></Tag>
+      <Tag content="填写" @click="onSelectAIParams('writekeyword')"></Tag>
       <Tag
         slice
-        v-for="item in keyWordList"
+        v-for="item in defaultKeyWordList"
         :content="item.promptZH!"
         :is-selected="item.isSelected"
         @click="item.isSelected = !item.isSelected"
       ></Tag>
     </div>
     <div flex="~" m="t-4 b-4" class="readmore-title">
-      <div cursor-pointer flex @click="onSelectDpi">
+      <div cursor-pointer flex @click="onSelectAIParams('dpi')">
         <p>选择画面比例</p>
         <div i-carbon:add></div>
       </div>
     </div>
-    <div flex="~ gap-3 wrap" items-start class="more">
-      <Tag
-        v-for="item in defaultDpiList"
-        :content="item.options"
-        :is-selected="item.isSelected"
-        @click="onClickTag(item)"
-      ></Tag>
+    <div flex="~ gap-3 wrap col" items-start class="more">
+      <div flex="~ gap-3 wrap">
+        <Tag content="自定义" @click="dpiCustom = !dpiCustom"></Tag>
+        <Tag
+          v-for="item in defaultDpiList"
+          :content="item.options"
+          :is-selected="item.isSelected"
+          @click="onClickTag(item)"
+        ></Tag>
+      </div>
       <div v-if="dpiCustom" class="dpi-custom" flex="~" pl-2>
         <div mt-2>
           <p mb-2 text-neutral class="text-4.5">Width</p>
@@ -244,7 +272,7 @@ function onSelectDpi() {
       </div>
     </div>
     <div flex="~" mt-4 mb-4 class="readmore-title">
-      <div cursor-pointer flex @click="onSelectParams">
+      <div cursor-pointer flex @click="onSelectAIParams('params')">
         <p>选择作画参数</p>
         <div i-carbon:add></div>
       </div>
@@ -276,38 +304,29 @@ function onSelectDpi() {
   <footer>
     <el-divider />
   </footer>
-  <!-- dialog start -->
+  <!-- dialog start ----------------- -->
   <el-dialog
-    v-model="dialogVisible.params"
+    v-model="dialogVisible.card"
     top="30px"
-    title="作画参数"
-    width="80%"
+    title="作画风格"
+    width="70%"
     center
     :close-on-click-modal="false"
-    @close="onCloseParamsDialog"
   >
-    <Parameters
-      ref="parameterRef"
-      :data="cloneDeep(paramsList)"
-      :dialog-visible="dialogVisible.params"
-    ></Parameters>
+    <CardDialog
+      ref="cardDialogRef"
+      :list="cardList"
+      :dialog-visible="dialogVisible.card"
+    ></CardDialog>
     <template #footer>
       <span class="dialog-footer">
-        <el-button
-          type="primary"
-          @click="
-            dialogVisible.params = false;
-            paramsList = parameterRef?.data;
-          "
-          >完成</el-button
-        >
+        <el-button type="primary" @click="onCloseCardDialog">完成</el-button>
       </span>
     </template>
   </el-dialog>
-
   <el-dialog
     title="输入提示词"
-    v-model="dialogVisible.keyWord"
+    v-model="dialogVisible.writeKeyWord"
     center
     width="35%"
     destroy-on-close
@@ -327,7 +346,7 @@ function onSelectDpi() {
           :disabled="newKeyWordValue.length < 1"
           type="primary"
           @click="
-            dialogVisible.keyWord = false;
+            dialogVisible.writeKeyWord = false;
             keyWordList.push({
               promptZH: newKeyWordValue,
               isSelected: true,
@@ -337,6 +356,25 @@ function onSelectDpi() {
           "
           >完成</el-button
         >
+      </span>
+    </template>
+  </el-dialog>
+  <el-dialog
+    title="提示词"
+    v-model="dialogVisible.keyWord"
+    center
+    width="50%"
+    destroy-on-close
+    :close-on-click-modal="false"
+  >
+    <KeywordDialog
+      ref="keywordDialogRef"
+      :list="keyWordList"
+      :dialog-visible="dialogVisible.keyWord"
+    ></KeywordDialog>
+    <template #footer>
+      <span>
+        <el-button type="primary" @click="onCloseKeyWordDialog">完成</el-button>
       </span>
     </template>
   </el-dialog>
@@ -356,6 +394,32 @@ function onSelectDpi() {
     <template #footer>
       <span>
         <el-button type="primary" @click="onCloseDpiDialog">完成</el-button>
+      </span>
+    </template>
+  </el-dialog>
+  <el-dialog
+    v-model="dialogVisible.params"
+    top="30px"
+    title="作画参数"
+    width="80%"
+    center
+    :close-on-click-modal="false"
+  >
+    <Parameters
+      ref="parameterRef"
+      :data="cloneDeep(paramsList)"
+      :dialog-visible="dialogVisible.params"
+    ></Parameters>
+    <template #footer>
+      <span class="dialog-footer">
+        <el-button
+          type="primary"
+          @click="
+            dialogVisible.params = false;
+            paramsList = parameterRef?.data;
+          "
+          >完成</el-button
+        >
       </span>
     </template>
   </el-dialog>

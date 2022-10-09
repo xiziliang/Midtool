@@ -1,28 +1,18 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
 import { Check } from "@element-plus/icons-vue";
-
-interface List {
-  Level1Label: string;
-  KeyWord: string;
-  KeyWord2: string;
-  SecondLabel: string;
-  promptZH: string;
-  promptEN: string;
-  imgName?: string;
-  isSelected?: boolean;
-}
+import type { CardItem } from "@/models";
 
 const props = defineProps<{
-  data: List[];
+  data: CardItem[];
 }>();
 
 // 已选list
-const selectedList = ref<List[]>();
+const selectedList = ref<CardItem[]>();
 // 未选list
-const remainList = ref<List[]>();
+const remainList = ref<CardItem[]>();
 
-function onTrigger(item: List) {
+function onTrigger(item: CardItem) {
   if (item.isSelected) {
     selectedList.value = selectedList.value!.filter((x) => x.promptEN !== item.promptEN);
     remainList.value!.unshift(item);
@@ -88,34 +78,3 @@ watch(
     <div class="card-enname" p-2>{{ item.promptEN }}</div>
   </div>
 </template>
-<style scoped lang="scss">
-.card {
-  width: 10rem;
-  background-color: #26292e;
-  color: #fff;
-
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  flex-shrink: 0;
-  word-wrap: break-word;
-  background-clip: border-box; // 使background覆盖border
-  border-radius: 0.25rem;
-
-  cursor: pointer;
-
-  &:hover {
-    background-color: #1a1c1f;
-  }
-
-  .card-img,
-  img {
-    border-top-left-radius: calc(0.25rem - 1px);
-    border-top-right-radius: calc(0.25rem - 1px);
-  }
-  img {
-    width: 100%;
-  }
-}
-</style>

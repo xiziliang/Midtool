@@ -6,7 +6,10 @@ export interface CardItem {
   promptZH: string;
   promptEN: string;
   imgName?: string;
+  /** 是否主页选中 */
   isSelected?: boolean;
+  /** 是否在dialog中选中 */
+  isShow: boolean;
 }
 
 export interface DpiOptions {
@@ -15,11 +18,11 @@ export interface DpiOptions {
   options: string;
   width?: string;
   height?: string;
+  /** 是否主页选中 */
   isSelected?: boolean;
+  /** 是否在dialog中选中 */
   isShow?: boolean;
 }
-
-
 
 export interface KeyWord {
   Level1Label: string;
@@ -28,7 +31,10 @@ export interface KeyWord {
   KeyWord2: string;
   promptZH: string;
   promptEN: string;
+  /** 是否主页选中 */
   isSelected: boolean;
+  /** 是否在dialog中选中 */
+  isShow: boolean;
 }
 
  export interface CustomKeyWord extends KeyWord {
@@ -36,6 +42,8 @@ export interface KeyWord {
 }
 
 export type OptionType = 'none' | 'textbox' | 'selector'| 'drag' | 'percentage';
+
+export type AIParams = 'card' | 'keyword' | 'params' | 'dpi';
 
 interface Option {
   [key: string]: string;

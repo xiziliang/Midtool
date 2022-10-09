@@ -78,5 +78,41 @@
          "promptZH": "全景",
          "promptEN": "Long shot",
          "": ""
-     }
+     },
+     {
+        "Level1Label": "goutu",
+        "KeyWord": "构图",
+        "SecondLabel": "yuanjin",
+        "KeyWord2": "远近",
+        "promptZH": "全景1",
+        "promptEN": "Long shot1",
+        "": ""
+    },
+    {
+        "Level1Label": "goutu",
+        "KeyWord": "构图",
+        "SecondLabel": "yuanjin",
+        "KeyWord2": "远近",
+        "promptZH": "全景2",
+        "promptEN": "Long shot2",
+        "": ""
+    },
+    {
+        "Level1Label": "goutu",
+        "KeyWord": "构图",
+        "SecondLabel": "yuanjin",
+        "KeyWord2": "远近",
+        "promptZH": "全景3",
+        "promptEN": "Long shot3",
+        "": ""
+    },
+    {
+        "Level1Label": "goutu",
+        "KeyWord": "构图2",
+        "SecondLabel": "Shijiao",
+        "KeyWord2": "视角2",
+        "promptZH": "仰视图2",
+        "promptEN": "Low angle2",
+        "": ""
+    }
  ]
