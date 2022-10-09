@@ -347,11 +347,11 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
           type="primary"
           @click="
             dialogVisible.writeKeyWord = false;
-            keyWordList.push({
+            defaultKeyWordList.push({
               promptZH: newKeyWordValue,
               isSelected: true,
               isCustom: true,
-            });
+            } as CustomKeyWord);
             newKeyWordValue = '';
           "
           >完成</el-button

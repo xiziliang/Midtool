@@ -10,6 +10,8 @@ export interface CardItem {
   isSelected?: boolean;
   /** 是否在dialog中选中 */
   isShow: boolean;
+  /** 是否是用户自定义 */
+  isCustom: boolean;
 }
 
 export interface DpiOptions {
