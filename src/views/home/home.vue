@@ -27,6 +27,7 @@ import {
   IMG_CUSTOM_LIST,
 } from "@/constants";
 
+import { copyText } from "@/utils";
 import { useFetch, useStorage } from "@vueuse/core";
 
 // instance
@@ -35,12 +36,12 @@ const dpiDialogRef = ref<InstanceType<typeof DpiDialog> | null>(null);
 const keywordDialogRef = ref<InstanceType<typeof KeywordDialog> | null>(null);
 const cardDialogRef = ref<InstanceType<typeof CardDialog> | null>(null);
 
-const description = ref("搜罗好词、词图预览、一键翻译,让AI画家更好的作画。");
-const translationResult = ref("大家好大啊啊啊大大啊 大大啊啊啊大啊");
 const dpiCustom = ref(false);
 
 // input value
 const inputValue = ref("");
+const description = ref("搜罗好词、词图预览、一键翻译,让AI画家更好的作画。");
+const translationResult = ref("大家好大啊啊啊大大啊 大大啊啊啊大啊");
 const newKeyWordValue = ref("");
 const newImgAddressValue = ref("");
 
@@ -108,7 +109,17 @@ function fetch() {
   fetchCardListData();
 }
 
-function copy() {}
+function copy(type: "input" | "translation") {
+  switch (type) {
+    case "input":
+      copyText(inputValue.value);
+
+      break;
+    case "translation":
+      copyText(translationResult.value);
+      break;
+  }
+}
 
 function translation() {
   console.log("translation");
@@ -201,7 +212,7 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
           placeholder="The prompt will appear as it gets built. Give this your favorite AI!"
           @keypress.enter.prevent="translation"
         />
-        <el-button type="primary" size="default" @click="copy">
+        <el-button type="primary" size="default" @click="copy('input')">
           <div class="i-carbon-copy"></div>
         </el-button>
         <div class="tooltiplist" flex="~ gap-3" p="y-2 b-0">
@@ -222,7 +233,7 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
         class="copy"
         type="primary"
         size="default"
-        @click="copy"
+        @click="copy('translation')"
       >
         <div class="i-carbon-copy"></div>
       </el-button>
