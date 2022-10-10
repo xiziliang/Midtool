@@ -71,11 +71,20 @@ h1 {
   animation-name: fadeInRight;
 }
 
-// .animate__fadeInRight-leave-active {
-//   animation-duration: .3s;
-//   animation-fill-mode: both;
-//   animation-name: fadeOutRight;
-// }
+.animate__fadeInRight-leave-active {
+  animation-duration: .3s;
+  animation-name: fadeOutRight;
+}
+
+.page-fade-enter-active,
+.page-fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.page-fade-enter-from,
+.page-fade-leave-to {
+  opacity: 0;
+}
 
 // selected icon style
 .check-icon.el-button {

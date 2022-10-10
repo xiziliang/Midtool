@@ -15,7 +15,9 @@ const remainList = ref<CardItem[]>();
 function onTrigger(item: CardItem) {
   if (item.isSelected) {
     selectedList.value = selectedList.value!.filter((x) => x.promptEN !== item.promptEN);
-    remainList.value!.unshift(item);
+    setTimeout(() => {
+      remainList.value!.unshift(item);
+    }, 500);
   } else {
     selectedList.value!.push(item);
     remainList.value = remainList.value!.filter((x) => x.promptEN !== item.promptEN);
