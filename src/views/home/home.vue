@@ -25,6 +25,7 @@ import {
   KEYWORD_CUSTOM_LIST,
   PARAM_CUSTOM_LIST,
   IMG_CUSTOM_LIST,
+  ApiPrefix,
 } from "@/constants";
 
 import { copyText } from "@/utils";
@@ -41,7 +42,7 @@ const dpiCustom = ref(false);
 // input value
 const inputValue = ref("");
 const description = ref("搜罗好词、词图预览、一键翻译,让AI画家更好的作画。");
-const translationResult = ref("大家好大啊啊啊大大啊 大大啊啊啊大啊");
+const translationResult = ref("");
 const newKeyWordValue = ref("");
 const newImgAddressValue = ref("");
 
@@ -121,8 +122,11 @@ function copy(type: "input" | "translation") {
   }
 }
 
-function translation() {
-  console.log("translation");
+async function translation() {
+  const { data } = await useFetch(`${ApiPrefix}/translate`).post({
+    origin: inputValue.value,
+  });
+  translationResult.value = JSON.parse(data.value as string).data;
 }
 
 function onClickTag(item: DpiOptions) {
@@ -225,16 +229,18 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
       </div>
       <!-- <el-button type="primary" size="default" @click="translation"> 翻译 </el-button> -->
     </div>
-    <div class="translation-result" flex="~" px-4 mt-8 justify-center items-center>
+    <div
+      v-show="translationResult.length > 0"
+      class="translation-result"
+      flex="~"
+      px-4
+      mt-8
+      justify-center
+      items-start
+    >
       <p color-gray-500 mr-4>翻译结果:</p>
-      <div color-gray-500 mr-2>{{ translationResult }}</div>
-      <el-button
-        v-show="translationResult.length > 0"
-        class="copy"
-        type="primary"
-        size="default"
-        @click="copy('translation')"
-      >
+      <div color-gray-500 mx-2 max-w-2xl>{{ translationResult }}</div>
+      <el-button class="copy" type="primary" size="default" @click="copy('translation')">
         <div class="i-carbon-copy"></div>
       </el-button>
     </div>

@@ -34,6 +34,7 @@ export interface KeyWord {
 }
 
  export interface CustomKeyWord extends KeyWord {
+  /** 是否为用户自定义 */
   isCustom: boolean;
 }
 
