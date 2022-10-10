@@ -19,7 +19,7 @@ const formatList = computed<Record<string, DpiOptions[]>>(() => {
   // NOTE: cloneDeep 会使数据变为非响应式
   reactive(cloneDeep(props.list)).forEach((x) => {
     if (x.KeyWord2) {
-      dpiCustomsList.value.some((item) => item.options === x.options)
+      dpiCustomsList.value.some((item) => item.options === x.options && item.isSelected)
         ? (x.isSelected = true)
         : (x.isSelected = false);
       if (obj[x.KeyWord2]) {

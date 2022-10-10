@@ -44,7 +44,7 @@ watch(
 
     if (keyWordCustomList.value) {
       allData.value.forEach((x) => {
-        keyWordCustomList.value.some((y) => y.promptEN === x.promptEN)
+        keyWordCustomList.value.some((y) => y.promptEN === x.promptEN && y.isSelected)
           ? (x.isSelected = true)
           : (x.isSelected = false);
       });
