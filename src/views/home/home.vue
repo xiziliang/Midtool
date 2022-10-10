@@ -6,7 +6,7 @@ import { ElMessage } from "element-plus";
 import Card from "@/components/Card.vue";
 import ImgCard from "@/components/ImgCard.vue";
 import Tag from "@/components/Tag.vue";
-import Parameters from "@/components/MidjourneyParams.vue";
+import MidjourneyParams from "@/components/MidjourneyParams.vue";
 import DpiDialog from "@/components/DpiDialog.vue";
 import KeywordDialog from "@/components/KeywordDialog.vue";
 import CardDialog from "@/components/CardDialog.vue";
@@ -32,7 +32,7 @@ import { copyText } from "@/utils";
 import { useFetch, useStorage } from "@vueuse/core";
 
 // instance
-const parameterRef = ref<InstanceType<typeof Parameters> | null>(null);
+const parameterRef = ref<InstanceType<typeof MidjourneyParams> | null>(null);
 const dpiDialogRef = ref<InstanceType<typeof DpiDialog> | null>(null);
 const keywordDialogRef = ref<InstanceType<typeof KeywordDialog> | null>(null);
 const cardDialogRef = ref<InstanceType<typeof CardDialog> | null>(null);
@@ -123,10 +123,50 @@ function copy(type: "input" | "translation") {
 }
 
 async function translation() {
+  // NOTE: 拼接keyWord
+  const keyWord = defaultKeyWordList.value
+    .filter((x) => x.isCustom && x.isSelected)
+    .map((x) => x.promptZH)
+    .join(",");
+
   const { data } = await useFetch(`${ApiPrefix}/translate`).post({
-    origin: inputValue.value,
+    origin: keyWord ? inputValue.value + "," + keyWord : inputValue.value,
   });
   translationResult.value = JSON.parse(data.value as string).data;
+
+  joinField();
+}
+
+function joinField() {
+  // TODO: 拼接 params
+  translationResult.value =
+    translationResult.value +
+    "," +
+    defaultCardList.value
+      .filter((x) => x.isSelected)
+      .map((x) => x.promptEN)
+      .join(",") +
+    "," +
+    defaultKeyWordList.value
+      .filter((x) => x.isSelected && !x.isCustom)
+      .map((x) => x.promptEN)
+      .join(",") +
+    "," +
+    (dpiCustom.value
+      ? `--ar ${dpiParams.height}:${dpiParams.width}`
+      : defaultDpiList.value.filter((x) => x.isSelected)
+      ? `--ar ${defaultDpiList.value[0].height}:${defaultDpiList.value[0].width}`
+      : "--ar 1:1") +
+    "," +
+    paramsList.value
+      .filter((x) => x.checked)
+      .map((x) => x.parameter)
+      .join(",") +
+    "," +
+    defaultImgList.value
+      .filter((x) => x.isSelected)
+      .map((x) => x.img)
+      .join(",");
 }
 
 function onClickTag(item: DpiOptions) {
@@ -155,6 +195,11 @@ async function onCloseKeyWordDialog() {
   dialogVisible.keyWord = false;
   await nextTick();
   keyWordCustomList.value = keywordDialogRef.value?.keyWordCustomList;
+}
+
+async function onCloseParamsDialog() {
+  dialogVisible.params = false;
+  paramsList.value = parameterRef.value?.data;
 }
 
 function onSelectAIParams(type: AIParams | "writekeyword") {
@@ -239,7 +284,9 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
       items-start
     >
       <p color-gray-500 mr-4>翻译结果:</p>
-      <div color-gray-500 mx-2 max-w-2xl>{{ translationResult }}</div>
+      <code class="tracking-0.5px" color-gray-500 mx-2 max-w-2xl break-words>{{
+        translationResult
+      }}</code>
       <el-button class="copy" type="primary" size="default" @click="copy('translation')">
         <div class="i-carbon-copy"></div>
       </el-button>
@@ -333,11 +380,11 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
       </div>
     </div>
     <div class="more">
-      <Parameters
+      <MidjourneyParams
         :data="paramsList"
         :is-hide-no-selected="true"
         :dialog-visible="dialogVisible.params"
-      ></Parameters>
+      ></MidjourneyParams>
     </div>
     <div flex="~" mt-4 mb-4 class="readmore-title">
       <div cursor-pointer flex @click="onSelectAIParams('img')">
@@ -464,21 +511,14 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
       center
       :close-on-click-modal="false"
     >
-      <Parameters
+      <MidjourneyParams
         ref="parameterRef"
         :data="cloneDeep(paramsList)"
         :dialog-visible="dialogVisible.params"
-      ></Parameters>
+      ></MidjourneyParams>
       <template #footer>
         <span class="dialog-footer">
-          <el-button
-            type="primary"
-            @click="
-              dialogVisible.params = false;
-              paramsList = parameterRef?.data;
-            "
-            >完成</el-button
-          >
+          <el-button type="primary" @click="onCloseParamsDialog">完成</el-button>
         </span>
       </template>
     </el-dialog>
