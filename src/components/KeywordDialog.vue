@@ -45,8 +45,8 @@ watch(
     if (keyWordCustomList.value) {
       allData.value.forEach((x) => {
         keyWordCustomList.value.some((y) => y.promptEN === x.promptEN)
-          ? (x.isShow = true)
-          : (x.isShow = false);
+          ? (x.isSelected = true)
+          : (x.isSelected = false);
       });
     }
   },
@@ -57,7 +57,9 @@ watch(
 
 watchEffect(() => {
   if (!props.dialogVisible) {
-    keyWordCustomList.value = allData.value.filter((x) => x.isShow) as CustomKeyWord[];
+    keyWordCustomList.value = allData.value.filter(
+      (x) => x.isSelected
+    ) as CustomKeyWord[];
   }
 });
 </script>
@@ -76,8 +78,8 @@ watchEffect(() => {
               slice
               v-for="item in allData.filter((x) => x.KeyWord2 === keyword2)"
               :content="item.promptZH!"
-              :is-selected="item.isShow"
-              @click="item.isShow = !item.isShow"
+              :is-selected="item.isSelected"
+              @click="item.isSelected = !item.isSelected"
             ></Tag>
           </div>
         </div>

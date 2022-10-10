@@ -14,18 +14,29 @@ const props = defineProps<{
   /** 是否是自定义 */
   isCustom?: boolean;
   /** 是否裁剪 */
-  slice?: boolean;
+  slice?: boolean | number;
 }>();
 
-const text = computed(() => {
+const limit = computed(() => {
   if (props.slice) {
-    return props.content.length > 5 ? props.content.slice(0, 5) + "..." : props.content;
+    return typeof props.slice === "number" ? props.slice : 5;
+  }
+  return false;
+});
+
+const text = computed(() => {
+  if (limit.value) {
+    return props.content.length > limit.value
+      ? props.content.slice(0, limit.value) + "..."
+      : props.content;
   } else {
     return props.content;
   }
 });
 
-const isDisable = computed(() => (!props.slice ? true : props.content.length < 5));
+const isDisable = computed(() =>
+  !limit.value ? true : props.content.length < limit.value
+);
 </script>
 
 <template>

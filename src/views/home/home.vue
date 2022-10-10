@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { ref, reactive, computed, nextTick } from "vue";
 import { cloneDeep } from "lodash";
+import { ElMessage } from "element-plus";
 
 import Card from "@/components/Card.vue";
+import ImgCard from "@/components/ImgCard.vue";
 import Tag from "@/components/Tag.vue";
 import Parameters from "@/components/MidjourneyParams.vue";
 import DpiDialog from "@/components/DpiDialog.vue";
@@ -39,8 +41,8 @@ const dpiCustom = ref(false);
 
 // input value
 const inputValue = ref("");
-const newKeyWordValue = ref<string>("");
-const newImgAddressValue = ref<string>("");
+const newKeyWordValue = ref("");
+const newImgAddressValue = ref("");
 
 // data
 const cardList = ref<CardItem[]>([]);
@@ -63,6 +65,17 @@ const defaultKeyWordList = computed(() => [...keyWordCustomList.value]);
 const defaultDpiList = computed(() => [...dpiCustomsList.value]);
 const defaultParamList = computed(() => [...paramCustomsList.value]);
 const defaultImgList = computed(() => [...imgCustomsList.value]);
+
+const tooltiplist = computed<(CardItem & DpiOptions & CustomKeyWord & ImgOptions)[]>(
+  () => {
+    return [].concat(
+      defaultCardList.value.find((x) => x.isSelected) || ([] as any),
+      defaultKeyWordList.value.find((x) => x.isSelected) || ([] as any),
+      defaultDpiList.value.find((x) => x.isSelected) || ([] as any),
+      defaultImgList.value.find((x) => x.isSelected) || ([] as any)
+    );
+  }
+);
 
 // reactive
 const dialogVisible = reactive({
@@ -148,6 +161,13 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
 
       break;
     case "img":
+      if (defaultImgList.value.filter((x) => x.isSelected).length >= 10) {
+        ElMessage({
+          type: "warning",
+          message: "您已选中10张图片",
+        });
+        return;
+      }
       dialogVisible.img = true;
 
       break;
@@ -184,10 +204,12 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
         <el-button type="primary" size="default" @click="copy">
           <div class="i-carbon-copy"></div>
         </el-button>
-        <div flex="~ gap-3" p="y-2 b-0">
-          <Tag content="填写"></Tag>
-          <Tag content="多彩的云"></Tag>
-          <Tag content="宫崎骏"></Tag>
+        <div class="tooltiplist" flex="~ gap-3" p="y-2 b-0">
+          <Tag
+            v-for="item in tooltiplist"
+            :content="item?.promptZH || item?.options || item?.img"
+            :slice="16"
+          ></Tag>
         </div>
       </div>
       <!-- <el-button type="primary" size="default" @click="translation"> 翻译 </el-button> -->
@@ -308,13 +330,14 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
     </div>
     <div
       class="more"
+      p="y-4"
       overflow-auto
       flex="~ gap-4"
       justify-start
       items-stretch
       will-change-scroll
     >
-      <Card :data="cardList"></Card>
+      <ImgCard :data="defaultImgList"></ImgCard>
     </div>
   </main>
   <footer>
@@ -326,6 +349,7 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
       title="作画风格"
       width="70%"
       center
+      draggable
       :close-on-click-modal="false"
     >
       <CardDialog
@@ -345,6 +369,7 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
       center
       width="35%"
       destroy-on-close
+      draggable
       :close-on-click-modal="false"
     >
       <el-input
@@ -380,6 +405,7 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
       center
       width="50%"
       destroy-on-close
+      draggable
       :close-on-click-modal="false"
     >
       <KeywordDialog
@@ -399,6 +425,7 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
       center
       width="40%"
       destroy-on-close
+      draggable
       :close-on-click-modal="false"
     >
       <DpiDialog
@@ -444,6 +471,7 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
       center
       width="40%"
       destroy-on-close
+      draggable
       :close-on-click-modal="false"
     >
       <el-input
@@ -465,7 +493,6 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
               imgCustomsList.push({
                 img: newImgAddressValue,
                 isSelected: true,
-                isCustom: true,
               });
               newImgAddressValue = '';
             "

@@ -18,7 +18,7 @@ const props = defineProps<{
 const allData = ref<CardItem[]>([]);
 
 function onTrigger(item: CardItem) {
-  item.isShow = !item.isShow;
+  item.isSelected = !item.isSelected;
 }
 
 defineExpose({
@@ -34,8 +34,8 @@ watch(
     if (cardCustomList.value) {
       allData.value.forEach((x) => {
         cardCustomList.value.some((y) => y.promptEN === x.promptEN)
-          ? (x.isShow = true)
-          : (x.isShow = false);
+          ? (x.isSelected = true)
+          : (x.isSelected = false);
       });
     }
   },
@@ -46,7 +46,7 @@ watch(
 
 watchEffect(() => {
   if (!props.dialogVisible) {
-    cardCustomList.value = allData.value.filter((x) => x.isShow);
+    cardCustomList.value = allData.value.filter((x) => x.isSelected);
   }
 });
 </script>
@@ -56,11 +56,11 @@ watchEffect(() => {
       class="card"
       v-for="item in allData"
       :key="item.promptEN"
-      :class="{ selected: item.isShow }"
+      :class="{ selected: item.isSelected }"
       @click="onTrigger(item)"
     >
       <el-button
-        v-if="item.isShow"
+        v-if="item.isSelected"
         class="check-icon"
         type="success"
         :icon="Check"

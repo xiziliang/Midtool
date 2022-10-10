@@ -8,8 +8,6 @@ export interface CardItem {
   imgName?: string;
   /** 是否主页选中 */
   isSelected?: boolean;
-  /** 是否在dialog中选中 */
-  isShow: boolean;
   /** 是否是用户自定义 */
   isCustom: boolean;
 }
@@ -22,8 +20,6 @@ export interface DpiOptions {
   height?: string;
   /** 是否主页选中 */
   isSelected?: boolean;
-  /** 是否在dialog中选中 */
-  isShow?: boolean;
 }
 
 export interface KeyWord {
@@ -35,8 +31,6 @@ export interface KeyWord {
   promptEN: string;
   /** 是否主页选中 */
   isSelected: boolean;
-  /** 是否在dialog中选中 */
-  isShow: boolean;
 }
 
  export interface CustomKeyWord extends KeyWord {
@@ -68,5 +62,4 @@ export interface Options {
 export interface ImgOptions {
   img: string;
   isSelected: boolean;
-  isCustom: boolean;
 }

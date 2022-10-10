@@ -66,16 +66,16 @@ h1 {
 }
 
 .animate__fadeInRight-enter-active {
-  animation-duration: .5s;
+  animation-duration: .3s;
   animation-fill-mode: both;
   animation-name: fadeInRight;
 }
 
-.animate__fadeInRight-leave-active {
-  animation-duration: .3s;
-  animation-fill-mode: both;
-  animation-name: fadeOutRight;
-}
+// .animate__fadeInRight-leave-active {
+//   animation-duration: .3s;
+//   animation-fill-mode: both;
+//   animation-name: fadeOutRight;
+// }
 
 // selected icon style
 .check-icon.el-button {

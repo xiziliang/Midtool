@@ -15,7 +15,6 @@ interface Options {
   index?: number;
   value?: number;
   checked?: boolean;
-  isShow?: boolean;
 }
 const props = defineProps<{
   data: Options[];

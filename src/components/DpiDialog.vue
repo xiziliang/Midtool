@@ -20,8 +20,8 @@ const formatList = computed<Record<string, DpiOptions[]>>(() => {
   reactive(cloneDeep(props.list)).forEach((x) => {
     if (x.KeyWord2) {
       dpiCustomsList.value.some((item) => item.options === x.options)
-        ? (x.isShow = true)
-        : (x.isShow = false);
+        ? (x.isSelected = true)
+        : (x.isSelected = false);
       if (obj[x.KeyWord2]) {
         obj[x.KeyWord2] = [...obj[x.KeyWord2], x];
       } else {
@@ -32,11 +32,18 @@ const formatList = computed<Record<string, DpiOptions[]>>(() => {
   return obj;
 });
 
+function onSelect(item: DpiOptions) {
+  Object.values(formatList.value)
+    .flat()
+    .forEach((x) => (x.isSelected = false));
+  item.isSelected = true;
+}
+
 watchEffect(() => {
   if (!props.dialogVisible) {
     dpiCustomsList.value = Object.values(formatList.value)
       .flat()
-      .filter((x) => x.isShow);
+      .filter((x) => x.isSelected);
   }
 });
 
@@ -55,8 +62,8 @@ defineExpose({
       <Tag
         v-for="item in dpilist"
         :content="item.options"
-        :is-selected="item.isShow"
-        @click="item.isShow = !item.isShow"
+        :is-selected="item.isSelected"
+        @click="onSelect(item)"
       ></Tag>
     </div>
   </div>
