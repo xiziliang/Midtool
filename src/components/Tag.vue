@@ -15,7 +15,11 @@ const props = defineProps<{
   isCustom?: boolean;
   /** 是否裁剪 */
   slice?: boolean | number;
+  /** 是否使用tooltip */
+  tooltip?: boolean;
 }>();
+
+defineEmits(["delete"]);
 
 const limit = computed(() => {
   if (props.slice) {
@@ -35,7 +39,7 @@ const text = computed(() => {
 });
 
 const isDisable = computed(() =>
-  !limit.value ? true : props.content.length < limit.value
+  !props.tooltip ? true : !limit.value ? true : props.content.length < limit.value
 );
 </script>
 
@@ -60,6 +64,7 @@ const isDisable = computed(() =>
         type="danger"
         :icon="Delete"
         circle
+        @click.stop="$emit('delete', content)"
       />
       <slot name="icon"></slot>
       {{ text }}

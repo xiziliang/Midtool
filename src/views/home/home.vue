@@ -18,6 +18,7 @@ import type {
   CardItem,
   AIParams,
   ImgOptions,
+  HistoryKeyWord,
 } from "@/models";
 import {
   DPI_CUSTOM_LIST,
@@ -25,6 +26,7 @@ import {
   KEYWORD_CUSTOM_LIST,
   PARAM_CUSTOM_LIST,
   IMG_CUSTOM_LIST,
+  KEYWORD_HISTORY_LIST,
   ApiPrefix,
 } from "@/constants";
 
@@ -62,11 +64,18 @@ const dpiCustomsList = useStorage<DpiOptions[]>(DPI_CUSTOM_LIST, [], localStorag
 const paramCustomsList = useStorage<Options[]>(PARAM_CUSTOM_LIST, [], localStorage);
 const imgCustomsList = useStorage<ImgOptions[]>(IMG_CUSTOM_LIST, [], localStorage);
 
-const defaultCardList = computed(() => [...cardCustomList.value]);
-const defaultKeyWordList = computed(() => [...keyWordCustomList.value]);
-const defaultDpiList = computed(() => [...dpiCustomsList.value]);
-const defaultParamList = computed(() => [...paramCustomsList.value]);
-const defaultImgList = computed(() => [...imgCustomsList.value]);
+const keyWordHistoryList = useStorage<HistoryKeyWord[]>(
+  KEYWORD_HISTORY_LIST,
+  [],
+  localStorage
+);
+
+// TODO: 使用watch + ref
+const defaultCardList = computed(() => reactive([...cardCustomList.value]));
+const defaultKeyWordList = computed(() => reactive([...keyWordCustomList.value]));
+const defaultDpiList = computed(() => reactive([...dpiCustomsList.value]));
+const defaultParamList = computed(() => reactive([...paramCustomsList.value]));
+const defaultImgList = computed(() => reactive([...imgCustomsList.value]));
 
 const tooltiplist = computed<(CardItem & DpiOptions & CustomKeyWord & ImgOptions)[]>(
   () => {
@@ -93,7 +102,17 @@ const dpiParams = reactive({
   height: undefined,
 });
 
+initCustomList();
 fetch();
+
+function initCustomList() {
+  [
+    ...cardCustomList.value,
+    ...keyWordCustomList.value,
+    ...dpiCustomsList.value,
+    ...imgCustomsList.value,
+  ].forEach((x) => (x.isSelected = false));
+}
 
 async function fetchKeyWordData() {
   const { data } = await useFetch("/json/tishici.json");
@@ -138,7 +157,7 @@ async function translation() {
 }
 
 function joinField() {
-  // TODO: 拼接 params
+  // TODO: 拼接 params 去掉多余逗号
   translationResult.value =
     translationResult.value +
     "," +
@@ -154,7 +173,7 @@ function joinField() {
     "," +
     (dpiCustom.value
       ? `--ar ${dpiParams.height}:${dpiParams.width}`
-      : defaultDpiList.value.filter((x) => x.isSelected)
+      : defaultDpiList.value.filter((x) => x.isSelected).length
       ? `--ar ${defaultDpiList.value[0].height}:${defaultDpiList.value[0].width}`
       : "--ar 1:1") +
     "," +
@@ -179,6 +198,15 @@ function onClickTag(item: DpiOptions) {
   }
 }
 
+function onDelete(value: string) {
+  const index = defaultKeyWordList.value.findIndex(
+    (x) => x.isCustom && x.promptZH === value
+  );
+
+  defaultKeyWordList.value.splice(index, 1);
+  ElMessage.success("删除成功");
+}
+
 async function onCloseCardDialog() {
   dialogVisible.card = false;
   await nextTick();
@@ -195,6 +223,32 @@ async function onCloseKeyWordDialog() {
   dialogVisible.keyWord = false;
   await nextTick();
   keyWordCustomList.value = keywordDialogRef.value?.keyWordCustomList;
+}
+
+function onCloseWriteKeyWordDialog() {
+  dialogVisible.writeKeyWord = false;
+
+  const item = keyWordHistoryList.value.find((x) => x.promptZH === newKeyWordValue.value);
+
+  if (item) {
+    item.isSelected = true;
+    defaultKeyWordList.value.push(item);
+  } else if (!item) {
+    keyWordHistoryList.value.push(
+      reactive({
+        promptZH: newKeyWordValue.value,
+        isSelected: true,
+        isCustom: true,
+      }) as HistoryKeyWord
+    );
+
+    defaultKeyWordList.value.push(
+      keyWordHistoryList.value.find(
+        (x) => x.promptZH === newKeyWordValue.value
+      ) as HistoryKeyWord
+    );
+  }
+  newKeyWordValue.value = "";
 }
 
 async function onCloseParamsDialog() {
@@ -322,10 +376,13 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
       <Tag content="填写" @click="onSelectAIParams('writekeyword')"></Tag>
       <Tag
         slice
+        tooltip
         v-for="item in defaultKeyWordList"
         :content="item.promptZH!"
         :is-selected="item.isSelected"
+        :is-custom="item.isCustom"
         @click="item.isSelected = !item.isSelected"
+        @delete="onDelete"
       ></Tag>
     </div>
     <div flex="~" m="t-4 b-4" class="readmore-title">
@@ -449,15 +506,7 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
           <el-button
             :disabled="newKeyWordValue.length < 1"
             type="primary"
-            @click="
-            dialogVisible.writeKeyWord = false;
-            defaultKeyWordList.push({
-              promptZH: newKeyWordValue,
-              isSelected: true,
-              isCustom: true,
-            } as CustomKeyWord);
-            newKeyWordValue = '';
-          "
+            @click="onCloseWriteKeyWordDialog"
             >完成</el-button
           >
         </span>

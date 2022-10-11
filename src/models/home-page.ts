@@ -38,6 +38,11 @@ export interface KeyWord {
   isCustom: boolean;
 }
 
+export interface HistoryKeyWord extends CustomKeyWord {
+  /** 是否删除 */
+  isDelete: boolean;
+}
+
 export type OptionType = 'none' | 'textbox' | 'selector'| 'drag' | 'percentage';
 
 export type AIParams = 'card' | 'keyword' | 'params' | 'dpi' | 'img';
