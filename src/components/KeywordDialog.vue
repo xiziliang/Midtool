@@ -3,9 +3,9 @@ import { ref, computed, watchEffect, watch } from "vue";
 import { cloneDeep } from "lodash";
 
 import { useStorage } from "@vueuse/core";
-import { KEYWORD_CUSTOM_LIST } from "@/constants";
+import { KEYWORD_CUSTOM_LIST, KEYWORD_HISTORY_LIST } from "@/constants";
 import Tag from "@/components/Tag.vue";
-import type { CustomKeyWord } from "@/models";
+import type { CustomKeyWord, HistoryKeyWord } from "@/models";
 
 const props = defineProps<{
   list: Partial<CustomKeyWord>[];
@@ -14,6 +14,12 @@ const props = defineProps<{
 
 const keyWordCustomList = useStorage<CustomKeyWord[]>(
   KEYWORD_CUSTOM_LIST,
+  [],
+  localStorage
+);
+
+const keyWordHistoryList = useStorage<HistoryKeyWord[]>(
+  KEYWORD_HISTORY_LIST,
   [],
   localStorage
 );
@@ -34,6 +40,7 @@ function keyword2label(label: string) {
 
 defineExpose({
   keyWordCustomList,
+  keyWordHistoryList,
 });
 
 watch(
@@ -68,7 +75,7 @@ watchEffect(() => {
     <el-tab-pane v-for="keyword1 in tabList" :label="keyword1" :name="keyword1">
       <div h-lg overflow-auto will-change-scroll>
         <div v-for="keyword2 in keyword2label(keyword1!)" class="keyword2">
-          <div flex="~" mt-4 mb-4>
+          <div flex="~" m="y-4">
             <div flex>
               <p>{{ keyword2 }}</p>
             </div>
@@ -86,7 +93,17 @@ watchEffect(() => {
       </div>
     </el-tab-pane>
     <el-tab-pane label="历史记录" name="history">
-      <div h-lg overflow-auto>history</div>
+      <div h-lg overflow-auto>
+        <div flex="~ gap-3 wrap" p="y-4" justify-start items-start>
+          <Tag
+            slice
+            v-for="item in keyWordHistoryList"
+            :content="item.promptZH!"
+            :is-selected="item.isSelected"
+            @click="item.isSelected = !item.isSelected"
+          ></Tag>
+        </div>
+      </div>
     </el-tab-pane>
   </el-tabs>
 </template>

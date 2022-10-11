@@ -109,6 +109,7 @@ function initCustomList() {
   [
     ...cardCustomList.value,
     ...keyWordCustomList.value,
+    ...keyWordHistoryList.value,
     ...dpiCustomsList.value,
     ...imgCustomsList.value,
   ].forEach((x) => (x.isSelected = false));
@@ -223,6 +224,9 @@ async function onCloseKeyWordDialog() {
   dialogVisible.keyWord = false;
   await nextTick();
   keyWordCustomList.value = keywordDialogRef.value?.keyWordCustomList;
+  keyWordHistoryList.value = keywordDialogRef.value?.keyWordHistoryList;
+
+  defaultKeyWordList.value.push(...keyWordHistoryList.value.filter((x) => x.isSelected));
 }
 
 function onCloseWriteKeyWordDialog() {
