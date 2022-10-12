@@ -51,6 +51,7 @@ watch(
 
     if (keyWordCustomList.value) {
       allData.value.forEach((x) => {
+        // NOTE: 加上 y.isSelected
         keyWordCustomList.value.some((y) => y.promptEN === x.promptEN && y.isSelected)
           ? (x.isSelected = true)
           : (x.isSelected = false);
@@ -71,7 +72,7 @@ watchEffect(() => {
 });
 </script>
 <template>
-  <el-tabs v-model="currentTab" tab-click="handleClick">
+  <el-tabs v-model="currentTab">
     <el-tab-pane v-for="keyword1 in tabList" :label="keyword1" :name="keyword1">
       <div h-lg overflow-auto will-change-scroll>
         <div v-for="keyword2 in keyword2label(keyword1!)" class="keyword2">

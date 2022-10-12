@@ -475,6 +475,7 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
       width="70%"
       center
       draggable
+      destroy-on-close
       :close-on-click-modal="false"
     >
       <CardDialog

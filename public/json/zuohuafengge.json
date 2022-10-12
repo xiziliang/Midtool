@@ -22,6 +22,15 @@
         "KeyWord": "现代画家",
         "SecondLabel": "cartoon",
         "KeyWord2": "卡通",
+        "promptZH": "手冢治虫110",
+        "promptEN": "Osamu Tezuka110",
+        "": ""
+    },
+    {
+        "Level1Label": "Modern painters",
+        "KeyWord": "现代画家",
+        "SecondLabel": "cartoon",
+        "KeyWord2": "卡通",
         "promptZH": "井上彦雄",
         "promptEN": "Inoue Takehiko",
         "": ""
