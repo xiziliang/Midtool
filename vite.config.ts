@@ -1,9 +1,11 @@
 /// <reference types="node" />
 
 import { defineConfig, createLogger } from 'vite'
-import Vue from '@vitejs/plugin-vue'
 import * as path from 'path'
+
+import Vue from '@vitejs/plugin-vue'
 import PluginTs from 'vite-plugin-ts'
+import VueMacros from 'unplugin-vue-macros/vite'
 import Unocss from 'unocss/vite'
 
 const rootPath = __dirname;
@@ -17,9 +19,12 @@ export default defineConfig({
     },
   },
   plugins: [
-    Vue(), 
+    VueMacros({
+      plugins: {
+        vue: Vue(), 
+      }
+    }),
     PluginTs(),
-
     // https://github.com/antfu/unocss
     // see unocss.config.ts for config
     Unocss({

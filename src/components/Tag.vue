@@ -1,8 +1,3 @@
-<script lang="ts">
-export default {
-  inheritAttrs: false,
-};
-</script>
 <script setup lang="ts">
 import { computed } from "vue";
 import { Check, Delete } from "@element-plus/icons-vue";
@@ -18,6 +13,10 @@ const props = defineProps<{
   /** 是否使用tooltip */
   tooltip?: boolean;
 }>();
+
+defineOptions({
+  inheritAttrs: false,
+});
 
 defineEmits(["delete"]);
 
