@@ -4,7 +4,6 @@
     <el-empty description=" ">
       <h2 data-text="404">404</h2>
       <h4>啊呀~页面不存在!</h4>
-      <p>您可以先检查网址，然后重新输入或给我们反馈问题。</p>
     </el-empty>
   </div>
 </template>
@@ -12,11 +11,6 @@
 h4 {
   font-size: 20px;
   color: #333;
-}
-p {
-  font-size: 12px;
-  color: #999;
-  margin: 20px 0;
 }
 h2 {
   font-size: 70px;
@@ -31,7 +25,6 @@ h2:after {
   text-shadow: -1px 0 red;
   top: 0;
   color: #000;
-  background: #f6f8f9;
   overflow: hidden;
   clip: rect(0, 900px, 0, 0);
   width: 100%;
@@ -44,7 +37,6 @@ h2:before {
   text-shadow: 1px 0 blue;
   top: 0;
   color: #000;
-  background: #f6f8f9;
   overflow: hidden;
   clip: rect(0, 900px, 0, 0);
   width: 100%;
