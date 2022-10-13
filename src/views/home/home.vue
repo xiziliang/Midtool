@@ -305,18 +305,18 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
   <header class="container-input" p="y-4 x-2">
     <div class="input-group" flex="~" justify-center items-stretch w="100%">
       <div
-        class="sm:max-w-400px lg:max-w-800px xl:max-w-1000px 2xl:max-w-1300px"
+        class="lt-md:max-w-500px md:max-w-688px"
         h-auto
         p-2
         flex="~ grow shrink wrap gap-2"
-        border="3 gray-800 rounded-2"
+        border="3 gray-800 rounded-12px"
       >
         <el-input
           style="width: calc(100% - 4rem)"
           v-model="inputValue"
           :autosize="{ minRows: 1, maxRows: 3 }"
           type="textarea"
-          placeholder="The prompt will appear as it gets built. Give this your favorite AI!"
+          placeholder="搜罗好词、给词配图、一键翻译，让AI画家更好的作画。"
           @keypress.enter.prevent="translation"
         />
         <el-button type="primary" size="default" @click="copy('input')">
