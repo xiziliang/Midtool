@@ -9,6 +9,11 @@ export const $routes: RouteRecordRaw[] = [
       title: '首页',
     },
   },
+  {
+    path: '/:pathMatch(.*)*', 
+    name: 'NotFound',
+    component: () => import('@/views/404.vue'),
+  }
 ];
 
 export let $route: RouteLocationNormalized;
