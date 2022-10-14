@@ -49,24 +49,31 @@ const isDisable = computed(() =>
     effect="customized"
     placement="top"
   >
-    <span class="el-check-tag is-checked !px-20px !py-10px" relative v-bind="$attrs">
-      <el-button
-        v-if="isSelected"
-        class="check-icon"
-        type="success"
-        :icon="Check"
-        circle
-      />
+    <span
+      relative
+      class="keyword-tag !px-20px !py-6px"
+      :class="{ selected: isSelected }"
+      v-bind="$attrs"
+    >
       <el-button
         v-if="isCustom && !isSelected"
         class="delete-icon"
         type="danger"
-        :icon="Delete"
-        circle
         @click.stop="$emit('delete', content)"
-      />
+      >
+        x
+      </el-button>
       <slot name="icon"></slot>
       {{ text }}
     </span>
   </el-tooltip>
 </template>
+<style scoped>
+.keyword-tag {
+  min-width: 106px;
+  text-align: center;
+  border: 2px solid var(--el-border-color);
+  border-radius: var(--el-border-radius-base);
+  cursor: pointer;
+}
+</style>

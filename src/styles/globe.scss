@@ -11,11 +11,6 @@ body,
   --animate-repeat: 1;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
 .container-input  {
   .input-group  {
     .el-input__wrapper {
@@ -25,12 +20,18 @@ h1 {
       border-top-right-radius: 0;
       border-bottom-right-radius: 0;
     }
-  
-    .copy.el-button {
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
+    .el-textarea__inner {
+      caret-color: var(--el-color-primary);
     }
   }
+}
+
+.copy.el-button {
+  color: var(--el-color-black);
+  background-color: var(--el-color-white);
+  border-color: var(--el-color-white);
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
 }
 
 // selected 卡片的过度动画
@@ -86,28 +87,31 @@ h1 {
   opacity: 0;
 }
 
-// selected icon style
-.check-icon.el-button {
-  position: absolute;
-  top: -12px;
-  right: -12px;
-  height: 24px;
-  padding: 4px;
-}
-
+// delete icon style
 .delete-icon.el-button {
   position: absolute;
-  top: -10px;
-  right: -10px;
+  right: -1px;
+  bottom: -1px;
   height: 20px;
   padding: 2px;
   width: 20px;
+
+  border: none;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 0;
+
+  span {
+    line-height: 1px;
+  }
+}
+
+.el-textarea__inner {
+  resize: none; // NOTE: 取消textarea右下角
 }
 
 // textarea style
 .input-group {
   .el-textarea__inner {
-    resize: none; // NOTE: 取消textarea右下角
     box-shadow: none;
   }
 }
@@ -124,8 +128,8 @@ h1 {
   flex-shrink: 0;
   word-wrap: break-word;
   background-clip: border-box; // 使background覆盖border
+  border: 1px solid var(--el-border-color);
   border-radius: var(--el-border-radius-base);
-
   cursor: pointer;
 
   &:hover {
@@ -141,4 +145,8 @@ h1 {
     width: 100%;
     height: 135px;
   }
+}
+
+.selected {
+  border: 2px solid var(--el-color-primary) !important;
 }

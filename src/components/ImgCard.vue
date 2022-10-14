@@ -18,13 +18,6 @@ function onTrigger(item: ImgOptions) {
     :class="{ selected: item.isSelected }"
     @click="onTrigger(item)"
   >
-    <el-button
-      v-if="item.isSelected"
-      class="check-icon"
-      type="success"
-      :icon="Check"
-      circle
-    />
     <div class="card-img">
       <img height="160" width="156" :src="item.img" />
     </div>

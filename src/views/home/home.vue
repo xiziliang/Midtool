@@ -47,6 +47,7 @@ const description = ref("搜罗好词、词图预览、一键翻译,让AI画家�
 const translationResult = ref("");
 const newKeyWordValue = ref("");
 const newImgAddressValue = ref("");
+const qq = ref(123456789);
 
 // data
 const cardList = ref<CardItem[]>([]);
@@ -301,6 +302,12 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
   <div class="logo" flex="~ col" justify-center items-center py-4>
     <h2 text-3xl font-mono>Midtool 米涂</h2>
     <p class="description" mt-8 color-gray-400>{{ description }}</p>
+    <div class="tips" p="y-2 x-2" absolute w-full top-0px flex>
+      <label class="title" text-18px font-600
+        ><span>prompt</span> <span>Tool</span> <span>词图</span></label
+      >
+      <span class="qq-style btn" m="l-a">QQ群 {{ qq }}</span>
+    </div>
   </div>
   <header class="container-input" p="y-4 x-2">
     <div class="input-group" flex="~" justify-center items-stretch w="100%">
@@ -312,6 +319,7 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
         border="3 gray-800 rounded-12px"
       >
         <el-input
+          text-16px
           style="width: calc(100% - 4rem)"
           v-model="inputValue"
           :autosize="{ minRows: 1, maxRows: 3 }"
@@ -319,10 +327,10 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
           placeholder="搜罗好词、给词配图、一键翻译，让AI画家更好的作画。"
           @keypress.enter.prevent="translation"
         />
-        <el-button type="primary" size="default" @click="copy('input')">
+        <el-button class="copy" type="primary" size="default" @click="copy('input')">
           <div class="i-carbon-copy"></div>
         </el-button>
-        <div class="tooltiplist" flex="~ gap-3" p="y-2 b-0">
+        <div v-show="tooltiplist.length" class="tooltiplist" flex="~ gap-3" p="y-2 b-0">
           <Tag
             v-for="item in tooltiplist"
             :content="item?.promptZH || item?.options || item?.img"
@@ -330,7 +338,16 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
           ></Tag>
         </div>
       </div>
-      <!-- <el-button type="primary" size="default" @click="translation"> 翻译 </el-button> -->
+      <el-button
+        p="x-40px y-20px"
+        m="l-2"
+        text-24px
+        h-60px
+        type="primary"
+        @click="translation"
+      >
+        翻译
+      </el-button>
     </div>
     <div
       v-show="translationResult.length > 0"
@@ -351,17 +368,20 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
     </div>
   </header>
   <main
-    class="container-params ma px-4 sm:max-w-600px lg:max-w-1000px xl:max-w-1200px 2xl:max-w-1480px"
+    class="container-params ma lt-lg:max-w-660px lg:max-w-828px xl:max-w-1176px 2xl:max-w-1332px"
   >
     <div flex="~" mt-4 class="readmore-title">
       <div cursor-pointer flex @click="onSelectAIParams('card')">
         <p>选择作画风格</p>
         <div i-carbon:add></div>
+        <p self-center text-14px class="text-[#AAAAAA]">
+          这些词可能会让画面更好看，选中它，翻译时就会加在句尾
+        </p>
       </div>
     </div>
     <div
       overflow-auto
-      flex="~ gap-4"
+      flex="~ gap-12px"
       justify-start
       items-stretch
       will-change-scroll
