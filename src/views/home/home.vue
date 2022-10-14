@@ -600,7 +600,7 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
       title="输入图片网址"
       v-model="dialogVisible.img"
       center
-      width="40%"
+      width="30%"
       destroy-on-close
       draggable
       :close-on-click-modal="false"
@@ -610,7 +610,7 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
         v-model="newImgAddressValue"
         maxlength="300"
         show-word-limit
-        placeholder="请输入网址"
+        placeholder="原网址需以PNG、JPG等图片格式结尾"
         :autosize="{ minRows: 3, maxRows: 3 }"
       ></el-input>
 

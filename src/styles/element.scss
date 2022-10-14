@@ -23,6 +23,14 @@
 
 @use "element-plus/theme-chalk/src/index.scss" as *;
 
+.el-dialog {
+  border-radius: 20px;
+}
+
+.el-textarea__inner {
+  resize: none; // NOTE: 取消textarea右下角
+}
+
 // tooltip style
 .el-popper.is-customized {
   color: #ecf5ff;
