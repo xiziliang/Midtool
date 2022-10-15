@@ -620,7 +620,7 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
         v-model="dialogVisible.params"
         top="30px"
         title="作画参数"
-        width="80%"
+        width="60%"
         center
         :close-on-click-modal="false"
       >

@@ -18,16 +18,22 @@
   ),
   $checkbox: (
     'font-size': 16px,
+    'input-height': 20px,
+    'input-width': 20px,
+    'border-radius': 6px,
+    'input-border': 2px solid #EAEFF3,
   ),
 );
 
 @use "element-plus/theme-chalk/src/index.scss" as *;
 
 
+// dialog style
 .el-dialog {
   border-radius: 20px;
 }
 
+// textarea style
 .el-textarea__inner {
   line-height: 1.8;
   resize: none; // NOTE: 取消textarea右下角
@@ -43,4 +49,14 @@
 .el-popper.is-customized .el-popper__arrow::before {
   background: linear-gradient(45deg, #409eff, #79bbff);
   right: 0;
+}
+
+// checkbox style
+.el-checkbox__inner::after {
+  height: 9px;
+  left: 5px;
+  width: 5px;
+  border: 2px solid var(--el-checkbox-checked-icon-color);
+  border-left: 0;
+  border-top: 0;
 }

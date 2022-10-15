@@ -56,17 +56,11 @@ watch(
             cursor-pointer
             @click="item.checked = !item.checked"
           >
-            <strong color-gray-300 mr-2>{{ item.options }}</strong>
-            <small
-              text="[0.95em]"
-              inline-block
-              p="x-2 y-1"
-              rounded
-              color-gray-3
-              bg-gray-600
-              >{{ item.parameter }}</small
-            >
-            <small text="[0.95em]" inline-block color-gray-5 p-3>{{
+            <strong color-gray-9 mr-2>{{ item.options }}</strong>
+            <small text="[0.95em]" inline-block p="x-2 y-1" rounded color-gray-9>{{
+              item.parameter
+            }}</small>
+            <small class="color-[#AAAAAA]" text="[0.95em]" inline-block p-3>{{
               item.describe
             }}</small>
           </label>
@@ -129,15 +123,15 @@ watch(
 </template>
 <style scoped lang="scss">
 .params-list-item {
-  color: #c9d1d9;
-  background-color: #333538;
-  border-color: #333538;
+  color: #222222;
+  background-color: #fff;
+  border-color: #eaeff3;
 
   display: flex;
   flex-direction: column;
   row-gap: 0.75rem;
 
-  border-bottom: 1px dashed #474a4d !important;
+  border-bottom: 1px solid #eaeff3 !important;
   padding: 1rem 1rem;
 
   :deep(.el-checkbox) {
