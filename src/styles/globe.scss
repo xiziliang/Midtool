@@ -30,8 +30,6 @@ body,
   color: var(--el-color-black);
   background-color: var(--el-color-white);
   border-color: var(--el-color-white);
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
 }
 
 // selected 卡片的过度动画
@@ -63,6 +61,12 @@ body,
     opacity: 0;
     -webkit-transform: translate3d(100%, 0, 0);
     transform: translate3d(100%, 0, 0);
+  }
+}
+
+@keyframes fadeRotate{
+  to {
+    transform:rotate(360deg)
   }
 }
 
@@ -145,4 +149,42 @@ body,
 
 .selected {
   border: 2px solid var(--el-color-primary) !important;
+}
+
+
+// icon
+.icon-ren {
+  content: url("../assets/img/ren.png");
+}
+.icon-fengge {
+  content: url("../assets/img/fengge.png");
+}
+
+.icon-bili {
+  content: url("../assets/img/bili.png");
+}
+
+.icon-tishici {
+  content: url("../assets/img/tishici.png");
+}
+
+.icon-canshu {
+  content: url("../assets/img/canshu.png");
+}
+
+.icon-wangzhi {
+  content: url("../assets/img/wangzhi.png");
+}
+
+.icon-jiantou {
+  content: url("../assets/img/jiantou.png");
+}
+
+.icon-loading {
+  content: url("../assets/img/loading.png");
+  animation: fadeRotate .6s linear infinite;
+}
+
+.dialogBtn {
+  width: 128px;
 }

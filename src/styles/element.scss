@@ -18,16 +18,18 @@
   ),
   $checkbox: (
     'font-size': 16px,
-  )
+  ),
 );
 
 @use "element-plus/theme-chalk/src/index.scss" as *;
+
 
 .el-dialog {
   border-radius: 20px;
 }
 
 .el-textarea__inner {
+  line-height: 1.8;
   resize: none; // NOTE: 取消textarea右下角
 }
 
