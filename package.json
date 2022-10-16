@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview --port 8080 --open"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.0.9",

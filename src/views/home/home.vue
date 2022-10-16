@@ -148,10 +148,7 @@ function initCustomList() {
 function formatData(data: CardItem[]) {
   return data.map((x) => ({
     ...x,
-    imgUrl:
-      x.image === "yes"
-        ? `/public/img-style/${x.promptEN}.png`
-        : "/public/img-style/empty.png",
+    imgUrl: x.image === "yes" ? `/img-style/${x.promptEN}.png` : "/img-style/empty.png",
   }));
 }
 
@@ -374,7 +371,7 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
 </script>
 
 <template>
-  <div class="home-page">
+  <div class="home-page" style="min-height: calc(100vh - 180px)">
     <div class="logo" max-h-194px pt-4 overflow-hidden>
       <img w-572px ma src="@/assets/img/logo.png" alt="logo" />
       <div class="tips" p="t-2 x-2" absolute w-full top-0px flex>
@@ -576,181 +573,180 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
         <ImgCard :data="defaultImgList"></ImgCard>
       </div>
     </main>
-    <el-divider />
-    <footer>
-      <div class="footer bg-[#333333]" flex="~ col">
-        <div min-h-180px flex="~ col" justify-center p="x-40 y-8" text-white>
-          <div p="y-4">复制翻译结果后，可以去这些网站完成绘画</div>
-          <div flex="~ gap-4">
-            <a
-              hover:color-gray-300
-              v-for="item in website"
-              :href="item.value"
-              target="_black"
-              >{{ item.label }}</a
-            >
-          </div>
-        </div>
-        <div></div>
-      </div>
-      <!-- dialog start ----------------- -->
-      <el-dialog
-        v-model="dialogVisible.card"
-        top="30px"
-        title="作画风格"
-        width="70%"
-        center
-        draggable
-        destroy-on-close
-        :close-on-click-modal="false"
-      >
-        <CardDialog
-          ref="cardDialogRef"
-          :list="cardList"
-          :dialog-visible="dialogVisible.card"
-        ></CardDialog>
-        <template #footer>
-          <span class="dialog-footer">
-            <el-button class="dialogBtn" type="primary" @click="onCloseCardDialog"
-              >完成</el-button
-            >
-          </span>
-        </template>
-      </el-dialog>
-      <el-dialog
-        title="输入提示词"
-        v-model="dialogVisible.writeKeyWord"
-        center
-        width="35%"
-        destroy-on-close
-        draggable
-        :close-on-click-modal="false"
-      >
-        <el-input
-          type="textarea"
-          v-model="newKeyWordValue"
-          maxlength="30"
-          show-word-limit
-          placeholder="请输入"
-        ></el-input>
-
-        <template #footer>
-          <span>
-            <el-button
-              class="dialogBtn"
-              :disabled="newKeyWordValue.length < 1"
-              type="primary"
-              @click="onCloseWriteKeyWordDialog"
-              >完成</el-button
-            >
-          </span>
-        </template>
-      </el-dialog>
-      <el-dialog
-        title="提示词"
-        v-model="dialogVisible.keyWord"
-        center
-        width="50%"
-        destroy-on-close
-        draggable
-        :close-on-click-modal="false"
-      >
-        <KeywordDialog
-          ref="keywordDialogRef"
-          :list="keyWordList"
-          :dialog-visible="dialogVisible.keyWord"
-        ></KeywordDialog>
-        <template #footer>
-          <span>
-            <el-button class="dialogBtn" type="primary" @click="onCloseKeyWordDialog"
-              >完成</el-button
-            >
-          </span>
-        </template>
-      </el-dialog>
-      <el-dialog
-        title="画面比例"
-        v-model="dialogVisible.dpi"
-        center
-        width="40%"
-        destroy-on-close
-        draggable
-        :close-on-click-modal="false"
-      >
-        <DpiDialog
-          ref="dpiDialogRef"
-          :list="dpiList"
-          :dpi-custom="{ ...dpiParams }"
-          :dialog-visible="dialogVisible.dpi"
-        ></DpiDialog>
-        <template #footer>
-          <span>
-            <el-button class="dialogBtn" type="primary" @click="onCloseDpiDialog"
-              >完成</el-button
-            >
-          </span>
-        </template>
-      </el-dialog>
-      <el-dialog
-        v-model="dialogVisible.params"
-        top="30px"
-        title="作画参数"
-        width="60%"
-        center
-        :close-on-click-modal="false"
-      >
-        <MidjourneyParams
-          ref="parameterRef"
-          :data="cloneDeep(paramsList)"
-          :dialog-visible="dialogVisible.params"
-        ></MidjourneyParams>
-        <template #footer>
-          <span class="dialog-footer">
-            <el-button class="dialogBtn" type="primary" @click="onCloseParamsDialog"
-              >完成</el-button
-            >
-          </span>
-        </template>
-      </el-dialog>
-      <el-dialog
-        title="输入图片网址"
-        v-model="dialogVisible.img"
-        center
-        width="30%"
-        destroy-on-close
-        draggable
-        :close-on-click-modal="false"
-      >
-        <el-input
-          type="textarea"
-          v-model="newImgAddressValue"
-          maxlength="300"
-          show-word-limit
-          placeholder="原网址需以PNG、JPG等图片格式结尾"
-          :autosize="{ minRows: 3, maxRows: 3 }"
-        ></el-input>
-
-        <template #footer>
-          <span>
-            <el-button
-              class="dialogBtn"
-              :disabled="newImgAddressValue.length < 1"
-              type="primary"
-              @click="
-                dialogVisible.img = false;
-                imgCustomsList.push({
-                  img: newImgAddressValue,
-                  isSelected: true,
-                });
-                newImgAddressValue = '';
-              "
-              >完成</el-button
-            >
-          </span>
-        </template>
-      </el-dialog>
-    </footer>
   </div>
+  <footer>
+    <div class="footer bg-[#333333]" flex="~ col">
+      <div min-h-180px flex="~ col" justify-center p="x-40 y-8" text-white>
+        <div p="y-4">复制翻译结果后，可以去这些网站完成绘画</div>
+        <div flex="~ gap-4">
+          <a
+            hover:color-gray-300
+            v-for="item in website"
+            :href="item.value"
+            target="_black"
+            >{{ item.label }}</a
+          >
+        </div>
+      </div>
+      <div></div>
+    </div>
+    <!-- dialog start ----------------- -->
+    <el-dialog
+      v-model="dialogVisible.card"
+      top="30px"
+      title="作画风格"
+      width="70%"
+      center
+      draggable
+      destroy-on-close
+      :close-on-click-modal="false"
+    >
+      <CardDialog
+        ref="cardDialogRef"
+        :list="cardList"
+        :dialog-visible="dialogVisible.card"
+      ></CardDialog>
+      <template #footer>
+        <span class="dialog-footer">
+          <el-button class="dialogBtn" type="primary" @click="onCloseCardDialog"
+            >完成</el-button
+          >
+        </span>
+      </template>
+    </el-dialog>
+    <el-dialog
+      title="输入提示词"
+      v-model="dialogVisible.writeKeyWord"
+      center
+      width="35%"
+      destroy-on-close
+      draggable
+      :close-on-click-modal="false"
+    >
+      <el-input
+        type="textarea"
+        v-model="newKeyWordValue"
+        maxlength="30"
+        show-word-limit
+        placeholder="请输入"
+      ></el-input>
+
+      <template #footer>
+        <span>
+          <el-button
+            class="dialogBtn"
+            :disabled="newKeyWordValue.length < 1"
+            type="primary"
+            @click="onCloseWriteKeyWordDialog"
+            >完成</el-button
+          >
+        </span>
+      </template>
+    </el-dialog>
+    <el-dialog
+      title="提示词"
+      v-model="dialogVisible.keyWord"
+      center
+      width="50%"
+      destroy-on-close
+      draggable
+      :close-on-click-modal="false"
+    >
+      <KeywordDialog
+        ref="keywordDialogRef"
+        :list="keyWordList"
+        :dialog-visible="dialogVisible.keyWord"
+      ></KeywordDialog>
+      <template #footer>
+        <span>
+          <el-button class="dialogBtn" type="primary" @click="onCloseKeyWordDialog"
+            >完成</el-button
+          >
+        </span>
+      </template>
+    </el-dialog>
+    <el-dialog
+      title="画面比例"
+      v-model="dialogVisible.dpi"
+      center
+      width="40%"
+      destroy-on-close
+      draggable
+      :close-on-click-modal="false"
+    >
+      <DpiDialog
+        ref="dpiDialogRef"
+        :list="dpiList"
+        :dpi-custom="{ ...dpiParams }"
+        :dialog-visible="dialogVisible.dpi"
+      ></DpiDialog>
+      <template #footer>
+        <span>
+          <el-button class="dialogBtn" type="primary" @click="onCloseDpiDialog"
+            >完成</el-button
+          >
+        </span>
+      </template>
+    </el-dialog>
+    <el-dialog
+      v-model="dialogVisible.params"
+      top="30px"
+      title="作画参数"
+      width="60%"
+      center
+      :close-on-click-modal="false"
+    >
+      <MidjourneyParams
+        ref="parameterRef"
+        :data="cloneDeep(paramsList)"
+        :dialog-visible="dialogVisible.params"
+      ></MidjourneyParams>
+      <template #footer>
+        <span class="dialog-footer">
+          <el-button class="dialogBtn" type="primary" @click="onCloseParamsDialog"
+            >完成</el-button
+          >
+        </span>
+      </template>
+    </el-dialog>
+    <el-dialog
+      title="输入图片网址"
+      v-model="dialogVisible.img"
+      center
+      width="30%"
+      destroy-on-close
+      draggable
+      :close-on-click-modal="false"
+    >
+      <el-input
+        type="textarea"
+        v-model="newImgAddressValue"
+        maxlength="300"
+        show-word-limit
+        placeholder="原网址需以PNG、JPG等图片格式结尾"
+        :autosize="{ minRows: 3, maxRows: 3 }"
+      ></el-input>
+
+      <template #footer>
+        <span>
+          <el-button
+            class="dialogBtn"
+            :disabled="newImgAddressValue.length < 1"
+            type="primary"
+            @click="
+              dialogVisible.img = false;
+              imgCustomsList.push({
+                img: newImgAddressValue,
+                isSelected: true,
+              });
+              newImgAddressValue = '';
+            "
+            >完成</el-button
+          >
+        </span>
+      </template>
+    </el-dialog>
+  </footer>
 </template>
 
 <style lang="scss" scoped>
