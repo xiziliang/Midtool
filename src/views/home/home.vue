@@ -10,7 +10,6 @@ import MidjourneyParams from "@/components/MidjourneyParams.vue";
 import DpiDialog from "@/components/DpiDialog.vue";
 import KeywordDialog from "@/components/KeywordDialog.vue";
 import CardDialog from "@/components/CardDialog.vue";
-import { getDpiList, getParamslist } from "@/assets/data";
 import type {
   DpiOptions,
   Options,
@@ -56,8 +55,8 @@ const qq = ref(123456789);
 // data
 const cardList = ref<CardItem[]>([]);
 const keyWordList = ref<Partial<CustomKeyWord>[]>([]);
-const paramsList = ref((getParamslist() as unknown) as Options[]);
-const dpiList = ref<DpiOptions[]>(getDpiList());
+const paramsList = ref<Options[]>([]);
+const dpiList = ref<DpiOptions[]>([]);
 
 const cardCustomList = useStorage<CardItem[]>(CARD_CUSTOM_LIST, [], localStorage);
 const keyWordCustomList = useStorage<CustomKeyWord[]>(
@@ -120,19 +119,31 @@ function initCustomList() {
   ].forEach((x) => (x.isSelected = false));
 }
 
+async function fetchCardListData() {
+  const { data } = await useFetch("/json/midjourneyStyle.json");
+  cardList.value = JSON.parse(data.value as string);
+}
+
 async function fetchKeyWordData() {
-  const { data } = await useFetch("/json/tishici.json");
+  const { data } = await useFetch("/json/midjourneyPrompt.json");
   keyWordList.value = JSON.parse(data.value as string);
 }
 
-async function fetchCardListData() {
-  const { data } = await useFetch("/json/zuohuafengge.json");
-  cardList.value = JSON.parse(data.value as string);
+async function fetchParamsData() {
+  const { data } = await useFetch("/json/midjourneyParameter.json");
+  paramsList.value = JSON.parse(data.value as string);
+}
+
+async function fetchDpiData() {
+  const { data } = await useFetch("/json/midjourneyCanvas.json");
+  dpiList.value = JSON.parse(data.value as string);
 }
 
 function fetch() {
   fetchKeyWordData();
   fetchCardListData();
+  fetchParamsData();
+  fetchDpiData();
 }
 
 function copy(type: "input" | "translation") {
