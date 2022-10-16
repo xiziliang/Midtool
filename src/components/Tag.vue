@@ -71,19 +71,6 @@ const isDisable = computed(() =>
   </el-tooltip>
 </template>
 <style lang="scss" scoped>
-.keyword-tag {
-  min-width: 114px;
-  text-align: center;
-  border: 2px solid var(--el-border-color);
-  border-radius: var(--el-border-radius-base);
-  cursor: pointer;
-
-  &:hover {
-    border: 2px solid var(--el-color-primary-light-3) !important;
-    transition: all 0.5s;
-  }
-}
-
 .dpiStyle {
   min-width: 156px;
 }

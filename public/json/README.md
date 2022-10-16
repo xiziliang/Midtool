@@ -4,7 +4,7 @@
 
 - 作画参数 数据比较特殊，就是除了type： none的，其他的数据option字段需要有默认值；
 
-- type：selector时，需要遵循一下数据格式，option是选的列表要求是数组，value是默认值，index是默认值在option中的索引。
+- type：selector时，需要遵循一下数据格式，option是数组, 表示目前可选的值有哪几个，value是默认值，index是默认值在option中的索引。
 
   如下图所示：
 

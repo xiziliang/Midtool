@@ -50,6 +50,24 @@ const translationResult = ref("");
 const newKeyWordValue = ref("");
 const newImgAddressValue = ref("");
 const qq = ref(123456789);
+const website = ref([
+  {
+    label: "midjourney",
+    value: "https://www.midjourney.com/home/",
+  },
+  {
+    label: "DreamStudio",
+    value: "https://beta.dreamstudio.ai",
+  },
+  {
+    label: "huggingface",
+    value: "https://huggingface.co/spaces/lnyan/stablediffusion-infinity",
+  },
+  {
+    label: "DALL·E 2",
+    value: "https://openai.com/dall-e-2/",
+  },
+]);
 
 // data
 const cardList = ref<CardItem[]>([]);
@@ -127,9 +145,19 @@ function initCustomList() {
   ].forEach((x) => (x.isSelected = false));
 }
 
+function formatData(data: CardItem[]) {
+  return data.map((x) => ({
+    ...x,
+    imgUrl:
+      x.image === "yes"
+        ? `/public/img-style/${x.promptEN}.png`
+        : "/public/img-style/empty.png",
+  }));
+}
+
 async function fetchCardListData() {
   const { data } = await useFetch("/json/midjourneyStyle.json");
-  cardList.value = JSON.parse(data.value as string);
+  cardList.value = formatData(JSON.parse(data.value as string));
 }
 
 async function fetchKeyWordData() {
@@ -546,8 +574,23 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
         <ImgCard :data="defaultImgList"></ImgCard>
       </div>
     </main>
+    <el-divider />
     <footer>
-      <el-divider />
+      <div class="footer bg-[#333333]" flex="~ col">
+        <div min-h-180px flex="~ col" justify-center p="x-40 y-8" text-white>
+          <div p="y-4">复制翻译结果后，可以去这些网站完成绘画</div>
+          <div flex="~ gap-4">
+            <a
+              hover:color-gray-300
+              v-for="item in website"
+              :href="item.value"
+              target="_black"
+              >{{ item.label }}</a
+            >
+          </div>
+        </div>
+        <div></div>
+      </div>
       <!-- dialog start ----------------- -->
       <el-dialog
         v-model="dialogVisible.card"

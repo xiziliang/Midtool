@@ -7,7 +7,6 @@ import type { CardItem } from "@/models";
 import { CARD_CUSTOM_LIST } from "@/constants";
 
 import { useStorage } from "@vueuse/core";
-import { Check } from "@element-plus/icons-vue";
 
 const cardCustomList = useStorage<CardItem[]>(CARD_CUSTOM_LIST, [], localStorage);
 
@@ -102,7 +101,7 @@ watchEffect(() => {
               @click="onTrigger(item)"
             >
               <div class="card-img">
-                <img height="160" width="156" :src="item.imgName" />
+                <img height="160" width="156" :src="item.imgUrl" />
               </div>
               <div class="card-name" p-2>{{ item.promptZH }}</div>
               <div class="card-enname" p-2>{{ item.promptEN }}</div>

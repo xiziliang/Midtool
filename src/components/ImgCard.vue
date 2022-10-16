@@ -1,10 +1,13 @@
 <script setup lang="ts">
-import { Check } from "@element-plus/icons-vue";
 import type { ImgOptions } from "@/models";
 
-const props = defineProps<{
+defineProps<{
   data: ImgOptions[];
 }>();
+
+function formatText(value: string) {
+  return value.length > 60 ? value.slice(0, 60) + "..." : value;
+}
 
 function onTrigger(item: ImgOptions) {
   item.isSelected = !item.isSelected;
@@ -19,8 +22,8 @@ function onTrigger(item: ImgOptions) {
     @click="onTrigger(item)"
   >
     <div class="card-img">
-      <img height="160" width="156" :src="item.img" />
+      <img :src="item.img" />
     </div>
-    <label>{{ item.img }}</label>
+    <label p="x-4 y-4">{{ formatText(item.img) }}</label>
   </div>
 </template>

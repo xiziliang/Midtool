@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
-import { Check } from "@element-plus/icons-vue";
 import type { CardItem } from "@/models";
 
 const props = defineProps<{
@@ -46,7 +45,7 @@ watch(
       @click="onTrigger(item)"
     >
       <div class="card-img">
-        <img height="160" width="156" :src="item.imgName" />
+        <img height="160" width="156" :src="item.imgUrl" />
       </div>
       <div class="card-name" p-2>{{ item.promptZH }}</div>
       <div class="card-enname" p-2>{{ item.promptEN }}</div>
@@ -60,7 +59,7 @@ watch(
     @click="onTrigger(item)"
   >
     <div class="card-img">
-      <img height="160" width="156" :src="item.imgName" />
+      <img height="160" width="156" :src="item.imgUrl" />
     </div>
     <div class="card-name" p-2>{{ item.promptZH }}</div>
     <div class="card-enname" p-2>{{ item.promptEN }}</div>

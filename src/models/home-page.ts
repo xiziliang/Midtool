@@ -5,7 +5,8 @@ export interface CardItem {
   SecondLabel: string;
   promptZH: string;
   promptEN: string;
-  imgName?: string;
+  image: 'yes' | 'no';
+  imgUrl?: string;
   /** 是否主页选中 */
   isSelected?: boolean;
   /** 是否是用户自定义 */

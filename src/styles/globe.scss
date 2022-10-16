@@ -16,6 +16,25 @@ body,
   animation-fill-mode: both;
 }
 
+@mixin hover-style {
+  &::after {
+    border: 0.15em solid transparent;
+    border-radius: var(--el-border-radius-base);
+    bottom: 0;
+    content: "";
+    display: block;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  &:hover::after {
+    border-color: var(--el-color-primary);
+    transition: all .3s;
+  }
+}
+
 .animate__fadeInRight-enter-active {
   @include animate__animated;
   animation-name: fadeInRight;
@@ -117,8 +136,8 @@ body,
 
 .card {
   width: 156px;
-  background-color: #26292e;
-  color: #fff;
+  background-color: var(--el-color-white);
+  color: var(--el-color-black);
 
   position: relative;
   display: flex;
@@ -131,8 +150,10 @@ body,
   border-radius: var(--el-border-radius-base);
   cursor: pointer;
 
-  &:hover {
-    background-color: #1a1c1f;
+  @include hover-style;
+
+  .card-enname {
+    color: #AAAAAA;
   }
 
   .card-img,
@@ -146,8 +167,20 @@ body,
   }
 }
 
+.keyword-tag {
+  min-width: 114px;
+  text-align: center;
+  border: 1px solid var(--el-border-color);
+  border-radius: var(--el-border-radius-base);
+  cursor: pointer;
+
+  @include hover-style;
+}
+
 .selected {
-  border: 2px solid var(--el-color-primary) !important;
+  &::after {
+    border: 0.2em solid var(--el-color-primary) !important;
+  }
 }
 
 
