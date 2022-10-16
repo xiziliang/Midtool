@@ -11,3 +11,5 @@
   ![image-20221016091211078](/Users/xzl/Library/Application Support/typora-user-images/image-20221016091211078.png)
 
 ### midjourneyCanvas -> 画面比例
+
+tips: keyword、keyword2都是必须的

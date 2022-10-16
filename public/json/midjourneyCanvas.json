@@ -1,68 +1,114 @@
 [
   {
-    "SecondLabel": "changyongbili",
+    "SecondLabel": "Common",
     "KeyWord2": "常用比例",
     "options": "正方形",
-    "width": "1",
-    "height": "1"
+    "width": 1,
+    "height": 1
   },
   {
-    "SecondLabel": null,
+    "SecondLabel": "",
     "KeyWord2": "常用比例",
     "options": "3:2 / 1920:1280",
-    "width": "3",
-    "height": "2"
+    "width": 3,
+    "height": 2
   },
   {
-    "SecondLabel": null,
+    "SecondLabel": "",
     "KeyWord2": "常用比例",
-    "options": "4:3",
-    "width": "4",
-    "height": "3"
+    "options": "4 : 3",
+    "width": 4,
+    "height": 3
   },
   {
-    "SecondLabel": null,
+    "SecondLabel": "",
     "KeyWord2": "常用比例",
-    "options": "9:16",
-    "width": "9",
-    "height": "16"
+    "options": "9 : 16",
+    "width": 9,
+    "height": 16
   },
   {
-    "SecondLabel": "Xianshiqichicun",
+    "SecondLabel": "display",
     "KeyWord2": "显示器尺寸",
     "options": "1080P",
-    "width": "1920",
-    "height": "1080"
+    "width": 1920,
+    "height": 1080
   },
   {
-    "SecondLabel": null,
+    "SecondLabel": "",
     "KeyWord2": "显示器尺寸",
     "options": "2K",
-    "width": "2560",
-    "height": "1440"
+    "width": 2560,
+    "height": 1440
   },
   {
-    "SecondLabel": null,
+    "SecondLabel": "",
     "KeyWord2": "显示器尺寸",
     "options": "4K",
-    "width": "4096",
-    "height": "2160"
+    "width": 4096,
+    "height": 2160
   },
   {
-    "SecondLabel": "Yidongshebei",
+    "SecondLabel": "Mobile devices",
     "KeyWord2": "移动设备",
     "options": "iPhone14 pro",
-    "width": "1284",
-    "height": "2778"
+    "width": 1284,
+    "height": 2778
   },
   {
-    "SecondLabel": null,
+    "SecondLabel": "",
     "KeyWord2": "移动设备",
     "options": "iPhone14",
-    "width": "1170",
-    "height": "2532"
+    "width": 1170,
+    "height": 2532
   },
   {
-    "options": "自定义"
+    "SecondLabel": "",
+    "KeyWord2": "移动设备",
+    "options": "iPhone13 mini",
+    "width": 1080,
+    "height": 2340
+  },
+  {
+    "SecondLabel": "",
+    "KeyWord2": "移动设备",
+    "options": "iPhone X",
+    "width": 1125,
+    "height": 2436
+  },
+  {
+    "SecondLabel": "",
+    "KeyWord2": "移动设备",
+    "options": "Android Small",
+    "width": 720,
+    "height": 1280
+  },
+  {
+    "SecondLabel": "",
+    "KeyWord2": "移动设备",
+    "options": "Android Large",
+    "width": 720,
+    "height": 1600
+  },
+  {
+    "SecondLabel": "paper",
+    "KeyWord2": "纸张",
+    "options": "A6",
+    "width": 105,
+    "height": 148
+  },
+  {
+    "SecondLabel": "",
+    "KeyWord2": "纸张",
+    "options": "A5",
+    "width": 148,
+    "height": 210
+  },
+  {
+    "SecondLabel": "",
+    "KeyWord2": "纸张",
+    "options": "A4",
+    "width": 210,
+    "height": 297
   }
 ]

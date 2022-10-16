@@ -58,41 +58,43 @@ defineExpose({
 });
 </script>
 <template>
-  <div p-4>
-    <div flex="~" mb-4 class="readmore-title">
-      <div flex>
-        <p>添加尺寸/比例</p>
+  <div h-xl overflow-auto will-change-scroll>
+    <div p-4>
+      <div flex="~" mb-4 class="readmore-title">
+        <div flex>
+          <p>添加尺寸/比例</p>
+        </div>
+      </div>
+      <div flex="~ gap-3 wrap" justify-start items-stretch class="more">
+        <div flex="~ gap-3" max-w-156px items-center>
+          <el-input v-model="dpiCustom.width">
+            <template #prepend>宽:</template>
+          </el-input>
+        </div>
+        <div flex="~ gap-3" max-w-156px items-center>
+          <el-input v-model="dpiCustom.height">
+            <template #prepend>高:</template>
+          </el-input>
+        </div>
       </div>
     </div>
-    <div flex="~ gap-3 wrap" justify-start items-stretch class="more">
-      <div flex="~ gap-3" max-w-156px items-center>
-        <el-input v-model="dpiCustom.width">
-          <template #prepend>宽:</template>
-        </el-input>
+    <div p-4 v-for="(dpilist, label) in formatList">
+      <div flex="~" mb-4 class="readmore-title">
+        <div flex>
+          <p>{{ label }}</p>
+        </div>
       </div>
-      <div flex="~ gap-3" max-w-156px items-center>
-        <el-input v-model="dpiCustom.height">
-          <template #prepend>高:</template>
-        </el-input>
+      <div flex="~ gap-3 wrap" justify-start items-stretch class="more">
+        <Tag
+          v-for="item in dpilist"
+          type="dpi"
+          :content="item.options"
+          :is-selected="item.isSelected"
+          @click="onSelect(item)"
+        >
+          <span class="text-[#AAAAAA]">{{ item.width }} : {{ item.height }}</span>
+        </Tag>
       </div>
-    </div>
-  </div>
-  <div p-4 v-for="(dpilist, label) in formatList">
-    <div flex="~" mb-4 class="readmore-title">
-      <div flex>
-        <p>{{ label }}</p>
-      </div>
-    </div>
-    <div flex="~ gap-3 wrap" justify-start items-stretch class="more">
-      <Tag
-        v-for="item in dpilist"
-        type="dpi"
-        :content="item.options"
-        :is-selected="item.isSelected"
-        @click="onSelect(item)"
-      >
-        <span class="text-[#AAAAAA]">{{ item.width }} : {{ item.height }}</span>
-      </Tag>
     </div>
   </div>
 </template>
