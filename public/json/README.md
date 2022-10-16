@@ -1,4 +1,5 @@
 ### midjourneyStyle -> 作画风格
+- 如果image字段是yes，前度自动根据英文名去读取图片，如果为no，则自动填充empty.png
 ### midjourneyPrompt -> 提示词
 ### midjourneyParameter -> 参数
 

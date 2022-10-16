@@ -211,31 +211,33 @@ async function translation() {
 }
 
 function joinField() {
-  // TODO: 拼接 params 去掉多余逗号
+  const cardListString = defaultCardList.value
+    .filter((x) => x.isSelected)
+    .map((x) => x.promptEN)
+    .join(",");
+
+  const keyWordString = defaultKeyWordList.value
+    .filter((x) => x.isSelected && !x.isCustom)
+    .map((x) => x.promptEN)
+    .join(",");
+
+  const paramsListString = paramsList.value
+    .filter((x) => x.checked)
+    .map((x) => x.parameter)
+    .join(",");
+
   translationResult.value =
     translationResult.value +
     "," +
-    defaultCardList.value
-      .filter((x) => x.isSelected)
-      .map((x) => x.promptEN)
-      .join(",") +
+    (cardListString ? cardListString + "," : "") +
+    (keyWordString ? keyWordString + "," : "") +
+    (dpiParams.isSelected
+      ? `--ar ${dpiParams.height}:${dpiParams.width}`
+      : defaultDpiList.value.filter((x) => x.isSelected).length
+      ? `--ar ${defaultDpiList.value[0].height}:${defaultDpiList.value[0].width}`
+      : "--ar 1:1") +
     "," +
-    defaultKeyWordList.value
-      .filter((x) => x.isSelected && !x.isCustom)
-      .map((x) => x.promptEN)
-      .join(",") +
-    "," +
-    // (dpiCustom.value
-    //   ? `--ar ${dpiParams.height}:${dpiParams.width}`
-    //   : defaultDpiList.value.filter((x) => x.isSelected).length
-    //   ? `--ar ${defaultDpiList.value[0].height}:${defaultDpiList.value[0].width}`
-    //   : "--ar 1:1") +
-    "," +
-    paramsList.value
-      .filter((x) => x.checked)
-      .map((x) => x.parameter)
-      .join(",") +
-    "," +
+    (paramsListString ? paramsListString + "," : "") +
     defaultImgList.value
       .filter((x) => x.isSelected)
       .map((x) => x.img)
