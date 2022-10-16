@@ -9,8 +9,13 @@ import Tag from "@/components/Tag.vue";
 
 const props = defineProps<{
   list: DpiOptions[];
+  dpiCustom: any;
   dialogVisible: boolean;
 }>();
+
+const dpiCustom = reactive({
+  ...props.dpiCustom,
+});
 
 const dpiCustomsList = useStorage<DpiOptions[]>(DPI_CUSTOM_LIST, [], localStorage);
 
@@ -49,9 +54,29 @@ watchEffect(() => {
 
 defineExpose({
   dpiCustomsList,
+  dpiCustom,
 });
 </script>
 <template>
+  <div p-4>
+    <div flex="~" mb-4 class="readmore-title">
+      <div flex>
+        <p>添加尺寸/比例</p>
+      </div>
+    </div>
+    <div flex="~ gap-3 wrap" justify-start items-stretch class="more">
+      <div flex="~ gap-3" max-w-156px items-center>
+        <el-input v-model="dpiCustom.width">
+          <template #prepend>宽:</template>
+        </el-input>
+      </div>
+      <div flex="~ gap-3" max-w-156px items-center>
+        <el-input v-model="dpiCustom.height">
+          <template #prepend>高:</template>
+        </el-input>
+      </div>
+    </div>
+  </div>
   <div p-4 v-for="(dpilist, label) in formatList">
     <div flex="~" mb-4 class="readmore-title">
       <div flex>
@@ -61,10 +86,13 @@ defineExpose({
     <div flex="~ gap-3 wrap" justify-start items-stretch class="more">
       <Tag
         v-for="item in dpilist"
+        type="dpi"
         :content="item.options"
         :is-selected="item.isSelected"
         @click="onSelect(item)"
-      ></Tag>
+      >
+        <span class="text-[#AAAAAA]">{{ item.width }} : {{ item.height }}</span>
+      </Tag>
     </div>
   </div>
 </template>

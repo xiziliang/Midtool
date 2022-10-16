@@ -42,7 +42,6 @@ const headerRef = ref<HTMLElement | null>(null);
 // hooks
 const { top: headRefTop } = useElementBounding(headerRef);
 
-const dpiCustom = ref(false);
 const loading = ref(false);
 
 // input value
@@ -86,7 +85,7 @@ const tooltiplist = computed<(CardItem & DpiOptions & CustomKeyWord & ImgOptions
     return [].concat(
       defaultCardList.value.find((x) => x.isSelected) || ([] as any),
       defaultKeyWordList.value.find((x) => x.isSelected) || ([] as any),
-      defaultDpiList.value.find((x) => x.isSelected) || ([] as any),
+      [...defaultDpiList.value, dpiParams].find((x) => x.isSelected) || ([] as any),
       defaultImgList.value.find((x) => x.isSelected) || ([] as any)
     );
   }
@@ -101,7 +100,16 @@ const dialogVisible = reactive({
   card: false,
   img: false,
 });
-const dpiParams = reactive({
+const dpiParams = reactive<{
+  options: string;
+  isSelected: boolean;
+  isCustom: boolean;
+  width: undefined | string;
+  height: undefined | string;
+}>({
+  options: "自定义",
+  isSelected: false,
+  isCustom: true,
   width: undefined,
   height: undefined,
 });
@@ -189,11 +197,11 @@ function joinField() {
       .map((x) => x.promptEN)
       .join(",") +
     "," +
-    (dpiCustom.value
-      ? `--ar ${dpiParams.height}:${dpiParams.width}`
-      : defaultDpiList.value.filter((x) => x.isSelected).length
-      ? `--ar ${defaultDpiList.value[0].height}:${defaultDpiList.value[0].width}`
-      : "--ar 1:1") +
+    // (dpiCustom.value
+    //   ? `--ar ${dpiParams.height}:${dpiParams.width}`
+    //   : defaultDpiList.value.filter((x) => x.isSelected).length
+    //   ? `--ar ${defaultDpiList.value[0].height}:${defaultDpiList.value[0].width}`
+    //   : "--ar 1:1") +
     "," +
     paramsList.value
       .filter((x) => x.checked)
@@ -207,13 +215,10 @@ function joinField() {
 }
 
 function onClickTag(item: DpiOptions) {
-  dpiList.value.forEach((x) => (x.isSelected = false));
-  if (item.options === "自定义") {
-    dpiCustom.value = true;
-  } else {
-    dpiCustom.value = false;
-    item.isSelected = !item.isSelected;
-  }
+  defaultDpiList.value.forEach((x) => (x.isSelected = false));
+  dpiParams.isSelected = false;
+
+  item.isSelected = true;
 }
 
 function onDelete(value: string) {
@@ -222,6 +227,14 @@ function onDelete(value: string) {
   );
 
   defaultKeyWordList.value.splice(index, 1);
+  ElMessage.success("删除成功");
+}
+
+function onDeleteDpi() {
+  dpiParams.isSelected = false;
+  dpiParams.width = "";
+  dpiParams.height = "";
+
   ElMessage.success("删除成功");
 }
 
@@ -234,7 +247,23 @@ async function onCloseCardDialog() {
 async function onCloseDpiDialog() {
   dialogVisible.dpi = false;
   await nextTick();
-  dpiCustomsList.value = dpiDialogRef.value?.dpiCustomsList;
+  const { width, height } = dpiDialogRef.value?.dpiCustom!;
+  if (width && height) {
+    dpiParams.width = width;
+    dpiParams.height = height;
+    dpiParams.isSelected = true;
+  } else {
+    dpiParams.width = "";
+    dpiParams.height = "";
+    dpiParams.isSelected = false;
+  }
+
+  if (dpiParams.isSelected) {
+    dpiCustomsList.value = dpiDialogRef.value?.dpiCustomsList;
+    dpiCustomsList.value.forEach((x) => (x.isSelected = false));
+  } else {
+    dpiCustomsList.value = dpiDialogRef.value?.dpiCustomsList;
+  }
 }
 
 async function onCloseKeyWordDialog() {
@@ -440,7 +469,9 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
         </div>
       </div>
       <div flex="~ gap-3 wrap" justify-start items-stretch class="more">
-        <Tag content="填写" @click="onSelectAIParams('writekeyword')"></Tag>
+        <Tag content="自定义" @click="onSelectAIParams('writekeyword')">
+          <template #icon> <i class="icon-zidingyi icon"></i></template>
+        </Tag>
         <Tag
           slice
           tooltip
@@ -460,41 +491,28 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
       </div>
       <div flex="~ gap-3 wrap col" items-start class="more">
         <div flex="~ gap-3 wrap">
-          <Tag content="自定义" @click="dpiCustom = !dpiCustom"></Tag>
+          <Tag
+            v-if="dpiParams.width && dpiParams.height"
+            type="dpi"
+            :content="dpiParams.options"
+            :is-selected="dpiParams.isSelected"
+            :is-custom="dpiParams.isCustom"
+            @click="onClickTag(dpiParams)"
+            @delete="onDeleteDpi"
+          >
+            <span class="text-[#AAAAAA]"
+              >{{ dpiParams.width }} : {{ dpiParams.height }}</span
+            >
+          </Tag>
           <Tag
             v-for="item in defaultDpiList"
+            type="dpi"
             :content="item.options"
             :is-selected="item.isSelected"
             @click="onClickTag(item)"
-          ></Tag>
-        </div>
-        <div v-if="dpiCustom" class="dpi-custom" flex="~" pl-2>
-          <div mt-2>
-            <p mb-2 text-neutral class="text-4.5">Width</p>
-            <div class="dpi-custom-text">
-              <el-input-number
-                v-model="dpiParams.width"
-                placeholder="Width"
-                :controls="false"
-                :min="0"
-                :max="999999"
-              ></el-input-number>
-              <span class="input-group-text">px</span>
-            </div>
-          </div>
-          <div mt-2 ml-8>
-            <p mb-2 text-neutral class="text-4.5">Height</p>
-            <div class="dpi-custom-text">
-              <el-input-number
-                v-model="dpiParams.height"
-                placeholder="Height"
-                :controls="false"
-                :min="0"
-                :max="999999"
-              ></el-input-number>
-              <span class="input-group-text">px</span>
-            </div>
-          </div>
+          >
+            <span class="text-[#AAAAAA]">{{ item.width }} : {{ item.height }}</span>
+          </Tag>
         </div>
       </div>
       <div flex="~" mt-4 mb-4 class="readmore-title">
@@ -617,6 +635,7 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
         <DpiDialog
           ref="dpiDialogRef"
           :list="dpiList"
+          :dpi-custom="{ ...dpiParams }"
           :dialog-visible="dialogVisible.dpi"
         ></DpiDialog>
         <template #footer>

@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { Check, Delete } from "@element-plus/icons-vue";
 
 const props = defineProps<{
   content: string;
+  /** 卡片类型 */
+  type?: "dpi" | string;
   /** 是否选中 */
   isSelected?: boolean;
   /** 是否是自定义 */
@@ -51,8 +52,9 @@ const isDisable = computed(() =>
   >
     <span
       relative
-      class="keyword-tag !px-20px !py-6px"
-      :class="{ selected: isSelected }"
+      flex="~ col"
+      class="keyword-tag px-20px py-6px"
+      :class="{ selected: isSelected, dpiStyle: type === 'dpi' }"
       v-bind="$attrs"
     >
       <el-button
@@ -63,17 +65,26 @@ const isDisable = computed(() =>
       >
         x
       </el-button>
-      <slot name="icon"></slot>
-      {{ text }}
+      <span><slot name="icon"></slot> {{ text }}</span>
+      <slot></slot>
     </span>
   </el-tooltip>
 </template>
-<style scoped>
+<style lang="scss" scoped>
 .keyword-tag {
-  min-width: 106px;
+  min-width: 114px;
   text-align: center;
   border: 2px solid var(--el-border-color);
   border-radius: var(--el-border-radius-base);
   cursor: pointer;
+
+  &:hover {
+    border: 2px solid var(--el-color-primary-light-3) !important;
+    transition: all 0.5s;
+  }
+}
+
+.dpiStyle {
+  min-width: 156px;
 }
 </style>

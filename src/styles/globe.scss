@@ -6,36 +6,24 @@ body,
 }
 
 :root {
-  --animate-duration: 1s;
+  --animate-duration: .3s;
   --animate-delay: 1s;
   --animate-repeat: 1;
 }
 
-.container-input  {
-  .input-group  {
-    .el-input__wrapper {
-      box-shadow: none;
-      border: 1px solid var(--el-input-border-color);
-      border-right: none;
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0;
-    }
-    .el-textarea__inner {
-      caret-color: var(--el-color-primary);
-    }
-  }
-}
-
-.copy.el-button {
-  color: var(--el-color-black);
-  background-color: var(--el-color-white);
-  border-color: var(--el-color-white);
-}
-
-// selected 卡片的过度动画
-.animate__animated {
+@mixin animate__animated {
   animation-duration: var(--animate-duration);
   animation-fill-mode: both;
+}
+
+.animate__fadeInRight-enter-active {
+  @include animate__animated;
+  animation-name: fadeInRight;
+}
+
+.animate__fadeInRight-leave-active {
+  @include animate__animated;
+  animation-name: fadeOutRight;
 }
 
 @keyframes fadeInRight {
@@ -64,21 +52,31 @@ body,
   }
 }
 
-@keyframes fadeRotate{
+@keyframes fadeRotate {
   to {
     transform:rotate(360deg)
   }
 }
 
-.animate__fadeInRight-enter-active {
-  animation-duration: .3s;
-  animation-fill-mode: both;
-  animation-name: fadeInRight;
+.container-input  {
+  .input-group  {
+    .el-input__wrapper {
+      box-shadow: none;
+      border: 1px solid var(--el-input-border-color);
+      border-right: none;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    .el-textarea__inner {
+      caret-color: var(--el-color-primary);
+    }
+  }
 }
 
-.animate__fadeInRight-leave-active {
-  animation-duration: .3s;
-  animation-name: fadeOutRight;
+.copy.el-button {
+  color: var(--el-color-black);
+  background-color: var(--el-color-white);
+  border-color: var(--el-color-white);
 }
 
 .page-fade-enter-active,
@@ -99,6 +97,7 @@ body,
   height: 20px;
   padding: 2px;
   width: 20px;
+  background-color: #EAEFF3;
 
   border: none;
   border-top-right-radius: 0;
@@ -178,6 +177,10 @@ body,
 
 .icon-jiantou {
   content: url("../assets/img/jiantou.png");
+}
+
+.icon-zidingyi {
+  content: url("../assets/img/zidingyi.png");
 }
 
 .icon-loading {
