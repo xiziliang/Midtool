@@ -8,7 +8,26 @@
 
   如下图所示：
 
-  ![image-20221016091211078](/Users/xzl/Library/Application Support/typora-user-images/image-20221016091211078.png)
+  ```json
+    {
+      "options": "质量",
+      "type": "selector",
+      "describe": "让你或多或少地给算法思考时间。它还会改变图像的成本。",
+      "parameter": "--q",
+      "min": "",
+      "max": "",
+      "gap": "",
+      "option": [
+        0.25,
+        0.5,
+        1,
+        2,
+        5
+      ],
+      "value": 1,
+      "index": 2
+    }
+  ```
 
 ### midjourneyCanvas -> 画面比例
 
