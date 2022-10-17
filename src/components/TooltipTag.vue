@@ -9,7 +9,7 @@ const props = defineProps<{
 
 const limit = computed(() => {
   if (props.slice) {
-    return typeof props.slice === "number" ? props.slice : 5;
+    return typeof props.slice === "number" ? props.slice : 8;
   }
   return false;
 });
@@ -31,8 +31,3 @@ const text = computed(() => {
     <slot></slot>
   </span>
 </template>
-<style lang="scss" scoped>
-.dpiStyle {
-  min-width: 156px;
-}
-</style>
