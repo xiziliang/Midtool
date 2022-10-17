@@ -133,9 +133,9 @@ const dpiParams = reactive<{
   height: undefined,
 });
 
-initCustomList();
 fetch();
 
+/** 初始化数据全部取消选中 */
 function initCustomList() {
   [
     ...cardCustomList.value,
