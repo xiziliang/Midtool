@@ -10,6 +10,7 @@ import MidjourneyParams from "@/components/MidjourneyParams.vue";
 import DpiDialog from "@/components/DpiDialog.vue";
 import KeywordDialog from "@/components/KeywordDialog.vue";
 import CardDialog from "@/components/CardDialog.vue";
+import TooltipTag from "@/components/TooltipTag.vue";
 import type {
   DpiOptions,
   Options,
@@ -396,7 +397,7 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
         <div
           class="lt-md:max-w-500px md:max-w-688px search-input relative"
           h-auto
-          p-2
+          p="x-0.2rem y-0.2rem"
           flex="~ grow shrink wrap gap-2"
           border="3 gray-800 rounded-12px"
         >
@@ -410,19 +411,24 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
             @keypress.enter.prevent="translation"
           />
           <el-button
-            class="copy hover:bg-gray-200 active:bg-gray-300"
+            class="copy hover:bg-gray-200 active:bg-gray-300 h-48px"
             type="primary"
             size="default"
             @click="copy('input')"
           >
             <div class="i-carbon-copy"></div>
           </el-button>
-          <div v-show="tooltiplist.length" class="tooltiplist" flex="~ gap-3" p="y-2 b-0">
-            <Tag
+          <div
+            v-show="tooltiplist.length"
+            class="tooltiplist"
+            flex="~ gap-3"
+            p="b-20px x-20px"
+          >
+            <TooltipTag
               v-for="item in tooltiplist"
               :content="item?.promptZH || item?.options || item?.img"
               :slice="16"
-            ></Tag>
+            ></TooltipTag>
           </div>
         </div>
         <el-button
@@ -437,12 +443,7 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
         </el-button>
       </div>
       <div class="translation-result" flex="~" px-4 justify-center items-start>
-        <div
-          class="lt-md:w-600px md:w-790px"
-          p="y-15px x-4px"
-          flex="~ gap-3"
-          items-center
-        >
+        <div class="lt-md:w-600px md:w-790px" p="y-15px x-4px" flex="~ gap-3">
           <template v-if="!translationResult.length && !loading">
             <p color-gray-300>翻译结果: A lazy cat prone on the ground of the window</p>
           </template>
@@ -451,11 +452,11 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
             <p color-gray-300>正在翻译...</p>
           </template>
           <template v-else-if="translationResult.length > 0 && !loading">
-            <code class="tracking-0.5px" color-gray-500 max-w-38rem break-words>{{
+            <code class="tracking-0.5px w-36.7rem" color-gray-500 break-words>{{
               translationResult
             }}</code>
             <el-button
-              class="copy hover:bg-gray-200 active:bg-gray-300"
+              class="copy hover:bg-gray-200 active:bg-gray-300 h-48px"
               type="primary"
               size="default"
               @click="copy('translation')"
@@ -484,7 +485,7 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
         justify-start
         items-stretch
         will-change-scroll
-        pt-4
+        p="y-2 x-2px"
         class="more"
       >
         <Card :data="defaultCardList"></Card>
@@ -501,7 +502,6 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
         </Tag>
         <Tag
           slice
-          tooltip
           v-for="item in defaultKeyWordList"
           :content="item.promptZH!"
           :is-selected="item.isSelected"
@@ -563,7 +563,7 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
       </div>
       <div
         class="more"
-        p="y-4"
+        p="y-2 x-2px"
         overflow-auto
         flex="~ gap-4"
         justify-start
@@ -755,7 +755,7 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
   position: absolute;
   width: 30px;
   height: 30px;
-  left: -12px;
+  left: -10px;
   bottom: -25px;
   transform: scale(0.5);
 }
