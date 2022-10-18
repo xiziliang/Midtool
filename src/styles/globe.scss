@@ -250,3 +250,20 @@ body,
   font-family: "DM Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
     "Liberation Mono", "Courier New", monospace;
 }
+
+.search-input::before {
+  content: url(/src/assets/img/jiantou.png);
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  left: -10px;
+  bottom: -25px;
+  transform: scale(0.5);
+}
+
+.container-input {
+  position: sticky;
+  top: 0;
+  z-index: 99;
+  background-color: var(--el-fill-color-blank);
+}
