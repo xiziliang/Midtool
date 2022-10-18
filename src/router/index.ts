@@ -5,9 +5,22 @@ export const $routes: RouteRecordRaw[] = [
     path: '/',
     name: 'home',
     component: () => import('@/views/home/home.vue'),
+    redirect: { name: 'novelAi' },
     meta: {
       title: '首页',
     },
+    children: [
+      {
+        path: 'novelAi',
+        name: 'novelAi',
+        component: () => import('@/views/novelAi/novelAi.vue'),
+      },
+      {
+        path: 'midJourney',
+        name: 'midJourney',
+        component: () => import('@/views/midJourney/midJourney.vue'),
+      },
+    ],
   },
   {
     path: '/:pathMatch(.*)*', 

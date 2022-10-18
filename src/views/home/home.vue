@@ -1,55 +1,28 @@
 <script setup lang="ts">
-import { ref, reactive, computed, nextTick } from "vue";
-import { cloneDeep } from "lodash";
-import { ElMessage } from "element-plus";
+import { ref, computed } from "vue";
 
-import Card from "@/components/Card.vue";
-import ImgCard from "@/components/ImgCard.vue";
-import Tag from "@/components/Tag.vue";
-import MidjourneyParams from "@/components/MidjourneyParams.vue";
-import DpiDialog from "@/components/DpiDialog.vue";
-import KeywordDialog from "@/components/KeywordDialog.vue";
-import CardDialog from "@/components/CardDialog.vue";
 import TooltipTag from "@/components/TooltipTag.vue";
-import type {
-  DpiOptions,
-  Options,
-  CustomKeyWord,
-  CardItem,
-  AIParams,
-  ImgOptions,
-  HistoryKeyWord,
-} from "@/models";
-import {
-  DPI_CUSTOM_LIST,
-  CARD_CUSTOM_LIST,
-  KEYWORD_CUSTOM_LIST,
-  PARAM_CUSTOM_LIST,
-  IMG_CUSTOM_LIST,
-  KEYWORD_HISTORY_LIST,
-  ApiPrefix,
-} from "@/constants";
-
+import { ApiPrefix } from "@/constants";
 import { copyText } from "@/utils";
-import { useFetch, useStorage, useElementBounding } from "@vueuse/core";
+import { useFetch, useElementBounding } from "@vueuse/core";
+
+import NovelAi from "../novelAi/novelAi.vue";
 
 // instance
-const parameterRef = ref<InstanceType<typeof MidjourneyParams> | null>(null);
-const dpiDialogRef = ref<InstanceType<typeof DpiDialog> | null>(null);
-const keywordDialogRef = ref<InstanceType<typeof KeywordDialog> | null>(null);
-const cardDialogRef = ref<InstanceType<typeof CardDialog> | null>(null);
 const headerRef = ref<HTMLElement | null>(null);
+const currentTabRef = ref<InstanceType<typeof NovelAi>>();
+
+// computed
+const tipsList = computed(() => currentTabRef.value?.tipsList || []);
+const stringField = computed(() => currentTabRef.value?.stringField || "");
 
 // hooks
 const { top: headRefTop } = useElementBounding(headerRef);
 
-const loading = ref(false);
-
 // input value
+const loading = ref(false);
 const inputValue = ref("");
 const translationResult = ref("");
-const newKeyWordValue = ref("");
-const newImgAddressValue = ref("");
 const qq = ref(123456789);
 const website = ref([
   {
@@ -70,116 +43,6 @@ const website = ref([
   },
 ]);
 
-// data
-const cardList = ref<CardItem[]>([]);
-const keyWordList = ref<Partial<CustomKeyWord>[]>([]);
-const paramsList = ref<Options[]>([]);
-const dpiList = ref<DpiOptions[]>([]);
-
-const cardCustomList = useStorage<CardItem[]>(CARD_CUSTOM_LIST, [], localStorage);
-const keyWordCustomList = useStorage<CustomKeyWord[]>(
-  KEYWORD_CUSTOM_LIST,
-  [],
-  localStorage
-);
-const dpiCustomsList = useStorage<DpiOptions[]>(DPI_CUSTOM_LIST, [], localStorage);
-const paramCustomsList = useStorage<Options[]>(PARAM_CUSTOM_LIST, [], localStorage);
-const imgCustomsList = useStorage<ImgOptions[]>(IMG_CUSTOM_LIST, [], localStorage);
-
-const keyWordHistoryList = useStorage<HistoryKeyWord[]>(
-  KEYWORD_HISTORY_LIST,
-  [],
-  localStorage
-);
-
-// TODO: 使用watch + ref
-const defaultCardList = computed(() => reactive([...cardCustomList.value]));
-const defaultKeyWordList = computed(() => reactive([...keyWordCustomList.value]));
-const defaultDpiList = computed(() => reactive([...dpiCustomsList.value]));
-const defaultParamList = computed(() => reactive([...paramCustomsList.value]));
-const defaultImgList = computed(() => reactive([...imgCustomsList.value]));
-
-const tooltiplist = computed<(CardItem & DpiOptions & CustomKeyWord & ImgOptions)[]>(
-  () => {
-    return [].concat(
-      defaultCardList.value.find((x) => x.isSelected) || ([] as any),
-      defaultKeyWordList.value.find((x) => x.isSelected) || ([] as any),
-      [...defaultDpiList.value, dpiParams].find((x) => x.isSelected) || ([] as any),
-      defaultImgList.value.find((x) => x.isSelected) || ([] as any)
-    );
-  }
-);
-
-// reactive
-const dialogVisible = reactive({
-  params: false,
-  writeKeyWord: false,
-  keyWord: false,
-  dpi: false,
-  card: false,
-  img: false,
-});
-const dpiParams = reactive<{
-  options: string;
-  isSelected: boolean;
-  isCustom: boolean;
-  width: undefined | string;
-  height: undefined | string;
-}>({
-  options: "自定义",
-  isSelected: false,
-  isCustom: true,
-  width: undefined,
-  height: undefined,
-});
-
-fetch();
-
-/** 初始化数据全部取消选中 */
-function initCustomList() {
-  [
-    ...cardCustomList.value,
-    ...keyWordCustomList.value,
-    ...keyWordHistoryList.value,
-    ...dpiCustomsList.value,
-    ...imgCustomsList.value,
-  ].forEach((x) => (x.isSelected = false));
-}
-
-function formatData(data: CardItem[]) {
-  return data.map((x) => ({
-    ...x,
-    imgUrl: x.image === "yes" ? `/img-style/${x.promptEN}.png` : "/img-style/empty.png",
-  }));
-}
-
-async function fetchCardListData() {
-  const { data } = await useFetch("/json/midjourneyStyle.json");
-  cardList.value = formatData(JSON.parse(data.value as string));
-}
-
-async function fetchKeyWordData() {
-  const { data } = await useFetch("/json/midjourneyPrompt.json");
-  keyWordList.value = JSON.parse(data.value as string);
-}
-
-async function fetchParamsData() {
-  const { data } = await useFetch("/json/midjourneyParameter.json");
-  paramsList.value = JSON.parse(data.value as string);
-}
-
-async function fetchDpiData() {
-  const { data } = await useFetch("/json/midjourneyCanvas.json");
-  dpiList.value = JSON.parse(data.value as string);
-}
-
-function fetch() {
-  fetchKeyWordData();
-  fetchCardListData();
-  fetchParamsData();
-  fetchDpiData();
-}
-
 function copy(type: "input" | "translation") {
   switch (type) {
     case "input":
@@ -194,7 +57,7 @@ function copy(type: "input" | "translation") {
 
 async function translation() {
   // NOTE: 拼接keyWord
-  const keyWord = defaultKeyWordList.value
+  const keyWord = currentTabRef.value?.defaultKeyWordList
     .filter((x) => x.isCustom && x.isSelected)
     .map((x) => x.promptZH)
     .join(",");
@@ -203,171 +66,8 @@ async function translation() {
     origin: keyWord ? inputValue.value + "," + keyWord : inputValue.value,
   });
   loading.value = false;
-  translationResult.value = JSON.parse(data.value as string).data;
-
-  joinField();
-}
-
-function joinField() {
-  const cardListString = defaultCardList.value
-    .filter((x) => x.isSelected)
-    .map((x) => x.promptEN)
-    .join(",");
-
-  const keyWordString = defaultKeyWordList.value
-    .filter((x) => x.isSelected && !x.isCustom)
-    .map((x) => x.promptEN)
-    .join(",");
-
-  const paramsListString = paramsList.value
-    .filter((x) => x.checked)
-    .map((x) => x.parameter)
-    .join(",");
-
   translationResult.value =
-    translationResult.value +
-    "," +
-    (cardListString ? cardListString + "," : "") +
-    (keyWordString ? keyWordString + "," : "") +
-    (dpiParams.isSelected
-      ? `--ar ${dpiParams.height}:${dpiParams.width}`
-      : defaultDpiList.value.filter((x) => x.isSelected).length
-      ? `--ar ${defaultDpiList.value[0].height}:${defaultDpiList.value[0].width}`
-      : "--ar 1:1") +
-    "," +
-    (paramsListString ? paramsListString + "," : "") +
-    defaultImgList.value
-      .filter((x) => x.isSelected)
-      .map((x) => x.img)
-      .join(",");
-}
-
-function onClickTag(item: DpiOptions) {
-  defaultDpiList.value.forEach((x) => (x.isSelected = false));
-  dpiParams.isSelected = false;
-
-  item.isSelected = true;
-}
-
-function onDelete(value: string) {
-  const index = defaultKeyWordList.value.findIndex(
-    (x) => x.isCustom && x.promptZH === value
-  );
-
-  defaultKeyWordList.value.splice(index, 1);
-  ElMessage.success("删除成功");
-}
-
-function onDeleteDpi() {
-  dpiParams.isSelected = false;
-  dpiParams.width = "";
-  dpiParams.height = "";
-
-  ElMessage.success("删除成功");
-}
-
-async function onCloseCardDialog() {
-  dialogVisible.card = false;
-  await nextTick();
-  cardCustomList.value = cardDialogRef.value?.cardCustomList;
-}
-
-async function onCloseDpiDialog() {
-  dialogVisible.dpi = false;
-  await nextTick();
-  const { width, height } = dpiDialogRef.value?.dpiCustom!;
-  if (width && height) {
-    dpiParams.width = width;
-    dpiParams.height = height;
-    dpiParams.isSelected = true;
-  } else {
-    dpiParams.width = "";
-    dpiParams.height = "";
-    dpiParams.isSelected = false;
-  }
-
-  if (dpiParams.isSelected) {
-    dpiCustomsList.value = dpiDialogRef.value?.dpiCustomsList;
-    dpiCustomsList.value.forEach((x) => (x.isSelected = false));
-  } else {
-    dpiCustomsList.value = dpiDialogRef.value?.dpiCustomsList;
-  }
-}
-
-async function onCloseKeyWordDialog() {
-  dialogVisible.keyWord = false;
-  await nextTick();
-  keyWordCustomList.value = keywordDialogRef.value?.keyWordCustomList;
-  keyWordHistoryList.value = keywordDialogRef.value?.keyWordHistoryList;
-
-  defaultKeyWordList.value.push(...keyWordHistoryList.value.filter((x) => x.isSelected));
-}
-
-function onCloseWriteKeyWordDialog() {
-  dialogVisible.writeKeyWord = false;
-
-  const item = keyWordHistoryList.value.find((x) => x.promptZH === newKeyWordValue.value);
-
-  if (item) {
-    item.isSelected = true;
-    defaultKeyWordList.value.push(item);
-  } else if (!item) {
-    keyWordHistoryList.value.push(
-      reactive({
-        promptZH: newKeyWordValue.value,
-        isSelected: true,
-        isCustom: true,
-      }) as HistoryKeyWord
-    );
-
-    defaultKeyWordList.value.push(
-      keyWordHistoryList.value.find(
-        (x) => x.promptZH === newKeyWordValue.value
-      ) as HistoryKeyWord
-    );
-  }
-  newKeyWordValue.value = "";
-}
-
-async function onCloseParamsDialog() {
-  dialogVisible.params = false;
-  paramsList.value = parameterRef.value?.data;
-}
-
-function onSelectAIParams(type: AIParams | "writekeyword") {
-  switch (type) {
-    case "card":
-      dialogVisible.card = true;
-
-      break;
-    case "keyword":
-      dialogVisible.keyWord = true;
-
-      break;
-    case "dpi":
-      dialogVisible.dpi = true;
-
-      break;
-    case "params":
-      dialogVisible.params = true;
-
-      break;
-    case "img":
-      if (defaultImgList.value.filter((x) => x.isSelected).length >= 10) {
-        ElMessage({
-          type: "warning",
-          message: "您已选中10张图片",
-        });
-        return;
-      }
-      dialogVisible.img = true;
-
-      break;
-    case "writekeyword":
-      dialogVisible.writeKeyWord = true;
-
-      break;
-  }
+    JSON.parse(data.value as string).data + "," + stringField.value;
 }
 </script>
 
@@ -419,13 +119,13 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
             <div class="i-carbon-copy"></div>
           </el-button>
           <div
-            v-show="tooltiplist.length"
+            v-show="tipsList.length"
             class="tooltiplist"
             flex="~ gap-3"
             p="b-20px x-20px"
           >
             <TooltipTag
-              v-for="item in tooltiplist"
+              v-for="item in tipsList"
               :content="item?.promptZH || item?.options || item?.img"
               :slice="16"
             ></TooltipTag>
@@ -467,7 +167,10 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
         </div>
       </div>
     </header>
-    <main
+    <RouterView v-slot="{ Component }">
+      <component :ref="(el: any) => currentTabRef = el" :is="Component" />
+    </RouterView>
+    <!-- <main
       class="container-params ma lt-lg:max-w-660px lg:max-w-828px xl:max-w-1176px 2xl:max-w-1332px"
     >
       <div flex="~" mt-4 class="readmore-title">
@@ -572,7 +275,7 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
       >
         <ImgCard :data="defaultImgList"></ImgCard>
       </div>
-    </main>
+    </main> -->
   </div>
   <footer>
     <div class="footer bg-[#333333]" flex="~ col">
@@ -590,162 +293,6 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
       </div>
       <div></div>
     </div>
-    <!-- dialog start ----------------- -->
-    <el-dialog
-      v-model="dialogVisible.card"
-      top="30px"
-      title="作画风格"
-      width="70%"
-      center
-      draggable
-      destroy-on-close
-      :close-on-click-modal="false"
-    >
-      <CardDialog
-        ref="cardDialogRef"
-        :list="cardList"
-        :dialog-visible="dialogVisible.card"
-      ></CardDialog>
-      <template #footer>
-        <span class="dialog-footer">
-          <el-button class="dialogBtn" type="primary" @click="onCloseCardDialog"
-            >完成</el-button
-          >
-        </span>
-      </template>
-    </el-dialog>
-    <el-dialog
-      title="输入提示词"
-      v-model="dialogVisible.writeKeyWord"
-      center
-      width="35%"
-      destroy-on-close
-      draggable
-      :close-on-click-modal="false"
-    >
-      <el-input
-        type="textarea"
-        v-model="newKeyWordValue"
-        maxlength="30"
-        show-word-limit
-        placeholder="请输入"
-      ></el-input>
-
-      <template #footer>
-        <span>
-          <el-button
-            class="dialogBtn"
-            :disabled="newKeyWordValue.length < 1"
-            type="primary"
-            @click="onCloseWriteKeyWordDialog"
-            >完成</el-button
-          >
-        </span>
-      </template>
-    </el-dialog>
-    <el-dialog
-      title="提示词"
-      v-model="dialogVisible.keyWord"
-      center
-      width="50%"
-      destroy-on-close
-      draggable
-      :close-on-click-modal="false"
-    >
-      <KeywordDialog
-        ref="keywordDialogRef"
-        :list="keyWordList"
-        :dialog-visible="dialogVisible.keyWord"
-      ></KeywordDialog>
-      <template #footer>
-        <span>
-          <el-button class="dialogBtn" type="primary" @click="onCloseKeyWordDialog"
-            >完成</el-button
-          >
-        </span>
-      </template>
-    </el-dialog>
-    <el-dialog
-      title="画面比例"
-      v-model="dialogVisible.dpi"
-      center
-      width="40%"
-      destroy-on-close
-      draggable
-      :close-on-click-modal="false"
-    >
-      <DpiDialog
-        ref="dpiDialogRef"
-        :list="dpiList"
-        :dpi-custom="{ ...dpiParams }"
-        :dialog-visible="dialogVisible.dpi"
-      ></DpiDialog>
-      <template #footer>
-        <span>
-          <el-button class="dialogBtn" type="primary" @click="onCloseDpiDialog"
-            >完成</el-button
-          >
-        </span>
-      </template>
-    </el-dialog>
-    <el-dialog
-      v-model="dialogVisible.params"
-      top="30px"
-      title="作画参数"
-      width="60%"
-      center
-      :close-on-click-modal="false"
-    >
-      <MidjourneyParams
-        ref="parameterRef"
-        :data="cloneDeep(paramsList)"
-        :dialog-visible="dialogVisible.params"
-      ></MidjourneyParams>
-      <template #footer>
-        <span class="dialog-footer">
-          <el-button class="dialogBtn" type="primary" @click="onCloseParamsDialog"
-            >完成</el-button
-          >
-        </span>
-      </template>
-    </el-dialog>
-    <el-dialog
-      title="输入图片网址"
-      v-model="dialogVisible.img"
-      center
-      width="30%"
-      destroy-on-close
-      draggable
-      :close-on-click-modal="false"
-    >
-      <el-input
-        type="textarea"
-        v-model="newImgAddressValue"
-        maxlength="300"
-        show-word-limit
-        placeholder="原网址需以PNG、JPG等图片格式结尾"
-        :autosize="{ minRows: 3, maxRows: 3 }"
-      ></el-input>
-
-      <template #footer>
-        <span>
-          <el-button
-            class="dialogBtn"
-            :disabled="newImgAddressValue.length < 1"
-            type="primary"
-            @click="
-              dialogVisible.img = false;
-              imgCustomsList.push({
-                img: newImgAddressValue,
-                isSelected: true,
-              });
-              newImgAddressValue = '';
-            "
-            >完成</el-button
-          >
-        </span>
-      </template>
-    </el-dialog>
   </footer>
 </template>
 
@@ -764,43 +311,5 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
   top: 0;
   z-index: 99;
   background-color: var(--el-fill-color-blank);
-}
-.readmore-title {
-  color: rgba(0, 0, 0, 0.5);
-  font-size: 1.5rem;
-  font-family: "DM Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-    "Liberation Mono", "Courier New", monospace;
-}
-
-.dpi-custom {
-  &-text {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: stretch;
-    width: 100%;
-
-    :deep(.el-input__wrapper) {
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0;
-    }
-    .input-group-text {
-      display: flex;
-      align-items: center;
-      padding: 0.25rem 0.75rem;
-      font-size: 1rem;
-      font-weight: 400;
-      line-height: 1.5;
-      color: #c9d1d9;
-      text-align: center;
-      white-space: nowrap;
-      border-radius: 0.25rem;
-      background-color: #e9ecef;
-      border: 1px solid #ced4da;
-
-      margin-left: -1px;
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
-    }
-  }
 }
 </style>

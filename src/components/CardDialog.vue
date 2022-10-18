@@ -35,10 +35,6 @@ function keyword2label(label: string) {
 
 function onTrigger(item: CardItem) {
   item.isSelected = !item.isSelected;
-  if (allData.value.filter((x) => x.isSelected).length > 10) {
-    ElMessage.warning("最多选10条");
-    item.isSelected = false;
-  }
 }
 
 defineExpose({
