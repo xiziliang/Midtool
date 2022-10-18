@@ -62,6 +62,7 @@ const stringField = computed(() => {
     .map((x) => x.promptEN)
     .join(",");
 
+  // NOTE: paramsList or defaultParamList
   const paramsListString = paramsList.value
     .filter((x) => x.checked)
     .map((x) => x.parameter)
