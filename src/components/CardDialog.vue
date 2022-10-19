@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch, watchEffect, computed, nextTick, onMounted, Ref } from "vue";
+import { ref, watch, watchEffect, computed, nextTick } from "vue";
 import type { TabsPaneContext } from "element-plus";
 import { cloneDeep } from "lodash";
 
@@ -20,7 +20,7 @@ const keyword2Ref = ref<HTMLElement[] | null>();
 const scrollBoxRef = ref<HTMLElement[] | null>();
 
 // data
-const isClickScroll = ref(true);
+const isClickScroll = ref(false);
 const map = ref<Record<string, any>>({});
 const allData = ref<CardItem[]>([]);
 const currentTab = ref<string>();
