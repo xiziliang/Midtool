@@ -1,36 +1,96 @@
 <script setup lang="ts">
-import { ref, watch, watchEffect, computed } from "vue";
-import { ElMessage } from "element-plus";
+import { ref, watch, watchEffect, computed, nextTick, onMounted, Ref } from "vue";
+import type { TabsPaneContext } from "element-plus";
 import { cloneDeep } from "lodash";
 
 import type { CardItem } from "@/models";
 import { CARD_CUSTOM_LIST } from "@/constants";
 
-import { useStorage } from "@vueuse/core";
-
-const cardCustomList = useStorage<CardItem[]>(CARD_CUSTOM_LIST, [], localStorage);
+import { useStorage, useIntersectionObserver } from "@vueuse/core";
 
 const props = defineProps<{
   list: CardItem[];
   dialogVisible: boolean;
 }>();
 
+const cardCustomList = useStorage<CardItem[]>(CARD_CUSTOM_LIST, [], localStorage);
+
+// instance
+const keyword2Ref = ref<HTMLElement[] | null>();
+const scrollBoxRef = ref<HTMLElement[] | null>();
+
+// data
+const isClickScroll = ref(true);
+const map = ref<Record<string, any>>({});
 const allData = ref<CardItem[]>([]);
 const currentTab = ref<string>();
-const tabList = computed(() => Array.from(new Set(allData.value.map((x) => x.KeyWord))));
+const currentTab2 = ref<string>();
 
-watch(
-  tabList,
-  () => {
-    currentTab.value = tabList?.value[0];
-  },
-  { immediate: true }
-);
+// computed data
+const tabList = computed(() => Array.from(new Set(allData.value.map((x) => x.KeyWord))));
+const tab2List = computed(() => {
+  return Array.from(
+    new Set(
+      allData.value.filter((x) => x.KeyWord === currentTab?.value).map((x) => x.KeyWord2)
+    )
+  );
+});
+
+/** 添加监听: 元素显示0r隐藏 */
+function addElementVisibility() {
+  const scrollTarget = scrollBoxRef.value?.find((x) =>
+    x.className.includes(currentTab.value!)
+  );
+
+  const targets = keyword2Ref.value?.filter((x) => {
+    return tab2List.value.includes(x.classList[1]);
+  });
+
+  targets?.forEach((x) => {
+    const isVisible = ref(false);
+    const { stop } = useIntersectionObserver(
+      x,
+      ([{ isIntersecting }]) => {
+        isVisible.value = isIntersecting;
+      },
+      {
+        root: scrollTarget,
+      }
+    );
+
+    map.value[x.classList[1]] = {
+      stop,
+      isVisible,
+    };
+  });
+}
 
 function keyword2label(label: string) {
   return Array.from(
     new Set(allData.value.filter((x) => x.KeyWord === label).map((x) => x.KeyWord2))
   );
+}
+
+function onClickKeyword2Tab(context: TabsPaneContext) {
+  isClickScroll.value = true;
+  scrollTo(context.paneName + "");
+
+  setTimeout(() => {
+    isClickScroll.value = false;
+  }, 1000);
+}
+
+function scrollTo(className: string) {
+  document.getElementsByClassName(className)[0].scrollIntoView({
+    behavior: "smooth",
+  });
+}
+
+function clearScroll() {
+  for (const key in map.value) {
+    map.value[key].stop();
+  }
+  map.value = {};
 }
 
 function onTrigger(item: CardItem) {
@@ -40,6 +100,39 @@ function onTrigger(item: CardItem) {
 defineExpose({
   cardCustomList,
 });
+
+watch(
+  tabList,
+  () => {
+    currentTab.value = tabList?.value[0];
+  },
+  { immediate: true }
+);
+
+watch(tab2List, async () => {
+  if (!tab2List.value.length) return;
+
+  currentTab2.value = tab2List.value[0];
+
+  await nextTick();
+  currentTab2.value ? scrollTo(currentTab2.value) : undefined;
+
+  clearScroll();
+  addElementVisibility();
+});
+
+watch(
+  map,
+  () => {
+    if (Object.entries(map.value).length < 0) return;
+
+    if (isClickScroll.value) return;
+
+    const firstShowEl = Object.entries(map.value).find((x) => x[1].isVisible);
+    currentTab2.value = firstShowEl?.[0];
+  },
+  { deep: true }
+);
 
 watch(
   () => props.list,
@@ -81,8 +174,31 @@ watchEffect(() => {
           {{ keyword1 }}
         </div></template
       >
-      <div max-h-2xl min-h-lg overflow-auto>
-        <div v-for="keyword2 in keyword2label(keyword1!)" class="keyword2">
+      <el-tabs
+        py-1
+        class="keyword2Tab"
+        v-model="currentTab2"
+        @tab-click="onClickKeyword2Tab"
+      >
+        <el-tab-pane
+          v-for="keyword2 in tab2List"
+          :key="keyword2"
+          :label="keyword2"
+          :name="keyword2"
+        ></el-tab-pane>
+      </el-tabs>
+      <div
+        ref="scrollBoxRef"
+        :class="keyword1 + 'scrollBox'"
+        max-h-2xl
+        min-h-lg
+        overflow-auto
+      >
+        <div
+          ref="keyword2Ref"
+          v-for="keyword2 in keyword2label(keyword1!)"
+          :class="['keyword2', keyword2]"
+        >
           <div flex="~" mt-4>
             <div flex>
               <p>{{ keyword2 }}</p>
@@ -126,5 +242,19 @@ watchEffect(() => {
   text-align: center;
   vertical-align: middle;
   line-height: 16px;
+}
+
+:deep(.el-tabs__header) {
+  margin: 0;
+}
+.keyword2Tab {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 1;
+
+  :deep(.el-tabs__nav-wrap::after) {
+    content: none;
+  }
 }
 </style>

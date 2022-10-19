@@ -258,8 +258,7 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
       </div>
     </div>
     <div
-      overflow-auto
-      flex="~ gap-12px"
+      flex="~ gap-12px wrap"
       justify-start
       items-stretch
       will-change-scroll
