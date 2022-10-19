@@ -19,7 +19,7 @@ import {
 
 import { useFetch, useStorage } from "@vueuse/core";
 
-export const useMidJourneyData = () => {
+export const useNovelAiData = () => {
   const dpiParams = reactive<{
     options: string;
     isSelected: boolean;
@@ -144,3 +144,5 @@ export const useMidJourneyData = () => {
     fetch
   }
 }
+
+export const useMidJourneyData = () => {}

@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
+import { useRouter } from "vue-router";
+import type { TabsPaneContext } from "element-plus";
 
 import TooltipTag from "@/components/TooltipTag.vue";
 import { ApiPrefix } from "@/constants";
 import { copyText } from "@/utils";
 import { useFetch, useElementBounding } from "@vueuse/core";
+import { $routes } from "@/router";
 
 import NovelAi from "../novelAi/novelAi.vue";
 
@@ -19,6 +22,14 @@ const stringField = computed(() => currentTabRef.value?.stringField || "");
 // hooks
 const { top: headRefTop } = useElementBounding(headerRef);
 
+const router = useRouter();
+const currentRouter = ref("novelAi");
+const routerList = ref(
+  $routes[0].children?.map((x) => ({
+    title: x.meta?.title as string,
+    name: x.name,
+  }))
+);
 // input value
 const loading = ref(false);
 const inputValue = ref("");
@@ -42,6 +53,13 @@ const website = ref([
     value: "https://openai.com/dall-e-2/",
   },
 ]);
+
+function onClickTab(context: TabsPaneContext) {
+  console.log(context);
+  router.push({
+    name: context.paneName as string,
+  });
+}
 
 function copy(type: "input" | "translation") {
   switch (type) {
@@ -167,6 +185,14 @@ async function translation() {
         </div>
       </div>
     </header>
+    <div
+      class="container-params ma lt-lg:max-w-660px lg:max-w-828px xl:max-w-1176px 2xl:max-w-1336px"
+    >
+      <el-tabs v-model="currentRouter" @tab-click="onClickTab">
+        <el-tab-pane v-for="route in routerList" :label="route.title" :name="route.name">
+        </el-tab-pane>
+      </el-tabs>
+    </div>
     <RouterView v-slot="{ Component }">
       <component :ref="(el: any) => currentTabRef = el" :is="Component" />
     </RouterView>

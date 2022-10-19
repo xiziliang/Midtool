@@ -13,7 +13,7 @@ import DpiDialog from "@/components/DpiDialog.vue";
 import KeywordDialog from "@/components/KeywordDialog.vue";
 import CardDialog from "@/components/CardDialog.vue";
 
-import { useMidJourneyData } from "@/hooks";
+import { useNovelAiData } from "@/hooks";
 
 const {
   // JSON data
@@ -39,7 +39,7 @@ const {
   tooltiplist,
 
   fetch,
-} = useMidJourneyData();
+} = useNovelAiData();
 
 fetch();
 
@@ -246,7 +246,7 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
 
 <template>
   <main
-    class="container-params ma lt-lg:max-w-660px lg:max-w-828px xl:max-w-1176px 2xl:max-w-1332px"
+    class="container-params ma lt-lg:max-w-660px lg:max-w-828px xl:max-w-1176px 2xl:max-w-1336px"
   >
     <div flex="~" mt-4 class="readmore-title">
       <div cursor-pointer flex @click="onSelectAIParams('card')">

@@ -14,11 +14,17 @@ export const $routes: RouteRecordRaw[] = [
         path: 'novelAi',
         name: 'novelAi',
         component: () => import('@/views/novelAi/novelAi.vue'),
+        meta: {
+          title: 'NovelAi',
+        }
       },
       {
         path: 'midJourney',
         name: 'midJourney',
         component: () => import('@/views/midJourney/midJourney.vue'),
+        meta: {
+          title: 'MidJourney',
+        }
       },
     ],
   },
