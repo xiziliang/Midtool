@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { ref, reactive, nextTick, computed } from "vue";
+import { ref, reactive, nextTick, computed, onBeforeUnmount } from "vue";
 import { ElMessage } from "element-plus";
 import { cloneDeep } from "lodash";
 
-import type { AIParams, HistoryKeyWord, DpiOptions } from "@/models";
+import type { AIParams, HistoryKeyWord, DpiOptions, CustomKeyWord } from "@/models";
 
 import Card from "@/components/Card.vue";
 import ImgCard from "@/components/ImgCard.vue";
@@ -13,6 +13,7 @@ import DpiDialog from "@/components/DpiDialog.vue";
 import KeywordDialog from "@/components/KeywordDialog.vue";
 import CardDialog from "@/components/CardDialog.vue";
 
+import { useEventListener } from "@vueuse/core";
 import { useNovelAiData } from "@/hooks";
 
 const {
@@ -41,6 +42,15 @@ const {
   fetch,
 } = useNovelAiData();
 
+const clearUp = useEventListener("click", () => {
+  defaultKeyWordList.value.forEach((x) => (x.showWeight = false));
+  currentShowWeightTag.value = "";
+});
+
+onBeforeUnmount(() => {
+  clearUp();
+});
+
 fetch();
 
 const parameterRef = ref<InstanceType<typeof MidjourneyParams> | null>(null);
@@ -50,6 +60,8 @@ const cardDialogRef = ref<InstanceType<typeof CardDialog> | null>(null);
 
 const newKeyWordValue = ref("");
 const newImgAddressValue = ref("");
+/** 当前显示weight的tag */
+const currentShowWeightTag = ref("");
 
 const stringField = computed(() => {
   const cardListString = defaultCardList.value
@@ -116,12 +128,18 @@ defineExpose({
   tipsList: tooltiplist,
 });
 
-function onClickTag(item: DpiOptions) {
+function onClickKeyWordTag(item: CustomKeyWord) {
+  item.isSelected = !item.isSelected;
+  item.showWeight = true;
+}
+
+function onClickDpiTag(item: DpiOptions) {
   defaultDpiList.value.forEach((x) => (x.isSelected = false));
   dpiParams.isSelected = false;
 
   item.isSelected = true;
 }
+
 function onDelete(value: string) {
   const index = defaultKeyWordList.value.findIndex(
     (x) => x.isCustom && x.promptZH === value
@@ -137,6 +155,24 @@ function onDeleteDpi() {
   dpiParams.height = "";
 
   ElMessage.success("删除成功");
+}
+
+function onReduceWeight(wight: number, item: CustomKeyWord) {
+  console.log(wight, item);
+  item.weight = --wight;
+}
+
+function onAddWeight(wight: number, item: CustomKeyWord) {
+  console.log(wight, item);
+  item.weight = ++wight;
+}
+
+function onShowWeightTag(content: string, item: CustomKeyWord) {
+  if (currentShowWeightTag.value === content) return;
+
+  currentShowWeightTag.value = content;
+  defaultKeyWordList.value.forEach((x) => (x.showWeight = false));
+  item.showWeight = true;
 }
 
 async function onCloseCardDialog() {
@@ -188,6 +224,7 @@ function onCloseWriteKeyWordDialog() {
     keyWordHistoryList.value.push(
       reactive({
         promptZH: newKeyWordValue.value,
+        weight: 1,
         isSelected: true,
         isCustom: true,
       }) as HistoryKeyWord
@@ -267,8 +304,8 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
     >
       <Card :data="defaultCardList"></Card>
     </div>
-    <div flex="~" mt-4 mb-4 class="readmore-title" @click="onSelectAIParams('keyword')">
-      <div cursor-pointer flex>
+    <div flex="~" mt-4 mb-4 class="readmore-title">
+      <div cursor-pointer flex @click="onSelectAIParams('keyword')">
         <p><i class="icon-tishici icon-big mr-2"></i>选择提示词</p>
         <div i-carbon:add></div>
       </div>
@@ -283,8 +320,13 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
         :content="item.promptZH!"
         :is-selected="item.isSelected"
         :is-custom="item.isCustom"
-        @click="item.isSelected = !item.isSelected"
+        :weight="item.weight"
+        :show-weight="item.showWeight"
+        @click.stop.self="onClickKeyWordTag(item)"
         @delete="onDelete"
+        @reduce-weight="(value) => onReduceWeight(value, item)"
+        @add-weight="(value) => onAddWeight(value, item)"
+        @click-tag="(value) => onShowWeightTag(value, item)"
       ></Tag>
     </div>
     <div flex="~" m="t-4 b-4" class="readmore-title">
@@ -301,7 +343,7 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
           :content="dpiParams.options"
           :is-selected="dpiParams.isSelected"
           :is-custom="dpiParams.isCustom"
-          @click="onClickTag(dpiParams)"
+          @click="onClickDpiTag(dpiParams)"
           @delete="onDeleteDpi"
         >
           <span class="text-[#AAAAAA]"
@@ -313,7 +355,7 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
           type="dpi"
           :content="item.options"
           :is-selected="item.isSelected"
-          @click="onClickTag(item)"
+          @click="onClickDpiTag(item)"
         >
           <span class="text-[#AAAAAA]">{{ item.width }} : {{ item.height }}</span>
         </Tag>

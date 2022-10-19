@@ -32,6 +32,10 @@ export interface KeyWord {
   promptEN: string;
   /** 是否主页选中 */
   isSelected: boolean;
+  /** 是否显示权重 */
+  showWeight: boolean;
+  /** 权重 */
+  weight: number;
 }
 
  export interface CustomKeyWord extends KeyWord {

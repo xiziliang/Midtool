@@ -6,7 +6,8 @@
     "KeyWord2": "常用词",
     "promptEN": "style",
     "promptZH": "风格化的",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "Picture description",
@@ -15,7 +16,8 @@
     "KeyWord2": "常用词",
     "promptEN": "detailed",
     "promptZH": "详细的",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "Picture description",
@@ -24,7 +26,8 @@
     "KeyWord2": "常用词",
     "promptEN": "8K",
     "promptZH": "8K",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "Picture description",
@@ -33,7 +36,8 @@
     "KeyWord2": "常用词",
     "promptEN": "4K",
     "promptZH": "4K",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "layout",
@@ -42,7 +46,8 @@
     "KeyWord2": "镜头",
     "promptEN": "cinematic shot",
     "promptZH": "电影镜头",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "layout",
@@ -51,7 +56,8 @@
     "KeyWord2": "镜头",
     "promptEN": "Fast shutter speed",
     "promptZH": "高速摄影",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "layout",
@@ -60,7 +66,8 @@
     "KeyWord2": "镜头",
     "promptEN": "Slow shutter speed",
     "promptZH": "延迟摄影",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "layout",
@@ -69,7 +76,8 @@
     "KeyWord2": "镜头",
     "promptEN": "Telephoto lens",
     "promptZH": "长焦镜头",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "layout",
@@ -78,7 +86,8 @@
     "KeyWord2": "镜头",
     "promptEN": "Macro lens",
     "promptZH": "微焦镜头",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "layout",
@@ -87,7 +96,8 @@
     "KeyWord2": "镜头",
     "promptEN": "Wide angle lens",
     "promptZH": "广角镜头",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "layout",
@@ -96,7 +106,8 @@
     "KeyWord2": "镜头",
     "promptEN": "Fish-eye lens",
     "promptZH": "鱼眼镜头",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "layout",
@@ -105,7 +116,8 @@
     "KeyWord2": "焦距",
     "promptEN": "in focus",
     "promptZH": "对焦",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "layout",
@@ -114,7 +126,8 @@
     "KeyWord2": "焦距",
     "promptEN": "depth of field",
     "promptZH": "景深",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "layout",
@@ -123,7 +136,8 @@
     "KeyWord2": "焦距",
     "promptEN": "Bokeh",
     "promptZH": "短景深",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "layout",
@@ -132,7 +146,8 @@
     "KeyWord2": "焦距",
     "promptEN": "Deep depth of field",
     "promptZH": "长景深",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "layout",
@@ -141,7 +156,8 @@
     "KeyWord2": "焦距",
     "promptEN": "Tilt shift photography",
     "promptZH": "移轴摄影",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "layout",
@@ -150,7 +166,8 @@
     "KeyWord2": "焦距",
     "promptEN": "Motion blur",
     "promptZH": "运动模糊",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "layout",
@@ -159,7 +176,8 @@
     "KeyWord2": "视角",
     "promptEN": "Overhead view",
     "promptZH": "俯视图",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "layout",
@@ -168,7 +186,8 @@
     "KeyWord2": "视角",
     "promptEN": "Low angle",
     "promptZH": "仰视图",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "layout",
@@ -177,7 +196,8 @@
     "KeyWord2": "视角",
     "promptEN": "Aerial view",
     "promptZH": "鸟瞰图",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "layout",
@@ -186,7 +206,8 @@
     "KeyWord2": "视角",
     "promptEN": "Tilted frame",
     "promptZH": "斜倾视图",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "layout",
@@ -195,7 +216,8 @@
     "KeyWord2": "视角",
     "promptEN": "Over-the-shoulder shot",
     "promptZH": "跃肩视图",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "layout",
@@ -204,7 +226,8 @@
     "KeyWord2": "距离",
     "promptEN": "Extreme close-up",
     "promptZH": "特写",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "layout",
@@ -213,7 +236,8 @@
     "KeyWord2": "距离",
     "promptEN": "close-up",
     "promptZH": "近景",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "layout",
@@ -222,7 +246,8 @@
     "KeyWord2": "距离",
     "promptEN": "Medium shot",
     "promptZH": "中景",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "layout",
@@ -231,7 +256,8 @@
     "KeyWord2": "距离",
     "promptEN": "Long shot",
     "promptZH": "全景",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "layout",
@@ -240,7 +266,8 @@
     "KeyWord2": "距离",
     "promptEN": "Extreme long shot",
     "promptZH": "远景",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "layout",
@@ -249,7 +276,8 @@
     "KeyWord2": "灯光",
     "promptEN": "Golden hour",
     "promptZH": "暖色调",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "layout",
@@ -258,7 +286,8 @@
     "KeyWord2": "灯光",
     "promptEN": "Bule hour",
     "promptZH": "冷色调",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "layout",
@@ -267,7 +296,8 @@
     "KeyWord2": "灯光",
     "promptEN": "Midday",
     "promptZH": "正午",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "layout",
@@ -276,7 +306,8 @@
     "KeyWord2": "灯光",
     "promptEN": "Overcast",
     "promptZH": "阴天",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "layout",
@@ -285,7 +316,8 @@
     "KeyWord2": "灯光",
     "promptEN": "Tactical use of shadow",
     "promptZH": "投影",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "layout",
@@ -294,7 +326,8 @@
     "KeyWord2": "灯光",
     "promptEN": "Warm lighting",
     "promptZH": "暖光",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "layout",
@@ -303,7 +336,8 @@
     "KeyWord2": "灯光",
     "promptEN": "Cold",
     "promptZH": "冷光",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "layout",
@@ -312,7 +346,8 @@
     "KeyWord2": "灯光",
     "promptEN": "Flash photography",
     "promptZH": "闪光灯",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "layout",
@@ -321,7 +356,8 @@
     "KeyWord2": "灯光",
     "promptEN": "Colourful lighting",
     "promptZH": "彩色光源",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "layout",
@@ -330,7 +366,8 @@
     "KeyWord2": "灯光",
     "promptEN": "Defined ‘real’ light source",
     "promptZH": "真实光源",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "layout",
@@ -339,7 +376,8 @@
     "KeyWord2": "灯光",
     "promptEN": "High-key lighting",
     "promptZH": "强光源",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "layout",
@@ -348,7 +386,8 @@
     "KeyWord2": "灯光",
     "promptEN": "Low-key lighting",
     "promptZH": "弱光源",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "layout",
@@ -357,7 +396,8 @@
     "KeyWord2": "灯光",
     "promptEN": "Backlighting",
     "promptZH": "背光",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "layout",
@@ -366,7 +406,8 @@
     "KeyWord2": "灯光",
     "promptEN": "Studio lighting",
     "promptZH": "顶光",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "layout",
@@ -375,7 +416,8 @@
     "KeyWord2": "灯光",
     "promptEN": "volumetric lighting",
     "promptZH": "体积光",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "layout",
@@ -384,7 +426,8 @@
     "KeyWord2": "灯光",
     "promptEN": "mood lighting",
     "promptZH": "气氛光",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "layout",
@@ -393,7 +436,8 @@
     "KeyWord2": "相机滤镜",
     "promptEN": "Kodachrome",
     "promptZH": "红绿胶卷",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "layout",
@@ -402,7 +446,8 @@
     "KeyWord2": "相机滤镜",
     "promptEN": "AutoChrome",
     "promptZH": "绿粉色滤镜",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "layout",
@@ -411,7 +456,8 @@
     "KeyWord2": "相机滤镜",
     "promptEN": "Lomography",
     "promptZH": "色相偏移滤镜",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "layout",
@@ -420,7 +466,8 @@
     "KeyWord2": "相机滤镜",
     "promptEN": "Polaroid",
     "promptZH": "拍立得",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "layout",
@@ -429,7 +476,8 @@
     "KeyWord2": "相机滤镜",
     "promptEN": "Cameraphone",
     "promptZH": "旧胶片",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "layout",
@@ -438,7 +486,8 @@
     "KeyWord2": "相机滤镜",
     "promptEN": "Surveillance",
     "promptZH": "黑白记录",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "layout",
@@ -447,7 +496,8 @@
     "KeyWord2": "相机滤镜",
     "promptEN": "DaguerrotypeVery early film stock",
     "promptZH": "复古胶卷",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "layout",
@@ -456,7 +506,8 @@
     "KeyWord2": "相机滤镜",
     "promptEN": "Camera obscura",
     "promptZH": "针孔摄影",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "layout",
@@ -465,7 +516,8 @@
     "KeyWord2": "相机滤镜",
     "promptEN": "Cyanotype",
     "promptZH": "底片",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "layout",
@@ -474,7 +526,8 @@
     "KeyWord2": "相机滤镜",
     "promptEN": "Black and white",
     "promptZH": "黑白摄影",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "layout",
@@ -483,7 +536,8 @@
     "KeyWord2": "相机滤镜",
     "promptEN": "Infrared photography",
     "promptZH": "红外摄影",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "layout",
@@ -492,7 +546,8 @@
     "KeyWord2": "相机滤镜",
     "promptEN": "Instagram",
     "promptZH": "INS风",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "layout",
@@ -501,7 +556,8 @@
     "KeyWord2": "相机滤镜",
     "promptEN": "Colour splash",
     "promptZH": "黑白点缀单色",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "layout",
@@ -510,7 +566,8 @@
     "KeyWord2": "相机滤镜",
     "promptEN": "Solarised",
     "promptZH": "反色",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "layout",
@@ -519,7 +576,8 @@
     "KeyWord2": "相机滤镜",
     "promptEN": "Anaglyph",
     "promptZH": "3D浮雕",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "adjectives",
@@ -528,7 +586,8 @@
     "KeyWord2": "氛围",
     "promptEN": "Bright",
     "promptZH": "积极的情绪，高能量",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "adjectives",
@@ -537,7 +596,8 @@
     "KeyWord2": "氛围",
     "promptEN": "Light",
     "promptZH": "积极的情绪，低能量",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "adjectives",
@@ -546,7 +606,8 @@
     "KeyWord2": "氛围",
     "promptEN": "Dark",
     "promptZH": "消极的情绪，高能量",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "adjectives",
@@ -555,7 +616,8 @@
     "KeyWord2": "氛围",
     "promptEN": "Muted",
     "promptZH": "消极的情绪，低能量",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "adjectives",
@@ -564,7 +626,8 @@
     "KeyWord2": "画面感",
     "promptEN": "Curvaceous",
     "promptZH": "庞大而广阔",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "adjectives",
@@ -573,7 +636,8 @@
     "KeyWord2": "画面感",
     "promptEN": "Monumental",
     "promptZH": "庞大而规则",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "adjectives",
@@ -582,7 +646,8 @@
     "KeyWord2": "画面感",
     "promptEN": "Ornate",
     "promptZH": "小而规整",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "adjectives",
@@ -591,7 +656,8 @@
     "KeyWord2": "画面感",
     "promptEN": "Unplanned",
     "promptZH": "小而自由",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "adjectives",
@@ -600,7 +666,8 @@
     "KeyWord2": "颜色",
     "promptEN": "dark",
     "promptZH": "黑暗的",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   },
   {
     "Level1Label": "adjectives",
@@ -609,6 +676,7 @@
     "KeyWord2": "颜色",
     "promptEN": "lighting",
     "promptZH": "灯光",
-    "instructions": ""
+    "instructions": "",
+    "weight": 1
   }
 ]
