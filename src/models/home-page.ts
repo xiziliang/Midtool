@@ -11,6 +11,10 @@ export interface CardItem {
   isSelected?: boolean;
   /** 是否是用户自定义 */
   isCustom: boolean;
+  /** 权重 */
+  weight: number;
+  /** 是否显示权重 */
+  showWeight: boolean;
 }
 
 export interface DpiOptions {

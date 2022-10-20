@@ -1,11 +1,25 @@
 <script setup lang="ts">
-import { ref, watch } from "vue";
+import { ref, watch, onBeforeUnmount } from "vue";
+import CardItemComp from "./CardItem.vue";
+
+import { useEventListener } from "@vueuse/core";
 import type { CardItem } from "@/models";
 
 const props = defineProps<{
   data: CardItem[];
 }>();
 
+const clearUp = useEventListener("click", () => {
+  props.data.forEach((x) => (x.showWeight = false));
+  currentShowWeightCard.value = "";
+});
+
+onBeforeUnmount(() => {
+  clearUp();
+});
+
+// 当前展示weight的card
+const currentShowWeightCard = ref("");
 // 已选list
 const selectedList = ref<CardItem[]>();
 // 未选list
@@ -16,12 +30,30 @@ function onTrigger(item: CardItem) {
     selectedList.value = selectedList.value!.filter((x) => x.promptEN !== item.promptEN);
     setTimeout(() => {
       remainList.value!.unshift(item);
-    }, 500);
+    }, 300);
   } else {
     selectedList.value!.push(item);
     remainList.value = remainList.value!.filter((x) => x.promptEN !== item.promptEN);
   }
   item.isSelected = !item.isSelected;
+
+  onClickCard(item.promptEN, item);
+}
+
+function onReduceWeight(weight: number, item: CardItem) {
+  item.weight = --weight;
+}
+
+function onAddWeight(weight: number, item: CardItem) {
+  item.weight = ++weight;
+}
+
+function onClickCard(promptEN: string, item: CardItem) {
+  if (currentShowWeightCard.value === promptEN) return;
+
+  currentShowWeightCard.value = promptEN;
+  props.data.forEach((x) => (x.showWeight = false));
+  item.showWeight = true;
 }
 
 watch(
@@ -42,13 +74,13 @@ watch(
       v-for="item in selectedList"
       :key="item.promptEN"
       :class="{ selected: item.isSelected }"
-      @click="onTrigger(item)"
+      @click.stop.self="onTrigger(item)"
     >
-      <div class="card-img">
-        <img height="160" width="156" :src="item.imgUrl" />
-      </div>
-      <div class="card-name" p-2>{{ item.promptZH }}</div>
-      <div class="card-enname" p-2>{{ item.promptEN }}</div>
+      <CardItemComp
+        v-bind="item"
+        @add-weight="(value) => onAddWeight(value, item)"
+        @reduce-weight="(value) => onReduceWeight(value, item)"
+      />
     </div>
   </TransitionGroup>
   <div
@@ -56,12 +88,12 @@ watch(
     v-for="item in remainList"
     :key="item.promptEN"
     :class="{ selected: item.isSelected }"
-    @click="onTrigger(item)"
+    @click.stop.self="onTrigger(item)"
   >
-    <div class="card-img">
-      <img height="160" width="156" :src="item.imgUrl" />
-    </div>
-    <div class="card-name" p-2>{{ item.promptZH }}</div>
-    <div class="card-enname" p-2>{{ item.promptEN }}</div>
+    <CardItemComp
+      v-bind="item"
+      @add-weight="(value) => onAddWeight(value, item)"
+      @reduce-weight="(value) => onReduceWeight(value, item)"
+    />
   </div>
 </template>

@@ -7,6 +7,7 @@
     "promptEN": "Baroque",
     "promptZH": "巴洛克",
     "image": "yes",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -17,6 +18,7 @@
     "promptEN": "Art Nouveau",
     "promptZH": "新艺术",
     "image": "yes",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -27,6 +29,7 @@
     "promptEN": "Renaissance",
     "promptZH": "洛可可",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -37,6 +40,7 @@
     "promptEN": "Fauvism",
     "promptZH": "野兽派",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -47,6 +51,7 @@
     "promptEN": "Cubism",
     "promptZH": "立体派",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -57,6 +62,7 @@
     "promptEN": "Abstract Art",
     "promptZH": "抽象表现主义",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -67,6 +73,7 @@
     "promptEN": "Surrealism",
     "promptZH": "超现实主义",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -77,6 +84,7 @@
     "promptEN": "Pop Art",
     "promptZH": "普普艺术",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -87,6 +95,7 @@
     "promptEN": "Optical Art",
     "promptZH": "欧普艺术",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -97,6 +106,7 @@
     "promptEN": "Victorian",
     "promptZH": "维多利亚时代",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -107,6 +117,7 @@
     "promptEN": "futuristic ",
     "promptZH": "未来主义",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -117,6 +128,7 @@
     "promptEN": "Vaporwave",
     "promptZH": "蒸汽波",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -127,6 +139,7 @@
     "promptEN": "Post-apocalypitc",
     "promptZH": "后启示录",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -137,6 +150,7 @@
     "promptEN": "Gothic",
     "promptZH": "哥特/奇幻",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -147,6 +161,7 @@
     "promptEN": "Cybernetic",
     "promptZH": "赛博科幻",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -157,6 +172,7 @@
     "promptEN": "Afrofuturism",
     "promptZH": "未来主义",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -167,6 +183,7 @@
     "promptEN": "Memphis",
     "promptZH": "孟菲斯风格",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -177,6 +194,7 @@
     "promptEN": "Steampunk",
     "promptZH": "蒸汽风格",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -187,6 +205,7 @@
     "promptEN": "Dieselpunk",
     "promptZH": "柴油朋克",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -197,6 +216,7 @@
     "promptEN": "Cyberpunk",
     "promptZH": "赛博朋克",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -207,6 +227,7 @@
     "promptEN": "Biopunk",
     "promptZH": "有机朋克",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -217,6 +238,7 @@
     "promptEN": "Ballpoint pen art",
     "promptZH": "圆珠笔素描",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -227,6 +249,7 @@
     "promptEN": "realistic",
     "promptZH": "写实的",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -237,6 +260,7 @@
     "promptEN": "Ballpoint pen art",
     "promptZH": "圆珠笔素描",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -247,6 +271,7 @@
     "promptEN": "Pencil sketch",
     "promptZH": "铅笔素描",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -257,6 +282,7 @@
     "promptEN": "Pencil drawing",
     "promptZH": "铅笔画",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -267,6 +293,7 @@
     "promptEN": "Political cartoon form newspaper",
     "promptZH": "报纸漫画",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -277,6 +304,7 @@
     "promptEN": "Coloruing-in sheet",
     "promptZH": "提取线",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -287,6 +315,7 @@
     "promptEN": "Crayon",
     "promptZH": "蜡笔",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -297,6 +326,7 @@
     "promptEN": "Acrylic on canvas",
     "promptZH": "布面丙烯",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -307,6 +337,7 @@
     "promptEN": "Watercolor",
     "promptZH": "水彩",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -317,6 +348,7 @@
     "promptEN": "Coloured pencil",
     "promptZH": "彩铅",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -327,6 +359,7 @@
     "promptEN": "Oil painting",
     "promptZH": "油画",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -337,6 +370,7 @@
     "promptEN": "Ukiyo-e",
     "promptZH": "浮世绘",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -347,6 +381,7 @@
     "promptEN": "Chinese watercolor",
     "promptZH": "中国画",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -357,6 +392,7 @@
     "promptEN": "Pastels",
     "promptZH": "粉笔",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -367,6 +403,7 @@
     "promptEN": "Airbursh",
     "promptZH": "喷枪",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -377,6 +414,7 @@
     "promptEN": "Alegria",
     "promptZH": "扁平风格",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -387,6 +425,7 @@
     "promptEN": "Collage",
     "promptZH": "杂志拼贴",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -397,6 +436,7 @@
     "promptEN": "Vector art",
     "promptZH": "矢量插画",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -407,6 +447,7 @@
     "promptEN": "Screen printing",
     "promptZH": "丝网印刷",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -417,6 +458,7 @@
     "promptEN": "Low poly",
     "promptZH": "低面数",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -427,6 +469,7 @@
     "promptEN": "Layered paper",
     "promptZH": "剪纸拼贴",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -437,6 +480,7 @@
     "promptEN": "Sticker illustration",
     "promptZH": "剪纸",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -447,6 +491,7 @@
     "promptEN": "Storybook",
     "promptZH": "绘本",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -457,6 +502,7 @@
     "promptEN": "Digital pating",
     "promptZH": "数字绘画",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -467,6 +513,7 @@
     "promptEN": "Pixel wind",
     "promptZH": "像素风",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -477,6 +524,7 @@
     "promptEN": "Character set",
     "promptZH": "角色设定",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -487,6 +535,7 @@
     "promptEN": "comic book",
     "promptZH": "漫画书",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -497,6 +546,7 @@
     "promptEN": "japanese animation",
     "promptZH": "日本动画",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -507,6 +557,7 @@
     "promptEN": "Blueprint",
     "promptZH": "蓝图",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -517,6 +568,7 @@
     "promptEN": "Patent drawing",
     "promptZH": "设计稿",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -527,6 +579,7 @@
     "promptEN": "Cutaway",
     "promptZH": "剖面图",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -537,6 +590,7 @@
     "promptEN": "IKEA amnual",
     "promptZH": "用户手册",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -547,6 +601,7 @@
     "promptEN": "Instruction manual",
     "promptZH": "使用说明书",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -557,6 +612,7 @@
     "promptEN": "Mythological map",
     "promptZH": "地图",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -567,6 +623,7 @@
     "promptEN": "Voynich manuscript",
     "promptZH": "伏尼契手稿",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -577,6 +634,7 @@
     "promptEN": "Scientific diagram",
     "promptZH": "科学插图",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -587,6 +645,7 @@
     "promptEN": "Clay animation",
     "promptZH": "粘土动画",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -597,6 +656,7 @@
     "promptEN": "felt",
     "promptZH": "毛毡",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -607,6 +667,7 @@
     "promptEN": "fabric",
     "promptZH": "面料",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -617,6 +678,7 @@
     "promptEN": "Metal scratch",
     "promptZH": "金属划痕",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -627,6 +689,7 @@
     "promptEN": "pixar",
     "promptZH": "皮克斯",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -637,6 +700,7 @@
     "promptEN": "ghibli",
     "promptZH": "吉卜力",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -647,6 +711,7 @@
     "promptEN": "Disney",
     "promptZH": "迪士尼",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -657,6 +722,7 @@
     "promptEN": "Hayao miyazaki",
     "promptZH": "宫崎骏",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -667,6 +733,7 @@
     "promptEN": "Osamu Tezuka",
     "promptZH": "手冢治虫",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -677,6 +744,7 @@
     "promptEN": "Inoue Takehiko",
     "promptZH": "井上彦雄",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -687,6 +755,7 @@
     "promptEN": "Hirohiko Araki",
     "promptZH": "荒木飞吕彦",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -697,6 +766,7 @@
     "promptEN": "Togashi Yoshihiro",
     "promptZH": "富坚义博",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -707,6 +777,7 @@
     "promptEN": "Murata Yusuke",
     "promptZH": "村田雄介",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -717,6 +788,7 @@
     "promptEN": "Isayama Hajime",
     "promptZH": "谏山创",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -727,6 +799,7 @@
     "promptEN": "Hideaki Anno",
     "promptZH": "庵野秀明",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -737,6 +810,7 @@
     "promptEN": "Akira Toriyama",
     "promptZH": "岛山明",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -747,6 +821,7 @@
     "promptEN": "Yoshitaka Amano",
     "promptZH": "天野喜孝",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -757,6 +832,7 @@
     "promptEN": "Katsuhiro Otomo",
     "promptZH": "大友克洋",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -767,6 +843,7 @@
     "promptEN": "Yoshitomo Nara",
     "promptZH": "奈良美智",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -777,6 +854,7 @@
     "promptEN": "Takashi Murakami",
     "promptZH": "村上隆",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -787,6 +865,7 @@
     "promptEN": "ghibli studio",
     "promptZH": "吉卜力工作室",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -797,6 +876,7 @@
     "promptEN": "Shinkai Makoto",
     "promptZH": "新海诚",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -807,6 +887,7 @@
     "promptEN": "Fuji Choko",
     "promptZH": "藤ちょこ",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -817,6 +898,7 @@
     "promptEN": "Junji Ito",
     "promptZH": "伊藤润二",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -827,6 +909,7 @@
     "promptEN": "Alfons Maria Mucha",
     "promptZH": "阿尔丰斯·慕夏",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -837,6 +920,7 @@
     "promptEN": "pablo picasso",
     "promptZH": "毕卡索",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -847,6 +931,7 @@
     "promptEN": "Seurat",
     "promptZH": "秀拉",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -857,6 +942,7 @@
     "promptEN": "Raffaello Sanzio da Urbino",
     "promptZH": "拉斐尔",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -867,6 +953,7 @@
     "promptEN": "Michelangelo",
     "promptZH": "米开朗基罗",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -877,6 +964,7 @@
     "promptEN": "Leonardo da Vinci",
     "promptZH": "达文西",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -887,6 +975,7 @@
     "promptEN": "Paul Cézanne",
     "promptZH": "保罗 塞尚",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -897,6 +986,7 @@
     "promptEN": "Vincent Van Gogh",
     "promptZH": "文森梵谷",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -907,6 +997,7 @@
     "promptEN": "Paul Gauguin",
     "promptZH": "保罗高更",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -917,6 +1008,7 @@
     "promptEN": "Salvador Dali",
     "promptZH": "达利",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -927,6 +1019,7 @@
     "promptEN": "Monet",
     "promptZH": "莫内",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -937,6 +1030,7 @@
     "promptEN": "Wassily Kandinsky",
     "promptZH": "康丁斯基",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -947,6 +1041,7 @@
     "promptEN": "O'Keeffe",
     "promptZH": "欧姬芙",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -957,6 +1052,7 @@
     "promptEN": "Kazimir Malevich",
     "promptZH": "马列维奇",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -967,6 +1063,7 @@
     "promptEN": "Piet Mondrian",
     "promptZH": "蒙德里安",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -977,6 +1074,7 @@
     "promptEN": "Andy Warhol",
     "promptZH": "安迪沃荷",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -987,6 +1085,7 @@
     "promptEN": "Katsushika Hokusai",
     "promptZH": "葛饰北斎",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -997,6 +1096,7 @@
     "promptEN": "TAKEHISA YUMEJI",
     "promptZH": "竹久梦二",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -1007,6 +1107,7 @@
     "promptEN": "Gustave Doré",
     "promptZH": "古斯塔夫·多雷",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -1017,6 +1118,7 @@
     "promptEN": "Tang Yin",
     "promptZH": "唐寅",
     "image": "no",
+    "weight": 1,
     "instructions": ""
   },
   {
@@ -1027,6 +1129,7 @@
     "promptEN": "Hiroshi Yoshida",
     "promptZH": "吉田博",
     "image": "no",
+    "weight": 1,
     "instructions": "日本洋画家，版画家。"
   },
   {
@@ -1037,6 +1140,7 @@
     "promptEN": "Max Ernst",
     "promptZH": "马克斯·恩斯特",
     "image": "no",
+    "weight": 1,
     "instructions": "德国画家、雕塑家、图像艺术家及诗人。"
   },
   {
@@ -1047,6 +1151,7 @@
     "promptEN": "Paul Signac",
     "promptZH": "保罗·希涅克",
     "image": "no",
+    "weight": 1,
     "instructions": "法国新印象主义画派的画家，点描派的代表人物"
   },
   {
@@ -1057,6 +1162,7 @@
     "promptEN": "James Gurney",
     "promptZH": "詹姆斯·格尼",
     "image": "no",
+    "weight": 1,
     "instructions": "古生物艺术家，擅长画已灭绝的动物，如鸟类和非鸟类的恐龙"
   },
   {
@@ -1067,6 +1173,7 @@
     "promptEN": "M.C. Escher",
     "promptZH": "詹姆斯·格尼",
     "image": "no",
+    "weight": 1,
     "instructions": "荷兰著名版画艺术家-错觉艺术作品/平面视觉艺术"
   },
   {
@@ -1077,6 +1184,7 @@
     "promptEN": "Thomas Kinkade",
     "promptZH": "汤玛斯·金凯德",
     "image": "no",
+    "weight": 1,
     "instructions": "美国画家，擅长写实，田园和田园诗般的题材"
   },
   {
@@ -1087,6 +1195,7 @@
     "promptEN": "Ivan Aivazovsky",
     "promptZH": "伊凡·康斯坦丁诺维奇·艾瓦佐夫斯基",
     "image": "no",
+    "weight": 1,
     "instructions": "俄罗斯亚美尼亚画家，他以海景画著名(浪漫主义)"
   },
   {
@@ -1097,6 +1206,7 @@
     "promptEN": "Italo Calvino",
     "promptZH": "卡尔维诺",
     "image": "no",
+    "weight": 1,
     "instructions": "义大利作家。奇特和充满想像的作品"
   },
   {
@@ -1107,6 +1217,7 @@
     "promptEN": "Norman Rockwell",
     "promptZH": "诺曼·洛克威尔",
     "image": "no",
+    "weight": 1,
     "instructions": "美国20世纪早期的重要画家及插画家，"
   },
   {
@@ -1117,6 +1228,7 @@
     "promptEN": "Albert Bierstadt",
     "promptZH": "阿尔伯特·比尔施塔特",
     "image": "no",
+    "weight": 1,
     "instructions": "德裔美国风景画家，擅长绘制美国西部风景"
   },
   {
@@ -1127,6 +1239,7 @@
     "promptEN": "Giorgio de Chirico",
     "promptZH": "乔治欧·德·奇里诃",
     "image": "no",
+    "weight": 1,
     "instructions": "义大利画家，擅长超现实画派大师"
   },
   {
@@ -1137,6 +1250,7 @@
     "promptEN": "Rene Magritte",
     "promptZH": "雷内·马格利特",
     "image": "no",
+    "weight": 1,
     "instructions": "绘画哲学家，超现实主义作品中带有些许诙谐"
   },
   {
@@ -1147,6 +1261,7 @@
     "promptEN": "John Harris",
     "promptZH": "约翰·哈里斯",
     "image": "no",
+    "weight": 1,
     "instructions": "英国画家，擅长科幻场景"
   },
   {
@@ -1157,6 +1272,7 @@
     "promptEN": "Hilma af Klint",
     "promptZH": "希尔玛·阿芙·克林特",
     "image": "no",
+    "weight": 1,
     "instructions": "瑞典艺术家和神秘主义者，抽像艺术风格"
   },
   {
@@ -1167,6 +1283,7 @@
     "promptEN": "George Inness",
     "promptZH": "乔治·英尼斯",
     "image": "no",
+    "weight": 1,
     "instructions": "美国著名的风景画家"
   },
   {
@@ -1177,6 +1294,7 @@
     "promptEN": "William Blake",
     "promptZH": "威廉·布莱克",
     "image": "no",
+    "weight": 1,
     "instructions": "画家和版画家。浪漫时代诗歌和视觉艺术史上的开创性人物。"
   },
   {
@@ -1187,6 +1305,7 @@
     "promptEN": "Studio Ghibli",
     "promptZH": "吉卜力工作室",
     "image": "no",
+    "weight": 1,
     "instructions": "日本动画(宫崎骏与高畑勋风格的出图)"
   },
   {
@@ -1197,6 +1316,7 @@
     "promptEN": "Gerald Brom",
     "promptZH": "杰拉德·布罗姆",
     "image": "no",
+    "weight": 1,
     "instructions": "Brom是美国哥特式奇幻艺术家和插画家"
   },
   {
@@ -1207,6 +1327,7 @@
     "promptEN": "Ivan Bilibin",
     "promptZH": "伊万·比里宾",
     "image": "no",
+    "weight": 1,
     "instructions": "俄罗斯插画家和舞台设计师"
   },
   {
@@ -1217,6 +1338,7 @@
     "promptEN": "Arthur Rackham",
     "promptZH": "亚瑟·拉克姆",
     "image": "no",
+    "weight": 1,
     "instructions": "英国插画家。“黄金时代”代表画家之一"
   },
   {
@@ -1227,6 +1349,7 @@
     "promptEN": "Edmund Dulac",
     "promptZH": "埃德蒙·杜拉克",
     "image": "no",
+    "weight": 1,
     "instructions": "东方主义时期的法国画家"
   },
   {
@@ -1237,6 +1360,7 @@
     "promptEN": "John William Waterhouse",
     "promptZH": "约翰·威廉·瓦特豪斯",
     "image": "no",
+    "weight": 1,
     "instructions": "英国新古典主义与前拉斐尔派画家。鲜明色彩和"
   },
   {
@@ -1247,6 +1371,7 @@
     "promptEN": "Michael Whelan",
     "promptZH": "麦可·惠伦",
     "image": "no",
+    "weight": 1,
     "instructions": "超现实主义，当代科幻和奇幻艺术家"
   },
   {
@@ -1257,6 +1382,7 @@
     "promptEN": "Wes Anderson",
     "promptZH": "魏斯·安德森",
     "image": "no",
+    "weight": 1,
     "instructions": "独特色彩与构图"
   },
   {
@@ -1267,6 +1393,7 @@
     "promptEN": "Shaun Tan",
     "promptZH": "陈志勇",
     "image": "no",
+    "weight": 1,
     "instructions": "澳洲插画家(Eg. 失物招领 The lost things)"
   },
   {
@@ -1277,6 +1404,7 @@
     "promptEN": "Hiroki Takeda",
     "promptZH": "タケダヒロキ",
     "image": "no",
+    "weight": 1,
     "instructions": "擅长水彩画的艺术家。擅长描绘逼真的三维动物"
   }
 ]

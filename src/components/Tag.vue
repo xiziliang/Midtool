@@ -31,8 +31,6 @@ const emits = defineEmits([
   "reduce-weight",
   /** 权重++ */
   "add-weight",
-  /** 关闭权重显示 */
-  "close-weight",
   /** 当前点击的tag */
   "click-tag",
 ]);
