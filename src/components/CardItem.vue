@@ -11,7 +11,7 @@ defineProps<{
   image: "yes" | "no";
   imgUrl?: string;
   weight: number;
-  showWeight: boolean;
+  showWeight?: boolean;
   /** 是否主页选中 */
   isSelected?: boolean;
   /** 是否是用户自定义 */
@@ -41,7 +41,7 @@ defineEmits([
         :disabled="weight! <= 1"
         @click="$emit('reduce-weight', weight)"
       />
-      <el-button bg-white hover:bg-white text>{{ weight || 1 }}</el-button>
+      <el-button bg-white hover:bg-white text>词权重 {{ weight || 1 }}</el-button>
       <el-button
         type="primary"
         :icon="Plus"
@@ -55,7 +55,11 @@ defineEmits([
 .weight-group {
   left: 50%;
   bottom: -40px;
-  margin-left: -66px;
+  margin-left: -78px;
   z-index: 10;
+
+  :deep(.el-button) {
+    padding: 8px 10px;
+  }
 }
 </style>

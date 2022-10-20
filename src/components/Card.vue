@@ -41,11 +41,11 @@ function onTrigger(item: CardItem) {
 }
 
 function onReduceWeight(weight: number, item: CardItem) {
-  item.weight = --weight;
+  item.weight = weight - 1;
 }
 
 function onAddWeight(weight: number, item: CardItem) {
-  item.weight = ++weight;
+  item.weight = weight + 1;
 }
 
 function onClickCard(promptEN: string, item: CardItem) {
@@ -74,6 +74,7 @@ watch(
       v-for="item in selectedList"
       :key="item.promptEN"
       :class="{ selected: item.isSelected }"
+      :data-weight="item.weight"
       @click.stop.self="onTrigger(item)"
     >
       <CardItemComp
@@ -88,6 +89,7 @@ watch(
     v-for="item in remainList"
     :key="item.promptEN"
     :class="{ selected: item.isSelected }"
+    :data-weight="item.weight"
     @click.stop.self="onTrigger(item)"
   >
     <CardItemComp

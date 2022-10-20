@@ -24,6 +24,11 @@ const formatList = computed<Record<string, DpiOptions[]>>(() => {
   // NOTE: cloneDeep 会使数据变为非响应式
   reactive(cloneDeep(props.list)).forEach((x) => {
     if (x.KeyWord2) {
+      // NOTE: 使用数据覆盖
+      // dpiCustomsList.value.forEach((x) => {
+      //   const item = props.list.find((y) => y.options === x.options);
+      //   if (item) Object.assign(item, x);
+      // });
       dpiCustomsList.value.some((item) => item.options === x.options && item.isSelected)
         ? (x.isSelected = true)
         : (x.isSelected = false);
@@ -86,6 +91,7 @@ defineExpose({
       </div>
       <div flex="~ gap-3 wrap" justify-start items-stretch class="more">
         <Tag
+          class="no-mark-tag"
           v-for="item in dpilist"
           type="dpi"
           :content="item.options"

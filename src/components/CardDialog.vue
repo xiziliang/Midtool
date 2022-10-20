@@ -119,11 +119,11 @@ function onClickCard(promptEN: string, item: CardItem) {
 }
 
 function onReduceWeight(weight: number, item: CardItem) {
-  item.weight = --weight;
+  item.weight = weight - 1;
 }
 
 function onAddWeight(weight: number, item: CardItem) {
-  item.weight = ++weight;
+  item.weight = weight + 1;
 }
 
 defineExpose({
@@ -170,11 +170,10 @@ watch(
     allData.value = cloneDeep(value);
 
     if (cardCustomList.value) {
-      allData.value.forEach((x) => {
-        // NOTE: 加上 y.isSelected
-        cardCustomList.value.some((y) => y.promptEN === x.promptEN && y.isSelected)
-          ? (x.isSelected = true)
-          : (x.isSelected = false);
+      // NOTE:对应历史数据合并到JSON数据上
+      cardCustomList.value.forEach((x) => {
+        const item = allData.value.find((y) => y.promptEN === x.promptEN);
+        if (item) Object.assign(item, x);
       });
     }
   },
@@ -239,6 +238,7 @@ watchEffect(() => {
               v-for="item in allData.filter((x) => x.KeyWord2 === keyword2)"
               :key="item.promptEN"
               :class="{ selected: item.isSelected }"
+              :data-weight="item.weight"
               @click.stop.self="onTrigger(item)"
             >
               <CardItemComp
@@ -246,11 +246,6 @@ watchEffect(() => {
                 @add-weight="(value) => onAddWeight(value, item)"
                 @reduce-weight="(value) => onReduceWeight(value, item)"
               ></CardItemComp>
-              <!-- <div class="card-img">
-                <img height="160" width="156" :src="item.imgUrl" />
-              </div>
-              <div class="card-name" p-2>{{ item.promptZH }}</div>
-              <div class="card-enname" p-2>{{ item.promptEN }}</div> -->
             </div>
           </div>
         </div>

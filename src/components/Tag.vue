@@ -73,6 +73,7 @@ function onClick() {
       flex="~ col"
       class="keyword-tag px-20px py-6px"
       :class="{ selected: isSelected, dpiStyle: type === 'dpi' }"
+      :data-weight="weight"
       v-bind="$attrs"
       @click.stop.self="onClick"
     >
@@ -89,7 +90,7 @@ function onClick() {
       <el-button-group
         v-show="showWeight"
         class="weight-group"
-        :style="{ bottom: $slots.default ? '-70%' : '-112%' }"
+        :style="{ bottom: $slots.default ? '-72%' : '-122%' }"
         flex
         absolute
       >
@@ -99,7 +100,7 @@ function onClick() {
           :disabled="weight! <= 1"
           @click="$emit('reduce-weight', weight)"
         />
-        <el-button bg-white hover:bg-white text>{{ weight || 1 }}</el-button>
+        <el-button bg-white hover:bg-white text>词权重 {{ weight || 1 }}</el-button>
         <el-button
           type="primary"
           :icon="Plus"
@@ -117,7 +118,7 @@ function onClick() {
 
 .weight-group {
   left: 50%;
-  margin-left: -51px;
+  margin-left: -78px;
   z-index: 10;
 
   :deep(.el-button) {

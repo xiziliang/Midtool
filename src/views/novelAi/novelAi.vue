@@ -157,14 +157,12 @@ function onDeleteDpi() {
   ElMessage.success("删除成功");
 }
 
-function onReduceWeight(wight: number, item: CustomKeyWord) {
-  console.log(wight, item);
-  item.weight = --wight;
+function onReduceWeight(weight: number, item: CustomKeyWord) {
+  item.weight = weight - 1;
 }
 
-function onAddWeight(wight: number, item: CustomKeyWord) {
-  console.log(wight, item);
-  item.weight = ++wight;
+function onAddWeight(weight: number, item: CustomKeyWord) {
+  item.weight = weight + 1;
 }
 
 function onShowWeightTag(content: string, item: CustomKeyWord) {
@@ -225,6 +223,7 @@ function onCloseWriteKeyWordDialog() {
       reactive({
         promptZH: newKeyWordValue.value,
         weight: 1,
+        showWeight: false,
         isSelected: true,
         isCustom: true,
       }) as HistoryKeyWord
@@ -311,7 +310,7 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
       </div>
     </div>
     <div flex="~ gap-3 wrap" justify-start items-stretch class="more">
-      <Tag content="自定义" @click="onSelectAIParams('writekeyword')">
+      <Tag class="no-mark-tag" content="自定义" @click="onSelectAIParams('writekeyword')">
         <template #icon> <i class="icon-zidingyi icon"></i></template>
       </Tag>
       <Tag
@@ -339,6 +338,7 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
       <div flex="~ gap-3 wrap">
         <Tag
           v-if="dpiParams.width && dpiParams.height"
+          class="no-mark-tag"
           type="dpi"
           :content="dpiParams.options"
           :is-selected="dpiParams.isSelected"
@@ -351,6 +351,7 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
           >
         </Tag>
         <Tag
+          class="no-mark-tag"
           v-for="item in defaultDpiList"
           type="dpi"
           :content="item.options"

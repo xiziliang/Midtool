@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { ref, computed, watchEffect, watch } from "vue";
+import { ref, computed, watchEffect, watch, onBeforeUnmount } from "vue";
 import { cloneDeep } from "lodash";
 
-import { useStorage } from "@vueuse/core";
+import { useStorage, useEventListener } from "@vueuse/core";
 import { KEYWORD_CUSTOM_LIST, KEYWORD_HISTORY_LIST } from "@/constants";
 import Tag from "@/components/Tag.vue";
 import type { CustomKeyWord, HistoryKeyWord } from "@/models";
@@ -11,6 +11,15 @@ const props = defineProps<{
   list: Partial<CustomKeyWord>[];
   dialogVisible?: boolean;
 }>();
+
+const clearUp = useEventListener("click", () => {
+  [...allData.value, ...keyWordHistoryList.value].forEach((x) => (x.showWeight = false));
+  currentShowWeightTag.value = "";
+});
+
+onBeforeUnmount(() => {
+  clearUp();
+});
 
 const keyWordCustomList = useStorage<CustomKeyWord[]>(
   KEYWORD_CUSTOM_LIST,
@@ -24,6 +33,7 @@ const keyWordHistoryList = useStorage<HistoryKeyWord[]>(
   localStorage
 );
 
+const currentShowWeightTag = ref("");
 const allData = ref<Partial<CustomKeyWord>[]>([]);
 
 const currentTab = computed({
@@ -38,6 +48,27 @@ function keyword2label(label: string) {
   );
 }
 
+function onClickKeyWordTag(item: Partial<CustomKeyWord>) {
+  item.isSelected = !item.isSelected;
+  item.showWeight = true;
+}
+
+function onReduceWeight(weight: number, item: Partial<CustomKeyWord>) {
+  item.weight = weight - 1;
+}
+
+function onAddWeight(weight: number, item: Partial<CustomKeyWord>) {
+  item.weight = weight + 1;
+}
+
+function onShowWeightTag(content: string, item: Partial<CustomKeyWord>) {
+  if (currentShowWeightTag.value === content) return;
+
+  currentShowWeightTag.value = content;
+  allData.value.forEach((x) => (x.showWeight = false));
+  item.showWeight = true;
+}
+
 defineExpose({
   keyWordCustomList,
   keyWordHistoryList,
@@ -49,12 +80,11 @@ watch(
     if (!value) return;
     allData.value = cloneDeep(value);
 
+    // NOTE:对应历史数据合并到JSON数据上
     if (keyWordCustomList.value) {
-      allData.value.forEach((x) => {
-        // NOTE: 加上 y.isSelected
-        keyWordCustomList.value.some((y) => y.promptEN === x.promptEN && y.isSelected)
-          ? (x.isSelected = true)
-          : (x.isSelected = false);
+      keyWordCustomList.value.forEach((x) => {
+        const item = allData.value.find((y) => y.promptEN === x.promptEN);
+        if (item) Object.assign(item, x);
       });
     }
   },
@@ -74,7 +104,7 @@ watchEffect(() => {
 <template>
   <el-tabs v-model="currentTab">
     <el-tab-pane v-for="keyword1 in tabList" :label="keyword1" :name="keyword1">
-      <div h-lg overflow-auto will-change-scroll>
+      <div h-lg overflow-auto will-change-scroll p-x-20px>
         <div v-for="keyword2 in keyword2label(keyword1!)" class="keyword2">
           <div flex="~" m="y-4">
             <div flex>
@@ -86,22 +116,32 @@ watchEffect(() => {
               slice
               v-for="item in allData.filter((x) => x.KeyWord2 === keyword2)"
               :content="item.promptZH!"
+              :weight="item.weight"
+              :show-weight="item.showWeight"
               :is-selected="item.isSelected"
-              @click="item.isSelected = !item.isSelected"
+              @click.stop.self="onClickKeyWordTag(item)"
+              @reduce-weight="(value) => onReduceWeight(value, item)"
+              @add-weight="(value) => onAddWeight(value, item)"
+              @click-tag="(value) => onShowWeightTag(value, item)"
             ></Tag>
           </div>
         </div>
       </div>
     </el-tab-pane>
     <el-tab-pane label="历史记录" name="history">
-      <div h-lg overflow-auto>
+      <div h-lg overflow-auto p-x-20px>
         <div flex="~ gap-3 wrap" p="y-4" justify-start items-start>
           <Tag
             slice
             v-for="item in keyWordHistoryList"
             :content="item.promptZH!"
+            :weight="item.weight"
+            :show-weight="item.showWeight"
             :is-selected="item.isSelected"
-            @click="item.isSelected = !item.isSelected"
+            @click.stop.self="onClickKeyWordTag(item)"
+            @reduce-weight="(value) => onReduceWeight(value, item)"
+            @add-weight="(value) => onAddWeight(value, item)"
+            @click-tag="(value) => onShowWeightTag(value, item)"
           ></Tag>
         </div>
       </div>
