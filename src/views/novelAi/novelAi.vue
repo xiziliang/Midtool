@@ -6,7 +6,6 @@ import { cloneDeep } from "lodash";
 import type { AIParams, HistoryKeyWord, DpiOptions, CustomKeyWord } from "@/models";
 
 import Card from "@/components/Card.vue";
-import ImgCard from "@/components/ImgCard.vue";
 import Tag from "@/components/Tag.vue";
 import MidjourneyParams from "@/components/MidjourneyParams.vue";
 import DpiDialog from "@/components/DpiDialog.vue";
@@ -283,13 +282,14 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
 <template>
   <main
     class="container-params ma lt-lg:max-w-660px lg:max-w-828px xl:max-w-1176px 2xl:max-w-1336px"
+    mb-60px
   >
-    <div flex="~" mt-4 class="readmore-title">
-      <div cursor-pointer flex @click="onSelectAIParams('card')">
-        <p><i class="icon-fengge icon-big mr-4px"></i>选择作画风格</p>
+    <div flex="~" class="readmore-title">
+      <div cursor-pointer flex>
+        <p><i class="icon-fengge icon-big mr-4px"></i>选择参考图</p>
         <div i-carbon:add></div>
         <p self-center text-14px class="text-[#AAAAAA]">
-          这些词可能会让画面更好看，选中它，翻译时就会加在句尾
+          我们会自动选中对应的参考词，让画面与原图更接近，这些词会自动加在翻译的句尾
         </p>
       </div>
     </div>
@@ -303,14 +303,68 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
     >
       <Card :data="defaultCardList"></Card>
     </div>
-    <div flex="~" mt-4 mb-4 class="readmore-title">
-      <div cursor-pointer flex @click="onSelectAIParams('keyword')">
-        <p><i class="icon-tishici icon-big mr-2"></i>选择提示词</p>
+    <div flex="~" mt-28px mb-5px class="readmore-title">
+      <div cursor-pointer flex>
+        <p><i class="icon-tishici icon-big mr-2"></i>画个人</p>
         <div i-carbon:add></div>
+        <p self-center text-14px class="text-[#AAAAAA]">
+          角色/身份/头发/面部/姿势/情绪/衣着...
+        </p>
+      </div>
+    </div>
+    <div
+      flex="~ gap-12px wrap"
+      justify-start
+      items-stretch
+      will-change-scroll
+      p="y-2 x-2px"
+      class="more"
+    >
+      <Card :data="defaultCardList"></Card>
+    </div>
+    <div flex="~" mt-28px mb-5px class="readmore-title">
+      <div cursor-pointer flex>
+        <p><i class="icon-tishici icon-big mr-2"></i>画个物体</p>
+        <div i-carbon:add></div>
+        <p self-center text-14px class="text-[#AAAAAA]">添加物体/只画物体</p>
+      </div>
+    </div>
+    <div
+      flex="~ gap-12px wrap"
+      justify-start
+      items-stretch
+      will-change-scroll
+      p="y-2 x-2px"
+      class="more"
+    >
+      <Card :data="defaultCardList"></Card>
+    </div>
+    <div flex="~" mt-28px mb-5px class="readmore-title">
+      <div cursor-pointer flex>
+        <p><i class="icon-tishici icon-big mr-2"></i>画风</p>
+        <div i-carbon:add></div>
+        <p self-center text-14px class="text-[#AAAAAA]">动漫绘画为主</p>
+      </div>
+    </div>
+    <div
+      flex="~ gap-12px wrap"
+      justify-start
+      items-stretch
+      will-change-scroll
+      p="y-2 x-2px"
+      class="more"
+    >
+      <Card :data="defaultCardList"></Card>
+    </div>
+    <div flex="~" mt-28px mb-5px class="readmore-title">
+      <div cursor-pointer flex>
+        <p><i class="icon-tishici icon-big mr-2"></i>构图</p>
+        <div i-carbon:add></div>
+        <p self-center text-14px class="text-[#AAAAAA]">焦距/距离/灯光...</p>
       </div>
     </div>
     <div flex="~ gap-3 wrap" justify-start items-stretch class="more">
-      <Tag class="no-mark-tag" content="自定义" @click="onSelectAIParams('writekeyword')">
+      <Tag class="no-mark-tag" content="自定义">
         <template #icon> <i class="icon-zidingyi icon"></i></template>
       </Tag>
       <Tag
@@ -328,69 +382,41 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
         @click-tag="(value) => onShowWeightTag(value, item)"
       ></Tag>
     </div>
-    <div flex="~" m="t-4 b-4" class="readmore-title">
-      <div cursor-pointer flex @click="onSelectAIParams('dpi')">
-        <p><i class="icon-bili icon-big mr-2"></i>选择画面比例</p>
+    <div flex="~" mt-28px mb-8px class="readmore-title">
+      <div cursor-pointer flex>
+        <p><i class="icon-tishici icon-big mr-2"></i>正面tag</p>
         <div i-carbon:add></div>
       </div>
     </div>
-    <div flex="~ gap-3 wrap col" items-start class="more">
-      <div flex="~ gap-3 wrap">
-        <Tag
-          v-if="dpiParams.width && dpiParams.height"
-          class="no-mark-tag"
-          type="dpi"
-          :content="dpiParams.options"
-          :is-selected="dpiParams.isSelected"
-          :is-custom="dpiParams.isCustom"
-          @click="onClickDpiTag(dpiParams)"
-          @delete="onDeleteDpi"
-        >
-          <span class="text-[#AAAAAA]"
-            >{{ dpiParams.width }} : {{ dpiParams.height }}</span
-          >
-        </Tag>
-        <Tag
-          class="no-mark-tag"
-          v-for="item in defaultDpiList"
-          type="dpi"
-          :content="item.options"
-          :is-selected="item.isSelected"
-          @click="onClickDpiTag(item)"
-        >
-          <span class="text-[#AAAAAA]">{{ item.width }} : {{ item.height }}</span>
-        </Tag>
-      </div>
+    <div flex="~ gap-3 wrap" justify-start items-stretch class="more">
+      <Tag class="no-mark-tag" content="自定义">
+        <template #icon> <i class="icon-zidingyi icon"></i></template>
+      </Tag>
+      <Tag
+        slice
+        v-for="item in defaultKeyWordList"
+        :content="item.promptZH!"
+        :is-selected="item.isSelected"
+        :is-custom="item.isCustom"
+        :weight="item.weight"
+        :show-weight="item.showWeight"
+        @click.stop.self="onClickKeyWordTag(item)"
+        @delete="onDelete"
+        @reduce-weight="(value) => onReduceWeight(value, item)"
+        @add-weight="(value) => onAddWeight(value, item)"
+        @click-tag="(value) => onShowWeightTag(value, item)"
+      ></Tag>
     </div>
-    <div flex="~" mt-4 mb-4 class="readmore-title">
-      <div cursor-pointer flex @click="onSelectAIParams('params')">
-        <p><i class="icon-canshu icon-big mr-2"></i>选择作画参数</p>
+    <div flex="~" mt-28px mb-8px class="readmore-title">
+      <div cursor-pointer flex>
+        <p><i class="icon-tishici icon-big mr-2"></i>自己添加</p>
         <div i-carbon:add></div>
       </div>
     </div>
-    <div class="more">
-      <MidjourneyParams
-        :data="paramsList"
-        :is-hide-no-selected="true"
-        :dialog-visible="dialogVisible.params"
-      ></MidjourneyParams>
-    </div>
-    <div flex="~" mt-4 mb-4 class="readmore-title">
-      <div cursor-pointer flex @click="onSelectAIParams('img')">
-        <p><i class="icon-wangzhi icon-big mr-2"></i>参考图片网址</p>
-        <div i-carbon:add></div>
-      </div>
-    </div>
-    <div
-      class="more"
-      p="y-2 x-2px"
-      overflow-auto
-      flex="~ gap-4"
-      justify-start
-      items-stretch
-      will-change-scroll
-    >
-      <ImgCard :data="defaultImgList"></ImgCard>
+    <div flex="~ gap-3 wrap" justify-start items-stretch class="more">
+      <Tag class="no-mark-tag" content="自定义">
+        <template #icon> <i class="icon-zidingyi icon"></i></template>
+      </Tag>
     </div>
   </main>
   <el-dialog
@@ -462,87 +488,6 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
     <template #footer>
       <span>
         <el-button class="dialogBtn" type="primary" @click="onCloseKeyWordDialog"
-          >完成</el-button
-        >
-      </span>
-    </template>
-  </el-dialog>
-  <el-dialog
-    title="画面比例"
-    v-model="dialogVisible.dpi"
-    center
-    width="40%"
-    destroy-on-close
-    draggable
-    :close-on-click-modal="false"
-  >
-    <DpiDialog
-      ref="dpiDialogRef"
-      :list="dpiList"
-      :dpi-custom="{ ...dpiParams }"
-      :dialog-visible="dialogVisible.dpi"
-    ></DpiDialog>
-    <template #footer>
-      <span>
-        <el-button class="dialogBtn" type="primary" @click="onCloseDpiDialog"
-          >完成</el-button
-        >
-      </span>
-    </template>
-  </el-dialog>
-  <el-dialog
-    v-model="dialogVisible.params"
-    top="30px"
-    title="作画参数"
-    width="60%"
-    center
-    :close-on-click-modal="false"
-  >
-    <MidjourneyParams
-      ref="parameterRef"
-      :data="cloneDeep(paramsList)"
-      :dialog-visible="dialogVisible.params"
-    ></MidjourneyParams>
-    <template #footer>
-      <span class="dialog-footer">
-        <el-button class="dialogBtn" type="primary" @click="onCloseParamsDialog"
-          >完成</el-button
-        >
-      </span>
-    </template>
-  </el-dialog>
-  <el-dialog
-    title="输入图片网址"
-    v-model="dialogVisible.img"
-    center
-    width="30%"
-    destroy-on-close
-    draggable
-    :close-on-click-modal="false"
-  >
-    <el-input
-      type="textarea"
-      v-model="newImgAddressValue"
-      maxlength="300"
-      show-word-limit
-      placeholder="原网址需以PNG、JPG等图片格式结尾"
-      :autosize="{ minRows: 3, maxRows: 3 }"
-    ></el-input>
-
-    <template #footer>
-      <span>
-        <el-button
-          class="dialogBtn"
-          :disabled="newImgAddressValue.length < 1"
-          type="primary"
-          @click="
-            dialogVisible.img = false;
-            imgCustomsList.push({
-              img: newImgAddressValue,
-              isSelected: true,
-            });
-            newImgAddressValue = '';
-          "
           >完成</el-button
         >
       </span>
