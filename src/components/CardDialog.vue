@@ -1,17 +1,27 @@
 <script setup lang="ts">
-import { ref, watch, watchEffect, computed, nextTick } from "vue";
+import { ref, watch, watchEffect, computed, nextTick, onBeforeUnmount } from "vue";
 import type { TabsPaneContext } from "element-plus";
 import { cloneDeep } from "lodash";
 
 import type { CardItem } from "@/models";
 import { CARD_CUSTOM_LIST } from "@/constants";
+import { useStorage, useIntersectionObserver, useEventListener } from "@vueuse/core";
 
-import { useStorage, useIntersectionObserver } from "@vueuse/core";
+import CardItemComp from "./CardItem.vue";
 
 const props = defineProps<{
   list: CardItem[];
   dialogVisible: boolean;
 }>();
+
+const clearUp = useEventListener("click", () => {
+  allData.value.forEach((x) => (x.showWeight = false));
+  currentShowWeightCard.value = "";
+});
+
+onBeforeUnmount(() => {
+  clearUp();
+});
 
 const cardCustomList = useStorage<CardItem[]>(CARD_CUSTOM_LIST, [], localStorage);
 
@@ -25,6 +35,7 @@ const map = ref<Record<string, any>>({});
 const allData = ref<CardItem[]>([]);
 const currentTab = ref<string>();
 const currentTab2 = ref<string>();
+const currentShowWeightCard = ref("");
 
 // computed data
 const tabList = computed(() => Array.from(new Set(allData.value.map((x) => x.KeyWord))));
@@ -95,6 +106,24 @@ function clearScroll() {
 
 function onTrigger(item: CardItem) {
   item.isSelected = !item.isSelected;
+
+  onClickCard(item.promptEN, item);
+}
+
+function onClickCard(promptEN: string, item: CardItem) {
+  if (currentShowWeightCard.value === promptEN) return;
+
+  currentShowWeightCard.value = promptEN;
+  allData.value.forEach((x) => (x.showWeight = false));
+  item.showWeight = true;
+}
+
+function onReduceWeight(weight: number, item: CardItem) {
+  item.weight = --weight;
+}
+
+function onAddWeight(weight: number, item: CardItem) {
+  item.weight = ++weight;
 }
 
 defineExpose({
@@ -210,13 +239,18 @@ watchEffect(() => {
               v-for="item in allData.filter((x) => x.KeyWord2 === keyword2)"
               :key="item.promptEN"
               :class="{ selected: item.isSelected }"
-              @click="onTrigger(item)"
+              @click.stop.self="onTrigger(item)"
             >
-              <div class="card-img">
+              <CardItemComp
+                v-bind="item"
+                @add-weight="(value) => onAddWeight(value, item)"
+                @reduce-weight="(value) => onReduceWeight(value, item)"
+              ></CardItemComp>
+              <!-- <div class="card-img">
                 <img height="160" width="156" :src="item.imgUrl" />
               </div>
               <div class="card-name" p-2>{{ item.promptZH }}</div>
-              <div class="card-enname" p-2>{{ item.promptEN }}</div>
+              <div class="card-enname" p-2>{{ item.promptEN }}</div> -->
             </div>
           </div>
         </div>
