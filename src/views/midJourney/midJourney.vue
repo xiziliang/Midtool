@@ -14,7 +14,7 @@ import KeywordDialog from "@/components/KeywordDialog.vue";
 import CardDialog from "@/components/CardDialog.vue";
 
 import { useEventListener } from "@vueuse/core";
-import { useNovelAiData } from "@/hooks";
+import { useMidJourneyData } from "@/hooks";
 
 const {
   // JSON data
@@ -40,7 +40,7 @@ const {
   tooltiplist,
 
   fetch,
-} = useNovelAiData();
+} = useMidJourneyData();
 
 const clearUp = useEventListener("click", () => {
   defaultKeyWordList.value.forEach((x) => (x.showWeight = false));

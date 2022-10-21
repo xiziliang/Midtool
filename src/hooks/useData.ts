@@ -19,7 +19,7 @@ import {
 
 import { useFetch, useStorage } from "@vueuse/core";
 
-export const useNovelAiData = () => {
+export const useMidJourneyData= () => {
   const dpiParams = reactive<{
     options: string;
     isSelected: boolean;
@@ -145,4 +145,43 @@ export const useNovelAiData = () => {
   }
 }
 
-export const useMidJourneyData = () => {}
+export const useNovelAiData = () => {
+  const promptTemplateList = ref([]);
+  const drawPeopleList = ref([]);
+  const drawBodyList = ref([]);
+  const drawStyleList = ref([]);
+  /** 构图 */
+  const composeKeyWord = ref([]);
+  /** 正面  */
+  const positiveKeyWord = ref([]);
+  /** 自定义 */
+  const customKeyWord = ref([]);
+
+  const defaultPromptTemplate = ref([]);
+  const defaultDrawPeople = ref([]);
+  const defaultDrawBody = ref([]);
+  const defaultDrawStyle = ref([]);
+  const defaultComposeKeyWord = ref([]);
+  const defaultPositiveKeyWord = ref([]);
+  const defaultCustomKeyWord = ref([]);
+
+  return {
+    /** JSON数据 */
+    promptTemplateList,
+    drawPeopleList,
+    drawBodyList,
+    drawStyleList,
+    composeKeyWord,
+    positiveKeyWord,
+    customKeyWord,
+
+    /** 默认展示数据 */
+    defaultPromptTemplate,
+    defaultDrawPeople,
+    defaultDrawBody,
+    defaultDrawStyle,
+    defaultComposeKeyWord,
+    defaultPositiveKeyWord,
+    defaultCustomKeyWord
+  }
+}

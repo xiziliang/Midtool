@@ -13,7 +13,7 @@ import KeywordDialog from "@/components/KeywordDialog.vue";
 import CardDialog from "@/components/CardDialog.vue";
 
 import { useEventListener } from "@vueuse/core";
-import { useNovelAiData } from "@/hooks";
+import { useMidJourneyData } from "@/hooks";
 
 const {
   // JSON data
@@ -39,7 +39,7 @@ const {
   tooltiplist,
 
   fetch,
-} = useNovelAiData();
+} = useMidJourneyData();
 
 const clearUp = useEventListener("click", () => {
   defaultKeyWordList.value.forEach((x) => (x.showWeight = false));
@@ -284,7 +284,7 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
     class="container-params ma lt-lg:max-w-660px lg:max-w-828px xl:max-w-1176px 2xl:max-w-1336px"
     mb-60px
   >
-    <div flex="~" class="readmore-title">
+    <div flex="~" mt-4 class="readmore-title">
       <div cursor-pointer flex>
         <p><i class="icon-fengge icon-big mr-4px"></i>选择参考图</p>
         <div i-carbon:add></div>
