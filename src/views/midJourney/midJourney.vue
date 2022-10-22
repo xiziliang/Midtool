@@ -302,7 +302,7 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
       p="y-2 x-2px"
       class="more"
     >
-      <div
+      <!-- <div
         class="card prompt-item no-mark-tag"
         v-for="item in defaultCardList"
         :key="item.promptEN"
@@ -310,7 +310,7 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
         @click="item.isSelected = !item.isSelected"
       >
         <PromptItem v-bind="item" />
-      </div>
+      </div> -->
     </div>
     <div flex="~" mt-4 class="readmore-title">
       <div cursor-pointer flex @click="onSelectAIParams('card')">

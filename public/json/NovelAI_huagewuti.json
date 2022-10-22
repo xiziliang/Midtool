@@ -1,0 +1,322 @@
+[
+ {
+  "Level1Label": "items",
+  "KeyWord": "物品",
+  "SecondLabel": "handheld",
+  "KeyWord2": "可手持物体",
+  "promptEN": "camera",
+  "promptZH": "相机"
+ },
+ {
+  "Level1Label": "items",
+  "KeyWord": "物品",
+  "SecondLabel": "handheld",
+  "KeyWord2": "可手持物体",
+  "promptEN": "chopsticks",
+  "promptZH": "筷子"
+ },
+ {
+  "Level1Label": "items",
+  "KeyWord": "物品",
+  "SecondLabel": "handheld",
+  "KeyWord2": "可手持物体",
+  "promptEN": "microphone",
+  "promptZH": "麦克风"
+ },
+ {
+  "Level1Label": "items",
+  "KeyWord": "物品",
+  "SecondLabel": "handheld",
+  "KeyWord2": "可手持物体",
+  "promptEN": "weapons",
+  "promptZH": "武器"
+ },
+ {
+  "Level1Label": "items",
+  "KeyWord": "物品",
+  "SecondLabel": "handheld",
+  "KeyWord2": "可手持物体",
+  "promptEN": "dagger",
+  "promptZH": "匕首\/短剑"
+ },
+ {
+  "Level1Label": "items",
+  "KeyWord": "物品",
+  "SecondLabel": "handheld",
+  "KeyWord2": "可手持物体",
+  "promptEN": "sword",
+  "promptZH": "刀"
+ },
+ {
+  "Level1Label": "items",
+  "KeyWord": "物品",
+  "SecondLabel": "handheld",
+  "KeyWord2": "可手持物体",
+  "promptEN": "scythe",
+  "promptZH": "镰刀"
+ },
+ {
+  "Level1Label": "items",
+  "KeyWord": "物品",
+  "SecondLabel": "handheld",
+  "KeyWord2": "可手持物体",
+  "promptEN": "whip",
+  "promptZH": "鞭"
+ },
+ {
+  "Level1Label": "items",
+  "KeyWord": "物品",
+  "SecondLabel": "handheld",
+  "KeyWord2": "可手持物体",
+  "promptEN": "riding_crop",
+  "promptZH": "马鞭"
+ },
+ {
+  "Level1Label": "items",
+  "KeyWord": "物品",
+  "SecondLabel": "handheld",
+  "KeyWord2": "可手持物体",
+  "promptEN": "gun",
+  "promptZH": "枪"
+ },
+ {
+  "Level1Label": "items",
+  "KeyWord": "物品",
+  "SecondLabel": "handheld",
+  "KeyWord2": "可手持物体",
+  "promptEN": "handgun",
+  "promptZH": "手枪"
+ },
+ {
+  "Level1Label": "items",
+  "KeyWord": "物品",
+  "SecondLabel": "handheld",
+  "KeyWord2": "可手持物体",
+  "promptEN": "wand",
+  "promptZH": "魔杖"
+ },
+ {
+  "Level1Label": "items",
+  "KeyWord": "物品",
+  "SecondLabel": "handheld",
+  "KeyWord2": "可手持物体",
+  "promptEN": "arrow",
+  "promptZH": "箭"
+ },
+ {
+  "Level1Label": "items",
+  "KeyWord": "物品",
+  "SecondLabel": "handheld",
+  "KeyWord2": "可手持物体",
+  "promptEN": "umbrella",
+  "promptZH": "伞"
+ },
+ {
+  "Level1Label": "items",
+  "KeyWord": "物品",
+  "SecondLabel": "handheld",
+  "KeyWord2": "可手持物体",
+  "promptEN": "gohei",
+  "promptZH": "御币"
+ },
+ {
+  "Level1Label": "items",
+  "KeyWord": "物品",
+  "SecondLabel": "handheld",
+  "KeyWord2": "可手持物体",
+  "promptEN": "ofuda",
+  "promptZH": "札符"
+ },
+ {
+  "Level1Label": "items",
+  "KeyWord": "物品",
+  "SecondLabel": "handheld",
+  "KeyWord2": "可手持物体",
+  "promptEN": "yin_yang",
+  "promptZH": "阴阳"
+ },
+ {
+  "Level1Label": "items",
+  "KeyWord": "物品",
+  "SecondLabel": "handheld",
+  "KeyWord2": "可手持物体",
+  "promptEN": "lantern\/lamp",
+  "promptZH": "灯笼"
+ },
+ {
+  "Level1Label": "items",
+  "KeyWord": "物品",
+  "SecondLabel": "handheld",
+  "KeyWord2": "可手持物体",
+  "promptEN": "teacup",
+  "promptZH": "茶杯"
+ },
+ {
+  "Level1Label": "items",
+  "KeyWord": "物品",
+  "SecondLabel": "handheld",
+  "KeyWord2": "可手持物体",
+  "promptEN": "cigarette",
+  "promptZH": "香烟"
+ },
+ {
+  "Level1Label": "items",
+  "KeyWord": "物品",
+  "SecondLabel": "place",
+  "KeyWord2": "放置",
+  "promptEN": "cake",
+  "promptZH": "蛋糕"
+ },
+ {
+  "Level1Label": "items",
+  "KeyWord": "物品",
+  "SecondLabel": "place",
+  "KeyWord2": "放置",
+  "promptEN": "taiyaki",
+  "promptZH": "鲷鱼烧"
+ },
+ {
+  "Level1Label": "items",
+  "KeyWord": "物品",
+  "SecondLabel": "place",
+  "KeyWord2": "放置",
+  "promptEN": "wine",
+  "promptZH": "葡萄酒"
+ },
+ {
+  "Level1Label": "items",
+  "KeyWord": "物品",
+  "SecondLabel": "place",
+  "KeyWord2": "放置",
+  "promptEN": "cherry_blossoms",
+  "promptZH": "樱花"
+ },
+ {
+  "Level1Label": "items",
+  "KeyWord": "物品",
+  "SecondLabel": "place",
+  "KeyWord2": "放置",
+  "promptEN": "cream",
+  "promptZH": "奶油"
+ },
+ {
+  "Level1Label": "items",
+  "KeyWord": "物品",
+  "SecondLabel": "place",
+  "KeyWord2": "放置",
+  "promptEN": "ice_cream",
+  "promptZH": "冰激凌"
+ },
+ {
+  "Level1Label": "items",
+  "KeyWord": "物品",
+  "SecondLabel": "place",
+  "KeyWord2": "放置",
+  "promptEN": "sake",
+  "promptZH": "日本酒"
+ },
+ {
+  "Level1Label": "items",
+  "KeyWord": "物品",
+  "SecondLabel": "place",
+  "KeyWord2": "放置",
+  "promptEN": "flower_petals",
+  "promptZH": "花瓣"
+ },
+ {
+  "Level1Label": "items",
+  "KeyWord": "物品",
+  "SecondLabel": "place",
+  "KeyWord2": "放置",
+  "promptEN": "guitar",
+  "promptZH": "吉他"
+ },
+ {
+  "Level1Label": "items",
+  "KeyWord": "物品",
+  "SecondLabel": "place",
+  "KeyWord2": "放置",
+  "promptEN": "piano",
+  "promptZH": "钢琴"
+ },
+ {
+  "Level1Label": "items",
+  "KeyWord": "物品",
+  "SecondLabel": "place",
+  "KeyWord2": "放置",
+  "promptEN": "obento",
+  "promptZH": "便当"
+ },
+ {
+  "Level1Label": "items",
+  "KeyWord": "物品",
+  "SecondLabel": "place",
+  "KeyWord2": "放置",
+  "promptEN": "chair",
+  "promptZH": "椅子"
+ },
+ {
+  "Level1Label": "items",
+  "KeyWord": "物品",
+  "SecondLabel": "place",
+  "KeyWord2": "放置",
+  "promptEN": "mimikaki",
+  "promptZH": "掏耳勺"
+ },
+ {
+  "Level1Label": "items",
+  "KeyWord": "物品",
+  "SecondLabel": "place",
+  "KeyWord2": "放置",
+  "promptEN": "crease",
+  "promptZH": "起皱"
+ },
+ {
+  "Level1Label": "big items",
+  "KeyWord": "大物体",
+  "SecondLabel": "unclassified",
+  "KeyWord2": "未分类",
+  "promptEN": "building",
+  "promptZH": "建筑"
+ },
+ {
+  "Level1Label": "big items",
+  "KeyWord": "大物体",
+  "SecondLabel": "unclassified",
+  "KeyWord2": "未分类",
+  "promptEN": "ruins",
+  "promptZH": "废墟\/遗迹"
+ },
+ {
+  "Level1Label": "big items",
+  "KeyWord": "大物体",
+  "SecondLabel": "unclassified",
+  "KeyWord2": "未分类",
+  "promptEN": "pentagram",
+  "promptZH": "五角星"
+ },
+ {
+  "Level1Label": "big items",
+  "KeyWord": "大物体",
+  "SecondLabel": "unclassified",
+  "KeyWord2": "未分类",
+  "promptEN": "magic_circle",
+  "promptZH": "魔法阵"
+ },
+ {
+  "Level1Label": "big items",
+  "KeyWord": "大物体",
+  "SecondLabel": "unclassified",
+  "KeyWord2": "未分类",
+  "promptEN": "ocean",
+  "promptZH": "大海"
+ },
+ {
+  "Level1Label": "big items",
+  "KeyWord": "大物体",
+  "SecondLabel": "unclassified",
+  "KeyWord2": "未分类",
+  "promptEN": "forest",
+  "promptZH": "森林\/树"
+ }
+]

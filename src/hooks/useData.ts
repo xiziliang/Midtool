@@ -149,14 +149,14 @@ export const useMidJourneyData= () => {
 }
 
 export const useNovelAiData = () => {
-  const promptTemplateList = ref<any[]>([]);
-  const drawPeopleList = ref([]);
-  const drawBodyList = ref([]);
-  const drawStyleList = ref([]);
+  const promptTemplateList = ref<PromptTemplate[]>([]);
+  const drawPeopleList = ref<CardItem[]>([]);
+  const drawBodyList = ref<CardItem[]>([]);
+  const drawStyleList = ref<CardItem[]>([]);
   /** 构图 */
-  const composeKeyWord = ref([]);
+  const composeKeyWord = ref<CustomKeyWord[]>([]);
   /** 正面  */
-  const positiveKeyWord = ref([]);
+  const positiveKeyWord = ref<CustomKeyWord[]>([]);
 
   const defaultPromptTemplate = ref<PromptTemplate[]>([]);
   const defaultDrawPeople = ref<CardItem[]>([]);
@@ -166,34 +166,47 @@ export const useNovelAiData = () => {
   const defaultPositiveKeyWord = ref<CustomKeyWord[]>([]);
   const defaultCustomKeyWord = ref<CustomKeyWord[]>([]);
 
+  function formatData(data: any[]) {
+    
+    data.forEach(x => {
+      x.weight = 1;
+      x.showWeight = false;
+
+      // 默认数据
+      x.isDefault = true;
+    })
+
+    return data;
+  }
+
   async function fetchPrompt() {
     const { data } = await useFetch("/json/NovelAI_cankaotu.json");
     promptTemplateList.value = JSON.parse(data.value as string);
     defaultPromptTemplate.value = cloneDeep(promptTemplateList.value.slice(0, 5));
   }
   async function fetchPeople() {
-    const { data } = await useFetch("/json/midjourneyStyle.json");
-    drawPeopleList.value = JSON.parse(data.value as string);
+    const { data } = await useFetch("/json/NovelAI_huageren.json");
+    drawPeopleList.value = formatData(JSON.parse(data.value as string));
     defaultDrawPeople.value = cloneDeep(drawPeopleList.value.slice(0, 5));
   }
   async function fetchBody() {
-    const { data } = await useFetch("/json/midjourneyStyle.json");
-    drawBodyList.value = JSON.parse(data.value as string);
+    const { data } = await useFetch("/json/NovelAI_huagewuti.json");
+    drawBodyList.value = formatData(JSON.parse(data.value as string));
     defaultDrawBody.value = cloneDeep(drawBodyList.value.slice(0, 5));
   }
   async function fetchStyle() {
     const { data } = await useFetch("/json/midjourneyStyle.json");
-    drawStyleList.value = JSON.parse(data.value as string);
+    drawStyleList.value = formatData(JSON.parse(data.value as string));
     defaultDrawStyle.value = cloneDeep(drawStyleList.value.slice(0, 5));
   }
   async function fetchComposeKeyWord() {
-    const { data } = await useFetch("/json/midjourneyPrompt.json");
-    composeKeyWord.value = JSON.parse(data.value as string);
+    const { data } = await useFetch("/json/NovelAI_gouotu.json");
+    composeKeyWord.value = formatData(JSON.parse(data.value as string));
     defaultComposeKeyWord.value = cloneDeep(composeKeyWord.value.slice(0, 5));
   }
   async function fetchPositiveKeyWord() {
-    const { data } = await useFetch("/json/midjourneyPrompt.json");
-    positiveKeyWord.value = JSON.parse(data.value as string);
+    const { data } = await useFetch("/json/NovelAI_zhengmiantag.json");
+    positiveKeyWord.value = formatData(JSON.parse(data.value as string));
     defaultPositiveKeyWord.value = cloneDeep(positiveKeyWord.value.slice(0, 5));
   }
 

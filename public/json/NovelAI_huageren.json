@@ -1,0 +1,3656 @@
+[
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "role",
+  "KeyWord2": "角色",
+  "promptEN": "1girl",
+  "promptZH": "一个女孩",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "role",
+  "KeyWord2": "角色",
+  "promptEN": "1boy",
+  "promptZH": "一个男孩",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "role",
+  "KeyWord2": "角色",
+  "promptEN": "2girl",
+  "promptZH": "两个女孩",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "role",
+  "KeyWord2": "角色",
+  "promptEN": "2boy",
+  "promptZH": "两个男孩",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "role",
+  "KeyWord2": "角色",
+  "promptEN": "solo",
+  "promptZH": "单人",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "role",
+  "KeyWord2": "角色",
+  "promptEN": "sisters",
+  "promptZH": "姐妹",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "role",
+  "KeyWord2": "角色",
+  "promptEN": "siblings",
+  "promptZH": "兄弟姐妹",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "role",
+  "KeyWord2": "角色",
+  "promptEN": "no_humans",
+  "promptZH": "非人",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "content",
+  "KeyWord2": "绘画内容",
+  "promptEN": "headshot",
+  "promptZH": "正脸",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "content",
+  "KeyWord2": "绘画内容",
+  "promptEN": "profile",
+  "promptZH": "侧脸",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "content",
+  "KeyWord2": "绘画内容",
+  "promptEN": "bust",
+  "promptZH": "半身像",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "content",
+  "KeyWord2": "绘画内容",
+  "promptEN": "full body",
+  "promptZH": "全身像",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "content",
+  "KeyWord2": "绘画内容",
+  "promptEN": "back",
+  "promptZH": "背影像",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "content",
+  "KeyWord2": "绘画内容",
+  "promptEN": "expressions",
+  "promptZH": "各种表情",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "content",
+  "KeyWord2": "绘画内容",
+  "promptEN": "silhouette",
+  "promptZH": "剪影",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "content",
+  "KeyWord2": "绘画内容",
+  "promptEN": "animation database",
+  "promptZH": "人物设定集",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "content",
+  "KeyWord2": "绘画内容",
+  "promptEN": "everyone",
+  "promptZH": "一部作品中的主要人物们",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "identity",
+  "KeyWord2": "身份",
+  "promptEN": "Witch",
+  "promptZH": "女巫",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "identity",
+  "KeyWord2": "身份",
+  "promptEN": "miko",
+  "promptZH": "巫女",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "identity",
+  "KeyWord2": "身份",
+  "promptEN": "maid",
+  "promptZH": "女仆",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "identity",
+  "KeyWord2": "身份",
+  "promptEN": "waitress",
+  "promptZH": "女服务员",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "identity",
+  "KeyWord2": "身份",
+  "promptEN": "cheerleader",
+  "promptZH": "拉拉队",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "identity",
+  "KeyWord2": "身份",
+  "promptEN": "doll",
+  "promptZH": "人偶",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "identity",
+  "KeyWord2": "身份",
+  "promptEN": "ninja",
+  "promptZH": "忍者\/日本武士",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "identity",
+  "KeyWord2": "身份",
+  "promptEN": "nun",
+  "promptZH": "修女",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "identity",
+  "KeyWord2": "身份",
+  "promptEN": "mermaid",
+  "promptZH": "美人鱼",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "identity",
+  "KeyWord2": "身份",
+  "promptEN": "fairy",
+  "promptZH": "小精灵",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "identity",
+  "KeyWord2": "身份",
+  "promptEN": "elf",
+  "promptZH": "妖精",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "identity",
+  "KeyWord2": "身份",
+  "promptEN": "angel",
+  "promptZH": "天使",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "identity",
+  "KeyWord2": "身份",
+  "promptEN": "monster",
+  "promptZH": "怪物",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "identity",
+  "KeyWord2": "身份",
+  "promptEN": "devil",
+  "promptZH": "魔鬼（撒旦）",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "identity",
+  "KeyWord2": "身份",
+  "promptEN": "vampire",
+  "promptZH": "吸血鬼",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "identity",
+  "KeyWord2": "身份",
+  "promptEN": "magical_girl",
+  "promptZH": "魔法少女",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "identity",
+  "KeyWord2": "身份",
+  "promptEN": "multiple_girls",
+  "promptZH": "魔幻少女（有魔力的）",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "identity",
+  "KeyWord2": "身份",
+  "promptEN": "furry\/orc",
+  "promptZH": "兽人\/半兽人",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "identity",
+  "KeyWord2": "身份",
+  "promptEN": "minigirl",
+  "promptZH": "迷你女孩",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "identity",
+  "KeyWord2": "身份",
+  "promptEN": "kemonomimi_mode",
+  "promptZH": "兽耳萝莉",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "identity",
+  "KeyWord2": "身份",
+  "promptEN": "chibi",
+  "promptZH": "Q版人物",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "identity",
+  "KeyWord2": "身份",
+  "promptEN": "milf",
+  "promptZH": "熟女",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "identity",
+  "KeyWord2": "身份",
+  "promptEN": "uncle",
+  "promptZH": "大叔",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "identity",
+  "KeyWord2": "身份",
+  "promptEN": "shota",
+  "promptZH": "正太",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "identity",
+  "KeyWord2": "身份",
+  "promptEN": "loli",
+  "promptZH": "萝莉",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "identity",
+  "KeyWord2": "身份",
+  "promptEN": "yuri",
+  "promptZH": "百合",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "hair",
+  "KeyWord2": "头发",
+  "promptEN": "ahoge",
+  "promptZH": "呆毛",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "hair",
+  "KeyWord2": "头发",
+  "promptEN": "bangs",
+  "promptZH": "刘海",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "hair",
+  "KeyWord2": "头发",
+  "promptEN": "blunt_bangs",
+  "promptZH": "齐刘海",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "hair",
+  "KeyWord2": "头发",
+  "promptEN": "curly_hair",
+  "promptZH": "卷发",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "hair",
+  "KeyWord2": "头发",
+  "promptEN": "drill_hair",
+  "promptZH": "钻头卷\/公主卷",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "hair",
+  "KeyWord2": "头发",
+  "promptEN": "hair_bun",
+  "promptZH": "包子头",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "hair",
+  "KeyWord2": "头发",
+  "promptEN": "double_bun",
+  "promptZH": "包子头(两个)",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "hair",
+  "KeyWord2": "头发",
+  "promptEN": "ponytail",
+  "promptZH": "马尾",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "hair",
+  "KeyWord2": "头发",
+  "promptEN": "short_ponytail",
+  "promptZH": "短马尾",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "hair",
+  "KeyWord2": "头发",
+  "promptEN": "side_ponytail",
+  "promptZH": "侧马尾",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "hair",
+  "KeyWord2": "头发",
+  "promptEN": "twintails",
+  "promptZH": "双马尾",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "hair",
+  "KeyWord2": "头发",
+  "promptEN": "messy_hair",
+  "promptZH": "凌乱发型",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "hair",
+  "KeyWord2": "头发",
+  "promptEN": "hime_cut",
+  "promptZH": "姬发式",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "hair",
+  "KeyWord2": "头发",
+  "promptEN": "braid",
+  "promptZH": "辫子",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "hair",
+  "KeyWord2": "头发",
+  "promptEN": "twin_braids",
+  "promptZH": "双辫子",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "hair",
+  "KeyWord2": "头发",
+  "promptEN": "payot",
+  "promptZH": "长鬓角",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "hair",
+  "KeyWord2": "头发",
+  "promptEN": "wavy_hair",
+  "promptZH": "波浪发型",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "hair",
+  "KeyWord2": "头发",
+  "promptEN": "blonde_hair",
+  "promptZH": "金发",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "hair",
+  "KeyWord2": "头发",
+  "promptEN": "silver_hair",
+  "promptZH": "银发",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "hair",
+  "KeyWord2": "头发",
+  "promptEN": "grey_hair",
+  "promptZH": "灰发",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "hair",
+  "KeyWord2": "头发",
+  "promptEN": "white_hair",
+  "promptZH": "白发",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "hair",
+  "KeyWord2": "头发",
+  "promptEN": "brown_hair",
+  "promptZH": "棕发",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "hair",
+  "KeyWord2": "头发",
+  "promptEN": "black_hair",
+  "promptZH": "黑发",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "hair",
+  "KeyWord2": "头发",
+  "promptEN": "purple_hair",
+  "promptZH": "紫发",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "hair",
+  "KeyWord2": "头发",
+  "promptEN": "red_hair",
+  "promptZH": "红发",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "hair",
+  "KeyWord2": "头发",
+  "promptEN": "blue_hair",
+  "promptZH": "蓝发",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "hair",
+  "KeyWord2": "头发",
+  "promptEN": "green_hair",
+  "promptZH": "绿发",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "hair",
+  "KeyWord2": "头发",
+  "promptEN": "short_hair",
+  "promptZH": "短发",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "hair",
+  "KeyWord2": "头发",
+  "promptEN": "long_hair",
+  "promptZH": "长发",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "hair",
+  "KeyWord2": "头发",
+  "promptEN": "very_long_hair",
+  "promptZH": "很长的头发",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "eye",
+  "KeyWord2": "眼睛",
+  "promptEN": "yellow_eyes",
+  "promptZH": "金眼",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "eye",
+  "KeyWord2": "眼睛",
+  "promptEN": "silver_eyes",
+  "promptZH": "银眼",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "eye",
+  "KeyWord2": "眼睛",
+  "promptEN": "grey_eyes",
+  "promptZH": "灰眼",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "eye",
+  "KeyWord2": "眼睛",
+  "promptEN": "white_eyes",
+  "promptZH": "白眼",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "eye",
+  "KeyWord2": "眼睛",
+  "promptEN": "brown_eyes",
+  "promptZH": "棕眼",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "eye",
+  "KeyWord2": "眼睛",
+  "promptEN": "black_eyes",
+  "promptZH": "黑眼",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "eye",
+  "KeyWord2": "眼睛",
+  "promptEN": "purple_eyes",
+  "promptZH": "紫眼",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "eye",
+  "KeyWord2": "眼睛",
+  "promptEN": "red_eyes",
+  "promptZH": "红眼",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "eye",
+  "KeyWord2": "眼睛",
+  "promptEN": "blue_eyes",
+  "promptZH": "蓝眼",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "eye",
+  "KeyWord2": "眼睛",
+  "promptEN": "green_eyes",
+  "promptZH": "绿眼",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "figure",
+  "KeyWord2": "身材",
+  "promptEN": "muscle",
+  "promptZH": "肌肉",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "figure",
+  "KeyWord2": "身材",
+  "promptEN": "chest",
+  "promptZH": "胸肌",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "figure",
+  "KeyWord2": "身材",
+  "promptEN": "breasts",
+  "promptZH": "胸部",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "figure",
+  "KeyWord2": "身材",
+  "promptEN": "flat_chest",
+  "promptZH": "贫乳(A",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "figure",
+  "KeyWord2": "身材",
+  "promptEN": "small_breasts",
+  "promptZH": "小胸部(B",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "figure",
+  "KeyWord2": "身材",
+  "promptEN": "medium_breasts",
+  "promptZH": "中等胸部(C",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "figure",
+  "KeyWord2": "身材",
+  "promptEN": "large_breasts",
+  "promptZH": "大胸部(D",
+  "image": "no"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "figure",
+  "KeyWord2": "身材",
+  "promptEN": "huge_breasts",
+  "promptZH": "巨乳(E",
+  "image": "no"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "figure",
+  "KeyWord2": "身材",
+  "promptEN": "gigantic_breasts",
+  "promptZH": "魔乳(F",
+  "image": "no"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "figure",
+  "KeyWord2": "身材",
+  "promptEN": "curvy",
+  "promptZH": "魔鬼身材",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "figure",
+  "KeyWord2": "身材",
+  "promptEN": "skinny",
+  "promptZH": "骨感",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "figure",
+  "KeyWord2": "身材",
+  "promptEN": "plump",
+  "promptZH": "肥胖",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "other",
+  "KeyWord2": "其他绘画部位",
+  "promptEN": "thighs",
+  "promptZH": "大腿",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "other",
+  "KeyWord2": "其他绘画部位",
+  "promptEN": "thick_thighs",
+  "promptZH": "粗腿",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "other",
+  "KeyWord2": "其他绘画部位",
+  "promptEN": "kneepits",
+  "promptZH": "膝盖内侧",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "other",
+  "KeyWord2": "其他绘画部位",
+  "promptEN": "foot",
+  "promptZH": "脚",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "other",
+  "KeyWord2": "其他绘画部位",
+  "promptEN": "toes",
+  "promptZH": "脚趾",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "other",
+  "KeyWord2": "其他绘画部位",
+  "promptEN": "horns",
+  "promptZH": "兽角",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "other",
+  "KeyWord2": "其他绘画部位",
+  "promptEN": "tan_lines",
+  "promptZH": "晒日线",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "other",
+  "KeyWord2": "其他绘画部位",
+  "promptEN": "facial_hair",
+  "promptZH": "男性脸部胡须",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "other",
+  "KeyWord2": "其他绘画部位",
+  "promptEN": "no_nose",
+  "promptZH": "没鼻子的",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "other",
+  "KeyWord2": "其他绘画部位",
+  "promptEN": "fangs",
+  "promptZH": "尖牙",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "other",
+  "KeyWord2": "其他绘画部位",
+  "promptEN": "tongue",
+  "promptZH": "舌头",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "other",
+  "KeyWord2": "其他绘画部位",
+  "promptEN": "saliva",
+  "promptZH": "唾液",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "other",
+  "KeyWord2": "其他绘画部位",
+  "promptEN": "animal_ears",
+  "promptZH": "动物耳朵",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "other",
+  "KeyWord2": "其他绘画部位",
+  "promptEN": "fox_ears",
+  "promptZH": "狐狸耳朵",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "other",
+  "KeyWord2": "其他绘画部位",
+  "promptEN": "bunny_ears",
+  "promptZH": "兔耳",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "other",
+  "KeyWord2": "其他绘画部位",
+  "promptEN": "cat_ears",
+  "promptZH": "猫耳",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "other",
+  "KeyWord2": "其他绘画部位",
+  "promptEN": "dog_ears",
+  "promptZH": "狗耳",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "other",
+  "KeyWord2": "其他绘画部位",
+  "promptEN": "mouse_ears",
+  "promptZH": "老鼠耳朵",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "other",
+  "KeyWord2": "其他绘画部位",
+  "promptEN": "pointy_ears",
+  "promptZH": "尖耳",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "other",
+  "KeyWord2": "其他绘画部位",
+  "promptEN": "armpit",
+  "promptZH": "腋",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "other",
+  "KeyWord2": "其他绘画部位",
+  "promptEN": "collarbone",
+  "promptZH": "锁骨",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "other",
+  "KeyWord2": "其他绘画部位",
+  "promptEN": "wings",
+  "promptZH": "翅膀\/翼",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "other",
+  "KeyWord2": "其他绘画部位",
+  "promptEN": "bat_wings",
+  "promptZH": "蝙蝠翅膀",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "other",
+  "KeyWord2": "其他绘画部位",
+  "promptEN": "butterfly_wings",
+  "promptZH": "蝴蝶翅膀",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "other",
+  "KeyWord2": "其他绘画部位",
+  "promptEN": "black_wings",
+  "promptZH": "黑色之翼",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "role",
+  "KeyWord": "角色\/绘画内容",
+  "SecondLabel": "other",
+  "KeyWord2": "其他绘画部位",
+  "promptEN": "demon_wings",
+  "promptZH": "恶魔之翼",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "state",
+  "KeyWord": "状态",
+  "SecondLabel": "mood",
+  "KeyWord2": "情绪",
+  "promptEN": "angry",
+  "promptZH": "生气的",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "state",
+  "KeyWord": "状态",
+  "SecondLabel": "mood",
+  "KeyWord2": "情绪",
+  "promptEN": "annoyed",
+  "promptZH": "苦恼的",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "state",
+  "KeyWord": "状态",
+  "SecondLabel": "mood",
+  "KeyWord2": "情绪",
+  "promptEN": "crazy",
+  "promptZH": "疯狂的",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "state",
+  "KeyWord": "状态",
+  "SecondLabel": "mood",
+  "KeyWord2": "情绪",
+  "promptEN": "shy",
+  "promptZH": "害羞的",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "state",
+  "KeyWord": "状态",
+  "SecondLabel": "mood",
+  "KeyWord2": "情绪",
+  "promptEN": "embarrassed",
+  "promptZH": "尴尬的",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "state",
+  "KeyWord": "状态",
+  "SecondLabel": "mood",
+  "KeyWord2": "情绪",
+  "promptEN": "blush",
+  "promptZH": "脸红的",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "state",
+  "KeyWord": "状态",
+  "SecondLabel": "mood",
+  "KeyWord2": "情绪",
+  "promptEN": "sleepy",
+  "promptZH": "困乏的",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "state",
+  "KeyWord": "状态",
+  "SecondLabel": "mood",
+  "KeyWord2": "情绪",
+  "promptEN": "sad",
+  "promptZH": "悲伤的",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "state",
+  "KeyWord": "状态",
+  "SecondLabel": "mood",
+  "KeyWord2": "情绪",
+  "promptEN": "drunk",
+  "promptZH": "喝醉的",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "state",
+  "KeyWord": "状态",
+  "SecondLabel": "mood",
+  "KeyWord2": "情绪",
+  "promptEN": "dark_persona",
+  "promptZH": "黑化的",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "state",
+  "KeyWord": "状态",
+  "SecondLabel": "face",
+  "KeyWord2": "面部细节",
+  "promptEN": "makeup",
+  "promptZH": "浓装",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "state",
+  "KeyWord": "状态",
+  "SecondLabel": "face",
+  "KeyWord2": "面部细节",
+  "promptEN": "food_on_face",
+  "promptZH": "食物在脸上",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "state",
+  "KeyWord": "状态",
+  "SecondLabel": "face",
+  "KeyWord2": "面部细节",
+  "promptEN": "eyes_closed",
+  "promptZH": "闭眼",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "state",
+  "KeyWord": "状态",
+  "SecondLabel": "face",
+  "KeyWord2": "面部细节",
+  "promptEN": "wink\/blinking",
+  "promptZH": "眨眼",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "state",
+  "KeyWord": "状态",
+  "SecondLabel": "face",
+  "KeyWord2": "面部细节",
+  "promptEN": "wince",
+  "promptZH": "闭一只眼",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "state",
+  "KeyWord": "状态",
+  "SecondLabel": "face",
+  "KeyWord2": "面部细节",
+  "promptEN": "slit_pupils",
+  "promptZH": "竖的瞳孔\/猫眼",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "state",
+  "KeyWord": "状态",
+  "SecondLabel": "face",
+  "KeyWord2": "面部细节",
+  "promptEN": "heterochromia",
+  "promptZH": "异色瞳",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "state",
+  "KeyWord": "状态",
+  "SecondLabel": "face",
+  "KeyWord2": "面部细节",
+  "promptEN": "heart-shaped_pupils",
+  "promptZH": "爱心形瞳孔",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "state",
+  "KeyWord": "状态",
+  "SecondLabel": "face",
+  "KeyWord2": "面部细节",
+  "promptEN": "eyelid_pull",
+  "promptZH": "拉眼皮吐舌鬼脸",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "state",
+  "KeyWord": "状态",
+  "SecondLabel": "face",
+  "KeyWord2": "面部细节",
+  "promptEN": "aqua_eyes",
+  "promptZH": "水汪汪的眼睛",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "state",
+  "KeyWord": "状态",
+  "SecondLabel": "face",
+  "KeyWord2": "面部细节",
+  "promptEN": "tsurime",
+  "promptZH": "吊眼角",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "state",
+  "KeyWord": "状态",
+  "SecondLabel": "face",
+  "KeyWord2": "面部细节",
+  "promptEN": "eyeball",
+  "promptZH": "盯着看",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "state",
+  "KeyWord": "状态",
+  "SecondLabel": "face",
+  "KeyWord2": "面部细节",
+  "promptEN": "tears",
+  "promptZH": "眼泪",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "state",
+  "KeyWord": "状态",
+  "SecondLabel": "face",
+  "KeyWord2": "面部细节",
+  "promptEN": "smelling",
+  "promptZH": "闻",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "state",
+  "KeyWord": "状态",
+  "SecondLabel": "face",
+  "KeyWord2": "面部细节",
+  "promptEN": "nosebleed",
+  "promptZH": "鼻血",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "state",
+  "KeyWord": "状态",
+  "SecondLabel": "face",
+  "KeyWord2": "面部细节",
+  "promptEN": "lips",
+  "promptZH": "嘴唇",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "state",
+  "KeyWord": "状态",
+  "SecondLabel": "face",
+  "KeyWord2": "面部细节",
+  "promptEN": "clenched_teeth",
+  "promptZH": "咬牙",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "state",
+  "KeyWord": "状态",
+  "SecondLabel": "face",
+  "KeyWord2": "面部细节",
+  "promptEN": "open_mouth",
+  "promptZH": "张口",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "state",
+  "KeyWord": "状态",
+  "SecondLabel": "face",
+  "KeyWord2": "面部细节",
+  "promptEN": "pout",
+  "promptZH": "努嘴",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "state",
+  "KeyWord": "状态",
+  "SecondLabel": "face",
+  "KeyWord2": "面部细节",
+  "promptEN": "sigh",
+  "promptZH": "叹气",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "state",
+  "KeyWord": "状态",
+  "SecondLabel": "face",
+  "KeyWord2": "面部细节",
+  "promptEN": "smile",
+  "promptZH": "微笑",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "state",
+  "KeyWord": "状态",
+  "SecondLabel": "face",
+  "KeyWord2": "面部细节",
+  "promptEN": "grin",
+  "promptZH": "露齿而笑",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "state",
+  "KeyWord": "状态",
+  "SecondLabel": "face",
+  "KeyWord2": "面部细节",
+  "promptEN": "stare",
+  "promptZH": "凝视",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "state",
+  "KeyWord": "状态",
+  "SecondLabel": "face",
+  "KeyWord2": "面部细节",
+  "promptEN": "frown",
+  "promptZH": "皱眉\/蹙额",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "state",
+  "KeyWord": "状态",
+  "SecondLabel": "face",
+  "KeyWord2": "面部细节",
+  "promptEN": "expressionless",
+  "promptZH": "无表情的",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "state",
+  "KeyWord": "状态",
+  "SecondLabel": "face",
+  "KeyWord2": "面部细节",
+  "promptEN": "endured_face",
+  "promptZH": "忍耐的表情",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "state",
+  "KeyWord": "状态",
+  "SecondLabel": "face",
+  "KeyWord2": "面部细节",
+  "promptEN": "looking_at_viewer",
+  "promptZH": "看着你",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "behavior",
+  "KeyWord2": "行为",
+  "promptEN": "sleeping",
+  "promptZH": "睡觉",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "behavior",
+  "KeyWord2": "行为",
+  "promptEN": "bathing",
+  "promptZH": "洗澡",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "behavior",
+  "KeyWord2": "行为",
+  "promptEN": "wet",
+  "promptZH": "湿身",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "behavior",
+  "KeyWord2": "行为",
+  "promptEN": "sweat",
+  "promptZH": "流汗",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "behavior",
+  "KeyWord2": "行为",
+  "promptEN": "mimikaki",
+  "promptZH": "掏耳勺",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "behavior",
+  "KeyWord2": "行为",
+  "promptEN": "standing",
+  "promptZH": "站立",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "behavior",
+  "KeyWord2": "行为",
+  "promptEN": "princess_carry",
+  "promptZH": "公主抱",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "behavior",
+  "KeyWord2": "行为",
+  "promptEN": "fighting_stance",
+  "promptZH": "战斗姿态",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "behavior",
+  "KeyWord2": "行为",
+  "promptEN": "hug",
+  "promptZH": "拥抱",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "behavior",
+  "KeyWord2": "行为",
+  "promptEN": "lap_pillow",
+  "promptZH": "膝枕",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "action",
+  "KeyWord2": "全身动作",
+  "promptEN": "upside-down",
+  "promptZH": "倒立",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "action",
+  "KeyWord2": "全身动作",
+  "promptEN": "looking_back",
+  "promptZH": "向后看",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "action",
+  "KeyWord2": "全身动作",
+  "promptEN": "lying",
+  "promptZH": "躺着",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "action",
+  "KeyWord2": "全身动作",
+  "promptEN": "on_stomach",
+  "promptZH": "趴着",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "action",
+  "KeyWord2": "全身动作",
+  "promptEN": "squatting",
+  "promptZH": "蹲下",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "action",
+  "KeyWord2": "全身动作",
+  "promptEN": "straddle",
+  "promptZH": "跨坐",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "action",
+  "KeyWord2": "全身动作",
+  "promptEN": "kneeling",
+  "promptZH": "下跪",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "action",
+  "KeyWord2": "全身动作",
+  "promptEN": "top-down_bottom-up",
+  "promptZH": "趴着翘臀",
+  "image": "no"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "action",
+  "KeyWord2": "全身动作",
+  "promptEN": "bent_over",
+  "promptZH": "翘臀姿势",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "action",
+  "KeyWord2": "全身动作",
+  "promptEN": "all_fours",
+  "promptZH": "四肢趴地",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "action",
+  "KeyWord2": "全身动作",
+  "promptEN": "arched_back",
+  "promptZH": "弓身体",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "action",
+  "KeyWord2": "全身动作",
+  "promptEN": "sitting",
+  "promptZH": "坐着",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "action",
+  "KeyWord2": "全身动作",
+  "promptEN": "seiza",
+  "promptZH": "正坐",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "action",
+  "KeyWord2": "全身动作",
+  "promptEN": "wariza\/w-sitting",
+  "promptZH": "割坐",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "action",
+  "KeyWord2": "全身动作",
+  "promptEN": "yokozuwari",
+  "promptZH": "侧身坐",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "action",
+  "KeyWord2": "全身动作",
+  "promptEN": "indian_style",
+  "promptZH": "盘腿",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "action",
+  "KeyWord2": "全身动作",
+  "promptEN": "leg_hug",
+  "promptZH": "抱腿",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "action",
+  "KeyWord2": "全身动作",
+  "promptEN": "leaning_forward",
+  "promptZH": "身体前驱",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "action",
+  "KeyWord2": "全身动作",
+  "promptEN": "back-to-back",
+  "promptZH": "背对背",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "action",
+  "KeyWord2": "全身动作",
+  "promptEN": "symmetrical_docking",
+  "promptZH": "胸对胸",
+  "image": "no"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "action",
+  "KeyWord2": "全身动作",
+  "promptEN": "symmetrical_hand_pose",
+  "promptZH": "手对手",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "action",
+  "KeyWord2": "全身动作",
+  "promptEN": "eye_contact",
+  "promptZH": "眼对眼（对视）",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "hand",
+  "KeyWord2": "手部动作",
+  "promptEN": "v",
+  "promptZH": "胜利手势",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "hand",
+  "KeyWord2": "手部动作",
+  "promptEN": "thumbs_up",
+  "promptZH": "翘大拇指",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "hand",
+  "KeyWord2": "手部动作",
+  "promptEN": "middle_finger",
+  "promptZH": "比出中指",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "hand",
+  "KeyWord2": "手部动作",
+  "promptEN": "cat_pose",
+  "promptZH": "猫爪手势",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "hand",
+  "KeyWord2": "手部动作",
+  "promptEN": "finger_gun",
+  "promptZH": "手枪手势",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "hand",
+  "KeyWord2": "手部动作",
+  "promptEN": "shushing",
+  "promptZH": "嘘手势",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "hand",
+  "KeyWord2": "手部动作",
+  "promptEN": "holding",
+  "promptZH": "拿着",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "hand",
+  "KeyWord2": "手部动作",
+  "promptEN": "waving",
+  "promptZH": "招手",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "hand",
+  "KeyWord2": "手部动作",
+  "promptEN": "salute",
+  "promptZH": "敬礼",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "hand",
+  "KeyWord2": "手部动作",
+  "promptEN": "stretch",
+  "promptZH": "伸懒腰",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "hand",
+  "KeyWord2": "手部动作",
+  "promptEN": "arms_up",
+  "promptZH": "抬手",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "hand",
+  "KeyWord2": "手部动作",
+  "promptEN": "spread_arms",
+  "promptZH": "张手",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "hand",
+  "KeyWord2": "手部动作",
+  "promptEN": "hand_to_mouth",
+  "promptZH": "手放在嘴边",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "hand",
+  "KeyWord2": "手部动作",
+  "promptEN": "hair_pull",
+  "promptZH": "拉头发",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "hand",
+  "KeyWord2": "手部动作",
+  "promptEN": "armpits",
+  "promptZH": "举手露腋",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "hand",
+  "KeyWord2": "手部动作",
+  "promptEN": "curtsy",
+  "promptZH": "屈膝礼",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "hand",
+  "KeyWord2": "手部动作",
+  "promptEN": "fingersmile",
+  "promptZH": "用手指做出笑脸",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "hand",
+  "KeyWord2": "手部动作",
+  "promptEN": "chin_rest",
+  "promptZH": "手撑着头",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "hand",
+  "KeyWord2": "手部动作",
+  "promptEN": "arm_support",
+  "promptZH": "用手支撑住",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "hand",
+  "KeyWord2": "手部动作",
+  "promptEN": "arms_behind_back",
+  "promptZH": "手放在身后",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "hand",
+  "KeyWord2": "手部动作",
+  "promptEN": "arms_crossed",
+  "promptZH": "手交叉于胸前",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "hand",
+  "KeyWord2": "手部动作",
+  "promptEN": "hand_on_hip",
+  "promptZH": "单手插腰",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "hand",
+  "KeyWord2": "手部动作",
+  "promptEN": "hands_on_hips",
+  "promptZH": "双手叉腰",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "hand",
+  "KeyWord2": "手部动作",
+  "promptEN": "adjusting_thighhigh",
+  "promptZH": "调整过膝袜",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "hand",
+  "KeyWord2": "手部动作",
+  "promptEN": "caramelldansen",
+  "promptZH": "某著名伸手扭腰动作",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "hand",
+  "KeyWord2": "手部动作",
+  "promptEN": "holding_hands",
+  "promptZH": "牵手",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "waist",
+  "KeyWord2": "腿部动作",
+  "promptEN": "crossed_legs",
+  "promptZH": "二郎腿",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "waist",
+  "KeyWord2": "腿部动作",
+  "promptEN": "fetal_position",
+  "promptZH": "曲腿至胸",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "waist",
+  "KeyWord2": "腿部动作",
+  "promptEN": "leg_lift",
+  "promptZH": "抬一只脚",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "waist",
+  "KeyWord2": "腿部动作",
+  "promptEN": "legs_up",
+  "promptZH": "抬两只脚",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "posture",
+  "KeyWord": "姿势",
+  "SecondLabel": "waist",
+  "KeyWord2": "腿部动作",
+  "promptEN": "spread_legs",
+  "promptZH": "张腿",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "style",
+  "KeyWord": "画布风格",
+  "SecondLabel": "painting",
+  "KeyWord2": "作画方式",
+  "promptEN": "game_cg",
+  "promptZH": "游戏CG",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "style",
+  "KeyWord": "画布风格",
+  "SecondLabel": "painting",
+  "KeyWord2": "作画方式",
+  "promptEN": "comic",
+  "promptZH": "漫画",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "style",
+  "KeyWord": "画布风格",
+  "SecondLabel": "painting",
+  "KeyWord2": "作画方式",
+  "promptEN": "4koma",
+  "promptZH": "四格",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "style",
+  "KeyWord": "画布风格",
+  "SecondLabel": "painting",
+  "KeyWord2": "作画方式",
+  "promptEN": "sketch",
+  "promptZH": "素描",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "style",
+  "KeyWord": "画布风格",
+  "SecondLabel": "painting",
+  "KeyWord2": "作画方式",
+  "promptEN": "traditional_media",
+  "promptZH": "手绘稿",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "style",
+  "KeyWord": "画布风格",
+  "SecondLabel": "painting",
+  "KeyWord2": "作画方式",
+  "promptEN": "watercolor_(medium)",
+  "promptZH": "透明水彩绘",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "style",
+  "KeyWord": "画布风格",
+  "SecondLabel": "painting",
+  "KeyWord2": "作画方式",
+  "promptEN": "wallpaper",
+  "promptZH": "壁纸",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "style",
+  "KeyWord": "画布风格",
+  "SecondLabel": "painting",
+  "KeyWord2": "作画方式",
+  "promptEN": "monochrome",
+  "promptZH": "单色图片",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "style",
+  "KeyWord": "画布风格",
+  "SecondLabel": "painting",
+  "KeyWord2": "作画方式",
+  "promptEN": "photo",
+  "promptZH": "照片",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "style",
+  "KeyWord": "画布风格",
+  "SecondLabel": "painting",
+  "KeyWord2": "作画方式",
+  "promptEN": "real",
+  "promptZH": "真实",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "style",
+  "KeyWord": "画布风格",
+  "SecondLabel": "type",
+  "KeyWord2": "类型",
+  "promptEN": "dakimakura",
+  "promptZH": "抱枕",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "style",
+  "KeyWord": "画布风格",
+  "SecondLabel": "type",
+  "KeyWord2": "类型",
+  "promptEN": "cosplay",
+  "promptZH": "角色扮演",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "style",
+  "KeyWord": "画布风格",
+  "SecondLabel": "type",
+  "KeyWord2": "类型",
+  "promptEN": "guro",
+  "promptZH": "猎奇",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "style",
+  "KeyWord": "画布风格",
+  "SecondLabel": "type",
+  "KeyWord2": "类型",
+  "promptEN": "realistic",
+  "promptZH": "写实",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "style",
+  "KeyWord": "画布风格",
+  "SecondLabel": "type",
+  "KeyWord2": "类型",
+  "promptEN": "landscape\/scenery",
+  "promptZH": "风景",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "style",
+  "KeyWord": "画布风格",
+  "SecondLabel": "type",
+  "KeyWord2": "类型",
+  "promptEN": "cityscape",
+  "promptZH": "城市风景",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "style",
+  "KeyWord": "画布风格",
+  "SecondLabel": "type",
+  "KeyWord2": "类型",
+  "promptEN": "science_fiction",
+  "promptZH": "科技幻想",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "style",
+  "KeyWord": "画布风格",
+  "SecondLabel": "type",
+  "KeyWord2": "类型",
+  "promptEN": "personification",
+  "promptZH": "拟人",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "style",
+  "KeyWord": "画布风格",
+  "SecondLabel": "type",
+  "KeyWord2": "类型",
+  "promptEN": "checkered",
+  "promptZH": "网格样的",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "style",
+  "KeyWord": "画布风格",
+  "SecondLabel": "type",
+  "KeyWord2": "类型",
+  "promptEN": "pixel_art",
+  "promptZH": "点阵图",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "style",
+  "KeyWord": "画布风格",
+  "SecondLabel": "type",
+  "KeyWord2": "类型",
+  "promptEN": "colorful",
+  "promptZH": "色彩斑斓的",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "style",
+  "KeyWord": "画布风格",
+  "SecondLabel": "type",
+  "KeyWord2": "类型",
+  "promptEN": "fine_art_parody",
+  "promptZH": "名画模仿",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "style",
+  "KeyWord": "画布风格",
+  "SecondLabel": "type",
+  "KeyWord2": "类型",
+  "promptEN": "covr",
+  "promptZH": "封面",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "style",
+  "KeyWord": "画布风格",
+  "SecondLabel": "type",
+  "KeyWord2": "类型",
+  "promptEN": "album",
+  "promptZH": "专辑",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "style",
+  "KeyWord": "画面风格",
+  "SecondLabel": "color",
+  "KeyWord2": "颜色",
+  "promptEN": "dark",
+  "promptZH": "暗的",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "style",
+  "KeyWord": "画面风格",
+  "SecondLabel": "color",
+  "KeyWord2": "颜色",
+  "promptEN": "light",
+  "promptZH": "亮的",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "style",
+  "KeyWord": "画面风格",
+  "SecondLabel": "color",
+  "KeyWord2": "颜色",
+  "promptEN": "night",
+  "promptZH": "晚上",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "style",
+  "KeyWord2": "服装风格",
+  "promptEN": "gothic",
+  "promptZH": "哥特风格",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "style",
+  "KeyWord2": "服装风格",
+  "promptEN": "lolita_fashion",
+  "promptZH": "洛丽塔风格",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "style",
+  "KeyWord2": "服装风格",
+  "promptEN": "gothic_lolita",
+  "promptZH": "哥特洛丽塔风格",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "style",
+  "KeyWord2": "服装风格",
+  "promptEN": "western",
+  "promptZH": "西部风格",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "style",
+  "KeyWord2": "服装风格",
+  "promptEN": "zettai_ryouiki",
+  "promptZH": "绝对领域",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "style",
+  "KeyWord2": "服装风格",
+  "promptEN": "tartan",
+  "promptZH": "格子花纹",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "clothe",
+  "KeyWord2": "服装",
+  "promptEN": "santa",
+  "promptZH": "圣诞装",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "clothe",
+  "KeyWord2": "服装",
+  "promptEN": "detached_sleeves",
+  "promptZH": "袖肩分离装",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "clothe",
+  "KeyWord2": "服装",
+  "promptEN": "long_sleeves",
+  "promptZH": "长袖",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "clothe",
+  "KeyWord2": "服装",
+  "promptEN": "tank_top",
+  "promptZH": "女用背心",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "clothe",
+  "KeyWord2": "服装",
+  "promptEN": "cape",
+  "promptZH": "披肩\/斗篷\/披风",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "clothe",
+  "KeyWord2": "服装",
+  "promptEN": "robe",
+  "promptZH": "长袍",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "clothe",
+  "KeyWord2": "服装",
+  "promptEN": "wedding_dress",
+  "promptZH": "婚纱",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "clothe",
+  "KeyWord2": "服装",
+  "promptEN": "western_suit",
+  "promptZH": "西服",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "clothe",
+  "KeyWord2": "服装",
+  "promptEN": "bodysuit",
+  "promptZH": "紧身衣",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "clothe",
+  "KeyWord2": "服装",
+  "promptEN": "bodystocking",
+  "promptZH": "连紧衣",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "clothe",
+  "KeyWord2": "服装",
+  "promptEN": "underwear",
+  "promptZH": "内衣",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "clothe",
+  "KeyWord2": "服装",
+  "promptEN": "lingerie",
+  "promptZH": "女用贴身内衣裤",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "clothe",
+  "KeyWord2": "服装",
+  "promptEN": "camisole",
+  "promptZH": "吊带背心",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "clothe",
+  "KeyWord2": "服装",
+  "promptEN": "midriff",
+  "promptZH": "露腰上衣",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "clothe",
+  "KeyWord2": "服装",
+  "promptEN": "pajamas",
+  "promptZH": "睡衣",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "clothe",
+  "KeyWord2": "服装",
+  "promptEN": "babydoll",
+  "promptZH": "透明睡衣",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "clothe",
+  "KeyWord2": "服装",
+  "promptEN": "hoodie",
+  "promptZH": "卫衣",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "clothe",
+  "KeyWord2": "服装",
+  "promptEN": "japanese_clothes",
+  "promptZH": "和服",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "clothe",
+  "KeyWord2": "服装",
+  "promptEN": "yukata",
+  "promptZH": "浴衣",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "clothe",
+  "KeyWord2": "服装",
+  "promptEN": "chinese_clothes",
+  "promptZH": "唐装",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "clothe",
+  "KeyWord2": "服装",
+  "promptEN": "chinadress",
+  "promptZH": "旗袍",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "clothe",
+  "KeyWord2": "服装",
+  "promptEN": "bikini",
+  "promptZH": "比基尼",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "clothe",
+  "KeyWord2": "服装",
+  "promptEN": "side-tie_bikini",
+  "promptZH": "系带式比基尼",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "clothe",
+  "KeyWord2": "服装",
+  "promptEN": "serafuku",
+  "promptZH": "水手服",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "clothe",
+  "KeyWord2": "服装",
+  "promptEN": "swimsuit",
+  "promptZH": "泳装",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "clothe",
+  "KeyWord2": "服装",
+  "promptEN": "formal",
+  "promptZH": "晚礼服",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "clothe",
+  "KeyWord2": "服装",
+  "promptEN": "uniform",
+  "promptZH": "制服",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "clothe",
+  "KeyWord2": "服装",
+  "promptEN": "suit",
+  "promptZH": "西装",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "clothe",
+  "KeyWord2": "服装",
+  "promptEN": "business_suit",
+  "promptZH": "职场制服",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "clothe",
+  "KeyWord2": "服装",
+  "promptEN": "school_uniform",
+  "promptZH": "学校制服",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "clothe",
+  "KeyWord2": "服装",
+  "promptEN": "school_swimsuit",
+  "promptZH": "学校泳衣",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "clothe",
+  "KeyWord2": "服装",
+  "promptEN": "gym_uniform",
+  "promptZH": "运动服",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "clothe",
+  "KeyWord2": "服装",
+  "promptEN": "sarashi",
+  "promptZH": "缠胸布",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "clothe",
+  "KeyWord2": "服装",
+  "promptEN": "bustier",
+  "promptZH": "胸衣",
+  "image": "no"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "body",
+  "KeyWord2": "身体装扮",
+  "promptEN": "tattoo",
+  "promptZH": "纹身",
+  "image": "no"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "body",
+  "KeyWord2": "身体装扮",
+  "promptEN": "facepaint",
+  "promptZH": "面纹",
+  "image": "no"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "body",
+  "KeyWord2": "身体装扮",
+  "promptEN": "off_shoulder",
+  "promptZH": "露单肩",
+  "image": "no"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "body",
+  "KeyWord2": "身体装扮",
+  "promptEN": "bare_shoulders",
+  "promptZH": "露双肩",
+  "image": "no"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "body",
+  "KeyWord2": "身体装扮",
+  "promptEN": "cleavage",
+  "promptZH": "乳沟",
+  "image": "no"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "body",
+  "KeyWord2": "身体装扮",
+  "promptEN": "barefoot",
+  "promptZH": "赤脚",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "body",
+  "KeyWord2": "身体装扮",
+  "promptEN": "bare_legs",
+  "promptZH": "裸足",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "Dressed state",
+  "KeyWord2": "衣着状态",
+  "promptEN": "topless",
+  "promptZH": "上着较少",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "Dressed state",
+  "KeyWord2": "衣着状态",
+  "promptEN": "bottomless",
+  "promptZH": "下着较少",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "Dressed state",
+  "KeyWord2": "衣着状态",
+  "promptEN": "open_clothes",
+  "promptZH": "敞开衣服",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "Dressed state",
+  "KeyWord2": "衣着状态",
+  "promptEN": "open_robe",
+  "promptZH": "敞开长袍",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "Dressed state",
+  "KeyWord2": "衣着状态",
+  "promptEN": "skirt_lift",
+  "promptZH": "掀起裙子",
+  "image": "no"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "Dressed state",
+  "KeyWord2": "衣着状态",
+  "promptEN": "undressing",
+  "promptZH": "脱衣服中",
+  "image": "no"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "Dressed state",
+  "KeyWord2": "衣着状态",
+  "promptEN": "torn_clothes",
+  "promptZH": "破烂衣服",
+  "image": "no"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "pattern",
+  "KeyWord2": "图案",
+  "promptEN": "striped",
+  "promptZH": "横条花纹的",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "pattern",
+  "KeyWord2": "图案",
+  "promptEN": "polka_dot",
+  "promptZH": "点装花纹的",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "pattern",
+  "KeyWord2": "图案",
+  "promptEN": "frills",
+  "promptZH": "皱边的",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "halo",
+  "promptZH": "头顶光环",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "tokin_hat",
+  "promptZH": "东金帽子",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "mini_top_hat",
+  "promptZH": "迷你礼帽",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "beret",
+  "promptZH": "贝雷帽",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "hood",
+  "promptZH": "兜帽",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "nurse_cap",
+  "promptZH": "护士帽",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "tiara",
+  "promptZH": "三重冕",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "crown",
+  "promptZH": "皇冠",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "hairband",
+  "promptZH": "发卡",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "hairclip",
+  "promptZH": "发夹",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "hair_ribbon",
+  "promptZH": "发带",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "hair_flower",
+  "promptZH": "发花",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "hair_ornament",
+  "promptZH": "头饰",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "bowtie",
+  "promptZH": "蝴蝶结",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "hair_bow",
+  "promptZH": "蝴蝶结发饰",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "maid_headdress",
+  "promptZH": "女仆头饰",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "bow",
+  "promptZH": "服装饰品\/头部饰品",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "lace",
+  "promptZH": "花边",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "ribbon",
+  "promptZH": "丝带",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "bandage",
+  "promptZH": "绷带",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "glasses",
+  "promptZH": "眼镜",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "sunglasses",
+  "promptZH": "太阳镜",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "goggles",
+  "promptZH": "风镜",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "blindfold",
+  "promptZH": "眼罩",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "eyepatch",
+  "promptZH": "眼罩(独眼)",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "mask",
+  "promptZH": "面具\/眼罩\/口罩",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "earrings",
+  "promptZH": "耳环",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "jewelry",
+  "promptZH": "首饰",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "collar",
+  "promptZH": "项圈",
+  "image": "no"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "bell",
+  "promptZH": "铃铛",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "choker",
+  "promptZH": "颈部饰品",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "sailor_collar",
+  "promptZH": "水手领",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "ribbon_choker",
+  "promptZH": "颈带",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "necklace",
+  "promptZH": "项链",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "scarf",
+  "promptZH": "围巾",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "necktie\/tie",
+  "promptZH": "领带",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "armband",
+  "promptZH": "臂章",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "armlet",
+  "promptZH": "臂环",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "wristband",
+  "promptZH": "腕带",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "chains",
+  "promptZH": "锁链",
+  "image": "no"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "wrist_cuffs",
+  "promptZH": "腕饰",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "gloves",
+  "promptZH": "手套",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "elbow_gloves",
+  "promptZH": "长袖手套",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "fingerless_gloves",
+  "promptZH": "露指手套",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "cuffs\/shackles",
+  "promptZH": "手链\/手铐",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "handcuffs",
+  "promptZH": "手铐",
+  "image": "no"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "bracelet",
+  "promptZH": "手镯",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "cane",
+  "promptZH": "手杖",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "chemise",
+  "promptZH": "吊带胸衣",
+  "image": "no"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "bra",
+  "promptZH": "胸罩",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "bandaid",
+  "promptZH": "创可贴",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "corset",
+  "promptZH": "紧身衣",
+  "image": "no"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "apron",
+  "promptZH": "围裙",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "belt",
+  "promptZH": "腰带",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "obi",
+  "promptZH": "衣带(和服用)",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "skirt",
+  "promptZH": "裙子",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "dress",
+  "promptZH": "连衣裙",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "pleated_skirt",
+  "promptZH": "百褶裙",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "miniskirt",
+  "promptZH": "迷你裙",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "summer_dress",
+  "promptZH": "夏日长裙",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "bloomers",
+  "promptZH": "灯笼裤",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "shorts",
+  "promptZH": "短裤",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "bike_shorts",
+  "promptZH": "自行车短裤",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "panties",
+  "promptZH": "内裤",
+  "image": "no"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "white_panties",
+  "promptZH": "白色内裤",
+  "image": "no"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "pink_panties",
+  "promptZH": "粉红内裤",
+  "image": "no"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "striped_panties",
+  "promptZH": "条纹内裤",
+  "image": "no"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "lowleg_panties",
+  "promptZH": "低腰式内裤",
+  "image": "no"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "side-tie_panties",
+  "promptZH": "系带式内裤",
+  "image": "no"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "thong",
+  "promptZH": "丁字裤",
+  "image": "no"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "fundoshi",
+  "promptZH": "日式丁字裤",
+  "image": "no"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "butt_plug",
+  "promptZH": "添加的尾巴",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "garter_straps",
+  "promptZH": "袜带",
+  "image": "no"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "garters",
+  "promptZH": "吊带袜",
+  "image": "no"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "garter_belt",
+  "promptZH": "连腰吊带袜",
+  "image": "no"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "socks",
+  "promptZH": "短袜",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "striped_socks",
+  "promptZH": "横条袜",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "loose_socks",
+  "promptZH": "泡泡袜",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "legwear",
+  "promptZH": "裹腿",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "leggings",
+  "promptZH": "裤袜",
+  "image": "no"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "fishnets",
+  "promptZH": "网袜",
+  "image": "no"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "kneehighs",
+  "promptZH": "长袜",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "stockings",
+  "promptZH": "丝袜",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "fishnet_stockings",
+  "promptZH": "渔网袜",
+  "image": "no"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "pantyhose",
+  "promptZH": "连裤袜",
+  "image": "no"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "thighhighs",
+  "promptZH": "过膝袜",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "striped_thighhighs",
+  "promptZH": "条纹过膝袜",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "white_thighhighs",
+  "promptZH": "白色过膝袜",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "black_thighhighs",
+  "promptZH": "黑色过膝袜",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "pink_thighhighs",
+  "promptZH": "粉色过膝袜",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "torn_thighhighs",
+  "promptZH": "损坏了的过膝袜",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "tabi",
+  "promptZH": "日式厚底短袜",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "leg_garter",
+  "promptZH": "腿部花边环",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "accessory",
+  "KeyWord2": "饰品",
+  "promptEN": "ankle_lace-up",
+  "promptZH": "腿部系带",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "shoes",
+  "KeyWord2": "鞋子",
+  "promptEN": "cross-laced_footwear",
+  "promptZH": "系带靴",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "shoes",
+  "KeyWord2": "鞋子",
+  "promptEN": "high_heels",
+  "promptZH": "高跟鞋",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "shoes",
+  "KeyWord2": "鞋子",
+  "promptEN": "mary_janes",
+  "promptZH": "玛丽珍鞋",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "shoes",
+  "KeyWord2": "鞋子",
+  "promptEN": "uwabaki",
+  "promptZH": "女式学生鞋",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "shoes",
+  "KeyWord2": "鞋子",
+  "promptEN": "slippers",
+  "promptZH": "拖鞋",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "shoes",
+  "KeyWord2": "鞋子",
+  "promptEN": "boots",
+  "promptZH": "靴子",
+  "image": "yes"
+ },
+ {
+  "Level1Label": "clothing",
+  "KeyWord": "服饰",
+  "SecondLabel": "shoes",
+  "KeyWord2": "鞋子",
+  "promptEN": "knee_boots",
+  "promptZH": "马靴",
+  "image": "yes"
+ }
+]

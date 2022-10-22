@@ -1,0 +1,41 @@
+[{
+    "Level1Label": "gather",
+    "KeyWord": "高质量集合",
+    "SecondLabel": "all",
+    "KeyWord2": "全部",
+    "promptEN": "masterpiece,best quality,official art,extremely detailed CG unity 8k wallpaper, plateau, ",
+    "promptZH": "代表作，质量最优，官方艺术，极其详细的CG unity 8k壁纸，高原"
+  },
+  {
+    "Level1Label": "High quality parameters",
+    "KeyWord": "高质量参数",
+    "SecondLabel": "image",
+    "KeyWord2": "图像",
+    "promptEN": "highres",
+    "promptZH": "高分辨率"
+  },
+  {
+    "Level1Label": "High quality parameters",
+    "KeyWord": "高质量参数",
+    "SecondLabel": "image",
+    "KeyWord2": "图像",
+    "promptEN": "absurdres",
+    "promptZH": "超高分辨率"
+  },
+  {
+    "Level1Label": "High quality parameters",
+    "KeyWord": "高质量参数",
+    "SecondLabel": "image",
+    "KeyWord2": "图像",
+    "promptEN": "incredibly_absurdres",
+    "promptZH": "极高分辨率"
+  },
+  {
+    "Level1Label": "High quality parameters",
+    "KeyWord": "高质量参数",
+    "SecondLabel": "image",
+    "KeyWord2": "图像",
+    "promptEN": "huge_filesize",
+    "promptZH": "超级高分辨率/大文件"
+  }
+]
