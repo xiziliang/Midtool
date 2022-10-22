@@ -71,7 +71,9 @@ export interface HistoryKeyWord extends CustomKeyWord {
 
 export type OptionType = 'none' | 'textbox' | 'selector'| 'drag' | 'percentage';
 
-export type AIParams = 'card' | 'keyword' | 'params' | 'dpi' | 'img';
+export type MidJourneyParams = 'card' | 'keyword' | 'params' | 'dpi' | 'img';
+
+export type NovelAiParams = 'prompt' | 'people' | 'body' | 'style' | 'composeKeyWord' | 'positiveKeyWord' | 'custom';
 
 interface Option {
   [key: string]: string;

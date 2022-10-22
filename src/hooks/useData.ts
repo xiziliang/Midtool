@@ -166,6 +166,17 @@ export const useNovelAiData = () => {
   const defaultPositiveKeyWord = ref<CustomKeyWord[]>([]);
   const defaultCustomKeyWord = ref<CustomKeyWord[]>([]);
 
+  /** 所有的数据 */
+  const allDefaultData = computed(() => [
+    ...defaultPromptTemplate.value,
+    ...defaultDrawPeople.value,
+    ...defaultDrawBody.value,
+    ...defaultDrawStyle.value,
+    ...defaultComposeKeyWord.value,
+    ...defaultPositiveKeyWord.value,
+    ...defaultCustomKeyWord.value,
+  ])
+
   function formatData(data: any[]) {
     
     data.forEach(x => {
@@ -200,7 +211,7 @@ export const useNovelAiData = () => {
     defaultDrawStyle.value = cloneDeep(drawStyleList.value.slice(0, 5));
   }
   async function fetchComposeKeyWord() {
-    const { data } = await useFetch("/json/NovelAI_gouotu.json");
+    const { data } = await useFetch("/json/NovelAI_goutu.json");
     composeKeyWord.value = formatData(JSON.parse(data.value as string));
     defaultComposeKeyWord.value = cloneDeep(composeKeyWord.value.slice(0, 5));
   }
@@ -236,6 +247,7 @@ export const useNovelAiData = () => {
     defaultComposeKeyWord,
     defaultPositiveKeyWord,
     defaultCustomKeyWord,
+    allDefaultData,
 
     fetch,
   }

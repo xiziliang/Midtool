@@ -3,7 +3,12 @@ import { ref, reactive, nextTick, computed, onBeforeUnmount } from "vue";
 import { ElMessage } from "element-plus";
 import { cloneDeep } from "lodash";
 
-import type { AIParams, HistoryKeyWord, DpiOptions, CustomKeyWord } from "@/models";
+import type {
+  MidJourneyParams,
+  HistoryKeyWord,
+  DpiOptions,
+  CustomKeyWord,
+} from "@/models";
 
 import Card from "@/components/Card.vue";
 import ImgCard from "@/components/ImgCard.vue";
@@ -244,7 +249,7 @@ async function onCloseParamsDialog() {
   paramsList.value = parameterRef.value?.data;
 }
 
-function onSelectAIParams(type: AIParams | "writekeyword") {
+function onSelectAIParams(type: MidJourneyParams | "writekeyword") {
   switch (type) {
     case "card":
       dialogVisible.card = true;

@@ -3,7 +3,13 @@ import { ref, reactive, nextTick, computed, onBeforeUnmount } from "vue";
 import { ElMessage } from "element-plus";
 import { cloneDeep } from "lodash";
 
-import type { AIParams, HistoryKeyWord, DpiOptions, CustomKeyWord } from "@/models";
+import type {
+  NovelAiParams,
+  HistoryKeyWord,
+  DpiOptions,
+  CustomKeyWord,
+  CardItem,
+} from "@/models";
 
 import Card from "@/components/Card.vue";
 import Tag from "@/components/Tag.vue";
@@ -13,6 +19,12 @@ import CardDialog from "@/components/CardDialog.vue";
 
 import { useEventListener } from "@vueuse/core";
 import { useNovelAiData } from "@/hooks";
+
+const clearUp = useEventListener("click", clearWeight);
+
+onBeforeUnmount(() => {
+  clearUp();
+});
 
 const {
   // JSON数据
@@ -32,6 +44,9 @@ const {
   defaultPositiveKeyWord,
   defaultCustomKeyWord,
 
+  // 所有数据
+  allDefaultData,
+
   fetch,
 } = useNovelAiData();
 
@@ -40,6 +55,8 @@ fetch();
 const newCustomKeyWord = ref("");
 const newComposeKeyWord = ref("");
 const newPositiveKeyWord = ref("");
+
+const currentShowWeightTag = ref("");
 
 const dialogVisible = reactive({
   prompt: false,
@@ -53,6 +70,77 @@ const dialogVisible = reactive({
   writePositiveKeyWord: false,
   writeCustomKeyWord: false,
 });
+
+function onSelectParams(
+  type:
+    | NovelAiParams
+    | "writeComposeKeyWord"
+    | "writePositiveKeyWord"
+    | "writeCustomKeyWord"
+) {
+  switch (type) {
+    case "prompt":
+      dialogVisible.prompt = true;
+
+      break;
+    case "people":
+      dialogVisible.people = true;
+
+      break;
+    case "body":
+      dialogVisible.body = true;
+
+      break;
+    case "style":
+      dialogVisible.style = true;
+
+      break;
+    case "composeKeyWord":
+      dialogVisible.composeKeyWord = true;
+
+      break;
+    case "writeComposeKeyWord":
+      dialogVisible.writeComposeKeyWord = true;
+
+      break;
+    case "positiveKeyWord":
+      dialogVisible.positiveKeyWord = true;
+
+      break;
+    case "writePositiveKeyWord":
+      dialogVisible.writePositiveKeyWord = true;
+
+      break;
+    case "writeCustomKeyWord":
+      dialogVisible.writeCustomKeyWord = true;
+
+      break;
+  }
+
+  clearWeight();
+}
+
+function clearWeight() {
+  allDefaultData.value.forEach((x: any) => (x.showWeight = false));
+  currentShowWeightTag.value = "";
+}
+
+function onShowWeightTag(content: string, item: CustomKeyWord) {
+  item.isSelected = !item.isSelected;
+  if (currentShowWeightTag.value === content) return;
+
+  currentShowWeightTag.value = content;
+  allDefaultData.value.forEach((x: any) => (x.showWeight = false));
+  item.showWeight = true;
+}
+
+function onReduceWeight(weight: number, item: any) {
+  item.weight = weight - 1;
+}
+
+function onAddWeight(weight: number, item: any) {
+  item.weight = weight + 1;
+}
 
 function closeDislog() {
   dialogVisible.prompt = false;
@@ -85,7 +173,7 @@ defineExpose({
     mb-60px
   >
     <div flex="~" mt-4 class="readmore-title">
-      <div cursor-pointer flex>
+      <div cursor-pointer flex @click="onSelectParams('prompt')">
         <p><i class="icon-fengge icon-big mr-4px"></i>选择参考图</p>
         <div i-carbon:add></div>
         <p self-center text-14px class="text-[#AAAAAA]">
@@ -112,7 +200,7 @@ defineExpose({
       </div>
     </div>
     <div flex="~" mt-28px mb-5px class="readmore-title">
-      <div cursor-pointer flex>
+      <div cursor-pointer flex @click="onSelectParams('people')">
         <p><i class="icon-tishici icon-big mr-2"></i>画个人</p>
         <div i-carbon:add></div>
         <p self-center text-14px class="text-[#AAAAAA]">
@@ -131,7 +219,7 @@ defineExpose({
       <Card :data="defaultDrawPeople"></Card>
     </div>
     <div flex="~" mt-28px mb-5px class="readmore-title">
-      <div cursor-pointer flex>
+      <div cursor-pointer flex @click="onSelectParams('body')">
         <p><i class="icon-tishici icon-big mr-2"></i>画个物体</p>
         <div i-carbon:add></div>
         <p self-center text-14px class="text-[#AAAAAA]">添加物体/只画物体</p>
@@ -148,7 +236,7 @@ defineExpose({
       <Card :data="defaultDrawBody"></Card>
     </div>
     <div flex="~" mt-28px mb-5px class="readmore-title">
-      <div cursor-pointer flex>
+      <div cursor-pointer flex @click="onSelectParams('style')">
         <p><i class="icon-tishici icon-big mr-2"></i>画风</p>
         <div i-carbon:add></div>
         <p self-center text-14px class="text-[#AAAAAA]">动漫绘画为主</p>
@@ -165,14 +253,18 @@ defineExpose({
       <Card :data="defaultDrawStyle"></Card>
     </div>
     <div flex="~" mt-28px mb-5px class="readmore-title">
-      <div cursor-pointer flex>
+      <div cursor-pointer flex @click="onSelectParams('composeKeyWord')">
         <p><i class="icon-tishici icon-big mr-2"></i>构图</p>
         <div i-carbon:add></div>
         <p self-center text-14px class="text-[#AAAAAA]">焦距/距离/灯光...</p>
       </div>
     </div>
     <div flex="~ gap-3 wrap" justify-start items-stretch class="more">
-      <Tag class="no-mark-tag" content="自定义">
+      <Tag
+        class="no-mark-tag"
+        content="自定义"
+        @click="onSelectParams('writeComposeKeyWord')"
+      >
         <template #icon> <i class="icon-zidingyi icon"></i></template>
       </Tag>
       <Tag
@@ -183,16 +275,24 @@ defineExpose({
         :is-custom="item.isCustom"
         :weight="item.weight"
         :show-weight="item.showWeight"
+        @click.stop.self
+        @reduce-weight="(value) => onReduceWeight(value, item)"
+        @add-weight="(value) => onAddWeight(value, item)"
+        @click-tag="(value) => onShowWeightTag(value, item)"
       ></Tag>
     </div>
     <div flex="~" mt-28px mb-8px class="readmore-title">
-      <div cursor-pointer flex>
+      <div cursor-pointer flex @click="onSelectParams('positiveKeyWord')">
         <p><i class="icon-tishici icon-big mr-2"></i>正面tag</p>
         <div i-carbon:add></div>
       </div>
     </div>
     <div flex="~ gap-3 wrap" justify-start items-stretch class="more">
-      <Tag class="no-mark-tag" content="自定义">
+      <Tag
+        class="no-mark-tag"
+        content="自定义"
+        @click="onSelectParams('writePositiveKeyWord')"
+      >
         <template #icon> <i class="icon-zidingyi icon"></i></template>
       </Tag>
       <Tag
@@ -203,6 +303,10 @@ defineExpose({
         :is-custom="item.isCustom"
         :weight="item.weight"
         :show-weight="item.showWeight"
+        @click.stop.self
+        @reduce-weight="(value) => onReduceWeight(value, item)"
+        @add-weight="(value) => onAddWeight(value, item)"
+        @click-tag="(value) => onShowWeightTag(value, item)"
       ></Tag>
     </div>
     <div flex="~" mt-28px mb-8px class="readmore-title">
@@ -212,7 +316,11 @@ defineExpose({
       </div>
     </div>
     <div flex="~ gap-3 wrap" justify-start items-stretch class="more">
-      <Tag class="no-mark-tag" content="自定义">
+      <Tag
+        class="no-mark-tag"
+        content="自定义"
+        @click="onSelectParams('writeCustomKeyWord')"
+      >
         <template #icon> <i class="icon-zidingyi icon"></i></template>
       </Tag>
       <Tag
@@ -223,6 +331,10 @@ defineExpose({
         :is-custom="item.isCustom"
         :weight="item.weight"
         :show-weight="item.showWeight"
+        @click.stop.self
+        @reduce-weight="(value) => onReduceWeight(value, item)"
+        @add-weight="(value) => onAddWeight(value, item)"
+        @click-tag="(value) => onShowWeightTag(value, item)"
       ></Tag>
     </div>
   </main>
@@ -333,7 +445,7 @@ defineExpose({
     title="添加构图"
     v-model="dialogVisible.writeComposeKeyWord"
     center
-    width="50%"
+    width="30%"
     destroy-on-close
     draggable
     :close-on-click-modal="false"
@@ -355,7 +467,7 @@ defineExpose({
     title="添加正面tag"
     v-model="dialogVisible.writePositiveKeyWord"
     center
-    width="50%"
+    width="30%"
     destroy-on-close
     draggable
     :close-on-click-modal="false"
@@ -377,7 +489,7 @@ defineExpose({
     title="自己添加"
     v-model="dialogVisible.writeCustomKeyWord"
     center
-    width="50%"
+    width="30%"
     destroy-on-close
     draggable
     :close-on-click-modal="false"

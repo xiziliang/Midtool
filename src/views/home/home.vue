@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
-import { useRouter } from "vue-router";
+import { useRouter, useRoute } from "vue-router";
 import type { TabsPaneContext } from "element-plus";
 
 import TooltipTag from "@/components/TooltipTag.vue";
@@ -25,7 +25,8 @@ const currentTabRef = ref<InstanceType<Instance>>();
 const { top: headRefTop } = useElementBounding(headerRef);
 
 const router = useRouter();
-const currentRouter = ref("novelAi");
+const route = useRoute();
+const currentRouter = ref(route.name);
 const routerList = ref(
   $routes[0].children?.map((x) => ({
     title: x.meta?.title as string,
@@ -57,7 +58,6 @@ const website = ref([
 ]);
 
 function onClickTab(context: TabsPaneContext) {
-  console.log(context);
   router.push({
     name: context.paneName as string,
   });
