@@ -20,21 +20,9 @@ onBeforeUnmount(() => {
 
 // 当前展示weight的card
 const currentShowWeightCard = ref("");
-// 已选list
-const selectedList = ref<CardItem[]>();
-// 未选list
-const remainList = ref<CardItem[]>();
+const allData = ref<CardItem[]>();
 
 function onTrigger(item: CardItem) {
-  if (item.isSelected) {
-    selectedList.value = selectedList.value!.filter((x) => x.promptEN !== item.promptEN);
-    setTimeout(() => {
-      remainList.value!.unshift(item);
-    }, 300);
-  } else {
-    selectedList.value!.push(item);
-    remainList.value = remainList.value!.filter((x) => x.promptEN !== item.promptEN);
-  }
   item.isSelected = !item.isSelected;
 
   onClickCard(item.promptEN, item);
@@ -60,33 +48,16 @@ watch(
   () => props.data,
   (value) => {
     if (value) {
-      selectedList.value = value.filter((x) => x.isSelected);
-      remainList.value = value.filter((x) => !x.isSelected);
+      allData.value = value;
     }
   },
   { immediate: true }
 );
 </script>
 <template>
-  <TransitionGroup name="animate__fadeInRight">
-    <div
-      class="card"
-      v-for="item in selectedList"
-      :key="item.promptEN"
-      :class="{ selected: item.isSelected }"
-      :data-weight="item.weight"
-      @click.stop.self="onTrigger(item)"
-    >
-      <CardItemComp
-        v-bind="item"
-        @add-weight="(value) => onAddWeight(value, item)"
-        @reduce-weight="(value) => onReduceWeight(value, item)"
-      />
-    </div>
-  </TransitionGroup>
   <div
     class="card"
-    v-for="item in remainList"
+    v-for="item in allData"
     :key="item.promptEN"
     :class="{ selected: item.isSelected }"
     :data-weight="item.weight"
