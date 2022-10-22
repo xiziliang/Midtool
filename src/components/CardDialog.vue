@@ -81,11 +81,11 @@ watchEffect(() => {
           {{ keyword1 }}
         </div></template
       >
-      <div max-h-2xl min-h-lg overflow-auto>
+      <div max-h-2xl min-h-lg overflow-auto style="padding-top:15px">
         <div v-for="keyword2 in keyword2label(keyword1!)" class="keyword2">
-          <div flex="~" mt-4>
+          <div flex="~" mt-4 text-16px color-dark-400>
             <div flex>
-              <p>{{ keyword2 }}</p>
+              <p style="font-weight: 600">{{ keyword2 }}</p>
             </div>
           </div>
           <div flex="~ gap-3 wrap" justify-start items-start pt-4>
@@ -99,7 +99,7 @@ watchEffect(() => {
               <div class="card-img">
                 <img height="160" width="156" :src="item.imgUrl" />
               </div>
-              <div class="card-name" p-2>{{ item.promptZH }}</div>
+              <div class="card-name" text-16px p-2 pb-0>{{ item.promptZH }}</div>
               <div class="card-enname" p-2>{{ item.promptEN }}</div>
             </div>
           </div>

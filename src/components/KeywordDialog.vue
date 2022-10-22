@@ -74,7 +74,7 @@ watchEffect(() => {
 <template>
   <el-tabs v-model="currentTab">
     <el-tab-pane v-for="keyword1 in tabList" :label="keyword1" :name="keyword1">
-      <div h-lg overflow-auto will-change-scroll>
+      <div h-lg overflow-auto will-change-scroll style="padding-top:15px">
         <div v-for="keyword2 in keyword2label(keyword1!)" class="keyword2">
           <div flex="~" m="y-4">
             <div flex>

@@ -46,7 +46,7 @@ watch(
 </script>
 
 <template>
-  <div class="params-list" flex="~ col" border-rd-1>
+  <div class="params-list" flex="~ col" border-rd-1 max-h-2xl min-h-lg overflow-auto>
     <div v-for="item in data" :key="item.options" class="params-list-container">
       <div class="params-list-item">
         <el-checkbox v-model="item.checked">
@@ -57,10 +57,10 @@ watch(
             @click="item.checked = !item.checked"
           >
             <strong color-gray-9 mr-2>{{ item.options }}</strong>
-            <small text="[0.95em]" inline-block p="x-2 y-1" rounded color-gray-9>{{
+            <small text="[0.95em]" inline-block p="y-1" rounded color-gray-9>{{
               item.parameter
             }}</small>
-            <small class="color-[#AAAAAA]" text="[0.95em]" inline-block p-3>{{
+            <small class="color-[#AAAAAA]" text="[0.95em]" inline-block p-3 pl-2>{{
               item.describe
             }}</small>
           </label>
@@ -134,10 +134,6 @@ watch(
   border-bottom: 1px solid #eaeff3 !important;
   padding: 1rem 1rem;
 
-  :deep(.el-checkbox) {
-    column-gap: 0.75rem;
-  }
-
   :deep(.el-checkbox__label) {
     text-overflow: ellipsis;
     overflow: hidden;
@@ -153,6 +149,15 @@ watch(
 .params-list-container:last-child > .params-list-item {
   border-bottom-right-radius: 0.25rem;
   border-bottom-left-radius: 0.25rem;
+}
+
+.params-list-container .params-list-item {
+  padding-left: 0;
+}
+
+.params-list-container .el-slider,
+.params-list-container .el-input {
+  padding-left: 28px;
 }
 
 .params-list-text {

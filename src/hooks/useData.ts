@@ -65,7 +65,7 @@ export const useMidJourneyData = () => {
   const tooltiplist = computed<(CardItem & DpiOptions & CustomKeyWord & ImgOptions)[]>(
     () => {
       return [].concat(
-        defaultCardList.value.find((x) => x.isSelected) || ([] as any),
+        defaultCardList.value.filter((x) => x.isSelected) || ([] as any),
         defaultKeyWordList.value.find((x) => x.isSelected) || ([] as any),
         [...defaultDpiList.value, dpiParams].find((x) => x.isSelected) || ([] as any),
         defaultImgList.value.find((x) => x.isSelected) || ([] as any)

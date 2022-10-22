@@ -36,21 +36,19 @@ watch(
 );
 </script>
 <template>
-  <TransitionGroup name="animate__fadeInRight">
-    <div
-      class="card"
-      v-for="item in selectedList"
-      :key="item.promptEN"
-      :class="{ selected: item.isSelected }"
-      @click="onTrigger(item)"
-    >
-      <div class="card-img">
-        <img height="160" width="156" :src="item.imgUrl" />
-      </div>
-      <div class="card-name" p-2>{{ item.promptZH }}</div>
-      <div class="card-enname" p-2>{{ item.promptEN }}</div>
+  <div
+    class="card"
+    v-for="item in selectedList"
+    :key="item.promptEN"
+    :class="{ selected: item.isSelected }"
+    @click="onTrigger(item)"
+  >
+    <div class="card-img">
+      <img height="160" width="156" :src="item.imgUrl" />
     </div>
-  </TransitionGroup>
+    <div class="card-name" text-16px p-2 pb-0>{{ item.promptZH }}</div>
+    <div class="card-enname" p-2>{{ item.promptEN }}</div>
+  </div>
   <div
     class="card"
     v-for="item in remainList"
@@ -61,7 +59,7 @@ watch(
     <div class="card-img">
       <img height="160" width="156" :src="item.imgUrl" />
     </div>
-    <div class="card-name" p-2>{{ item.promptZH }}</div>
+    <div class="card-name" text-16px p-2 pb-0>{{ item.promptZH }}</div>
     <div class="card-enname" p-2>{{ item.promptEN }}</div>
   </div>
 </template>

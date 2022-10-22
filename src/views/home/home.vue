@@ -74,8 +74,8 @@ async function translation() {
 <template>
   <div class="home-page" style="min-height: calc(100vh - 180px)">
     <div class="logo" max-h-194px pt-4 overflow-hidden>
-      <img w-572px ma src="@/assets/img/logo.png" alt="logo" />
-      <div class="tips" p="t-2 x-2" absolute w-full top-0px flex>
+      <img w-615px ma src="@/assets/img/logo.png" alt="logo" />
+      <div class="tips" p="t-4 x-5" absolute w-full top-0px flex>
         <label class="title" text-18px font-600
           ><span>prompt</span> <span>Tool</span> <span>词图</span></label
         >
@@ -89,9 +89,10 @@ async function translation() {
       ref="headerRef"
       :style="{
         'box-shadow': headRefTop === 0 ? '0px 2px 16px rgba(0, 0, 0, 0.15)' : '',
+        'padding-top': headRefTop === 0 ? '1rem' : ''
       }"
       class="container-input"
-      p="y-4 x-2"
+      p="yb-4 x-2"
     >
       <div class="input-group" flex="~" justify-center items-stretch w="100%">
         <div
@@ -99,9 +100,9 @@ async function translation() {
           h-auto
           p="x-0.2rem y-0.2rem"
           flex="~ grow shrink wrap gap-2"
-          border="3 gray-800 rounded-12px"
+          border="2 gray-800 rounded-12px"
         >
-          <el-input
+        <el-input
             text-16px
             style="width: calc(100% - 4rem)"
             v-model="inputValue"
@@ -145,14 +146,14 @@ async function translation() {
       <div class="translation-result" flex="~" px-4 justify-center items-start>
         <div class="lt-md:w-600px md:w-790px" p="y-15px x-4px" flex="~ gap-3">
           <template v-if="!translationResult.length && !loading">
-            <p color-gray-300>翻译结果: A lazy cat prone on the ground of the window</p>
+            <p style="color:#aaa">翻译结果: A lazy cat prone on the ground of the window</p>
           </template>
           <template v-if="loading">
             <i class="icon-loading icon"></i>
-            <p color-gray-300>正在翻译...</p>
+            <p style="color:#aaa">正在翻译...</p>
           </template>
           <template v-else-if="translationResult.length > 0 && !loading">
-            <code class="tracking-0.5px w-36.7rem" color-gray-500 break-words>{{
+            <code class="tracking-0.5px w-36.7rem" color-dark-400 text-20px break-words>{{
               translationResult
             }}</code>
             <el-button
@@ -171,13 +172,12 @@ async function translation() {
       <component :ref="(el: any) => currentTabRef = el" :is="Component" />
     </RouterView>
   </div>
-  <footer>
-    <div class="footer bg-[#333333]" flex="~ col">
-      <div min-h-180px flex="~ col" justify-center p="x-40 y-8" text-white>
-        <div p="y-4">复制翻译结果后，可以去这些网站完成绘画</div>
-        <div flex="~ gap-4">
+  <footer class="bg-[#333333]">
+    <div class="footer ma lt-lg:max-w-660px lg:max-w-828px xl:max-w-1176px 2xl:max-w-1332px" flex="~ col">
+      <div min-h-180px flex="~ col" justify-center p="y-8" text-white>
+        <div p="y-4" text-20px>复制翻译结果后，可以去这些网站完成绘画</div>
+        <div flex="~ gap-4" text-14px>
           <a
-            hover:color-gray-300
             v-for="item in website"
             :href="item.value"
             target="_black"
@@ -189,3 +189,8 @@ async function translation() {
     </div>
   </footer>
 </template>
+<style scoped>
+:deep(.container-input .el-textarea__inner) {
+  color: #222;
+}
+</style>
