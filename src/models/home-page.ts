@@ -17,6 +17,23 @@ export interface CardItem {
   showWeight: boolean;
 }
 
+export interface PromptTemplate {
+  Level1Label: string;
+  KeyWord: string;
+  SecondLabel: string
+  KeyWord2: string;
+  promptZH: string;
+  promptEN: string;
+  image: 'yes' | 'no';
+  // imgUrl?: string;
+  imageLocation: string;
+  title: string;
+  detagEN: string;
+  parameter: string,
+  author: string;
+  isSelected?: boolean;
+}
+
 export interface DpiOptions {
   SecondLabel?: string | null;
   KeyWord2?: string | null;

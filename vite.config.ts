@@ -31,6 +31,12 @@ export default defineConfig({
       mode: 'vue-scoped',
     }),
   ],
+  assetsInclude: [
+    '**/*.png',
+    '**/*.webp',
+    '**/*.jpg',
+    '**/*.jpeg',
+  ],
   server: {
     host: '0.0.0.0',
     open: true,

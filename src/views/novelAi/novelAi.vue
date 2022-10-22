@@ -7,276 +7,76 @@ import type { AIParams, HistoryKeyWord, DpiOptions, CustomKeyWord } from "@/mode
 
 import Card from "@/components/Card.vue";
 import Tag from "@/components/Tag.vue";
-import MidjourneyParams from "@/components/MidjourneyParams.vue";
-import DpiDialog from "@/components/DpiDialog.vue";
+import PromptItem from "@/components/PromptItem.vue";
 import KeywordDialog from "@/components/KeywordDialog.vue";
 import CardDialog from "@/components/CardDialog.vue";
 
 import { useEventListener } from "@vueuse/core";
-import { useMidJourneyData } from "@/hooks";
+import { useNovelAiData } from "@/hooks";
 
 const {
-  // JSON data
-  cardList,
-  keyWordList,
-  paramsList,
-  dpiList,
+  // JSON数据
+  promptTemplateList,
+  drawPeopleList,
+  drawBodyList,
+  drawStyleList,
+  composeKeyWord,
+  positiveKeyWord,
 
-  // Storage data
-  cardCustomList,
-  keyWordCustomList,
-  dpiCustomsList,
-  paramCustomsList,
-  imgCustomsList,
-  keyWordHistoryList,
-
-  // computed data
-  defaultCardList,
-  defaultKeyWordList,
-  defaultDpiList,
-  defaultParamList,
-  defaultImgList,
-  tooltiplist,
+  // 默认展示数据
+  defaultPromptTemplate,
+  defaultDrawPeople,
+  defaultDrawBody,
+  defaultDrawStyle,
+  defaultComposeKeyWord,
+  defaultPositiveKeyWord,
+  defaultCustomKeyWord,
 
   fetch,
-} = useMidJourneyData();
-
-const clearUp = useEventListener("click", () => {
-  defaultKeyWordList.value.forEach((x) => (x.showWeight = false));
-  currentShowWeightTag.value = "";
-});
-
-onBeforeUnmount(() => {
-  clearUp();
-});
+} = useNovelAiData();
 
 fetch();
 
-const parameterRef = ref<InstanceType<typeof MidjourneyParams> | null>(null);
-const dpiDialogRef = ref<InstanceType<typeof DpiDialog> | null>(null);
-const keywordDialogRef = ref<InstanceType<typeof KeywordDialog> | null>(null);
-const cardDialogRef = ref<InstanceType<typeof CardDialog> | null>(null);
-
-const newKeyWordValue = ref("");
-const newImgAddressValue = ref("");
-/** 当前显示weight的tag */
-const currentShowWeightTag = ref("");
-
-const stringField = computed(() => {
-  const cardListString = defaultCardList.value
-    .filter((x) => x.isSelected)
-    .map((x) => x.promptEN)
-    .join(",");
-
-  const keyWordString = defaultKeyWordList.value
-    .filter((x) => x.isSelected && !x.isCustom)
-    .map((x) => x.promptEN)
-    .join(",");
-
-  // NOTE: paramsList or defaultParamList
-  const paramsListString = paramsList.value
-    .filter((x) => x.checked)
-    .map((x) => x.parameter)
-    .join(",");
-
-  return (
-    (cardListString ? cardListString + "," : "") +
-    (keyWordString ? keyWordString + "," : "") +
-    (dpiParams.isSelected
-      ? `--ar ${dpiParams.height}:${dpiParams.width}`
-      : defaultDpiList.value.filter((x) => x.isSelected).length
-      ? `--ar ${defaultDpiList.value[0].height}:${defaultDpiList.value[0].width}`
-      : "--ar 1:1") +
-    "," +
-    (paramsListString ? paramsListString + "," : "") +
-    defaultImgList.value
-      .filter((x) => x.isSelected)
-      .map((x) => x.img)
-      .join(",")
-  );
-});
+const newCustomKeyWord = ref("");
+const newComposeKeyWord = ref("");
+const newPositiveKeyWord = ref("");
 
 const dialogVisible = reactive({
-  params: false,
-  writeKeyWord: false,
-  keyWord: false,
-  dpi: false,
-  card: false,
-  img: false,
+  prompt: false,
+  people: false,
+  body: false,
+  style: false,
+  composeKeyWord: false,
+  positiveKeyWord: false,
+
+  writeComposeKeyWord: false,
+  writePositiveKeyWord: false,
+  writeCustomKeyWord: false,
 });
 
-const dpiParams = reactive<{
-  options: string;
-  isSelected: boolean;
-  isCustom: boolean;
-  width: undefined | string;
-  height: undefined | string;
-}>({
-  options: "自定义",
-  isSelected: false,
-  isCustom: true,
-  width: undefined,
-  height: undefined,
-});
+function closeDislog() {
+  dialogVisible.prompt = false;
+  dialogVisible.people = false;
+  dialogVisible.body = false;
+  dialogVisible.style = false;
+  dialogVisible.composeKeyWord = false;
+  dialogVisible.positiveKeyWord = false;
+
+  dialogVisible.writeComposeKeyWord = false;
+  dialogVisible.writePositiveKeyWord = false;
+  dialogVisible.writeCustomKeyWord = false;
+}
 
 defineExpose({
-  defaultKeyWordList,
-  /** 用于翻译后拼接 */
-  stringField,
-  /** input下方的tooltip提示 */
-  tipsList: tooltiplist,
+  tipsList: [
+    {
+      promptZH: "",
+      options: "",
+      img: "",
+    },
+  ],
+  stringField: "",
 });
-
-function onClickKeyWordTag(item: CustomKeyWord) {
-  item.isSelected = !item.isSelected;
-  item.showWeight = true;
-}
-
-function onClickDpiTag(item: DpiOptions) {
-  defaultDpiList.value.forEach((x) => (x.isSelected = false));
-  dpiParams.isSelected = false;
-
-  item.isSelected = true;
-}
-
-function onDelete(value: string) {
-  const index = defaultKeyWordList.value.findIndex(
-    (x) => x.isCustom && x.promptZH === value
-  );
-
-  defaultKeyWordList.value.splice(index, 1);
-  ElMessage.success("删除成功");
-}
-
-function onDeleteDpi() {
-  dpiParams.isSelected = false;
-  dpiParams.width = "";
-  dpiParams.height = "";
-
-  ElMessage.success("删除成功");
-}
-
-function onReduceWeight(weight: number, item: CustomKeyWord) {
-  item.weight = weight - 1;
-}
-
-function onAddWeight(weight: number, item: CustomKeyWord) {
-  item.weight = weight + 1;
-}
-
-function onShowWeightTag(content: string, item: CustomKeyWord) {
-  if (currentShowWeightTag.value === content) return;
-
-  currentShowWeightTag.value = content;
-  defaultKeyWordList.value.forEach((x) => (x.showWeight = false));
-  item.showWeight = true;
-}
-
-async function onCloseCardDialog() {
-  dialogVisible.card = false;
-  await nextTick();
-  cardCustomList.value = cardDialogRef.value?.cardCustomList;
-}
-
-async function onCloseDpiDialog() {
-  dialogVisible.dpi = false;
-  await nextTick();
-  const { width, height } = dpiDialogRef.value?.dpiCustom!;
-  if (width && height) {
-    dpiParams.width = width;
-    dpiParams.height = height;
-    dpiParams.isSelected = true;
-  } else {
-    dpiParams.width = "";
-    dpiParams.height = "";
-    dpiParams.isSelected = false;
-  }
-
-  if (dpiParams.isSelected) {
-    dpiCustomsList.value = dpiDialogRef.value?.dpiCustomsList;
-    dpiCustomsList.value.forEach((x) => (x.isSelected = false));
-  } else {
-    dpiCustomsList.value = dpiDialogRef.value?.dpiCustomsList;
-  }
-}
-
-async function onCloseKeyWordDialog() {
-  dialogVisible.keyWord = false;
-  await nextTick();
-  keyWordCustomList.value = keywordDialogRef.value?.keyWordCustomList;
-  keyWordHistoryList.value = keywordDialogRef.value?.keyWordHistoryList;
-
-  defaultKeyWordList.value.push(...keyWordHistoryList.value.filter((x) => x.isSelected));
-}
-
-function onCloseWriteKeyWordDialog() {
-  dialogVisible.writeKeyWord = false;
-
-  const item = keyWordHistoryList.value.find((x) => x.promptZH === newKeyWordValue.value);
-
-  if (item) {
-    item.isSelected = true;
-    defaultKeyWordList.value.push(item);
-  } else if (!item) {
-    keyWordHistoryList.value.push(
-      reactive({
-        promptZH: newKeyWordValue.value,
-        weight: 1,
-        showWeight: false,
-        isSelected: true,
-        isCustom: true,
-      }) as HistoryKeyWord
-    );
-
-    defaultKeyWordList.value.push(
-      keyWordHistoryList.value.find(
-        (x) => x.promptZH === newKeyWordValue.value
-      ) as HistoryKeyWord
-    );
-  }
-  newKeyWordValue.value = "";
-}
-
-async function onCloseParamsDialog() {
-  dialogVisible.params = false;
-  paramsList.value = parameterRef.value?.data;
-}
-
-function onSelectAIParams(type: AIParams | "writekeyword") {
-  switch (type) {
-    case "card":
-      dialogVisible.card = true;
-
-      break;
-    case "keyword":
-      dialogVisible.keyWord = true;
-
-      break;
-    case "dpi":
-      dialogVisible.dpi = true;
-
-      break;
-    case "params":
-      dialogVisible.params = true;
-
-      break;
-    case "img":
-      if (defaultImgList.value.filter((x) => x.isSelected).length >= 10) {
-        ElMessage({
-          type: "warning",
-          message: "您已选中10张图片",
-        });
-        return;
-      }
-      dialogVisible.img = true;
-
-      break;
-    case "writekeyword":
-      dialogVisible.writeKeyWord = true;
-
-      break;
-  }
-}
 </script>
 
 <template>
@@ -301,7 +101,15 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
       p="y-2 x-2px"
       class="more"
     >
-      <Card :data="defaultCardList"></Card>
+      <div
+        class="card prompt-item no-mark-tag"
+        v-for="item in defaultPromptTemplate"
+        :key="item.promptEN"
+        :class="{ selected: item.isSelected }"
+        @click="item.isSelected = !item.isSelected"
+      >
+        <PromptItem v-bind="item" />
+      </div>
     </div>
     <div flex="~" mt-28px mb-5px class="readmore-title">
       <div cursor-pointer flex>
@@ -320,7 +128,7 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
       p="y-2 x-2px"
       class="more"
     >
-      <Card :data="defaultCardList"></Card>
+      <Card :data="defaultDrawPeople"></Card>
     </div>
     <div flex="~" mt-28px mb-5px class="readmore-title">
       <div cursor-pointer flex>
@@ -337,7 +145,7 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
       p="y-2 x-2px"
       class="more"
     >
-      <Card :data="defaultCardList"></Card>
+      <Card :data="defaultDrawBody"></Card>
     </div>
     <div flex="~" mt-28px mb-5px class="readmore-title">
       <div cursor-pointer flex>
@@ -354,7 +162,7 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
       p="y-2 x-2px"
       class="more"
     >
-      <Card :data="defaultCardList"></Card>
+      <Card :data="defaultDrawStyle"></Card>
     </div>
     <div flex="~" mt-28px mb-5px class="readmore-title">
       <div cursor-pointer flex>
@@ -369,17 +177,12 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
       </Tag>
       <Tag
         slice
-        v-for="item in defaultKeyWordList"
+        v-for="item in defaultComposeKeyWord"
         :content="item.promptZH!"
         :is-selected="item.isSelected"
         :is-custom="item.isCustom"
         :weight="item.weight"
         :show-weight="item.showWeight"
-        @click.stop.self="onClickKeyWordTag(item)"
-        @delete="onDelete"
-        @reduce-weight="(value) => onReduceWeight(value, item)"
-        @add-weight="(value) => onAddWeight(value, item)"
-        @click-tag="(value) => onShowWeightTag(value, item)"
       ></Tag>
     </div>
     <div flex="~" mt-28px mb-8px class="readmore-title">
@@ -394,17 +197,12 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
       </Tag>
       <Tag
         slice
-        v-for="item in defaultKeyWordList"
+        v-for="item in defaultPositiveKeyWord"
         :content="item.promptZH!"
         :is-selected="item.isSelected"
         :is-custom="item.isCustom"
         :weight="item.weight"
         :show-weight="item.showWeight"
-        @click.stop.self="onClickKeyWordTag(item)"
-        @delete="onDelete"
-        @reduce-weight="(value) => onReduceWeight(value, item)"
-        @add-weight="(value) => onAddWeight(value, item)"
-        @click-tag="(value) => onShowWeightTag(value, item)"
       ></Tag>
     </div>
     <div flex="~" mt-28px mb-8px class="readmore-title">
@@ -417,63 +215,85 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
       <Tag class="no-mark-tag" content="自定义">
         <template #icon> <i class="icon-zidingyi icon"></i></template>
       </Tag>
+      <Tag
+        slice
+        v-for="item in defaultCustomKeyWord"
+        :content="item.promptZH!"
+        :is-selected="item.isSelected"
+        :is-custom="item.isCustom"
+        :weight="item.weight"
+        :show-weight="item.showWeight"
+      ></Tag>
     </div>
   </main>
+  <!-- dialog start ----------------->
   <el-dialog
-    v-model="dialogVisible.card"
+    v-model="dialogVisible.prompt"
     top="30px"
-    title="作画风格"
+    title="选择参考图"
     width="70%"
     center
     draggable
     destroy-on-close
     :close-on-click-modal="false"
   >
-    <CardDialog
-      ref="cardDialogRef"
-      :list="cardList"
-      :dialog-visible="dialogVisible.card"
-    ></CardDialog>
     <template #footer>
       <span class="dialog-footer">
-        <el-button class="dialogBtn" type="primary" @click="onCloseCardDialog"
-          >完成</el-button
-        >
+        <el-button class="dialogBtn" type="primary">完成</el-button>
       </span>
     </template>
   </el-dialog>
   <el-dialog
-    title="输入提示词"
-    v-model="dialogVisible.writeKeyWord"
+    title="画个人"
+    v-model="dialogVisible.people"
+    top="30px"
     center
-    width="35%"
+    width="70%"
     destroy-on-close
     draggable
     :close-on-click-modal="false"
   >
-    <el-input
-      type="textarea"
-      v-model="newKeyWordValue"
-      maxlength="30"
-      show-word-limit
-      placeholder="请输入"
-    ></el-input>
-
     <template #footer>
       <span>
-        <el-button
-          class="dialogBtn"
-          :disabled="newKeyWordValue.length < 1"
-          type="primary"
-          @click="onCloseWriteKeyWordDialog"
-          >完成</el-button
-        >
+        <el-button class="dialogBtn" type="primary">完成</el-button>
       </span>
     </template>
   </el-dialog>
   <el-dialog
-    title="提示词"
-    v-model="dialogVisible.keyWord"
+    title="画个物体"
+    v-model="dialogVisible.body"
+    top="30px"
+    center
+    width="70%"
+    destroy-on-close
+    draggable
+    :close-on-click-modal="false"
+  >
+    <template #footer>
+      <span>
+        <el-button class="dialogBtn" type="primary">完成</el-button>
+      </span>
+    </template>
+  </el-dialog>
+  <el-dialog
+    title="画风"
+    v-model="dialogVisible.style"
+    top="30px"
+    center
+    width="70%"
+    destroy-on-close
+    draggable
+    :close-on-click-modal="false"
+  >
+    <template #footer>
+      <span>
+        <el-button class="dialogBtn" type="primary">完成</el-button>
+      </span>
+    </template>
+  </el-dialog>
+  <el-dialog
+    title="构图"
+    v-model="dialogVisible.composeKeyWord"
     center
     width="50%"
     destroy-on-close
@@ -481,15 +301,97 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
     :close-on-click-modal="false"
   >
     <KeywordDialog
-      ref="keywordDialogRef"
-      :list="keyWordList"
-      :dialog-visible="dialogVisible.keyWord"
+      :list="composeKeyWord"
+      :dialog-visible="dialogVisible.composeKeyWord"
     ></KeywordDialog>
     <template #footer>
       <span>
-        <el-button class="dialogBtn" type="primary" @click="onCloseKeyWordDialog"
-          >完成</el-button
-        >
+        <el-button class="dialogBtn" type="primary">完成</el-button>
+      </span>
+    </template>
+  </el-dialog>
+  <el-dialog
+    title="正面tag"
+    v-model="dialogVisible.positiveKeyWord"
+    center
+    width="50%"
+    destroy-on-close
+    draggable
+    :close-on-click-modal="false"
+  >
+    <KeywordDialog
+      :list="positiveKeyWord"
+      :dialog-visible="dialogVisible.positiveKeyWord"
+    ></KeywordDialog>
+    <template #footer>
+      <span>
+        <el-button class="dialogBtn" type="primary">完成</el-button>
+      </span>
+    </template>
+  </el-dialog>
+  <el-dialog
+    title="添加构图"
+    v-model="dialogVisible.writeComposeKeyWord"
+    center
+    width="50%"
+    destroy-on-close
+    draggable
+    :close-on-click-modal="false"
+  >
+    <el-input
+      type="textarea"
+      v-model="newComposeKeyWord"
+      maxlength="30"
+      show-word-limit
+      placeholder="请输入"
+    ></el-input>
+    <template #footer>
+      <span>
+        <el-button class="dialogBtn" type="primary">完成</el-button>
+      </span>
+    </template>
+  </el-dialog>
+  <el-dialog
+    title="添加正面tag"
+    v-model="dialogVisible.writePositiveKeyWord"
+    center
+    width="50%"
+    destroy-on-close
+    draggable
+    :close-on-click-modal="false"
+  >
+    <el-input
+      type="textarea"
+      v-model="newPositiveKeyWord"
+      maxlength="30"
+      show-word-limit
+      placeholder="请输入"
+    ></el-input>
+    <template #footer>
+      <span>
+        <el-button class="dialogBtn" type="primary">完成</el-button>
+      </span>
+    </template>
+  </el-dialog>
+  <el-dialog
+    title="自己添加"
+    v-model="dialogVisible.writeCustomKeyWord"
+    center
+    width="50%"
+    destroy-on-close
+    draggable
+    :close-on-click-modal="false"
+  >
+    <el-input
+      type="textarea"
+      v-model="newCustomKeyWord"
+      maxlength="30"
+      show-word-limit
+      placeholder="请输入"
+    ></el-input>
+    <template #footer>
+      <span>
+        <el-button class="dialogBtn" type="primary">完成</el-button>
       </span>
     </template>
   </el-dialog>

@@ -1,12 +1,15 @@
 import { ref, reactive, computed } from "vue";
+import { cloneDeep } from 'lodash'
 
 import type {
   DpiOptions,
   Options,
+  KeyWord,
   CustomKeyWord,
   CardItem,
   ImgOptions,
   HistoryKeyWord,
+  PromptTemplate,
 } from "@/models";
 import {
   DPI_CUSTOM_LIST,
@@ -146,7 +149,7 @@ export const useMidJourneyData= () => {
 }
 
 export const useNovelAiData = () => {
-  const promptTemplateList = ref([]);
+  const promptTemplateList = ref<any[]>([]);
   const drawPeopleList = ref([]);
   const drawBodyList = ref([]);
   const drawStyleList = ref([]);
@@ -154,16 +157,54 @@ export const useNovelAiData = () => {
   const composeKeyWord = ref([]);
   /** 正面  */
   const positiveKeyWord = ref([]);
-  /** 自定义 */
-  const customKeyWord = ref([]);
 
-  const defaultPromptTemplate = ref([]);
-  const defaultDrawPeople = ref([]);
-  const defaultDrawBody = ref([]);
-  const defaultDrawStyle = ref([]);
-  const defaultComposeKeyWord = ref([]);
-  const defaultPositiveKeyWord = ref([]);
-  const defaultCustomKeyWord = ref([]);
+  const defaultPromptTemplate = ref<PromptTemplate[]>([]);
+  const defaultDrawPeople = ref<CardItem[]>([]);
+  const defaultDrawBody = ref<CardItem[]>([]);
+  const defaultDrawStyle = ref<CardItem[]>([]);
+  const defaultComposeKeyWord = ref<CustomKeyWord[]>([]);
+  const defaultPositiveKeyWord = ref<CustomKeyWord[]>([]);
+  const defaultCustomKeyWord = ref<CustomKeyWord[]>([]);
+
+  async function fetchPrompt() {
+    const { data } = await useFetch("/json/NovelAI_cankaotu.json");
+    promptTemplateList.value = JSON.parse(data.value as string);
+    defaultPromptTemplate.value = cloneDeep(promptTemplateList.value.slice(0, 5));
+  }
+  async function fetchPeople() {
+    const { data } = await useFetch("/json/midjourneyStyle.json");
+    drawPeopleList.value = JSON.parse(data.value as string);
+    defaultDrawPeople.value = cloneDeep(drawPeopleList.value.slice(0, 5));
+  }
+  async function fetchBody() {
+    const { data } = await useFetch("/json/midjourneyStyle.json");
+    drawBodyList.value = JSON.parse(data.value as string);
+    defaultDrawBody.value = cloneDeep(drawBodyList.value.slice(0, 5));
+  }
+  async function fetchStyle() {
+    const { data } = await useFetch("/json/midjourneyStyle.json");
+    drawStyleList.value = JSON.parse(data.value as string);
+    defaultDrawStyle.value = cloneDeep(drawStyleList.value.slice(0, 5));
+  }
+  async function fetchComposeKeyWord() {
+    const { data } = await useFetch("/json/midjourneyPrompt.json");
+    composeKeyWord.value = JSON.parse(data.value as string);
+    defaultComposeKeyWord.value = cloneDeep(composeKeyWord.value.slice(0, 5));
+  }
+  async function fetchPositiveKeyWord() {
+    const { data } = await useFetch("/json/midjourneyPrompt.json");
+    positiveKeyWord.value = JSON.parse(data.value as string);
+    defaultPositiveKeyWord.value = cloneDeep(positiveKeyWord.value.slice(0, 5));
+  }
+
+  function fetch() {
+    fetchPrompt();
+    fetchPeople();
+    fetchBody();
+    fetchStyle();
+    fetchComposeKeyWord();
+    fetchPositiveKeyWord();
+  }
 
   return {
     /** JSON数据 */
@@ -173,7 +214,6 @@ export const useNovelAiData = () => {
     drawStyleList,
     composeKeyWord,
     positiveKeyWord,
-    customKeyWord,
 
     /** 默认展示数据 */
     defaultPromptTemplate,
@@ -182,6 +222,8 @@ export const useNovelAiData = () => {
     defaultDrawStyle,
     defaultComposeKeyWord,
     defaultPositiveKeyWord,
-    defaultCustomKeyWord
+    defaultCustomKeyWord,
+
+    fetch,
   }
 }

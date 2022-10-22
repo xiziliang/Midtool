@@ -10,14 +10,16 @@ import { useFetch, useElementBounding } from "@vueuse/core";
 import { $routes } from "@/router";
 
 import NovelAi from "../novelAi/novelAi.vue";
+import MidJourney from "../midJourney/midJourney.vue";
 
+type Instance = typeof MidJourney | typeof NovelAi;
 // instance
 const headerRef = ref<HTMLElement | null>(null);
-const currentTabRef = ref<InstanceType<typeof NovelAi>>();
+const currentTabRef = ref<InstanceType<Instance>>();
 
 // computed
-const tipsList = computed(() => currentTabRef.value?.tipsList || []);
-const stringField = computed(() => currentTabRef.value?.stringField || "");
+// const tipsList = computed(() => currentTabRef.value?.tipsList || []);
+// const stringField = computed(() => currentTabRef.value?.stringField || "");
 
 // hooks
 const { top: headRefTop } = useElementBounding(headerRef);
@@ -75,17 +77,18 @@ function copy(type: "input" | "translation") {
 
 async function translation() {
   // NOTE: 拼接keyWord
-  const keyWord = currentTabRef.value?.defaultKeyWordList
-    .filter((x) => x.isCustom && x.isSelected)
-    .map((x) => x.promptZH)
-    .join(",");
-  loading.value = true;
-  const { data } = await useFetch(`${ApiPrefix}/translate`).post({
-    origin: keyWord ? inputValue.value + "," + keyWord : inputValue.value,
-  });
-  loading.value = false;
-  translationResult.value =
-    JSON.parse(data.value as string).data + "," + stringField.value;
+  // const keyWord = currentTabRef.value?.defaultKeyWordList
+  //   .filter((x) => x.isCustom && x.isSelected)
+  //   .map((x) => x.promptZH)
+  //   .join(",");
+  // const keyWord = "";
+  // loading.value = true;
+  // const { data } = await useFetch(`${ApiPrefix}/translate`).post({
+  //   origin: keyWord ? inputValue.value + "," + keyWord : inputValue.value,
+  // });
+  // loading.value = false;
+  // translationResult.value =
+  //   JSON.parse(data.value as string).data + "," + stringField.value;
 }
 </script>
 
@@ -136,7 +139,7 @@ async function translation() {
           >
             <div class="i-carbon-copy"></div>
           </el-button>
-          <div
+          <!-- <div
             v-show="tipsList.length"
             class="tooltiplist"
             flex="~ gap-3"
@@ -147,7 +150,7 @@ async function translation() {
               :content="item?.promptZH || item?.options || item?.img"
               :slice="16"
             ></TooltipTag>
-          </div>
+          </div> -->
         </div>
         <el-button
           p="x-40px y-20px"

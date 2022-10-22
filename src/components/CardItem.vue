@@ -10,7 +10,7 @@ defineProps<{
   promptEN: string;
   image: "yes" | "no";
   imgUrl?: string;
-  weight: number;
+  weight?: number;
   showWeight?: boolean;
   /** 是否主页选中 */
   isSelected?: boolean;
@@ -28,11 +28,15 @@ defineEmits([
 
 <template>
   <div>
-    <div class="card-img">
-      <img height="160" width="156" :src="imgUrl" />
+    <div
+      class="card-img"
+      :style="{
+        'background-image': `url(${imgUrl})`,
+      }"
+    >
+      <!-- <img height="160" width="156" :src="imgUrl" /> -->
     </div>
     <div class="card-name" p-2>{{ promptZH }}</div>
-    <div class="card-enname" p-2>{{ promptEN }}</div>
 
     <el-button-group v-show="showWeight" class="weight-group" flex absolute>
       <el-button

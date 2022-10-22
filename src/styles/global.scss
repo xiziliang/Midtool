@@ -166,7 +166,7 @@ body,
 }
 
 .card {
-  width: 156px;
+  width: 116px;
   background-color: var(--el-color-white);
   color: var(--el-color-black);
 
@@ -191,12 +191,32 @@ body,
 
   .card-img,
   img {
+    width: 100%;
+    height: 122px;
+    background-size: cover;
+
     border-top-left-radius: var(--el-border-radius-base);
     border-top-right-radius: var(--el-border-radius-base);
   }
+  
+}
+.card.no-mark-tag {
+  &::before {
+    content: none;
+  }
+}
+
+.prompt-item {
+  width: 156px;
+  
+  .card-img,
   img {
     width: 100%;
-    height: 135px;
+    height: 160px;
+    background-size: cover;
+
+    border-top-left-radius: var(--el-border-radius-base);
+    border-top-right-radius: var(--el-border-radius-base);
   }
 }
 

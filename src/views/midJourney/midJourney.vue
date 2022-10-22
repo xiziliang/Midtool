@@ -12,6 +12,7 @@ import MidjourneyParams from "@/components/MidjourneyParams.vue";
 import DpiDialog from "@/components/DpiDialog.vue";
 import KeywordDialog from "@/components/KeywordDialog.vue";
 import CardDialog from "@/components/CardDialog.vue";
+import PromptItem from "@/components/PromptItem.vue";
 
 import { useEventListener } from "@vueuse/core";
 import { useMidJourneyData } from "@/hooks";
@@ -284,6 +285,33 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
   <main
     class="container-params ma lt-lg:max-w-660px lg:max-w-828px xl:max-w-1176px 2xl:max-w-1336px"
   >
+    <div flex="~" mt-4 class="readmore-title">
+      <div cursor-pointer flex>
+        <p><i class="icon-fengge icon-big mr-4px"></i>选择参考图</p>
+        <div i-carbon:add></div>
+        <p self-center text-14px class="text-[#AAAAAA]">
+          我们会自动选中对应的参考词，让画面与原图更接近，这些词会自动加在翻译的句尾
+        </p>
+      </div>
+    </div>
+    <div
+      flex="~ gap-12px wrap"
+      justify-start
+      items-stretch
+      will-change-scroll
+      p="y-2 x-2px"
+      class="more"
+    >
+      <div
+        class="card prompt-item no-mark-tag"
+        v-for="item in defaultCardList"
+        :key="item.promptEN"
+        :class="{ selected: item.isSelected }"
+        @click="item.isSelected = !item.isSelected"
+      >
+        <PromptItem v-bind="item" />
+      </div>
+    </div>
     <div flex="~" mt-4 class="readmore-title">
       <div cursor-pointer flex @click="onSelectAIParams('card')">
         <p><i class="icon-fengge icon-big mr-4px"></i>选择作画风格</p>
