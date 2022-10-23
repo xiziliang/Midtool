@@ -15,6 +15,7 @@ import Card from "@/components/Card.vue";
 import Tag from "@/components/Tag.vue";
 import PromptItem from "@/components/PromptItem.vue";
 import KeywordDialog from "@/components/KeywordDialog.vue";
+import PromptTemplateDialog from "@/components/PromptTemplateDialog.vue";
 import CardDialog from "@/components/CardDialog.vue";
 
 import { useEventListener } from "@vueuse/core";
@@ -349,6 +350,7 @@ defineExpose({
     destroy-on-close
     :close-on-click-modal="false"
   >
+    <PromptTemplateDialog />
     <template #footer>
       <span class="dialog-footer">
         <el-button class="dialogBtn" type="primary">完成</el-button>
