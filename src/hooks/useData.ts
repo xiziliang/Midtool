@@ -90,6 +90,8 @@ export const useMidJourneyData= () => {
     return data.map((x) => ({
       ...x,
       imgUrl: x.image === "yes" ? `/img-style/${x.promptEN}.png` : "/img-style/empty.png",
+      weight: 1,
+      showWeight: false,
     }));
   }
 

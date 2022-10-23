@@ -15,7 +15,7 @@ function onTrigger(item: ImgOptions) {
 </script>
 <template>
   <div
-    class="card"
+    class="card no-mark-tag"
     v-for="item in data"
     :key="item.img"
     :class="{ selected: item.isSelected }"
