@@ -4,7 +4,7 @@ import { useRouter, useRoute } from "vue-router";
 import type { TabsPaneContext } from "element-plus";
 
 import TooltipTag from "@/components/TooltipTag.vue";
-import { ApiPrefix } from "@/constants";
+import { ApiPrefix, ReplaceKey } from "@/constants";
 import { copyText } from "@/utils";
 import { useFetch, useElementBounding } from "@vueuse/core";
 import { $routes } from "@/router";
@@ -18,8 +18,8 @@ const headerRef = ref<HTMLElement | null>(null);
 const currentTabRef = ref<InstanceType<Instance>>();
 
 // computed
-// const tipsList = computed(() => currentTabRef.value?.tipsList || []);
-// const stringField = computed(() => currentTabRef.value?.stringField || "");
+const tipsList = computed(() => currentTabRef.value?.tipsList || []);
+const stringField = computed(() => currentTabRef.value?.stringField || "");
 
 // hooks
 const { top: headRefTop } = useElementBounding(headerRef);
@@ -81,14 +81,15 @@ async function translation() {
   //   .filter((x) => x.isCustom && x.isSelected)
   //   .map((x) => x.promptZH)
   //   .join(",");
-  // const keyWord = "";
   // loading.value = true;
   // const { data } = await useFetch(`${ApiPrefix}/translate`).post({
   //   origin: keyWord ? inputValue.value + "," + keyWord : inputValue.value,
   // });
   // loading.value = false;
-  // translationResult.value =
-  //   JSON.parse(data.value as string).data + "," + stringField.value;
+  // translationResult.value = stringField.value.replace(
+  //   ReplaceKey,
+  //   JSON.parse(data.value as string).data
+  // );
 }
 </script>
 

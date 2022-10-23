@@ -9,6 +9,7 @@ import type {
   DpiOptions,
   CustomKeyWord,
 } from "@/models";
+import { ReplaceKey } from "@/constants";
 
 import Card from "@/components/Card.vue";
 import ImgCard from "@/components/ImgCard.vue";
@@ -83,10 +84,22 @@ const stringField = computed(() => {
   // NOTE: paramsList or defaultParamList
   const paramsListString = paramsList.value
     .filter((x) => x.checked)
-    .map((x) => x.parameter)
-    .join(",");
+    .map((x) => {
+      if (x.type === "selector") {
+        return x.parameter + " " + x.value;
+      } else {
+        return x.parameter + " " + x.option;
+      }
+    })
+    .join(" ");
 
   return (
+    defaultImgList.value
+      .filter((x) => x.isSelected)
+      .map((x) => x.img)
+      .join(" ") +
+    "," +
+    ReplaceKey +
     (cardListString ? cardListString + "," : "") +
     (keyWordString ? keyWordString + "," : "") +
     (dpiParams.isSelected
@@ -95,11 +108,7 @@ const stringField = computed(() => {
       ? `--ar ${defaultDpiList.value[0].height}:${defaultDpiList.value[0].width}`
       : "--ar 1:1") +
     "," +
-    (paramsListString ? paramsListString + "," : "") +
-    defaultImgList.value
-      .filter((x) => x.isSelected)
-      .map((x) => x.img)
-      .join(",")
+    (paramsListString ? paramsListString + "," : "")
   );
 });
 
