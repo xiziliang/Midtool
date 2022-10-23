@@ -21,13 +21,31 @@ body,
     content: "";
     display: block;
     position: absolute;
-    bottom: -2px;
-    left: -2px;
-    right: -2px;
-    top: -2px;
-    border: 0.15em solid transparent;
+    border: 1px solid transparent;
+    bottom: -1px;
+    left: -1px;
+    right: -1px;
+    top: -1px;
     border-radius: var(--el-border-radius-base);
     z-index: 1;
+  }
+
+  &:hover::after {
+    border-color: #aaa;
+  }
+}
+
+@mixin hover-style-tooltip-tag {
+  &::after {
+    border: 1px solid transparent;
+    border-radius: 8px;
+    bottom: -1px;
+    content: "";
+    display: block;
+    left: -1px;
+    position: absolute;
+    right: -1px;
+    top: -1px;
   }
 
   &:hover::after {
@@ -97,6 +115,12 @@ body,
   }
 }
 
+span,
+.card-name,
+.card-enname {
+  font-weight: 600;
+}
+
 // 选中的样式
 .selected {
   &::after {
@@ -122,6 +146,17 @@ body,
   }
 }
 
+.input-group > .el-button:hover:not(.is-disabled),
+.el-button.dialogBtn:hover:not(.is-disabled) {
+  border-color: #0cc987;
+  background: #0cc987;
+}
+
+// .el-button.is-disabled {
+//   background: rgb(134, 235, 200);
+//   border-color: rgb(134, 235, 200);
+// }
+
 .copy.el-button {
   color: var(--el-color-black);
   background-color: var(--el-color-white);
@@ -141,8 +176,8 @@ body,
 // delete icon style
 .delete-icon.el-button {
   position: absolute;
-  right: -0.5px;
-  bottom: -0.5px;
+  right: 0.5px;
+  bottom: 0.5px;
   height: 20px;
   padding: 2px;
   width: 20px;
@@ -237,6 +272,11 @@ body,
   }
 }
 
+.tooltiplist {
+  width: 100%;
+  overflow: hidden;
+}
+
 .tooltip-tag {
   font-weight: 400;
   font-size: 14px;
@@ -247,6 +287,7 @@ body,
   border-radius: 8px;
   border: 1px solid var(--el-border-color);
   cursor: pointer;
+  @include hover-style-tooltip-tag;
   
   span {
     max-width: 100px;
@@ -294,6 +335,10 @@ body,
   width: 128px;
 }
 
+.sizeBtn {
+  width: 80px;
+}
+
 .readmore-title {
   color: #222222;
   font-size: 1.5rem;
@@ -316,4 +361,87 @@ body,
   top: 0;
   z-index: 99;
   background-color: var(--el-fill-color-blank);
+}
+
+.footer {
+  a {
+    color: rgba(255, 255, 255, 0.8);
+    &:hover{
+      color:rgba(12,201,135, 0.8);
+    }
+  }
+}
+
+.el-dialog {
+  .el-dialog__header {
+    padding-bottom: 20px;
+  }
+  .el-dialog__header .el-dialog__title {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .el-dialog__body {
+    padding-bottom: 0;
+    padding-top: 0;
+    .el-textarea {
+      margin-bottom: -8px;
+      .el-input__count {
+        bottom: 9px;
+        opacity: 0.6;
+      }
+      .el-textarea__inner {
+        padding-top: 9px;
+        padding-bottom: 9px;
+      }
+    }
+  }
+  .el-dialog__footer {
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+  &.dialog-media {
+    max-width: 892px;
+    width: 100%;
+    margin: var(--el-dialog-margin-top, 15vh) auto 50px;
+    @media screen and (max-width: 912px) {
+      width: auto;
+      margin: var(--el-dialog-margin-top, 15vh) 10px 50px;
+    }
+  }
+}
+
+.el-tabs__item {
+  color: #666;
+}
+
+.el-tabs__nav-wrap::after {
+  height : 1px;
+}
+
+.el-tabs__active-bar {
+  height: 3px;
+  border-radius: var(--el-border-radius-base);
+}
+
+.el-tabs {
+  .el-tabs__header {
+    margin-bottom: 0;
+  }
+}
+
+.el-dialog__close svg {
+  transform: scale(1.5, 1.5);
+}
+
+.i-carbon-copy {
+  --un-icon: none !important;
+  background-image: url(../assets/img/fuzhi_kedian.png) !important;
+  background-size: 1.2em 1.2em !important;
+  background-color: #fff !important;
+}
+
+.el-button.copy:hover {
+  .i-carbon-copy {
+    background-color: rgb(229, 231, 235) !important;
+  }
 }

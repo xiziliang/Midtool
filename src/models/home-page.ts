@@ -96,4 +96,5 @@ export interface Options {
 export interface ImgOptions {
   img: string;
   isSelected: boolean;
+  imgLoadError?: boolean;
 }

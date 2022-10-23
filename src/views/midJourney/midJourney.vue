@@ -299,9 +299,11 @@ function onSelectAIParams(type: MidJourneyParams | "writekeyword") {
   <main
     class="container-params ma lt-lg:max-w-660px lg:max-w-828px xl:max-w-1176px 2xl:max-w-1336px"
   >
-    <div flex="~" mt-4 class="readmore-title">
+    <div flex="~" mt-4 mb-1 class="readmore-title">
       <div cursor-pointer flex>
-        <p><i class="icon-fengge icon-big mr-4px"></i>选择参考图</p>
+        <p text-20px color-dark-400>
+          <i class="icon-fengge icon-big mr-2 -mb-1"></i>选择参考图
+        </p>
         <div i-carbon:add></div>
         <p self-center text-14px class="text-[#AAAAAA]">
           我们会自动选中对应的参考词，让画面与原图更接近，这些词会自动加在翻译的句尾
@@ -326,9 +328,11 @@ function onSelectAIParams(type: MidJourneyParams | "writekeyword") {
         <PromptItem v-bind="item" />
       </div> -->
     </div>
-    <div flex="~" mt-4 class="readmore-title">
+    <div flex="~" mt-8 mb-3 class="readmore-title">
       <div cursor-pointer flex @click="onSelectAIParams('card')">
-        <p><i class="icon-fengge icon-big mr-4px"></i>选择作画风格</p>
+        <p text-20px color-dark-400>
+          <i class="icon-fengge icon-big mr-2 -mb-1"></i>选择作画风格
+        </p>
         <div i-carbon:add></div>
         <p self-center text-14px class="text-[#AAAAAA]">
           这些词可能会让画面更好看，选中它，翻译时就会加在句尾
@@ -345,9 +349,11 @@ function onSelectAIParams(type: MidJourneyParams | "writekeyword") {
     >
       <Card :data="defaultCardList"></Card>
     </div>
-    <div flex="~" mt-4 mb-4 class="readmore-title">
+    <div flex="~" mt-8 mb-3 class="readmore-title">
       <div cursor-pointer flex @click="onSelectAIParams('keyword')">
-        <p><i class="icon-tishici icon-big mr-2"></i>选择提示词</p>
+        <p text-20px color-dark-400>
+          <i class="icon-tishici icon-big mr-2 -mb-1"></i>选择提示词
+        </p>
         <div i-carbon:add></div>
       </div>
     </div>
@@ -372,7 +378,9 @@ function onSelectAIParams(type: MidJourneyParams | "writekeyword") {
     </div>
     <div flex="~" m="t-4 b-4" class="readmore-title">
       <div cursor-pointer flex @click="onSelectAIParams('dpi')">
-        <p><i class="icon-bili icon-big mr-2"></i>选择画面比例</p>
+        <p text-20px color-dark-400>
+          <i class="icon-bili icon-big mr-2 -mb-1"></i>选择画面比例
+        </p>
         <div i-carbon:add></div>
       </div>
     </div>
@@ -406,7 +414,9 @@ function onSelectAIParams(type: MidJourneyParams | "writekeyword") {
     </div>
     <div flex="~" mt-4 mb-4 class="readmore-title">
       <div cursor-pointer flex @click="onSelectAIParams('params')">
-        <p><i class="icon-canshu icon-big mr-2"></i>选择作画参数</p>
+        <p text-20px color-dark-400>
+          <i class="icon-canshu icon-big mr-2 -mb-1"></i>选择作画参数
+        </p>
         <div i-carbon:add></div>
       </div>
     </div>
@@ -419,7 +429,9 @@ function onSelectAIParams(type: MidJourneyParams | "writekeyword") {
     </div>
     <div flex="~" mt-4 mb-4 class="readmore-title">
       <div cursor-pointer flex @click="onSelectAIParams('img')">
-        <p><i class="icon-wangzhi icon-big mr-2"></i>参考图片网址</p>
+        <p text-20px color-dark-400>
+          <i class="icon-wangzhi icon-big mr-2 -mb-1"></i>参考图片网址
+        </p>
         <div i-carbon:add></div>
       </div>
     </div>
@@ -462,7 +474,7 @@ function onSelectAIParams(type: MidJourneyParams | "writekeyword") {
     title="输入提示词"
     v-model="dialogVisible.writeKeyWord"
     center
-    width="35%"
+    width="456px"
     destroy-on-close
     draggable
     :close-on-click-modal="false"
@@ -473,6 +485,7 @@ function onSelectAIParams(type: MidJourneyParams | "writekeyword") {
       maxlength="30"
       show-word-limit
       placeholder="请输入"
+      :rows="4"
     ></el-input>
 
     <template #footer>
@@ -489,9 +502,9 @@ function onSelectAIParams(type: MidJourneyParams | "writekeyword") {
   </el-dialog>
   <el-dialog
     title="提示词"
+    class="dialog-media"
     v-model="dialogVisible.keyWord"
     center
-    width="50%"
     destroy-on-close
     draggable
     :close-on-click-modal="false"
@@ -511,9 +524,9 @@ function onSelectAIParams(type: MidJourneyParams | "writekeyword") {
   </el-dialog>
   <el-dialog
     title="画面比例"
+    class="dialog-media"
     v-model="dialogVisible.dpi"
     center
-    width="40%"
     destroy-on-close
     draggable
     :close-on-click-modal="false"
@@ -523,6 +536,7 @@ function onSelectAIParams(type: MidJourneyParams | "writekeyword") {
       :list="dpiList"
       :dpi-custom="{ ...dpiParams }"
       :dialog-visible="dialogVisible.dpi"
+      @childCloseDpiDialog="onCloseDpiDialog"
     ></DpiDialog>
     <template #footer>
       <span>
@@ -533,14 +547,16 @@ function onSelectAIParams(type: MidJourneyParams | "writekeyword") {
     </template>
   </el-dialog>
   <el-dialog
+    title="作画参数"
+    class="dialog-media"
     v-model="dialogVisible.params"
     top="30px"
-    title="作画参数"
     width="60%"
     center
     :close-on-click-modal="false"
   >
     <MidjourneyParams
+      class="max-h-2xl min-h-lg overflow-auto"
       ref="parameterRef"
       :data="cloneDeep(paramsList)"
       :dialog-visible="dialogVisible.params"
@@ -557,7 +573,7 @@ function onSelectAIParams(type: MidJourneyParams | "writekeyword") {
     title="输入图片网址"
     v-model="dialogVisible.img"
     center
-    width="30%"
+    width="456px"
     destroy-on-close
     draggable
     :close-on-click-modal="false"
@@ -568,7 +584,7 @@ function onSelectAIParams(type: MidJourneyParams | "writekeyword") {
       maxlength="300"
       show-word-limit
       placeholder="原网址需以PNG、JPG等图片格式结尾"
-      :autosize="{ minRows: 3, maxRows: 3 }"
+      :rows="4"
     ></el-input>
 
     <template #footer>
@@ -591,3 +607,8 @@ function onSelectAIParams(type: MidJourneyParams | "writekeyword") {
     </template>
   </el-dialog>
 </template>
+<style scoped>
+.readmore-title .icon-big {
+  width: 24px;
+}
+</style>

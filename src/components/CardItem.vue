@@ -36,7 +36,7 @@ defineEmits([
     >
       <!-- <img height="160" width="156" :src="imgUrl" /> -->
     </div>
-    <div class="card-name" p-2>{{ promptZH }}</div>
+    <div class="card-name" text-16px pb-0 p-2>{{ promptZH }}</div>
 
     <el-button-group v-show="showWeight" class="weight-group" flex absolute>
       <el-button

@@ -12,6 +12,10 @@ function formatText(value: string) {
 function onTrigger(item: ImgOptions) {
   item.isSelected = !item.isSelected;
 }
+
+function imgError(item: ImgOptions) {
+  item.imgLoadError = true;
+}
 </script>
 <template>
   <div
@@ -22,8 +26,25 @@ function onTrigger(item: ImgOptions) {
     @click="onTrigger(item)"
   >
     <div class="card-img">
-      <img :src="item.img" />
+      <img v-if="!item.imgLoadError" :src="item.img" :onerror="imgError(item)" />
+      <div
+        v-else="item.imgLoadError"
+        class="loadError"
+        style="width: 100%; height: 135px"
+      >
+        加载失败
+      </div>
     </div>
     <label p="x-4 y-4">{{ formatText(item.img) }}</label>
   </div>
 </template>
+<style scoped>
+.loadError {
+  background: #f5f5f5;
+  color: #aaa;
+  text-align: center;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  line-height: 135px;
+}
+</style>

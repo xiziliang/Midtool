@@ -218,6 +218,7 @@ watchEffect(() => {
       <div
         ref="scrollBoxRef"
         :class="keyword1 + 'scrollBox'"
+        pt-15px
         max-h-2xl
         min-h-lg
         overflow-auto
@@ -227,9 +228,9 @@ watchEffect(() => {
           v-for="keyword2 in keyword2label(keyword1!)"
           :class="['keyword2', keyword2]"
         >
-          <div flex="~" mt-4>
+          <div flex="~" mt-4 text-16px color-dark-400>
             <div flex>
-              <p>{{ keyword2 }}</p>
+              <p font-600>{{ keyword2 }}</p>
             </div>
           </div>
           <div flex="~ gap-3 wrap" justify-start items-start pt-4>

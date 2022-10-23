@@ -57,6 +57,8 @@ watchEffect(() => {
   }
 });
 
+defineEmits(["childCloseDpiDialog"]);
+
 defineExpose({
   dpiCustomsList,
   dpiCustom,
@@ -72,14 +74,29 @@ defineExpose({
       </div>
       <div flex="~ gap-3 wrap" justify-start items-stretch class="more">
         <div flex="~ gap-3" max-w-156px items-center>
-          <el-input v-model="dpiCustom.width">
+          <el-input
+            v-model="dpiCustom.width"
+            oninput="value=value.replace(/[^0-9.]/g,'')"
+          >
             <template #prepend>宽:</template>
           </el-input>
         </div>
         <div flex="~ gap-3" max-w-156px items-center>
-          <el-input v-model="dpiCustom.height">
+          <el-input
+            v-model="dpiCustom.height"
+            oninput="value=value.replace(/[^0-9.]/g,'')"
+          >
             <template #prepend>高:</template>
           </el-input>
+        </div>
+        <div flex="~ gap-3">
+          <el-button
+            class="sizeBtn"
+            :disabled="!(dpiCustom.width && dpiCustom.height)"
+            type="primary"
+            @click="$emit('childCloseDpiDialog')"
+            >完成</el-button
+          >
         </div>
       </div>
     </div>

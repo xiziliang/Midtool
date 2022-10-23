@@ -173,9 +173,11 @@ defineExpose({
     class="container-params ma lt-lg:max-w-660px lg:max-w-828px xl:max-w-1176px 2xl:max-w-1336px"
     mb-60px
   >
-    <div flex="~" mt-4 class="readmore-title">
+    <div flex="~" mt-4 mb-1 class="readmore-title">
       <div cursor-pointer flex @click="onSelectParams('prompt')">
-        <p><i class="icon-fengge icon-big mr-4px"></i>选择参考图</p>
+        <p text-20px color-dark-400>
+          <i class="icon-fengge icon-big mr-2 -mb-1"></i>选择参考图
+        </p>
         <div i-carbon:add></div>
         <p self-center text-14px class="text-[#AAAAAA]">
           我们会自动选中对应的参考词，让画面与原图更接近，这些词会自动加在翻译的句尾
@@ -200,9 +202,11 @@ defineExpose({
         <PromptItem v-bind="item" />
       </div>
     </div>
-    <div flex="~" mt-28px mb-5px class="readmore-title">
+    <div flex="~" mt-8 mb-3 class="readmore-title">
       <div cursor-pointer flex @click="onSelectParams('people')">
-        <p><i class="icon-tishici icon-big mr-2"></i>画个人</p>
+        <p text-20px color-dark-400>
+          <i class="icon-tishici icon-big mr-2 -mb-1"></i>画个人
+        </p>
         <div i-carbon:add></div>
         <p self-center text-14px class="text-[#AAAAAA]">
           角色/身份/头发/面部/姿势/情绪/衣着...
@@ -221,7 +225,9 @@ defineExpose({
     </div>
     <div flex="~" mt-28px mb-5px class="readmore-title">
       <div cursor-pointer flex @click="onSelectParams('body')">
-        <p><i class="icon-tishici icon-big mr-2"></i>画个物体</p>
+        <p text-20px color-dark-400>
+          <i class="icon-tishici icon-big mr-2 -mb-1"></i>画个物体
+        </p>
         <div i-carbon:add></div>
         <p self-center text-14px class="text-[#AAAAAA]">添加物体/只画物体</p>
       </div>
@@ -238,7 +244,9 @@ defineExpose({
     </div>
     <div flex="~" mt-28px mb-5px class="readmore-title">
       <div cursor-pointer flex @click="onSelectParams('style')">
-        <p><i class="icon-tishici icon-big mr-2"></i>画风</p>
+        <p text-20px color-dark-400>
+          <i class="icon-tishici icon-big mr-2 -mb-1"></i>画风
+        </p>
         <div i-carbon:add></div>
         <p self-center text-14px class="text-[#AAAAAA]">动漫绘画为主</p>
       </div>
@@ -255,7 +263,9 @@ defineExpose({
     </div>
     <div flex="~" mt-28px mb-5px class="readmore-title">
       <div cursor-pointer flex @click="onSelectParams('composeKeyWord')">
-        <p><i class="icon-tishici icon-big mr-2"></i>构图</p>
+        <p text-20px color-dark-400>
+          <i class="icon-tishici icon-big mr-2 -mb-1"></i>构图
+        </p>
         <div i-carbon:add></div>
         <p self-center text-14px class="text-[#AAAAAA]">焦距/距离/灯光...</p>
       </div>
@@ -284,7 +294,9 @@ defineExpose({
     </div>
     <div flex="~" mt-28px mb-8px class="readmore-title">
       <div cursor-pointer flex @click="onSelectParams('positiveKeyWord')">
-        <p><i class="icon-tishici icon-big mr-2"></i>正面tag</p>
+        <p text-20px color-dark-400>
+          <i class="icon-tishici icon-big mr-2 -mb-1"></i>正面tag
+        </p>
         <div i-carbon:add></div>
       </div>
     </div>
@@ -312,7 +324,9 @@ defineExpose({
     </div>
     <div flex="~" mt-28px mb-8px class="readmore-title">
       <div cursor-pointer flex>
-        <p><i class="icon-tishici icon-big mr-2"></i>自己添加</p>
+        <p text-20px color-dark-400>
+          <i class="icon-tishici icon-big mr-2 -mb-1"></i>自己添加
+        </p>
         <div i-carbon:add></div>
       </div>
     </div>
@@ -343,8 +357,8 @@ defineExpose({
   <el-dialog
     v-model="dialogVisible.prompt"
     top="30px"
-    title="选择参考图"
     width="70%"
+    title="选择参考图"
     center
     draggable
     destroy-on-close
@@ -359,6 +373,7 @@ defineExpose({
   </el-dialog>
   <el-dialog
     title="画个人"
+    class="dialog-media"
     v-model="dialogVisible.people"
     top="30px"
     center
@@ -375,6 +390,7 @@ defineExpose({
   </el-dialog>
   <el-dialog
     title="画个物体"
+    class="dialog-media"
     v-model="dialogVisible.body"
     top="30px"
     center
@@ -391,6 +407,7 @@ defineExpose({
   </el-dialog>
   <el-dialog
     title="画风"
+    class="dialog-media"
     v-model="dialogVisible.style"
     top="30px"
     center
@@ -407,9 +424,9 @@ defineExpose({
   </el-dialog>
   <el-dialog
     title="构图"
+    class="dialog-media"
     v-model="dialogVisible.composeKeyWord"
     center
-    width="50%"
     destroy-on-close
     draggable
     :close-on-click-modal="false"
@@ -426,9 +443,9 @@ defineExpose({
   </el-dialog>
   <el-dialog
     title="正面tag"
+    class="dialog-media"
     v-model="dialogVisible.positiveKeyWord"
     center
-    width="50%"
     destroy-on-close
     draggable
     :close-on-click-modal="false"
@@ -447,7 +464,7 @@ defineExpose({
     title="添加构图"
     v-model="dialogVisible.writeComposeKeyWord"
     center
-    width="30%"
+    width="456px"
     destroy-on-close
     draggable
     :close-on-click-modal="false"
@@ -458,6 +475,7 @@ defineExpose({
       maxlength="30"
       show-word-limit
       placeholder="请输入"
+      :rows="4"
     ></el-input>
     <template #footer>
       <span>
@@ -469,7 +487,7 @@ defineExpose({
     title="添加正面tag"
     v-model="dialogVisible.writePositiveKeyWord"
     center
-    width="30%"
+    width="456px"
     destroy-on-close
     draggable
     :close-on-click-modal="false"
@@ -480,6 +498,7 @@ defineExpose({
       maxlength="30"
       show-word-limit
       placeholder="请输入"
+      :rows="4"
     ></el-input>
     <template #footer>
       <span>
@@ -491,7 +510,7 @@ defineExpose({
     title="自己添加"
     v-model="dialogVisible.writeCustomKeyWord"
     center
-    width="30%"
+    width="456px"
     destroy-on-close
     draggable
     :close-on-click-modal="false"
@@ -502,6 +521,7 @@ defineExpose({
       maxlength="30"
       show-word-limit
       placeholder="请输入"
+      :rows="4"
     ></el-input>
     <template #footer>
       <span>
