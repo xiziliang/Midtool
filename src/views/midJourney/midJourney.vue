@@ -151,12 +151,13 @@ function onClickDpiTag(item: DpiOptions) {
   item.isSelected = true;
 }
 
-function onDelete(value: string) {
-  const index = defaultKeyWordList.value.findIndex(
-    (x) => x.isCustom && x.promptZH === value
-  );
-
+function onDeleteKeyword(index: number) {
   defaultKeyWordList.value.splice(index, 1);
+  ElMessage.success("删除成功");
+}
+
+function onDeleteCudtomKeyword(index: number) {
+  defaultCustomKeyWord.value.splice(index, 1);
   ElMessage.success("删除成功");
 }
 
@@ -377,14 +378,14 @@ function onSelectAIParams(
       </Tag>
       <Tag
         slice
-        v-for="item in defaultKeyWordList"
+        v-for="(item, index) in defaultKeyWordList"
         :content="item.promptZH!"
         :is-selected="item.isSelected"
         :is-custom="item.isCustom"
         :weight="item.weight"
         :show-weight="item.showWeight"
         @click.stop.self="onClickKeyWordTag(item)"
-        @delete="onDelete"
+        @delete="onDeleteKeyword(index)"
         @reduce-weight="(value) => onReduceWeight(value, item)"
         @add-weight="(value) => onAddWeight(value, item)"
         @click-tag="(value) => onShowWeightTag(value, item)"
@@ -478,13 +479,14 @@ function onSelectAIParams(
       </Tag>
       <Tag
         slice
-        v-for="item in defaultCustomKeyWord"
+        v-for="(item, index) in defaultCustomKeyWord"
         :content="item.promptZH!"
         :is-selected="item.isSelected"
         :is-custom="item.isCustom"
         :weight="item.weight"
         :show-weight="item.showWeight"
-        @click.stop.self
+        @click.stop.self="onClickKeyWordTag(item)"
+        @delete="onDeleteCudtomKeyword(index)"
         @reduce-weight="(value) => onReduceWeight(value, item)"
         @add-weight="(value) => onAddWeight(value, item)"
         @click-tag="(value) => onShowWeightTag(value, item)"
