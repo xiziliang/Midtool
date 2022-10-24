@@ -1,5 +1,5 @@
 import { ref, reactive, computed } from "vue";
-import { cloneDeep } from 'lodash'
+import { cloneDeep } from 'lodash';
 
 import type {
   DpiOptions,
@@ -64,6 +64,7 @@ export const useMidJourneyData= () => {
   const defaultDpiList = computed(() => reactive([...dpiCustomsList.value]));
   const defaultParamList = computed(() => reactive([...paramCustomsList.value]));
   const defaultImgList = computed(() => reactive([...imgCustomsList.value]));
+  const defaultCustomKeyWord = ref<CustomKeyWord[]>([]);
 
   const tooltiplist = computed<(CardItem & DpiOptions & CustomKeyWord & ImgOptions)[]>(
     () => {
@@ -143,7 +144,11 @@ export const useMidJourneyData= () => {
     defaultDpiList,
     defaultParamList,
     defaultImgList,
+    defaultCustomKeyWord,
     tooltiplist,
+
+    // 画面比例自定义
+    dpiParams,
 
     // fn
     fetch

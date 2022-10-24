@@ -44,13 +44,21 @@ const {
   defaultDpiList,
   defaultParamList,
   defaultImgList,
+  defaultCustomKeyWord,
   tooltiplist,
+
+  // 画面比例自定义
+  dpiParams,
 
   fetch,
 } = useMidJourneyData();
 
 const clearUp = useEventListener("click", () => {
-  defaultKeyWordList.value.forEach((x) => (x.showWeight = false));
+  [
+    ...defaultKeyWordList.value,
+    ...defaultCustomKeyWord.value,
+    ...defaultCardList.value,
+  ].forEach((x) => (x.showWeight = false));
   currentShowWeightTag.value = "";
 });
 
@@ -67,6 +75,7 @@ const cardDialogRef = ref<InstanceType<typeof CardDialog> | null>(null);
 
 const newKeyWordValue = ref("");
 const newImgAddressValue = ref("");
+const newCustomKeyWord = ref("");
 /** 当前显示weight的tag */
 const currentShowWeightTag = ref("");
 
@@ -114,25 +123,12 @@ const stringField = computed(() => {
 
 const dialogVisible = reactive({
   params: false,
-  writeKeyWord: false,
   keyWord: false,
   dpi: false,
   card: false,
   img: false,
-});
-
-const dpiParams = reactive<{
-  options: string;
-  isSelected: boolean;
-  isCustom: boolean;
-  width: undefined | string;
-  height: undefined | string;
-}>({
-  options: "自定义",
-  isSelected: false,
-  isCustom: true,
-  width: undefined,
-  height: undefined,
+  writeKeyWord: false,
+  writeCustomKeyWord: false,
 });
 
 defineExpose({
@@ -258,7 +254,21 @@ async function onCloseParamsDialog() {
   paramsList.value = parameterRef.value?.data;
 }
 
-function onSelectAIParams(type: MidJourneyParams | "writekeyword") {
+function onCloseWriteCustomDialog() {
+  dialogVisible.writeCustomKeyWord = false;
+
+  defaultCustomKeyWord.value.push({
+    promptZH: newCustomKeyWord.value,
+    isCustom: true,
+    isSelected: true,
+    weight: 1,
+    showWeight: false,
+  } as CustomKeyWord);
+}
+
+function onSelectAIParams(
+  type: MidJourneyParams | "writekeyword" | "writeCustomKeyWord"
+) {
   switch (type) {
     case "card":
       dialogVisible.card = true;
@@ -289,6 +299,10 @@ function onSelectAIParams(type: MidJourneyParams | "writekeyword") {
       break;
     case "writekeyword":
       dialogVisible.writeKeyWord = true;
+
+      break;
+    case "writeCustomKeyWord":
+      dialogVisible.writeCustomKeyWord = true;
 
       break;
   }
@@ -357,7 +371,7 @@ function onSelectAIParams(type: MidJourneyParams | "writekeyword") {
         <div i-carbon:add></div>
       </div>
     </div>
-    <div flex="~ gap-3 wrap" justify-start items-stretch class="more">
+    <div flex="~ gap-3 wrap" p="y-2 x-2px" justify-start items-stretch class="more">
       <Tag class="no-mark-tag" content="自定义" @click="onSelectAIParams('writekeyword')">
         <template #icon> <i class="icon-zidingyi icon"></i></template>
       </Tag>
@@ -384,7 +398,7 @@ function onSelectAIParams(type: MidJourneyParams | "writekeyword") {
         <div i-carbon:add></div>
       </div>
     </div>
-    <div flex="~ gap-3 wrap col" items-start class="more">
+    <div flex="~ gap-3 wrap col" p="y-2 x-2px" items-start class="more">
       <div flex="~ gap-3 wrap">
         <Tag
           v-if="dpiParams.width && dpiParams.height"
@@ -420,7 +434,7 @@ function onSelectAIParams(type: MidJourneyParams | "writekeyword") {
         <div i-carbon:add></div>
       </div>
     </div>
-    <div class="more">
+    <div p="y-2 x-2px" class="more">
       <MidjourneyParams
         :data="paramsList"
         :is-hide-no-selected="true"
@@ -445,6 +459,36 @@ function onSelectAIParams(type: MidJourneyParams | "writekeyword") {
       will-change-scroll
     >
       <ImgCard :data="defaultImgList"></ImgCard>
+    </div>
+    <div flex="~" mt-4 mb-4 class="readmore-title">
+      <div cursor-pointer flex>
+        <p text-20px color-dark-400>
+          <i class="icon-tishici icon-big mr-2 -mb-1"></i>自己添加
+        </p>
+        <div i-carbon:add></div>
+      </div>
+    </div>
+    <div flex="~ gap-3 wrap" p="y-2 x-2px" justify-start items-stretch class="more">
+      <Tag
+        class="no-mark-tag"
+        content="自定义"
+        @click="onSelectAIParams('writeCustomKeyWord')"
+      >
+        <template #icon> <i class="icon-zidingyi icon"></i></template>
+      </Tag>
+      <Tag
+        slice
+        v-for="item in defaultCustomKeyWord"
+        :content="item.promptZH!"
+        :is-selected="item.isSelected"
+        :is-custom="item.isCustom"
+        :weight="item.weight"
+        :show-weight="item.showWeight"
+        @click.stop.self
+        @reduce-weight="(value) => onReduceWeight(value, item)"
+        @add-weight="(value) => onAddWeight(value, item)"
+        @click-tag="(value) => onShowWeightTag(value, item)"
+      ></Tag>
     </div>
   </main>
   <el-dialog
@@ -601,6 +645,31 @@ function onSelectAIParams(type: MidJourneyParams | "writekeyword") {
             });
             newImgAddressValue = '';
           "
+          >完成</el-button
+        >
+      </span>
+    </template>
+  </el-dialog>
+  <el-dialog
+    title="自己添加"
+    v-model="dialogVisible.writeCustomKeyWord"
+    center
+    width="456px"
+    destroy-on-close
+    draggable
+    :close-on-click-modal="false"
+  >
+    <el-input
+      type="textarea"
+      v-model="newCustomKeyWord"
+      maxlength="30"
+      show-word-limit
+      placeholder="请输入"
+      :rows="4"
+    ></el-input>
+    <template #footer>
+      <span>
+        <el-button class="dialogBtn" type="primary" @click="onCloseWriteCustomDialog"
           >完成</el-button
         >
       </span>

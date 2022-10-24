@@ -1,22 +1,12 @@
 <script setup lang="ts">
-import { ref, watch, onBeforeUnmount } from "vue";
+import { ref, watch } from "vue";
 import CardItemComp from "./CardItem.vue";
 
-import { useEventListener } from "@vueuse/core";
 import type { CardItem } from "@/models";
 
 const props = defineProps<{
   data: CardItem[];
 }>();
-
-const clearUp = useEventListener("click", () => {
-  props.data.forEach((x) => (x.showWeight = false));
-  currentShowWeightCard.value = "";
-});
-
-onBeforeUnmount(() => {
-  clearUp();
-});
 
 // 当前展示weight的card
 const currentShowWeightCard = ref("");
