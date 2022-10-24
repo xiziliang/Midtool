@@ -54,11 +54,11 @@ function onClickKeyWordTag(item: Partial<CustomKeyWord>) {
 }
 
 function onReduceWeight(weight: number, item: Partial<CustomKeyWord>) {
-  item.weight = weight - 1;
+  item.weight = weight - 0.25;
 }
 
 function onAddWeight(weight: number, item: Partial<CustomKeyWord>) {
-  item.weight = weight + 1;
+  item.weight = weight + 0.25;
 }
 
 function onShowWeightTag(content: string, item: Partial<CustomKeyWord>) {
@@ -116,6 +116,7 @@ watchEffect(() => {
             <Tag
               slice
               v-for="item in allData.filter((x) => x.KeyWord2 === keyword2)"
+              weight-type="mid"
               :content="item.promptZH!"
               :weight="item.weight"
               :show-weight="item.showWeight"
@@ -135,6 +136,7 @@ watchEffect(() => {
           <Tag
             slice
             v-for="item in keyWordHistoryList"
+            weight-type="mid"
             :content="item.promptZH!"
             :weight="item.weight"
             :show-weight="item.showWeight"

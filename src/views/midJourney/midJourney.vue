@@ -170,11 +170,11 @@ function onDeleteDpi() {
 }
 
 function onReduceWeight(weight: number, item: CustomKeyWord) {
-  item.weight = weight - 1;
+  item.weight = weight - 0.25;
 }
 
 function onAddWeight(weight: number, item: CustomKeyWord) {
-  item.weight = weight + 1;
+  item.weight = weight + 0.25;
 }
 
 function onShowWeightTag(content: string, item: CustomKeyWord) {
@@ -379,6 +379,7 @@ function onSelectAIParams(
       <Tag
         slice
         v-for="(item, index) in defaultKeyWordList"
+        weight-type="mid"
         :content="item.promptZH!"
         :is-selected="item.isSelected"
         :is-custom="item.isCustom"
@@ -480,6 +481,7 @@ function onSelectAIParams(
       <Tag
         slice
         v-for="(item, index) in defaultCustomKeyWord"
+        weight-type="mid"
         :content="item.promptZH!"
         :is-selected="item.isSelected"
         :is-custom="item.isCustom"

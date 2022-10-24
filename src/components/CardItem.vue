@@ -11,6 +11,7 @@ defineProps<{
   image: "yes" | "no";
   imgUrl?: string;
   weight?: number;
+  weightType?: "mid" | "novel";
   showWeight?: boolean;
   /** 是否主页选中 */
   isSelected?: boolean;
@@ -42,14 +43,16 @@ defineEmits([
       <el-button
         type="danger"
         :icon="Remove"
-        :disabled="weight! <= 1"
+        :disabled="weightType === 'mid' ? weight! <= -1 : weight! <= 1"
         @click="$emit('reduce-weight', weight)"
       />
-      <el-button bg-white hover:bg-white text>词权重 {{ weight || 1 }}</el-button>
+      <el-button bg-white min-w-90px hover:bg-white text
+        >权重 {{ weight || 1 }}</el-button
+      >
       <el-button
         type="primary"
         :icon="Plus"
-        :disabled="weight! >= 9"
+        :disabled="weightType === 'mid' ? weight! >= 5 : weight! >= 10"
         @click="$emit('add-weight', weight)"
       />
     </el-button-group>

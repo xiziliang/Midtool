@@ -12,7 +12,7 @@ import type {
   CardItem,
 } from "@/models";
 
-import Card from "@/components/Card.vue";
+import NovelCard from "@/components/NovelCard.vue";
 import Tag from "@/components/Tag.vue";
 import PromptItem from "@/components/PromptItem.vue";
 import NovelKeywordDialog from "@/components/NovelKeywordDialog.vue";
@@ -306,7 +306,7 @@ defineExpose({
       p="y-2 x-2px"
       class="more"
     >
-      <Card :data="defaultDrawPeople"></Card>
+      <NovelCard :data="defaultDrawPeople"></NovelCard>
     </div>
     <div flex="~" mt-28px mb-5px class="readmore-title">
       <div cursor-pointer flex @click="onSelectParams('body')">
@@ -325,7 +325,7 @@ defineExpose({
       p="y-2 x-2px"
       class="more"
     >
-      <Card :data="defaultDrawBody"></Card>
+      <NovelCard :data="defaultDrawBody"></NovelCard>
     </div>
     <div flex="~" mt-28px mb-5px class="readmore-title">
       <div cursor-pointer flex @click="onSelectParams('style')">
@@ -344,7 +344,7 @@ defineExpose({
       p="y-2 x-2px"
       class="more"
     >
-      <Card :data="defaultDrawStyle"></Card>
+      <NovelCard :data="defaultDrawStyle"></NovelCard>
     </div>
     <div flex="~" mt-28px mb-5px class="readmore-title">
       <div cursor-pointer flex @click="onSelectParams('composeKeyWord')">
@@ -366,6 +366,7 @@ defineExpose({
       <Tag
         slice
         v-for="(item, index) in defaultComposeKeyWord"
+        weight-type="novel"
         :content="item.promptZH!"
         :is-selected="item.isSelected"
         :is-custom="item.isCustom"
@@ -397,6 +398,7 @@ defineExpose({
       <Tag
         slice
         v-for="(item, index) in defaultPositiveKeyWord"
+        weight-type="novel"
         :content="item.promptZH!"
         :is-selected="item.isSelected"
         :is-custom="item.isCustom"
@@ -428,6 +430,7 @@ defineExpose({
       <Tag
         slice
         v-for="(item, index) in defaultCustomKeyWord"
+        weight-type="novel"
         :content="item.promptZH!"
         :is-selected="item.isSelected"
         :is-custom="item.isCustom"

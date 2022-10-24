@@ -10,6 +10,8 @@ const props = defineProps<{
   isSelected?: boolean;
   /** 是否是自定义 */
   isCustom?: boolean;
+  /** 权重类型 */
+  weightType?: "mid" | "novel";
   /** 是否展示权重 */
   showWeight?: boolean;
   /** 权重 */
@@ -73,7 +75,7 @@ function onClick() {
       flex="~ col"
       class="keyword-tag px-20px py-6px"
       :class="{ selected: isSelected, dpiStyle: type === 'dpi' }"
-      :data-weight="weight"
+      :data-weight="Math.trunc(weight!)"
       v-bind="$attrs"
       @click.stop.self="onClick"
     >
@@ -97,14 +99,16 @@ function onClick() {
         <el-button
           type="danger"
           :icon="Remove"
-          :disabled="weight! <= 1"
+          :disabled="weightType === 'mid' ? weight! <= -1 : weight! <= 1"
           @click="$emit('reduce-weight', weight)"
         />
-        <el-button bg-white hover:bg-white text>词权重 {{ weight || 1 }}</el-button>
+        <el-button bg-white hover:bg-white min-w-90px text
+          >权重 {{ weight || 1 }}</el-button
+        >
         <el-button
           type="primary"
           :icon="Plus"
-          :disabled="weight! >= 9"
+          :disabled="weightType === 'mid' ? weight! >= 5 : weight! >= 10"
           @click="$emit('add-weight', weight)"
         />
       </el-button-group>

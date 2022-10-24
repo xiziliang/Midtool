@@ -119,11 +119,11 @@ function onClickCard(promptEN: string, item: CardItem) {
 }
 
 function onReduceWeight(weight: number, item: CardItem) {
-  item.weight = weight - 1;
+  item.weight = weight - 0.25;
 }
 
 function onAddWeight(weight: number, item: CardItem) {
-  item.weight = weight + 1;
+  item.weight = weight + 0.25;
 }
 
 defineExpose({
@@ -239,11 +239,12 @@ watchEffect(() => {
               v-for="item in allData.filter((x) => x.KeyWord2 === keyword2)"
               :key="item.promptEN"
               :class="{ selected: item.isSelected }"
-              :data-weight="item.weight"
+              :data-weight="Math.trunc(item.weight)"
               @click.stop.self="onTrigger(item)"
             >
               <CardItemComp
                 v-bind="item"
+                weight-type="mid"
                 @add-weight="(value) => onAddWeight(value, item)"
                 @reduce-weight="(value) => onReduceWeight(value, item)"
               ></CardItemComp>
