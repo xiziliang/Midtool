@@ -14,7 +14,6 @@ const props = defineProps<{
 
 const clearUp = useEventListener("click", () => {
   [...allData.value, ...keyWordHistoryList.value].forEach((x) => (x.showWeight = false));
-  currentShowWeightTag.value = "";
 });
 
 onBeforeUnmount(() => {
@@ -33,7 +32,6 @@ const keyWordHistoryList = useStorage<CustomKeyWord[]>(
   localStorage
 );
 
-const currentShowWeightTag = ref("");
 const allData = ref<Partial<CustomKeyWord>[]>([]);
 
 const currentTab = computed({
@@ -62,10 +60,7 @@ function onAddWeight(weight: number, item: Partial<CustomKeyWord>) {
 }
 
 function onShowWeightTag(content: string, item: Partial<CustomKeyWord>) {
-  if (currentShowWeightTag.value === content) return;
-
-  currentShowWeightTag.value = content;
-  allData.value.forEach((x) => (x.showWeight = false));
+  [...allData.value, ...keyWordHistoryList.value].forEach((x) => (x.showWeight = false));
   item.showWeight = true;
 }
 

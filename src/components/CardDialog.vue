@@ -14,7 +14,6 @@ const props = defineProps<{
 
 const clearUp = useEventListener("click", () => {
   [...allData.value, ...cardHistoryList.value].forEach((x) => (x.showWeight = false));
-  currentShowWeightTag.value = "";
 });
 
 onBeforeUnmount(() => {
@@ -25,7 +24,6 @@ const cardCustomList = useStorage<CardItem[]>(CARD_CUSTOM_LIST, [], localStorage
 
 const cardHistoryList = useStorage<CardItem[]>(CARD_HISTORY_LIST, [], localStorage);
 
-const currentShowWeightTag = ref("");
 const allData = ref<Partial<CardItem>[]>([]);
 
 const currentTab = computed({
@@ -54,10 +52,7 @@ function onAddWeight(weight: number, item: Partial<CardItem>) {
 }
 
 function onShowWeightTag(content: string, item: Partial<CardItem>) {
-  if (currentShowWeightTag.value === content) return;
-
-  currentShowWeightTag.value = content;
-  allData.value.forEach((x) => (x.showWeight = false));
+  [...allData.value, ...cardHistoryList.value].forEach((x) => (x.showWeight = false));
   item.showWeight = true;
 }
 
