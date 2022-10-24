@@ -6,3 +6,4 @@ export const PARAM_CUSTOM_LIST = "param-custom-list";
 export const IMG_CUSTOM_LIST = "img-custom-list";
 
 export const KEYWORD_HISTORY_LIST = "keyword-history-list";
+export const CARD_HISTORY_LIST = "card-history-list";

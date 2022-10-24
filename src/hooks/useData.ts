@@ -8,7 +8,6 @@ import type {
   CustomKeyWord,
   CardItem,
   ImgOptions,
-  HistoryKeyWord,
   PromptTemplate,
 } from "@/models";
 import {
@@ -18,6 +17,7 @@ import {
   PARAM_CUSTOM_LIST,
   IMG_CUSTOM_LIST,
   KEYWORD_HISTORY_LIST,
+  CARD_HISTORY_LIST,
 } from "@/constants";
 
 import { useFetch, useStorage } from "@vueuse/core";
@@ -52,7 +52,8 @@ export const useMidJourneyData= () => {
   const paramCustomsList = useStorage<Options[]>(PARAM_CUSTOM_LIST, [], localStorage);
   const imgCustomsList = useStorage<ImgOptions[]>(IMG_CUSTOM_LIST, [], localStorage);
 
-  const keyWordHistoryList = useStorage<HistoryKeyWord[]>(
+  const cardHistoryList = useStorage<CardItem[]>(CARD_HISTORY_LIST, [], localStorage);
+  const keyWordHistoryList = useStorage<CustomKeyWord[]>(
     KEYWORD_HISTORY_LIST,
     [],
     localStorage
@@ -143,6 +144,7 @@ export const useMidJourneyData= () => {
     paramCustomsList,
     imgCustomsList,
     keyWordHistoryList,
+    cardHistoryList,
 
     // computed data
     defaultCardList,

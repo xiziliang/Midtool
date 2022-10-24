@@ -3,12 +3,7 @@ import { ref, reactive, nextTick, computed, onBeforeUnmount } from "vue";
 import { ElMessage } from "element-plus";
 import { cloneDeep } from "lodash";
 
-import type {
-  MidJourneyParams,
-  HistoryKeyWord,
-  DpiOptions,
-  CustomKeyWord,
-} from "@/models";
+import type { MidJourneyParams, DpiOptions, CustomKeyWord, CardItem } from "@/models";
 import { ReplaceKey } from "@/constants";
 
 import Card from "@/components/Card.vue";
@@ -37,6 +32,7 @@ const {
   paramCustomsList,
   imgCustomsList,
   keyWordHistoryList,
+  cardHistoryList,
 
   // computed data
   defaultCardList,
@@ -70,6 +66,7 @@ const dpiDialogRef = ref<InstanceType<typeof DpiDialog> | null>(null);
 const keywordDialogRef = ref<InstanceType<typeof KeywordDialog> | null>(null);
 const cardDialogRef = ref<InstanceType<typeof CardDialog> | null>(null);
 
+const newCardValue = ref("");
 const newKeyWordValue = ref("");
 const newImgAddressValue = ref("");
 const newCustomKeyWord = ref("");
@@ -131,6 +128,7 @@ const dialogVisible = reactive({
   dpi: false,
   card: false,
   img: false,
+  writeCard: false,
   writeKeyWord: false,
   writeCustomKeyWord: false,
 });
@@ -144,7 +142,7 @@ defineExpose({
   tipsList: tooltiplist,
 });
 
-function onClickKeyWordTag(item: CustomKeyWord) {
+function onClickKeyWordTag(item: CustomKeyWord | CardItem) {
   item.isSelected = !item.isSelected;
   item.showWeight = true;
 }
@@ -154,6 +152,11 @@ function onClickDpiTag(item: DpiOptions) {
   dpiParams.isSelected = false;
 
   item.isSelected = true;
+}
+
+function onDeleteCard(index: number) {
+  defaultCardList.value.splice(index, 1);
+  ElMessage.success("删除成功");
 }
 
 function onDeleteKeyword(index: number) {
@@ -174,15 +177,15 @@ function onDeleteDpi() {
   ElMessage.success("删除成功");
 }
 
-function onReduceWeight(weight: number, item: CustomKeyWord) {
+function onReduceWeight(weight: number, item: CustomKeyWord | CardItem) {
   item.weight = weight - 0.25;
 }
 
-function onAddWeight(weight: number, item: CustomKeyWord) {
+function onAddWeight(weight: number, item: CustomKeyWord | CardItem) {
   item.weight = weight + 0.25;
 }
 
-function onShowWeightTag(content: string, item: CustomKeyWord) {
+function onShowWeightTag(content: string, item: CustomKeyWord | CardItem) {
   defaultWeightData.value.forEach((x) => (x.showWeight = false));
 
   item.showWeight = true;
@@ -191,7 +194,11 @@ function onShowWeightTag(content: string, item: CustomKeyWord) {
 async function onCloseCardDialog() {
   dialogVisible.card = false;
   await nextTick();
+
   cardCustomList.value = cardDialogRef.value?.cardCustomList;
+  cardHistoryList.value = cardDialogRef.value?.cardHistoryList;
+
+  defaultCardList.value.push(...cardHistoryList.value.filter((x) => x.isSelected));
 }
 
 async function onCloseDpiDialog() {
@@ -225,6 +232,28 @@ async function onCloseKeyWordDialog() {
   defaultKeyWordList.value.push(...keyWordHistoryList.value.filter((x) => x.isSelected));
 }
 
+function onCloseWriteCardDialog() {
+  dialogVisible.writeCard = false;
+
+  const item = cardHistoryList.value.find((x) => x.promptZH === newCardValue.value);
+
+  if (item) {
+    item.isSelected = true;
+    defaultCardList.value.push(item);
+  } else if (!item) {
+    const newItem = reactive({
+      promptZH: newCardValue.value,
+      weight: 1,
+      showWeight: false,
+      isSelected: true,
+      isCustom: true,
+    }) as CardItem;
+    cardHistoryList.value.push(newItem);
+    defaultCardList.value.push(newItem);
+  }
+  newCardValue.value = "";
+}
+
 function onCloseWriteKeyWordDialog() {
   dialogVisible.writeKeyWord = false;
 
@@ -234,21 +263,16 @@ function onCloseWriteKeyWordDialog() {
     item.isSelected = true;
     defaultKeyWordList.value.push(item);
   } else if (!item) {
-    keyWordHistoryList.value.push(
-      reactive({
-        promptZH: newKeyWordValue.value,
-        weight: 1,
-        showWeight: false,
-        isSelected: true,
-        isCustom: true,
-      }) as HistoryKeyWord
-    );
+    const newItem = reactive({
+      promptZH: newKeyWordValue.value,
+      weight: 1,
+      showWeight: false,
+      isSelected: true,
+      isCustom: true,
+    }) as CustomKeyWord;
+    keyWordHistoryList.value.push(newItem);
 
-    defaultKeyWordList.value.push(
-      keyWordHistoryList.value.find(
-        (x) => x.promptZH === newKeyWordValue.value
-      ) as HistoryKeyWord
-    );
+    defaultKeyWordList.value.push(newItem);
   }
   newKeyWordValue.value = "";
 }
@@ -271,11 +295,15 @@ function onCloseWriteCustomDialog() {
 }
 
 function onSelectAIParams(
-  type: MidJourneyParams | "writekeyword" | "writeCustomKeyWord"
+  type: MidJourneyParams | "writeCard" | "writekeyword" | "writeCustomKeyWord"
 ) {
   switch (type) {
     case "card":
       dialogVisible.card = true;
+
+      break;
+    case "writeCard":
+      dialogVisible.writeCard = true;
 
       break;
     case "keyword":
@@ -335,17 +363,7 @@ function onSelectAIParams(
       will-change-scroll
       p="y-2 x-2px"
       class="more"
-    >
-      <!-- <div
-        class="card prompt-item no-mark-tag"
-        v-for="item in defaultCardList"
-        :key="item.promptEN"
-        :class="{ selected: item.isSelected }"
-        @click="item.isSelected = !item.isSelected"
-      >
-        <PromptItem v-bind="item" />
-      </div> -->
-    </div>
+    ></div>
     <div flex="~" mt-8 mb-3 class="readmore-title">
       <div cursor-pointer flex @click="onSelectAIParams('card')">
         <p text-20px color-dark-400>
@@ -365,7 +383,24 @@ function onSelectAIParams(
       p="y-2 x-2px"
       class="more"
     >
-      <Card :data="defaultCardList" :default-weight-data="defaultWeightData"></Card>
+      <Tag class="no-mark-tag" content="自定义" @click="onSelectAIParams('writeCard')">
+        <template #icon> <i class="icon-zidingyi icon"></i></template>
+      </Tag>
+      <Tag
+        slice
+        v-for="(item, index) in defaultCardList"
+        weight-type="mid"
+        :content="item.promptZH!"
+        :is-selected="item.isSelected"
+        :is-custom="item.isCustom"
+        :weight="item.weight"
+        :show-weight="item.showWeight"
+        @delete="onDeleteCard(index)"
+        @click.stop.self="onClickKeyWordTag(item)"
+        @reduce-weight="(value) => onReduceWeight(value, item)"
+        @add-weight="(value) => onAddWeight(value, item)"
+        @click-tag="(value) => onShowWeightTag(value, item)"
+      ></Tag>
     </div>
     <div flex="~" mt-8 mb-3 class="readmore-title">
       <div cursor-pointer flex @click="onSelectAIParams('keyword')">
@@ -516,6 +551,36 @@ function onSelectAIParams(
     <template #footer>
       <span class="dialog-footer">
         <el-button class="dialogBtn" type="primary" @click="onCloseCardDialog"
+          >完成</el-button
+        >
+      </span>
+    </template>
+  </el-dialog>
+  <el-dialog
+    title="输入作画风格"
+    v-model="dialogVisible.writeCard"
+    center
+    width="456px"
+    destroy-on-close
+    draggable
+    :close-on-click-modal="false"
+  >
+    <el-input
+      type="textarea"
+      v-model="newCardValue"
+      maxlength="30"
+      show-word-limit
+      placeholder="请输入"
+      :rows="4"
+    ></el-input>
+
+    <template #footer>
+      <span>
+        <el-button
+          class="dialogBtn"
+          :disabled="newCardValue.length < 1"
+          type="primary"
+          @click="onCloseWriteCardDialog"
           >完成</el-button
         >
       </span>

@@ -5,7 +5,7 @@ import { cloneDeep } from "lodash";
 import { useStorage, useEventListener } from "@vueuse/core";
 import { KEYWORD_CUSTOM_LIST, KEYWORD_HISTORY_LIST } from "@/constants";
 import Tag from "@/components/Tag.vue";
-import type { CustomKeyWord, HistoryKeyWord } from "@/models";
+import type { CustomKeyWord } from "@/models";
 
 const props = defineProps<{
   list: Partial<CustomKeyWord>[];
@@ -27,7 +27,7 @@ const keyWordCustomList = useStorage<CustomKeyWord[]>(
   localStorage
 );
 
-const keyWordHistoryList = useStorage<HistoryKeyWord[]>(
+const keyWordHistoryList = useStorage<CustomKeyWord[]>(
   KEYWORD_HISTORY_LIST,
   [],
   localStorage

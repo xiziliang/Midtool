@@ -1,22 +1,20 @@
 <script setup lang="ts">
-import { ref, watch, watchEffect, computed, nextTick, onBeforeUnmount } from "vue";
-import type { TabsPaneContext } from "element-plus";
+import { ref, computed, watchEffect, watch, onBeforeUnmount } from "vue";
 import { cloneDeep } from "lodash";
 
+import { useStorage, useEventListener } from "@vueuse/core";
+import { CARD_CUSTOM_LIST, CARD_HISTORY_LIST } from "@/constants";
+import Tag from "@/components/Tag.vue";
 import type { CardItem } from "@/models";
-import { CARD_CUSTOM_LIST } from "@/constants";
-import { useStorage, useIntersectionObserver, useEventListener } from "@vueuse/core";
-
-import CardItemComp from "./CardItem.vue";
 
 const props = defineProps<{
-  list: CardItem[];
-  dialogVisible: boolean;
+  list: Partial<CardItem>[];
+  dialogVisible?: boolean;
 }>();
 
 const clearUp = useEventListener("click", () => {
-  allData.value.forEach((x) => (x.showWeight = false));
-  currentShowWeightCard.value = "";
+  [...allData.value, ...cardHistoryList.value].forEach((x) => (x.showWeight = false));
+  currentShowWeightTag.value = "";
 });
 
 onBeforeUnmount(() => {
@@ -25,56 +23,16 @@ onBeforeUnmount(() => {
 
 const cardCustomList = useStorage<CardItem[]>(CARD_CUSTOM_LIST, [], localStorage);
 
-// instance
-const keyword2Ref = ref<HTMLElement[] | null>();
-const scrollBoxRef = ref<HTMLElement[] | null>();
+const cardHistoryList = useStorage<CardItem[]>(CARD_HISTORY_LIST, [], localStorage);
 
-// data
-const isClickScroll = ref(false);
-const map = ref<Record<string, any>>({});
-const allData = ref<CardItem[]>([]);
-const currentTab = ref<string>();
-const currentTab2 = ref<string>();
-const currentShowWeightCard = ref("");
+const currentShowWeightTag = ref("");
+const allData = ref<Partial<CardItem>[]>([]);
 
-// computed data
-const tabList = computed(() => Array.from(new Set(allData.value.map((x) => x.KeyWord))));
-const tab2List = computed(() => {
-  return Array.from(
-    new Set(
-      allData.value.filter((x) => x.KeyWord === currentTab?.value).map((x) => x.KeyWord2)
-    )
-  );
+const currentTab = computed({
+  get: () => tabList.value[0] || "history",
+  set() {},
 });
-
-/** 添加监听: 元素显示0r隐藏 */
-function addElementVisibility() {
-  const scrollTarget = scrollBoxRef.value?.find((x) =>
-    x.className.includes(currentTab.value!)
-  );
-
-  const targets = keyword2Ref.value?.filter((x) => {
-    return tab2List.value.includes(x.classList[1]);
-  });
-
-  targets?.forEach((x) => {
-    const isVisible = ref(false);
-    const { stop } = useIntersectionObserver(
-      x,
-      ([{ isIntersecting }]) => {
-        isVisible.value = isIntersecting;
-      },
-      {
-        root: scrollTarget,
-      }
-    );
-
-    map.value[x.classList[1]] = {
-      stop,
-      isVisible,
-    };
-  });
-}
+const tabList = computed(() => Array.from(new Set(allData.value.map((x) => x.KeyWord))));
 
 function keyword2label(label: string) {
   return Array.from(
@@ -82,90 +40,32 @@ function keyword2label(label: string) {
   );
 }
 
-function onClickKeyword2Tab(context: TabsPaneContext) {
-  isClickScroll.value = true;
-  scrollTo(context.paneName + "");
-
-  setTimeout(() => {
-    isClickScroll.value = false;
-  }, 1000);
-}
-
-function scrollTo(className: string) {
-  document.getElementsByClassName(className)[0].scrollIntoView({
-    behavior: "smooth",
-  });
-}
-
-function clearScroll() {
-  for (const key in map.value) {
-    map.value[key].stop();
-  }
-  map.value = {};
-}
-
-function onTrigger(item: CardItem) {
+function onClickKeyWordTag(item: Partial<CardItem>) {
   item.isSelected = !item.isSelected;
-
-  onClickCard(item.promptEN, item);
+  item.showWeight = true;
 }
 
-function onClickCard(promptEN: string, item: CardItem) {
-  if (currentShowWeightCard.value === promptEN) return;
+function onReduceWeight(weight: number, item: Partial<CardItem>) {
+  item.weight = weight - 0.25;
+}
 
-  currentShowWeightCard.value = promptEN;
+function onAddWeight(weight: number, item: Partial<CardItem>) {
+  item.weight = weight + 0.25;
+}
+
+function onShowWeightTag(content: string, item: Partial<CardItem>) {
+  if (currentShowWeightTag.value === content) return;
+
+  currentShowWeightTag.value = content;
   allData.value.forEach((x) => (x.showWeight = false));
   item.showWeight = true;
 }
 
-function onReduceWeight(weight: number, item: CardItem) {
-  item.weight = weight - 0.25;
-}
-
-function onAddWeight(weight: number, item: CardItem) {
-  item.weight = weight + 0.25;
-}
-
 defineExpose({
+  selectedList: allData.value.filter((x) => x.isSelected),
   cardCustomList,
+  cardHistoryList,
 });
-
-watch(
-  tabList,
-  () => {
-    currentTab.value = tabList?.value[0];
-  },
-  { immediate: true }
-);
-
-watch(
-  tab2List,
-  async () => {
-    if (!tab2List.value.length) return;
-
-    currentTab2.value = tab2List.value[0];
-
-    await nextTick();
-    currentTab2.value ? scrollTo(currentTab2.value) : undefined;
-
-    clearScroll();
-    addElementVisibility();
-  },
-  { immediate: true }
-);
-
-watch(
-  map,
-  () => {
-    if (Object.entries(map.value).length < 0) return;
-
-    if (isClickScroll.value) return;
-
-    const firstShowEl = Object.entries(map.value).find((x) => x[1].isVisible);
-    currentTab2.value = firstShowEl?.[0];
-  },
-  { deep: true }
-);
 
 watch(
   () => props.list,
@@ -173,8 +73,8 @@ watch(
     if (!value) return;
     allData.value = cloneDeep(value);
 
+    // NOTE:对应历史数据合并到JSON数据上
     if (cardCustomList.value) {
-      // NOTE:对应历史数据合并到JSON数据上
       cardCustomList.value.forEach((x) => {
         const item = allData.value.find((y) => y.promptEN === x.promptEN);
         if (item) Object.assign(item, x);
@@ -188,108 +88,56 @@ watch(
 
 watchEffect(() => {
   if (!props.dialogVisible) {
-    cardCustomList.value = allData.value.filter((x) => x.isSelected);
+    cardCustomList.value = allData.value.filter((x) => x.isSelected) as CardItem[];
   }
 });
 </script>
 <template>
   <el-tabs v-model="currentTab">
     <el-tab-pane v-for="keyword1 in tabList" :label="keyword1" :name="keyword1">
-      <template #label
-        ><div
-          class="tab-pane-title"
-          :data-count="
-            allData.filter((x) => x.KeyWord === keyword1 && x.isSelected).length
-          "
-          :class="{ isSelected: currentTab === keyword1 }"
-        >
-          {{ keyword1 }}
-        </div></template
-      >
-      <el-tabs
-        py-1
-        class="keyword2Tab"
-        v-model="currentTab2"
-        @tab-click="onClickKeyword2Tab"
-      >
-        <el-tab-pane
-          v-for="keyword2 in tab2List"
-          :key="keyword2"
-          :label="keyword2"
-          :name="keyword2"
-        ></el-tab-pane>
-      </el-tabs>
-      <div
-        ref="scrollBoxRef"
-        :class="keyword1 + 'scrollBox'"
-        pt-15px
-        max-h-2xl
-        min-h-lg
-        overflow-auto
-      >
-        <div
-          ref="keyword2Ref"
-          v-for="keyword2 in keyword2label(keyword1!)"
-          :class="['keyword2', keyword2]"
-        >
-          <div flex="~" mt-4 text-16px color-dark-400>
+      <div h-lg overflow-auto will-change-scroll p="x-20px t-15px">
+        <div v-for="keyword2 in keyword2label(keyword1!)" class="keyword2">
+          <div flex="~" m="y-4">
             <div flex>
-              <p font-600>{{ keyword2 }}</p>
+              <p>{{ keyword2 }}</p>
             </div>
           </div>
-          <div flex="~ gap-3 wrap" justify-start items-start pt-4>
-            <div
-              class="card"
+          <div flex="~ gap-3 wrap" justify-start items-start>
+            <Tag
+              slice
               v-for="item in allData.filter((x) => x.KeyWord2 === keyword2)"
-              :key="item.promptEN"
-              :class="{ selected: item.isSelected }"
-              :data-weight="Math.trunc(item.weight)"
-              @click.stop.self="onTrigger(item)"
-            >
-              <CardItemComp
-                v-bind="item"
-                weight-type="mid"
-                @add-weight="(value) => onAddWeight(value, item)"
-                @reduce-weight="(value) => onReduceWeight(value, item)"
-              ></CardItemComp>
-            </div>
+              weight-type="mid"
+              :content="item.promptZH!"
+              :weight="item.weight"
+              :show-weight="item.showWeight"
+              :is-selected="item.isSelected"
+              @click.stop.self="onClickKeyWordTag(item)"
+              @reduce-weight="(value) => onReduceWeight(value, item)"
+              @add-weight="(value) => onAddWeight(value, item)"
+              @click-tag="(value) => onShowWeightTag(value, item)"
+            ></Tag>
           </div>
+        </div>
+      </div>
+    </el-tab-pane>
+    <el-tab-pane label="历史记录" name="history">
+      <div h-lg overflow-auto p-x-20px>
+        <div flex="~ gap-3 wrap" p="y-4" justify-start items-start>
+          <Tag
+            slice
+            v-for="item in cardHistoryList"
+            weight-type="mid"
+            :content="item.promptZH!"
+            :weight="item.weight"
+            :show-weight="item.showWeight"
+            :is-selected="item.isSelected"
+            @click.stop.self="onClickKeyWordTag(item)"
+            @reduce-weight="(value) => onReduceWeight(value, item)"
+            @add-weight="(value) => onAddWeight(value, item)"
+            @click-tag="(value) => onShowWeightTag(value, item)"
+          ></Tag>
         </div>
       </div>
     </el-tab-pane>
   </el-tabs>
 </template>
-<style lang="scss" scoped>
-.isSelected.tab-pane-title::after {
-  background-color: var(--el-color-primary-light-8);
-}
-.tab-pane-title::after {
-  content: attr(data-count);
-  width: 16px;
-  height: 16px;
-  position: absolute;
-  background-color: var(--el-color-white);
-  top: 0px;
-  color: inherit;
-  border-radius: 50%;
-  display: inline;
-  font-size: 12px;
-  text-align: center;
-  vertical-align: middle;
-  line-height: 16px;
-}
-
-:deep(.el-tabs__header) {
-  margin: 0;
-}
-.keyword2Tab {
-  position: sticky;
-  top: 0;
-  background: #fff;
-  z-index: 1;
-
-  :deep(.el-tabs__nav-wrap::after) {
-    content: none;
-  }
-}
-</style>
