@@ -22,7 +22,7 @@ import {
 
 import { useFetch, useStorage } from "@vueuse/core";
 
-export const useMidJourneyData= () => {
+export const useMidJourneyData = () => {
   const dpiParams = reactive<{
     options: string;
     isSelected: boolean;
@@ -59,6 +59,7 @@ export const useMidJourneyData= () => {
     localStorage
   );
 
+
   // TODO: 使用watch + ref
   const defaultCardList = computed(() => reactive([...cardCustomList.value]));
   const defaultKeyWordList = computed(() => reactive([...keyWordCustomList.value]));
@@ -84,15 +85,12 @@ export const useMidJourneyData= () => {
     }
   );
 
-  // function initCustomList() {
-  //   [
-  //     ...cardCustomList.value,
-  //     ...keyWordCustomList.value,
-  //     ...keyWordHistoryList.value,
-  //     ...dpiCustomsList.value,
-  //     ...imgCustomsList.value,
-  //   ].forEach((x) => (x.isSelected = false));
-  // }
+  function initCustomList() {
+    [
+      ...cardHistoryList.value, 
+      ...keyWordHistoryList.value
+    ].forEach(x => x.isSelected = false);
+  }
 
   function formatData(data: CardItem[]) {
     return data.map((x) => ({
@@ -107,27 +105,29 @@ export const useMidJourneyData= () => {
     const { data } = await useFetch("/json/midjourneyStyle.json");
     cardList.value = formatData(JSON.parse(data.value as string));
   }
-  
+
   async function fetchKeyWordData() {
     const { data } = await useFetch("/json/midjourneyPrompt.json");
     keyWordList.value = JSON.parse(data.value as string);
   }
-  
+
   async function fetchParamsData() {
     const { data } = await useFetch("/json/midjourneyParameter.json");
     paramsList.value = JSON.parse(data.value as string);
   }
-  
+
   async function fetchDpiData() {
     const { data } = await useFetch("/json/midjourneyCanvas.json");
     dpiList.value = JSON.parse(data.value as string);
   }
-  
+
   function fetch() {
     fetchKeyWordData();
     fetchCardListData();
     fetchParamsData();
     fetchDpiData();
+
+    initCustomList();
   }
 
   return {
@@ -195,7 +195,7 @@ export const useNovelAiData = () => {
   ])
 
   function formatData(data: any[]) {
-    
+
     data.forEach(x => {
       x.weight = 1;
       x.showWeight = false;
@@ -205,7 +205,7 @@ export const useNovelAiData = () => {
   }
 
   function formatDefaultData(data: any[]) {
-    
+
     data.forEach(x => {
       x.weight = 1;
       x.showWeight = false;
