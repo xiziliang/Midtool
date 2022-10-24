@@ -1,43 +1,51 @@
 <script setup lang="ts">
-import { ref, watch, watchEffect, computed, nextTick, onBeforeUnmount } from "vue";
+import { ref, watch, reactive, computed, nextTick, onBeforeUnmount } from "vue";
 import type { TabsPaneContext } from "element-plus";
 import { cloneDeep } from "lodash";
 
 import type { CardItem } from "@/models";
-import { CARD_CUSTOM_LIST } from "@/constants";
-import { useStorage, useIntersectionObserver, useEventListener } from "@vueuse/core";
+import { useIntersectionObserver, useEventListener } from "@vueuse/core";
 
 import CardItemComp from "./CardItem.vue";
 
 const props = defineProps<{
   list: CardItem[];
+  defaultData: any[];
   dialogVisible: boolean;
 }>();
 
 const clearUp = useEventListener("click", () => {
   allData.value.forEach((x) => (x.showWeight = false));
-  currentShowWeightCard.value = "";
 });
 
 onBeforeUnmount(() => {
   clearUp();
 });
 
-const cardCustomList = useStorage<CardItem[]>(CARD_CUSTOM_LIST, [], localStorage);
-
 // instance
 const keyword2Ref = ref<HTMLElement[] | null>();
 const scrollBoxRef = ref<HTMLElement[] | null>();
 
-// data
 const isClickScroll = ref(false);
+// tab-pane是否在页面中显示的映射
 const map = ref<Record<string, any>>({});
-const allData = ref<CardItem[]>([]);
 const currentTab = ref<string>();
 const currentTab2 = ref<string>();
-const currentShowWeightCard = ref("");
 
 // computed data
+const allData = computed(() => {
+  const list = reactive(cloneDeep(props.list));
+  if (props.defaultData) {
+    const defaultData = props.defaultData.filter((x) => !x.isDefault);
+
+    // NOTE:对应历史数据合并
+    defaultData.forEach((x) => {
+      const item = list.find((y) => x.promptEN === y.promptEN);
+      if (item) Object.assign(item, x);
+    });
+  }
+  return list;
+});
 const tabList = computed(() => Array.from(new Set(allData.value.map((x) => x.KeyWord))));
 const tab2List = computed(() => {
   return Array.from(
@@ -46,6 +54,7 @@ const tab2List = computed(() => {
     )
   );
 });
+const selectedList = computed(() => allData.value.filter((x) => x.isSelected));
 
 /** 添加监听: 元素显示0r隐藏 */
 function addElementVisibility() {
@@ -107,27 +116,24 @@ function clearScroll() {
 function onTrigger(item: CardItem) {
   item.isSelected = !item.isSelected;
 
-  onClickCard(item.promptEN, item);
+  onClickCard(item);
 }
 
-function onClickCard(promptEN: string, item: CardItem) {
-  if (currentShowWeightCard.value === promptEN) return;
-
-  currentShowWeightCard.value = promptEN;
+function onClickCard(item: CardItem) {
   allData.value.forEach((x) => (x.showWeight = false));
   item.showWeight = true;
 }
 
 function onReduceWeight(weight: number, item: CardItem) {
-  item.weight = weight - 0.25;
+  item.weight = weight - 1;
 }
 
 function onAddWeight(weight: number, item: CardItem) {
-  item.weight = weight + 0.25;
+  item.weight = weight + 1;
 }
 
 defineExpose({
-  cardCustomList,
+  selectedList,
 });
 
 watch(
@@ -166,31 +172,6 @@ watch(
   },
   { deep: true }
 );
-
-watch(
-  () => props.list,
-  (value) => {
-    if (!value) return;
-    allData.value = cloneDeep(value);
-
-    if (cardCustomList.value) {
-      // NOTE:对应历史数据合并到JSON数据上
-      cardCustomList.value.forEach((x) => {
-        const item = allData.value.find((y) => y.promptEN === x.promptEN);
-        if (item) Object.assign(item, x);
-      });
-    }
-  },
-  {
-    immediate: true,
-  }
-);
-
-watchEffect(() => {
-  if (!props.dialogVisible) {
-    cardCustomList.value = allData.value.filter((x) => x.isSelected);
-  }
-});
 </script>
 <template>
   <el-tabs v-model="currentTab">

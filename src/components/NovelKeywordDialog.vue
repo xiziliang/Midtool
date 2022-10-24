@@ -13,7 +13,7 @@ const props = defineProps<{
 }>();
 
 const clearUp = useEventListener("click", () => {
-  [...allData.value].forEach((x) => (x.showWeight = false));
+  allData.value.forEach((x) => (x.showWeight = false));
 });
 
 onBeforeUnmount(() => {

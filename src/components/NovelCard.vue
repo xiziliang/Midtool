@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
+import { cloneDeep } from "lodash";
 import CardItemComp from "./CardItem.vue";
 
 import type { CardItem } from "@/models";
@@ -12,10 +13,15 @@ const props = defineProps<{
 
 const allData = ref<CardItem[]>();
 
-function onTrigger(item: CardItem) {
-  item.isSelected = !item.isSelected;
+function onTrigger(item: CardItem, index: number) {
+  if (item.isDefault) {
+    item.isSelected = !item.isSelected;
+  } else {
+    allData.value?.splice(index, 1);
+  }
 
-  onClickCard(item);
+  props.allDefaultData.forEach((x: any) => (x.showWeight = false));
+  item.showWeight = true;
 }
 
 function onReduceWeight(weight: number, item: CardItem) {
@@ -24,11 +30,6 @@ function onReduceWeight(weight: number, item: CardItem) {
 
 function onAddWeight(weight: number, item: CardItem) {
   item.weight = weight + 1;
-}
-
-function onClickCard(item: CardItem) {
-  props.allDefaultData.forEach((x) => (x.showWeight = false));
-  item.showWeight = true;
 }
 
 watch(
@@ -44,11 +45,11 @@ watch(
 <template>
   <div
     class="card"
-    v-for="item in allData"
+    v-for="(item, index) in allData"
     :key="item.promptEN"
     :class="{ selected: item.isSelected }"
     :data-weight="Math.trunc(item.weight)"
-    @click.stop.self="onTrigger(item)"
+    @click.stop.self="onTrigger(item, index)"
   >
     <CardItemComp
       v-bind="item"

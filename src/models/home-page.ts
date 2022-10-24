@@ -15,6 +15,8 @@ export interface CardItem {
   weight: number;
   /** 是否显示权重 */
   showWeight: boolean;
+  /** 是否是默认展示在主页的数据 */
+  isDefault?: boolean;
 }
 
 export interface PromptTemplate {
