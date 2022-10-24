@@ -45,6 +45,8 @@ const {
   defaultParamList,
   defaultImgList,
   defaultCustomKeyWord,
+  // 默认有权重的数据
+  defaultWeightData,
   tooltiplist,
 
   // 画面比例自定义
@@ -54,12 +56,7 @@ const {
 } = useMidJourneyData();
 
 const clearUp = useEventListener("click", () => {
-  [
-    ...defaultKeyWordList.value,
-    ...defaultCustomKeyWord.value,
-    ...defaultCardList.value,
-  ].forEach((x) => (x.showWeight = false));
-  currentShowWeightTag.value = "";
+  defaultWeightData.value.forEach((x) => (x.showWeight = false));
 });
 
 onBeforeUnmount(() => {
@@ -76,8 +73,6 @@ const cardDialogRef = ref<InstanceType<typeof CardDialog> | null>(null);
 const newKeyWordValue = ref("");
 const newImgAddressValue = ref("");
 const newCustomKeyWord = ref("");
-/** 当前显示weight的tag */
-const currentShowWeightTag = ref("");
 
 const stringField = computed(() => {
   const cardListString = defaultCardList.value
@@ -178,10 +173,8 @@ function onAddWeight(weight: number, item: CustomKeyWord) {
 }
 
 function onShowWeightTag(content: string, item: CustomKeyWord) {
-  if (currentShowWeightTag.value === content) return;
+  defaultWeightData.value.forEach((x) => (x.showWeight = false));
 
-  currentShowWeightTag.value = content;
-  defaultKeyWordList.value.forEach((x) => (x.showWeight = false));
   item.showWeight = true;
 }
 
@@ -362,7 +355,7 @@ function onSelectAIParams(
       p="y-2 x-2px"
       class="more"
     >
-      <Card :data="defaultCardList"></Card>
+      <Card :data="defaultCardList" :default-weight-data="defaultWeightData"></Card>
     </div>
     <div flex="~" mt-8 mb-3 class="readmore-title">
       <div cursor-pointer flex @click="onSelectAIParams('keyword')">

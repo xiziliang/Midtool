@@ -66,6 +66,12 @@ export const useMidJourneyData= () => {
   const defaultImgList = computed(() => reactive([...imgCustomsList.value]));
   const defaultCustomKeyWord = ref<CustomKeyWord[]>([]);
 
+  const defaultWeightData = computed(() => [
+    ...defaultKeyWordList.value,
+    ...defaultCustomKeyWord.value,
+    ...defaultCardList.value,
+  ])
+
   const tooltiplist = computed<(CardItem & DpiOptions & CustomKeyWord & ImgOptions)[]>(
     () => {
       return [].concat(
@@ -145,6 +151,8 @@ export const useMidJourneyData= () => {
     defaultParamList,
     defaultImgList,
     defaultCustomKeyWord,
+    // 默认有权重的数据
+    defaultWeightData,
     tooltiplist,
 
     // 画面比例自定义

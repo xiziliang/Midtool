@@ -6,16 +6,16 @@ import type { CardItem } from "@/models";
 
 const props = defineProps<{
   data: CardItem[];
+  defaultWeightData: any[];
 }>();
 
 // 当前展示weight的card
-const currentShowWeightCard = ref("");
 const allData = ref<CardItem[]>();
 
 function onTrigger(item: CardItem) {
   item.isSelected = !item.isSelected;
 
-  onClickCard(item.promptEN, item);
+  onClickCard(item);
 }
 
 function onReduceWeight(weight: number, item: CardItem) {
@@ -26,11 +26,8 @@ function onAddWeight(weight: number, item: CardItem) {
   item.weight = weight + 0.25;
 }
 
-function onClickCard(promptEN: string, item: CardItem) {
-  if (currentShowWeightCard.value === promptEN) return;
-
-  currentShowWeightCard.value = promptEN;
-  props.data.forEach((x) => (x.showWeight = false));
+function onClickCard(item: CardItem) {
+  props.defaultWeightData.forEach((x) => (x.showWeight = false));
   item.showWeight = true;
 }
 

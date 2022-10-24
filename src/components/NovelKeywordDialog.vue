@@ -14,14 +14,12 @@ const props = defineProps<{
 
 const clearUp = useEventListener("click", () => {
   [...allData.value].forEach((x) => (x.showWeight = false));
-  currentShowWeightTag.value = "";
 });
 
 onBeforeUnmount(() => {
   clearUp();
 });
 
-const currentShowWeightTag = ref("");
 const allData = computed<Partial<CustomKeyWord>[]>(() => {
   const list = reactive(cloneDeep(props.list));
   if (props.defaultData) {
@@ -63,9 +61,6 @@ function onAddWeight(weight: number, item: Partial<CustomKeyWord>) {
 }
 
 function onShowWeightTag(content: string, item: Partial<CustomKeyWord>) {
-  if (currentShowWeightTag.value === content) return;
-
-  currentShowWeightTag.value = content;
   allData.value.forEach((x) => (x.showWeight = false));
   item.showWeight = true;
 }

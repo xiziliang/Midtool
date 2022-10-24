@@ -59,8 +59,6 @@ const newCustomKeyWord = ref("");
 const newComposeKeyWord = ref("");
 const newPositiveKeyWord = ref("");
 
-const currentShowWeightTag = ref("");
-
 const dialogVisible = reactive({
   prompt: false,
   people: false,
@@ -125,7 +123,6 @@ function onSelectParams(
 
 function clearWeight() {
   allDefaultData.value.forEach((x: any) => (x.showWeight = false));
-  currentShowWeightTag.value = "";
 }
 
 function onShowWeightTag(
@@ -136,9 +133,7 @@ function onShowWeightTag(
 ) {
   if (item.isCustom || item.isDefault) {
     item.isSelected = !item.isSelected;
-    if (currentShowWeightTag.value === content) return;
 
-    currentShowWeightTag.value = content;
     allDefaultData.value.forEach((x: any) => (x.showWeight = false));
     item.showWeight = true;
   } else {
@@ -306,7 +301,7 @@ defineExpose({
       p="y-2 x-2px"
       class="more"
     >
-      <NovelCard :data="defaultDrawPeople"></NovelCard>
+      <NovelCard :data="defaultDrawPeople" :all-default-data="allDefaultData"></NovelCard>
     </div>
     <div flex="~" mt-28px mb-5px class="readmore-title">
       <div cursor-pointer flex @click="onSelectParams('body')">
@@ -325,7 +320,7 @@ defineExpose({
       p="y-2 x-2px"
       class="more"
     >
-      <NovelCard :data="defaultDrawBody"></NovelCard>
+      <NovelCard :data="defaultDrawBody" :all-default-data="allDefaultData"></NovelCard>
     </div>
     <div flex="~" mt-28px mb-5px class="readmore-title">
       <div cursor-pointer flex @click="onSelectParams('style')">
@@ -344,7 +339,7 @@ defineExpose({
       p="y-2 x-2px"
       class="more"
     >
-      <NovelCard :data="defaultDrawStyle"></NovelCard>
+      <NovelCard :data="defaultDrawStyle" :all-default-data="allDefaultData"></NovelCard>
     </div>
     <div flex="~" mt-28px mb-5px class="readmore-title">
       <div cursor-pointer flex @click="onSelectParams('composeKeyWord')">
