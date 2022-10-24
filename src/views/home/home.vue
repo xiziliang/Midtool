@@ -2,6 +2,7 @@
 import { ref, computed } from "vue";
 import { useRouter, useRoute } from "vue-router";
 import type { TabsPaneContext } from "element-plus";
+import { ElMessage } from "element-plus";
 
 import TooltipTag from "@/components/TooltipTag.vue";
 import { ApiPrefix, ReplaceKey } from "@/constants";
@@ -12,7 +13,7 @@ import { $routes } from "@/router";
 import NovelAi from "../novelAi/novelAi.vue";
 import MidJourney from "../midJourney/midJourney.vue";
 
-type Instance = typeof MidJourney | typeof NovelAi;
+type Instance = typeof MidJourney & typeof NovelAi;
 // instance
 const headerRef = ref<HTMLElement | null>(null);
 const currentTabRef = ref<InstanceType<Instance>>();
@@ -78,20 +79,26 @@ function copy(type: "input" | "translation") {
 }
 
 async function translation() {
-  // NOTE: 拼接keyWord
-  // const keyWord = currentTabRef.value?.defaultKeyWordList
-  //   .filter((x) => x.isCustom && x.isSelected)
-  //   .map((x) => x.promptZH)
-  //   .join(",");
-  // loading.value = true;
-  // const { data } = await useFetch(`${ApiPrefix}/translate`).post({
-  //   origin: keyWord ? inputValue.value + "," + keyWord : inputValue.value,
-  // });
-  // loading.value = false;
-  // translationResult.value = stringField.value.replace(
-  //   ReplaceKey,
-  //   JSON.parse(data.value as string).data
-  // );
+  if (!inputValue.value) {
+    translationResult.value = "";
+    ElMessage.warning("请输入描述");
+    return;
+  }
+
+  // NOTE: 拼接自定义 keyWord
+  const others = currentTabRef.value?.others
+    .filter((x) => x.isCustom && x.isSelected)
+    .map((x) => x.promptZH + ":" + x.weight)
+    .join(",");
+  loading.value = true;
+  const { data } = await useFetch(`${ApiPrefix}/translate`).post({
+    origin: others ? inputValue.value + "," + others : inputValue.value,
+  });
+  loading.value = false;
+  translationResult.value = stringField.value.replace(
+    ReplaceKey,
+    JSON.parse(data.value as string).data
+  );
 }
 </script>
 

@@ -6,32 +6,28 @@ defineProps<{
 }>();
 
 function formatText(value: string) {
-  return value.length > 60 ? value.slice(0, 60) + "..." : value;
+  return value.length > 60 ? value.slice(0, 40) + "..." : value;
 }
 
 function onTrigger(item: ImgOptions) {
   item.isSelected = !item.isSelected;
 }
 
-function imgError(item: ImgOptions) {
-  item.imgLoadError = true;
+function imgError(data: ImgOptions[], index: number) {
+  data[index].imgLoadError = true;
 }
 </script>
 <template>
   <div
     class="card no-mark-tag"
-    v-for="item in data"
+    v-for="(item, index) in data"
     :key="item.img"
     :class="{ selected: item.isSelected }"
     @click="onTrigger(item)"
   >
     <div class="card-img">
-      <img v-if="!item.imgLoadError" :src="item.img" :onerror="imgError(item)" />
-      <div
-        v-else="item.imgLoadError"
-        class="loadError"
-        style="width: 100%; height: 135px"
-      >
+      <img v-if="!item.imgLoadError" :src="item.img" :onerror="imgError(data, index)" />
+      <div v-if="item.imgLoadError" class="loadError" style="width: 100%; height: 135px">
         加载失败
       </div>
     </div>

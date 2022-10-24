@@ -271,6 +271,7 @@ function onDeleteKeyword(type: NovelAiParams, index: number) {
 }
 
 defineExpose({
+  defaultKeyWordList: [],
   tipsList: [
     {
       promptZH: "",

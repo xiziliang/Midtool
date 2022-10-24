@@ -77,12 +77,13 @@ const newCustomKeyWord = ref("");
 const stringField = computed(() => {
   const cardListString = defaultCardList.value
     .filter((x) => x.isSelected)
-    .map((x) => x.promptEN)
+    .map((x) => x.promptEN + ":" + x.weight)
     .join(",");
 
+  // midJourney 关键词和权重直接拼接用:
   const keyWordString = defaultKeyWordList.value
     .filter((x) => x.isSelected && !x.isCustom)
-    .map((x) => x.promptEN)
+    .map((x) => x.promptEN + ":" + x.weight)
     .join(",");
 
   // NOTE: paramsList or defaultParamList
@@ -97,13 +98,15 @@ const stringField = computed(() => {
     })
     .join(" ");
 
+  const imglist = defaultImgList.value
+    .filter((x) => x.isSelected)
+    .map((x) => x.img)
+    .join(" ");
+
   return (
-    defaultImgList.value
-      .filter((x) => x.isSelected)
-      .map((x) => x.img)
-      .join(" ") +
-    "," +
+    (imglist ? imglist + "," : "") +
     ReplaceKey +
+    "," +
     (cardListString ? cardListString + "," : "") +
     (keyWordString ? keyWordString + "," : "") +
     (dpiParams.isSelected
@@ -112,8 +115,14 @@ const stringField = computed(() => {
       ? `--ar ${defaultDpiList.value[0].height}:${defaultDpiList.value[0].width}`
       : "--ar 1:1") +
     "," +
-    (paramsListString ? paramsListString + "," : "")
+    (paramsListString ? paramsListString : "")
   );
+});
+const others = computed(() => {
+  const KeyWord1 = defaultKeyWordList.value.filter((x) => x.isCustom && x.isSelected);
+  // TODO: 参考图数据也要加入过滤，因为给接口只传中文
+  const KeyWord2 = defaultCustomKeyWord.value.filter((x) => x.isCustom && x.isSelected);
+  return [...KeyWord1, ...KeyWord2];
 });
 
 const dialogVisible = reactive({
@@ -127,7 +136,8 @@ const dialogVisible = reactive({
 });
 
 defineExpose({
-  defaultKeyWordList,
+  /** 杂项 */
+  others,
   /** 用于翻译后拼接 */
   stringField,
   /** input下方的tooltip提示 */
