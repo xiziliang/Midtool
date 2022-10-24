@@ -189,7 +189,16 @@ export const useNovelAiData = () => {
     data.forEach(x => {
       x.weight = 1;
       x.showWeight = false;
+    })
 
+    return data;
+  }
+
+  function formatDefaultData(data: any[]) {
+    
+    data.forEach(x => {
+      x.weight = 1;
+      x.showWeight = false;
       // 默认数据
       x.isDefault = true;
     })
@@ -199,33 +208,33 @@ export const useNovelAiData = () => {
 
   async function fetchPrompt() {
     const { data } = await useFetch("/json/NovelAI_cankaotu.json");
-    promptTemplateList.value = JSON.parse(data.value as string);
-    defaultPromptTemplate.value = cloneDeep(promptTemplateList.value.slice(0, 5));
+    defaultPromptTemplate.value = cloneDeep(formatDefaultData(JSON.parse(data.value as string).slice(0, 5)));
+    promptTemplateList.value = formatData(JSON.parse(data.value as string).slice(5));
   }
   async function fetchPeople() {
     const { data } = await useFetch("/json/NovelAI_huageren.json");
-    drawPeopleList.value = formatData(JSON.parse(data.value as string));
-    defaultDrawPeople.value = cloneDeep(drawPeopleList.value.slice(0, 5));
+    defaultDrawPeople.value = cloneDeep(formatDefaultData(JSON.parse(data.value as string).slice(0, 5)));
+    drawPeopleList.value = formatData(JSON.parse(data.value as string)).slice(5);
   }
   async function fetchBody() {
     const { data } = await useFetch("/json/NovelAI_huagewuti.json");
-    drawBodyList.value = formatData(JSON.parse(data.value as string));
-    defaultDrawBody.value = cloneDeep(drawBodyList.value.slice(0, 5));
+    defaultDrawBody.value = cloneDeep(formatDefaultData(JSON.parse(data.value as string).slice(0, 5)));
+    drawBodyList.value = formatData(JSON.parse(data.value as string)).slice(5);
   }
   async function fetchStyle() {
     const { data } = await useFetch("/json/midjourneyStyle.json");
-    drawStyleList.value = formatData(JSON.parse(data.value as string));
-    defaultDrawStyle.value = cloneDeep(drawStyleList.value.slice(0, 5));
+    defaultDrawStyle.value = cloneDeep(formatDefaultData(JSON.parse(data.value as string).slice(0, 5)));
+    drawStyleList.value = formatData(JSON.parse(data.value as string)).slice(5);
   }
   async function fetchComposeKeyWord() {
     const { data } = await useFetch("/json/NovelAI_goutu.json");
-    composeKeyWord.value = formatData(JSON.parse(data.value as string));
-    defaultComposeKeyWord.value = cloneDeep(composeKeyWord.value.slice(0, 5));
+    defaultComposeKeyWord.value = cloneDeep(formatDefaultData(JSON.parse(data.value as string).slice(0, 5)));
+    composeKeyWord.value = formatData(JSON.parse(data.value as string)).slice(5);
   }
   async function fetchPositiveKeyWord() {
     const { data } = await useFetch("/json/NovelAI_zhengmiantag.json");
-    positiveKeyWord.value = formatData(JSON.parse(data.value as string));
-    defaultPositiveKeyWord.value = cloneDeep(positiveKeyWord.value.slice(0, 5));
+    defaultPositiveKeyWord.value = cloneDeep(formatDefaultData(JSON.parse(data.value as string).slice(0, 5)));
+    positiveKeyWord.value = formatData(JSON.parse(data.value as string)).slice(5);
   }
 
   function fetch() {

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, watchEffect, watch, onBeforeUnmount } from "vue";
+import { ref, computed, reactive, watch, onBeforeUnmount, watchEffect } from "vue";
 import { cloneDeep } from "lodash";
 
 import { useStorage, useEventListener } from "@vueuse/core";
@@ -9,11 +9,12 @@ import type { CustomKeyWord, HistoryKeyWord } from "@/models";
 
 const props = defineProps<{
   list: Partial<CustomKeyWord>[];
+  defaultData: Partial<CustomKeyWord>[];
   dialogVisible?: boolean;
 }>();
 
 const clearUp = useEventListener("click", () => {
-  [...allData.value, ...keyWordHistoryList.value].forEach((x) => (x.showWeight = false));
+  [...allData.value].forEach((x) => (x.showWeight = false));
   currentShowWeightTag.value = "";
 });
 
@@ -21,20 +22,21 @@ onBeforeUnmount(() => {
   clearUp();
 });
 
-const keyWordCustomList = useStorage<CustomKeyWord[]>(
-  KEYWORD_CUSTOM_LIST,
-  [],
-  localStorage
-);
-
-const keyWordHistoryList = useStorage<HistoryKeyWord[]>(
-  KEYWORD_HISTORY_LIST,
-  [],
-  localStorage
-);
-
 const currentShowWeightTag = ref("");
-const allData = ref<Partial<CustomKeyWord>[]>([]);
+const allData = computed<Partial<CustomKeyWord>[]>(() => {
+  const list = reactive(cloneDeep(props.list));
+  if (props.defaultData) {
+    const defaultData = props.defaultData.filter((x) => !(x.isCustom || x.isDefault));
+
+    // NOTE:对应历史数据合并
+    defaultData.forEach((x) => {
+      const item = list.find((y) => x.promptEN === y.promptEN);
+      if (item) Object.assign(item, x);
+    });
+  }
+  return list;
+});
+const selectedList = computed(() => allData.value.filter((x) => x.isSelected));
 
 const currentTab = computed({
   get: () => tabList.value[0] || "history",
@@ -70,36 +72,7 @@ function onShowWeightTag(content: string, item: Partial<CustomKeyWord>) {
 }
 
 defineExpose({
-  selectedList: allData.value.filter((x) => x.isSelected),
-  keyWordCustomList,
-  keyWordHistoryList,
-});
-
-watch(
-  () => props.list,
-  (value) => {
-    if (!value) return;
-    allData.value = cloneDeep(value);
-
-    // NOTE:对应历史数据合并到JSON数据上
-    if (keyWordCustomList.value) {
-      keyWordCustomList.value.forEach((x) => {
-        const item = allData.value.find((y) => y.promptEN === x.promptEN);
-        if (item) Object.assign(item, x);
-      });
-    }
-  },
-  {
-    immediate: true,
-  }
-);
-
-watchEffect(() => {
-  if (!props.dialogVisible) {
-    keyWordCustomList.value = allData.value.filter(
-      (x) => x.isSelected
-    ) as CustomKeyWord[];
-  }
+  selectedList,
 });
 </script>
 <template>
@@ -126,24 +99,6 @@ watchEffect(() => {
               @click-tag="(value) => onShowWeightTag(value, item)"
             ></Tag>
           </div>
-        </div>
-      </div>
-    </el-tab-pane>
-    <el-tab-pane label="历史记录" name="history">
-      <div h-lg overflow-auto p-x-20px>
-        <div flex="~ gap-3 wrap" p="y-4" justify-start items-start>
-          <Tag
-            slice
-            v-for="item in keyWordHistoryList"
-            :content="item.promptZH!"
-            :weight="item.weight"
-            :show-weight="item.showWeight"
-            :is-selected="item.isSelected"
-            @click.stop.self="onClickKeyWordTag(item)"
-            @reduce-weight="(value) => onReduceWeight(value, item)"
-            @add-weight="(value) => onAddWeight(value, item)"
-            @click-tag="(value) => onShowWeightTag(value, item)"
-          ></Tag>
         </div>
       </div>
     </el-tab-pane>

@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref, reactive, nextTick, computed, onBeforeUnmount } from "vue";
+import { ref, reactive, onBeforeUnmount, unref } from "vue";
+import type { Ref } from "vue";
 import { ElMessage } from "element-plus";
 import { cloneDeep } from "lodash";
 
@@ -14,9 +15,8 @@ import type {
 import Card from "@/components/Card.vue";
 import Tag from "@/components/Tag.vue";
 import PromptItem from "@/components/PromptItem.vue";
-import KeywordDialog from "@/components/KeywordDialog.vue";
+import NovelKeywordDialog from "@/components/NovelKeywordDialog.vue";
 import PromptTemplateDialog from "@/components/PromptTemplateDialog.vue";
-import CardDialog from "@/components/CardDialog.vue";
 
 import { useEventListener } from "@vueuse/core";
 import { useNovelAiData } from "@/hooks";
@@ -52,6 +52,8 @@ const {
 } = useNovelAiData();
 
 fetch();
+
+const keywordRef = ref<InstanceType<typeof NovelKeywordDialog>>();
 
 const newCustomKeyWord = ref("");
 const newComposeKeyWord = ref("");
@@ -126,13 +128,29 @@ function clearWeight() {
   currentShowWeightTag.value = "";
 }
 
-function onShowWeightTag(content: string, item: CustomKeyWord) {
-  item.isSelected = !item.isSelected;
-  if (currentShowWeightTag.value === content) return;
+function onShowWeightTag(
+  content: string,
+  item: CustomKeyWord,
+  type?: NovelAiParams,
+  index?: number
+) {
+  if (item.isCustom || item.isDefault) {
+    item.isSelected = !item.isSelected;
+    if (currentShowWeightTag.value === content) return;
 
-  currentShowWeightTag.value = content;
-  allDefaultData.value.forEach((x: any) => (x.showWeight = false));
-  item.showWeight = true;
+    currentShowWeightTag.value = content;
+    allDefaultData.value.forEach((x: any) => (x.showWeight = false));
+    item.showWeight = true;
+  } else {
+    switch (type) {
+      case "composeKeyWord":
+        defaultComposeKeyWord.value.splice(index!, 1);
+        break;
+      case "positiveKeyWord":
+        defaultPositiveKeyWord.value.splice(index!, 1);
+        break;
+    }
+  }
 }
 
 function onReduceWeight(weight: number, item: any) {
@@ -143,7 +161,59 @@ function onAddWeight(weight: number, item: any) {
   item.weight = weight + 1;
 }
 
-function closeDislog() {
+function initKeyword<T>(name: Ref<T> | T) {
+  return {
+    promptZH: unref(name),
+    isCustom: true,
+    isSelected: true,
+    weight: 1,
+    showWeight: false,
+  } as any;
+}
+
+function onCloseComposeword() {
+  onCloseDialog();
+
+  if (newComposeKeyWord.value) {
+    defaultComposeKeyWord.value.unshift(initKeyword(newComposeKeyWord));
+    newComposeKeyWord.value = "";
+  } else {
+    // 从dialog中选择后
+    const HistoryData = keywordRef.value?.selectedList as any[];
+
+    // NOTE:对应历史数据合并
+    HistoryData.forEach((x) => {
+      const has = defaultComposeKeyWord.value.find((y) => y.promptEN === x.promptEN);
+      has ? Object.assign(has, x) : defaultComposeKeyWord.value.unshift(x);
+    });
+  }
+}
+
+function onClosePositiveword() {
+  onCloseDialog();
+
+  if (newPositiveKeyWord.value) {
+    defaultPositiveKeyWord.value.unshift(initKeyword(newPositiveKeyWord));
+    newPositiveKeyWord.value = "";
+  } else {
+    // 从dialog中选择后
+    const HistoryData = keywordRef.value?.selectedList as any[];
+
+    // NOTE:对应历史数据合并
+    HistoryData.forEach((x) => {
+      const has = defaultPositiveKeyWord.value.find((y) => y.promptEN === x.promptEN);
+      has ? Object.assign(has, x) : defaultPositiveKeyWord.value.unshift(x);
+    });
+  }
+}
+
+function onCloseCustomKeyword() {
+  onCloseDialog();
+
+  defaultCustomKeyWord.value.push(initKeyword(newCustomKeyWord));
+}
+
+function onCloseDialog() {
   dialogVisible.prompt = false;
   dialogVisible.people = false;
   dialogVisible.body = false;
@@ -154,6 +224,21 @@ function closeDislog() {
   dialogVisible.writeComposeKeyWord = false;
   dialogVisible.writePositiveKeyWord = false;
   dialogVisible.writeCustomKeyWord = false;
+}
+
+function onDeleteKeyword(type: NovelAiParams, index: number) {
+  switch (type) {
+    case "composeKeyWord":
+      defaultComposeKeyWord.value.splice(index, 1);
+      break;
+    case "positiveKeyWord":
+      defaultPositiveKeyWord.value.splice(index, 1);
+      break;
+    case "customKeyword":
+      defaultCustomKeyWord.value.splice(index, 1);
+      break;
+  }
+  ElMessage.success("删除成功");
 }
 
 defineExpose({
@@ -280,16 +365,17 @@ defineExpose({
       </Tag>
       <Tag
         slice
-        v-for="item in defaultComposeKeyWord"
+        v-for="(item, index) in defaultComposeKeyWord"
         :content="item.promptZH!"
         :is-selected="item.isSelected"
         :is-custom="item.isCustom"
         :weight="item.weight"
         :show-weight="item.showWeight"
         @click.stop.self
+        @delete="onDeleteKeyword('composeKeyWord', index)"
         @reduce-weight="(value) => onReduceWeight(value, item)"
         @add-weight="(value) => onAddWeight(value, item)"
-        @click-tag="(value) => onShowWeightTag(value, item)"
+        @click-tag="(value) => onShowWeightTag(value, item, 'composeKeyWord', index)"
       ></Tag>
     </div>
     <div flex="~" mt-28px mb-8px class="readmore-title">
@@ -310,16 +396,17 @@ defineExpose({
       </Tag>
       <Tag
         slice
-        v-for="item in defaultPositiveKeyWord"
+        v-for="(item, index) in defaultPositiveKeyWord"
         :content="item.promptZH!"
         :is-selected="item.isSelected"
         :is-custom="item.isCustom"
         :weight="item.weight"
         :show-weight="item.showWeight"
         @click.stop.self
+        @delete="onDeleteKeyword('positiveKeyWord', index)"
         @reduce-weight="(value) => onReduceWeight(value, item)"
         @add-weight="(value) => onAddWeight(value, item)"
-        @click-tag="(value) => onShowWeightTag(value, item)"
+        @click-tag="(value) => onShowWeightTag(value, item, 'positiveKeyWord', index)"
       ></Tag>
     </div>
     <div flex="~" mt-28px mb-8px class="readmore-title">
@@ -340,13 +427,14 @@ defineExpose({
       </Tag>
       <Tag
         slice
-        v-for="item in defaultCustomKeyWord"
+        v-for="(item, index) in defaultCustomKeyWord"
         :content="item.promptZH!"
         :is-selected="item.isSelected"
         :is-custom="item.isCustom"
         :weight="item.weight"
         :show-weight="item.showWeight"
         @click.stop.self
+        @delete="onDeleteKeyword('customKeyword', index)"
         @reduce-weight="(value) => onReduceWeight(value, item)"
         @add-weight="(value) => onAddWeight(value, item)"
         @click-tag="(value) => onShowWeightTag(value, item)"
@@ -431,13 +519,17 @@ defineExpose({
     draggable
     :close-on-click-modal="false"
   >
-    <KeywordDialog
+    <NovelKeywordDialog
+      :ref="(el) => (keywordRef = el)"
       :list="composeKeyWord"
+      :default-data="defaultComposeKeyWord"
       :dialog-visible="dialogVisible.composeKeyWord"
-    ></KeywordDialog>
+    ></NovelKeywordDialog>
     <template #footer>
       <span>
-        <el-button class="dialogBtn" type="primary">完成</el-button>
+        <el-button class="dialogBtn" type="primary" @click="onCloseComposeword"
+          >完成</el-button
+        >
       </span>
     </template>
   </el-dialog>
@@ -450,13 +542,17 @@ defineExpose({
     draggable
     :close-on-click-modal="false"
   >
-    <KeywordDialog
+    <NovelKeywordDialog
+      :ref="(el) => (keywordRef = el)"
       :list="positiveKeyWord"
+      :default-data="defaultPositiveKeyWord"
       :dialog-visible="dialogVisible.positiveKeyWord"
-    ></KeywordDialog>
+    ></NovelKeywordDialog>
     <template #footer>
       <span>
-        <el-button class="dialogBtn" type="primary">完成</el-button>
+        <el-button class="dialogBtn" type="primary" @click="onClosePositiveword"
+          >完成</el-button
+        >
       </span>
     </template>
   </el-dialog>
@@ -479,7 +575,9 @@ defineExpose({
     ></el-input>
     <template #footer>
       <span>
-        <el-button class="dialogBtn" type="primary">完成</el-button>
+        <el-button class="dialogBtn" type="primary" @click="onCloseComposeword"
+          >完成</el-button
+        >
       </span>
     </template>
   </el-dialog>
@@ -502,7 +600,9 @@ defineExpose({
     ></el-input>
     <template #footer>
       <span>
-        <el-button class="dialogBtn" type="primary">完成</el-button>
+        <el-button class="dialogBtn" type="primary" @click="onClosePositiveword"
+          >完成</el-button
+        >
       </span>
     </template>
   </el-dialog>
@@ -525,7 +625,9 @@ defineExpose({
     ></el-input>
     <template #footer>
       <span>
-        <el-button class="dialogBtn" type="primary">完成</el-button>
+        <el-button class="dialogBtn" type="primary" @click="onCloseCustomKeyword"
+          >完成</el-button
+        >
       </span>
     </template>
   </el-dialog>

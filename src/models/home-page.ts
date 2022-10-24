@@ -57,6 +57,8 @@ export interface KeyWord {
   showWeight: boolean;
   /** 权重 */
   weight: number;
+  /** 是否是默认展示数据 */
+  isDefault?: boolean;
 }
 
  export interface CustomKeyWord extends KeyWord {
@@ -73,7 +75,7 @@ export type OptionType = 'none' | 'textbox' | 'selector'| 'drag' | 'percentage';
 
 export type MidJourneyParams = 'card' | 'keyword' | 'params' | 'dpi' | 'img';
 
-export type NovelAiParams = 'prompt' | 'people' | 'body' | 'style' | 'composeKeyWord' | 'positiveKeyWord' | 'custom';
+export type NovelAiParams = 'prompt' | 'people' | 'body' | 'style' | 'composeKeyWord' | 'positiveKeyWord' | 'customKeyword';
 
 interface Option {
   [key: string]: string;
