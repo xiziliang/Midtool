@@ -116,7 +116,6 @@ body,
 }
 
 span,
-.card-name,
 .card-enname {
   font-weight: 600;
 }
@@ -222,6 +221,8 @@ span,
 
   .card-enname {
     color: #AAAAAA;
+    line-height: 22px;
+    font-size: 14px;
   }
 
   .card-img,
@@ -444,4 +445,10 @@ span,
   .i-carbon-copy {
     background-color: rgb(229, 231, 235) !important;
   }
+}
+
+.ellipsis {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }

@@ -27,8 +27,8 @@ defineProps<{
     >
       <!-- <img height="160" width="156" :src="imgUrl" /> -->
     </div>
-    <div class="card-name" p-2>{{ title }}</div>
-    <div class="card-enname" p-2>{{ promptZH }}</div>
+    <div class="card-name ellipsis" p="x-3 t-3" text-16px color-dark-400>{{ title }}</div>
+    <div class="card-enname ellipsis" p="x-3 b-3">{{ promptZH }}</div>
   </div>
 </template>
 <style lang="scss" scoped>
