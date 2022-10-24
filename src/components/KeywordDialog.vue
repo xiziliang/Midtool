@@ -70,7 +70,6 @@ function onShowWeightTag(content: string, item: Partial<CustomKeyWord>) {
 }
 
 defineExpose({
-  selectedList: allData.value.filter((x) => x.isSelected),
   keyWordCustomList,
   keyWordHistoryList,
 });

@@ -62,7 +62,6 @@ function onShowWeightTag(content: string, item: Partial<CardItem>) {
 }
 
 defineExpose({
-  selectedList: allData.value.filter((x) => x.isSelected),
   cardCustomList,
   cardHistoryList,
 });

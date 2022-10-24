@@ -73,7 +73,7 @@ const newCustomKeyWord = ref("");
 
 const stringField = computed(() => {
   const cardListString = defaultCardList.value
-    .filter((x) => x.isSelected)
+    .filter((x) => x.isSelected && !x.isCustom)
     .map((x) => x.promptEN + ":" + x.weight)
     .join(",");
 
@@ -119,7 +119,8 @@ const others = computed(() => {
   const KeyWord1 = defaultKeyWordList.value.filter((x) => x.isCustom && x.isSelected);
   // TODO: 参考图数据也要加入过滤，因为给接口只传中文
   const KeyWord2 = defaultCustomKeyWord.value.filter((x) => x.isCustom && x.isSelected);
-  return [...KeyWord1, ...KeyWord2];
+  const KeyWord3 = defaultCardList.value.filter((x) => x.isCustom && x.isSelected);
+  return [...KeyWord1, ...KeyWord2, ...KeyWord3];
 });
 
 const dialogVisible = reactive({

@@ -89,7 +89,8 @@ async function translation() {
   const others = currentTabRef.value?.others
     .filter((x) => x.isCustom && x.isSelected)
     .map((x) => x.promptZH + ":" + x.weight)
-    .join(",");
+    .join(" ");
+
   loading.value = true;
   const { data } = await useFetch(`${ApiPrefix}/translate`).post({
     origin: others ? inputValue.value + "," + others : inputValue.value,

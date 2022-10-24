@@ -4,13 +4,7 @@ import type { Ref } from "vue";
 import { ElMessage } from "element-plus";
 import { cloneDeep } from "lodash";
 
-import type {
-  NovelAiParams,
-  HistoryKeyWord,
-  DpiOptions,
-  CustomKeyWord,
-  CardItem,
-} from "@/models";
+import type { NovelAiParams, DpiOptions, CustomKeyWord, CardItem } from "@/models";
 
 import NovelCard from "@/components/NovelCard.vue";
 import Tag from "@/components/Tag.vue";
