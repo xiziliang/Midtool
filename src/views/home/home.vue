@@ -158,10 +158,11 @@ async function translation() {
             p="b-20px x-20px"
           >
             <TooltipTag
-              v-for="item in tipsList"
+              v-for="item in tipsList.slice(0, 5)"
               :content="item?.promptZH || item?.options || item?.img"
               :slice="16"
             ></TooltipTag>
+            <TooltipTag v-show="tipsList.length > 5" content="..." />
           </div>
         </div>
         <el-button
