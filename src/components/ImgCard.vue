@@ -26,10 +26,10 @@ function imgError(data: ImgOptions[], index: number) {
     @click="onTrigger(item)"
   >
     <div class="card-img">
-      <img v-if="!item.imgLoadError" :src="item.img" :onerror="imgError(data, index)" />
-      <div v-if="item.imgLoadError" class="loadError" style="width: 100%; height: 135px">
+      <img :src="item.img" :onerror="imgError(data, index)" />
+      <!-- <div v-if="item.imgLoadError" class="loadError" style="width: 100%; height: 135px">
         加载失败
-      </div>
+      </div> -->
     </div>
     <label p="x-4 y-4">{{ formatText(item.img) }}</label>
   </div>
