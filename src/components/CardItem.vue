@@ -9,7 +9,7 @@ defineProps<{
   promptZH: string;
   promptEN: string;
   image: "yes" | "no";
-  imgUrl?: string;
+  fileUrl?: string;
   weight?: number;
   weightType?: "mid" | "novel";
   showWeight?: boolean;
@@ -29,13 +29,8 @@ defineEmits([
 
 <template>
   <div>
-    <div
-      class="card-img"
-      :style="{
-        'background-image': `url(${imgUrl})`,
-      }"
-    >
-      <!-- <img height="160" width="156" :src="imgUrl" /> -->
+    <div class="card-img" v-lazy="fileUrl">
+      <!-- <img height="160" width="156" :src="fileUrl" /> -->
     </div>
     <div class="card-name" text-16px pb-0 p-2>{{ promptZH }}</div>
 

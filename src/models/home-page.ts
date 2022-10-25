@@ -6,7 +6,7 @@ export interface CardItem {
   promptZH: string;
   promptEN: string;
   image: 'yes' | 'no';
-  imgUrl?: string;
+  fileUrl?: string;
   /** 是否主页选中 */
   isSelected?: boolean;
   /** 是否是用户自定义 */
@@ -27,7 +27,7 @@ export interface PromptTemplate {
   promptZH: string;
   promptEN: string;
   image: 'yes' | 'no';
-  // imgUrl?: string;
+  // fileUrl?: string;
   imageLocation: string;
   title: string;
   detagEN: string;

@@ -95,7 +95,7 @@ export const useMidJourneyData = () => {
   function formatData(data: CardItem[]) {
     return data.map((x) => ({
       ...x,
-      imgUrl: x.image === "yes" ? `/img-style/${x.promptEN}.png` : "/img-style/empty.png",
+      fileUrl: x.image === "yes" ? `/img-style/${x.promptEN}.png` : "/img-style/empty.png",
       weight: 1,
       showWeight: false,
     }));
