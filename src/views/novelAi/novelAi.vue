@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, reactive, onBeforeUnmount, unref } from "vue";
+import { ref, reactive, onBeforeUnmount, unref, computed } from "vue";
 import type { Ref } from "vue";
 import { ElMessage } from "element-plus";
 import { cloneDeep } from "lodash";
@@ -13,6 +13,8 @@ import NovelKeywordDialog from "@/components/NovelKeywordDialog.vue";
 import NovelCardDialog from "@/components/NovelCardDialog.vue";
 import PromptTemplateDialog from "@/components/PromptTemplateDialog.vue";
 
+import { ReplaceKey } from "@/constants";
+import { addParentheses } from "@/utils";
 import { useEventListener } from "@vueuse/core";
 import { useNovelAiData } from "@/hooks";
 
@@ -43,6 +45,9 @@ const {
   // 所有数据
   allDefaultData,
 
+  // input提示词
+  tooltiplist,
+
   fetch,
 } = useNovelAiData();
 
@@ -55,6 +60,36 @@ const keywordRef = ref<InstanceType<typeof NovelKeywordDialog>>();
 const newCustomKeyWord = ref("");
 const newComposeKeyWord = ref("");
 const newPositiveKeyWord = ref("");
+
+const others = computed(() => {
+  const keyword1 = defaultComposeKeyWord.value.filter((x) => x.isSelected && x.isCustom);
+  const keyword2 = defaultPositiveKeyWord.value.filter((x) => x.isSelected && x.isCustom);
+  const keyword3 = defaultCustomKeyWord.value.filter((x) => x.isSelected && x.isCustom);
+  return [...keyword1, ...keyword2, ...keyword3];
+});
+
+const stringField = computed(() => {
+  // 英文左括号
+  const leftEnP = "(";
+  // 英文右括号
+  const rightEnP = ")";
+  const prompt = [
+    ...defaultDrawPeople.value,
+    ...defaultDrawBody.value,
+    ...defaultDrawStyle.value,
+  ]
+    .filter((x) => x.isSelected && !x.isCustom)
+    .map((x) => addParentheses(x.promptEN, x.weight))
+    .join(",");
+
+  // NOTE:keyword不包含defaultCustomKeyWord， 因为defaultCustomKeyWord要进翻译
+  const keyWord = [...defaultComposeKeyWord.value, ...defaultPositiveKeyWord.value]
+    .filter((x) => x.isSelected && !x.isCustom)
+    .map((x) => addParentheses(x.promptEN, x.weight))
+    .join(",");
+
+  return ReplaceKey + "," + (prompt ? prompt + "," : "") + keyWord;
+});
 
 const dialogVisible = reactive({
   prompt: false,
@@ -265,15 +300,9 @@ function onDeleteKeyword(type: NovelAiParams, index: number) {
 }
 
 defineExpose({
-  defaultKeyWordList: [],
-  tipsList: [
-    {
-      promptZH: "",
-      options: "",
-      img: "",
-    },
-  ],
-  stringField: "",
+  others,
+  tipsList: tooltiplist,
+  stringField,
 });
 </script>
 

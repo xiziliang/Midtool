@@ -6,7 +6,7 @@ import { ElMessage } from "element-plus";
 
 import TooltipTag from "@/components/TooltipTag.vue";
 import { ApiPrefix, ReplaceKey } from "@/constants";
-import { copyText } from "@/utils";
+import { copyText, addParentheses } from "@/utils";
 import { useFetch, useElementBounding } from "@vueuse/core";
 import { $routes } from "@/router";
 
@@ -28,7 +28,7 @@ const { top: headRefTop } = useElementBounding(headerRef);
 // route
 const router = useRouter();
 const route = useRoute();
-const currentRouter = ref(route.name);
+const currentRouter = computed(() => route.name);
 const routerList = ref(
   $routes[0].children?.map((x) => ({
     title: x.meta?.title as string,
@@ -79,17 +79,27 @@ function copy(type: "input" | "translation") {
 }
 
 async function translation() {
+  let others: string | undefined;
+
   if (!inputValue.value) {
     translationResult.value = "";
     ElMessage.warning("请输入描述");
     return;
   }
 
-  // NOTE: 拼接自定义 keyWord
-  const others = currentTabRef.value?.others
-    .filter((x) => x.isCustom && x.isSelected)
-    .map((x) => x.promptZH + ":" + x.weight)
-    .join(" ");
+  if (currentRouter.value === "novelAi") {
+    const leftEnP = "(";
+    const rightEnP = ")";
+    // NOTE: 拼接自定义 keyWord
+    others = currentTabRef.value?.others
+      .map((x) => addParentheses(x.promptZH, x.weight))
+      .join(" ");
+  } else if (currentRouter.value === "midJourney") {
+    // NOTE: 拼接自定义 keyWord
+    others = currentTabRef.value?.others
+      .map((x) => x.promptZH + ":" + x.weight)
+      .join(" ");
+  }
 
   loading.value = true;
   const { data } = await useFetch(`${ApiPrefix}/translate`).post({

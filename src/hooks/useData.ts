@@ -194,6 +194,10 @@ export const useNovelAiData = () => {
     ...defaultCustomKeyWord.value,
   ])
 
+  const tooltiplist = computed(() => {
+    return allDefaultData.value.filter(x => x.isSelected)
+  })
+
   function formatData(data: any[]) {
 
     data.forEach(x => {
@@ -274,6 +278,9 @@ export const useNovelAiData = () => {
     defaultPositiveKeyWord,
     defaultCustomKeyWord,
     allDefaultData,
+
+    /** input提示词 */
+    tooltiplist,
 
     fetch,
   }
