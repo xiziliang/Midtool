@@ -7,7 +7,7 @@ import { ElMessage } from "element-plus";
 import TooltipTag from "@/components/TooltipTag.vue";
 import { ApiPrefix, ReplaceKey } from "@/constants";
 import { copyText, addParentheses } from "@/utils";
-import { useFetch, useElementBounding } from "@vueuse/core";
+import { useFetch, useElementBounding, onClickOutside } from "@vueuse/core";
 import { $routes } from "@/router";
 
 import NovelAi from "../novelAi/novelAi.vue";
@@ -17,6 +17,7 @@ type Instance = typeof MidJourney & typeof NovelAi;
 // instance
 const headerRef = ref<HTMLElement | null>(null);
 const currentTabRef = ref<InstanceType<Instance>>();
+const clearBtnRef = ref<HTMLElement | null>();
 
 // computed
 const tipsList = computed(() => currentTabRef.value?.tipsList || []);
@@ -24,6 +25,10 @@ const stringField = computed(() => currentTabRef.value?.stringField || "");
 
 // hooks
 const { top: headRefTop } = useElementBounding(headerRef);
+
+onClickOutside(clearBtnRef, () => {
+  clearBtnVisible.value = true;
+});
 
 // route
 const router = useRouter();
@@ -59,6 +64,7 @@ const website = ref([
     value: "https://openai.com/dall-e-2/",
   },
 ]);
+const clearBtnVisible = ref(true);
 
 function onClickTab(context: TabsPaneContext) {
   router.push({
@@ -88,8 +94,6 @@ async function translation() {
   }
 
   if (currentRouter.value === "novelAi") {
-    const leftEnP = "(";
-    const rightEnP = ")";
     // NOTE: 拼接自定义 keyWord
     others = currentTabRef.value?.others
       .map((x) => addParentheses(x.promptZH, x.weight))
@@ -110,6 +114,12 @@ async function translation() {
     ReplaceKey,
     JSON.parse(data.value as string).data
   );
+}
+
+function onClickClearBtn() {
+  clearBtnVisible.value = true;
+  currentTabRef.value?.allDefaultData.forEach((x: any) => (x.isSelected = false));
+  ElMessage.success("选中数据清空完成");
 }
 </script>
 
@@ -238,12 +248,42 @@ async function translation() {
           }}</a>
         </div>
       </div>
-      <div></div>
+    </div>
+    <div border="t-1 solid gray-700"></div>
+    <div flex="~ col" relative>
+      <div min-h-80px flex="~" justify-center items-center py-24px text-white>
+        <p>我们还有很多想法，当然，我们更想听听你们的想法，这里有一份</p>
+        <p text-emerald>问卷</p>
+      </div>
+      <el-button
+        v-if="clearBtnVisible"
+        class="cleatBtn"
+        type="primary"
+        @click="clearBtnVisible = false"
+        >清空所有选中</el-button
+      >
+      <div
+        v-else
+        ref="clearBtnRef"
+        class="cleatBtn"
+        top--11
+        right-30px
+        flex="~ col gap-4"
+      >
+        <el-button type="primary" @click="onClickClearBtn">确定</el-button>
+        <el-button m-0 @click="clearBtnVisible = true">取消清空</el-button>
+      </div>
     </div>
   </footer>
 </template>
 <style scoped>
 :deep(.container-input .el-textarea__inner) {
   color: #222;
+}
+
+.cleatBtn {
+  position: absolute;
+  top: calc(50% - 18px);
+  right: 10px;
 }
 </style>

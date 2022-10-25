@@ -69,10 +69,6 @@ const others = computed(() => {
 });
 
 const stringField = computed(() => {
-  // 英文左括号
-  const leftEnP = "(";
-  // 英文右括号
-  const rightEnP = ")";
   const prompt = [
     ...defaultDrawPeople.value,
     ...defaultDrawBody.value,
@@ -158,9 +154,7 @@ function clearWeight() {
 }
 
 function onShowWeightTag(item: CustomKeyWord, type?: NovelAiParams, index?: number) {
-  if (item.isCustom || item.isDefault) {
-    item.isSelected = !item.isSelected;
-  } else {
+  if (!(item.isCustom || item.isDefault) && item.isSelected) {
     switch (type) {
       case "composeKeyWord":
         defaultComposeKeyWord.value.splice(index!, 1);
@@ -169,6 +163,8 @@ function onShowWeightTag(item: CustomKeyWord, type?: NovelAiParams, index?: numb
         defaultPositiveKeyWord.value.splice(index!, 1);
         break;
     }
+  } else {
+    item.isSelected = !item.isSelected;
   }
 
   allDefaultData.value.forEach((x: any) => (x.showWeight = false));
@@ -300,9 +296,14 @@ function onDeleteKeyword(type: NovelAiParams, index: number) {
 }
 
 defineExpose({
+  // 杂项
   others,
+  // input的提示
   tipsList: tooltiplist,
+  // 拼接字符串数据
   stringField,
+  // 所有默认数据
+  allDefaultData,
 });
 </script>
 

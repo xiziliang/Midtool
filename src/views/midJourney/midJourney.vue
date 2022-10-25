@@ -41,6 +41,7 @@ const {
   defaultParamList,
   defaultImgList,
   defaultCustomKeyWord,
+  allDefaultData,
   // 默认有权重的数据
   defaultWeightData,
   tooltiplist,
@@ -141,6 +142,8 @@ defineExpose({
   stringField,
   /** input下方的tooltip提示 */
   tipsList: tooltiplist,
+  /** 所有默认数据 */
+  allDefaultData,
 });
 
 function onClickKeyWordTag(item: CustomKeyWord | CardItem) {

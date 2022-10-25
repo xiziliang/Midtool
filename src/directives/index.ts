@@ -7,7 +7,6 @@ const directives = {
 
 const install = (app: App) => {
   Object.entries(directives).forEach(([name, component]) => {
-    console.log(name, component)
     app.directive(name, component);
   });
 };

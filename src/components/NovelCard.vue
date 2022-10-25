@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
-import { cloneDeep } from "lodash";
 import CardItemComp from "./CardItem.vue";
 
 import type { CardItem } from "@/models";
@@ -14,10 +13,10 @@ const props = defineProps<{
 const allData = ref<CardItem[]>();
 
 function onTrigger(item: CardItem, index: number) {
-  if (item.isDefault) {
-    item.isSelected = !item.isSelected;
-  } else {
+  if (!item.isDefault && item.isSelected) {
     allData.value?.splice(index, 1);
+  } else {
+    item.isSelected = !item.isSelected;
   }
 
   props.allDefaultData.forEach((x: any) => (x.showWeight = false));

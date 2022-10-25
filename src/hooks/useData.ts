@@ -59,7 +59,6 @@ export const useMidJourneyData = () => {
     localStorage
   );
 
-
   // TODO: 使用watch + ref
   const defaultCardList = computed(() => reactive([...cardCustomList.value]));
   const defaultKeyWordList = computed(() => reactive([...keyWordCustomList.value]));
@@ -68,10 +67,21 @@ export const useMidJourneyData = () => {
   const defaultImgList = computed(() => reactive([...imgCustomsList.value]));
   const defaultCustomKeyWord = ref<CustomKeyWord[]>([]);
 
+  // 默认权重数据
   const defaultWeightData = computed(() => [
     ...defaultKeyWordList.value,
     ...defaultCustomKeyWord.value,
     ...defaultCardList.value,
+  ])
+
+  // 默认所有数据
+  const allDefaultData = computed(() => [
+    ...defaultCardList.value,
+    ...defaultKeyWordList.value,
+    ...defaultDpiList.value,
+    ...defaultParamList.value,
+    ...defaultImgList.value,
+    ...defaultCustomKeyWord.value,
   ])
 
   const tooltiplist = computed<(CardItem & DpiOptions & CustomKeyWord & ImgOptions)[]>(
@@ -153,6 +163,7 @@ export const useMidJourneyData = () => {
     defaultParamList,
     defaultImgList,
     defaultCustomKeyWord,
+    allDefaultData,
     // 默认有权重的数据
     defaultWeightData,
     tooltiplist,
