@@ -226,7 +226,7 @@ function onClickClearBtn() {
     <div
       class="container-params ma lt-lg:max-w-660px lg:max-w-828px xl:max-w-1176px 2xl:max-w-1336px"
     >
-      <el-tabs v-model="currentRouter" @tab-click="onClickTab">
+      <el-tabs class="home-tabs" v-model="currentRouter" @tab-click="onClickTab">
         <el-tab-pane v-for="route in routerList" :label="route.title" :name="route.name">
         </el-tab-pane>
       </el-tabs>

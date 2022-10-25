@@ -445,3 +445,24 @@ span,
     background-color: rgb(229, 231, 235) !important;
   }
 }
+
+// Home tabs style
+.home-tabs.el-tabs {
+  .el-tabs__active-bar  {
+    display: none;
+  }
+
+  .el-tabs__item {
+    height: 26px;
+    line-height: 26px;
+    color: #666666;
+    background: #EAEFF3;
+    border-radius: 10px 10px 0px 0px;
+    padding-right: 20px !important;
+    padding-left: 20px !important;
+  }
+  .el-tabs__item.is-active {
+    color: #fff;
+    background-color: #222222;
+  }
+}

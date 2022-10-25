@@ -344,7 +344,7 @@ defineExpose({
     <div flex="~" mt-8 mb-3 class="readmore-title">
       <div cursor-pointer flex @click="onSelectParams('people')">
         <p text-20px color-dark-400>
-          <i class="icon-tishici icon-big mr-2 -mb-1"></i>画个人
+          <i class="icon-fengge icon-big mr-2 -mb-1"></i>画个人
         </p>
         <div i-carbon:add></div>
         <p self-center text-14px class="text-[#AAAAAA]">
@@ -365,7 +365,7 @@ defineExpose({
     <div flex="~" mt-28px mb-5px class="readmore-title">
       <div cursor-pointer flex @click="onSelectParams('body')">
         <p text-20px color-dark-400>
-          <i class="icon-tishici icon-big mr-2 -mb-1"></i>画个物体
+          <i class="icon-fengge icon-big mr-2 -mb-1"></i>画个物体
         </p>
         <div i-carbon:add></div>
         <p self-center text-14px class="text-[#AAAAAA]">添加物体/只画物体</p>
@@ -384,7 +384,7 @@ defineExpose({
     <div flex="~" mt-28px mb-5px class="readmore-title">
       <div cursor-pointer flex @click="onSelectParams('style')">
         <p text-20px color-dark-400>
-          <i class="icon-tishici icon-big mr-2 -mb-1"></i>画风
+          <i class="icon-fengge icon-big mr-2 -mb-1"></i>画风
         </p>
         <div i-carbon:add></div>
         <p self-center text-14px class="text-[#AAAAAA]">动漫绘画为主</p>
