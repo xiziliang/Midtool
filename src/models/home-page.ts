@@ -25,7 +25,7 @@ export interface PromptTemplate {
   promptZH: string;
   promptEN: string;
   image: 'yes' | 'no';
-  // imgUrl?: string;
+  imgUrl?: string;
   imageLocation: string;
   title: string;
   detagEN: string;

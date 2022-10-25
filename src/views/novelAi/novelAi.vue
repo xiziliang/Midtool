@@ -356,20 +356,19 @@ defineExpose({
   <!-- dialog start ----------------->
   <el-dialog
     v-model="dialogVisible.prompt"
-    top="30px"
-    width="70%"
+    top="0"
+    width="100%"
     title="选择参考图"
     center
     draggable
     destroy-on-close
     :close-on-click-modal="false"
   >
-    <PromptTemplateDialog />
-    <template #footer>
-      <span class="dialog-footer">
-        <el-button class="dialogBtn" type="primary">完成</el-button>
-      </span>
-    </template>
+    <PromptTemplateDialog
+      ref="promptTemplateRef"
+      :list="promptTemplateList"
+      :dialog-visible="dialogVisible.prompt"
+    ></PromptTemplateDialog>
   </el-dialog>
   <el-dialog
     title="画个人"

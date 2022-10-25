@@ -14,6 +14,7 @@ import type {
 import {
   DPI_CUSTOM_LIST,
   CARD_CUSTOM_LIST,
+  PROMPT_CUSTOM_LIST,
   KEYWORD_CUSTOM_LIST,
   PARAM_CUSTOM_LIST,
   IMG_CUSTOM_LIST,
@@ -43,6 +44,7 @@ export const useMidJourneyData= () => {
   const dpiList = ref<DpiOptions[]>([]);
 
   const cardCustomList = useStorage<CardItem[]>(CARD_CUSTOM_LIST, [], localStorage);
+  const promptCustomList = useStorage<CardItem[]>(PROMPT_CUSTOM_LIST, [], localStorage);
   const keyWordCustomList = useStorage<CustomKeyWord[]>(
     KEYWORD_CUSTOM_LIST,
     [],
@@ -60,6 +62,7 @@ export const useMidJourneyData= () => {
 
   // TODO: 使用watch + ref
   const defaultCardList = computed(() => reactive([...cardCustomList.value]));
+  const defaultPromptList = computed(() => reactive([...promptCustomList.value]));
   const defaultKeyWordList = computed(() => reactive([...keyWordCustomList.value]));
   const defaultDpiList = computed(() => reactive([...dpiCustomsList.value]));
   const defaultParamList = computed(() => reactive([...paramCustomsList.value]));
@@ -69,6 +72,7 @@ export const useMidJourneyData= () => {
     () => {
       return [].concat(
         defaultCardList.value.filter((x) => x.isSelected) as any || ([] as any),
+        defaultPromptList.value.filter((x) => x.isSelected) as any || ([] as any),
         defaultKeyWordList.value.find((x) => x.isSelected) || ([] as any),
         [...defaultDpiList.value, dpiParams].find((x) => x.isSelected) || ([] as any),
         defaultImgList.value.find((x) => x.isSelected) || ([] as any)
@@ -131,6 +135,7 @@ export const useMidJourneyData= () => {
 
     // Storage data
     cardCustomList,
+    promptCustomList,
     keyWordCustomList,
     dpiCustomsList,
     paramCustomsList,
