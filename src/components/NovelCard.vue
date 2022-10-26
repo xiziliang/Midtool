@@ -46,7 +46,7 @@ watch(
     class="card"
     v-for="(item, index) in allData"
     :key="item.promptEN"
-    :class="{ selected: item.isSelected }"
+    :class="{ selected: item.isSelected, 'no-mark-tag': !item.isSelected }"
     :data-weight="Math.trunc(item.weight)"
     @click.stop.self="onTrigger(item, index)"
   >

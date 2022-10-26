@@ -223,7 +223,7 @@ watch(
               class="card"
               v-for="item in allData.filter((x) => x.KeyWord2 === keyword2)"
               :key="item.promptEN"
-              :class="{ selected: item.isSelected }"
+              :class="{ selected: item.isSelected, 'no-mark-tag': !item.isSelected }"
               :data-weight="Math.trunc(item.weight)"
               @click.stop.self="onTrigger(item)"
             >
