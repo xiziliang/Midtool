@@ -68,6 +68,7 @@
 .el-dialog {
   .el-dialog__header {
     padding-bottom: 20px;
+    margin-right: 0;
   }
   .el-dialog__header .el-dialog__title {
     font-size: 20px;
@@ -122,6 +123,9 @@
   }
 }
 
-.el-dialog__close svg {
-  transform: scale(1.5, 1.5);
+.el-dialog__close {
+  right: 6px;
+  svg {
+    transform: scale(1.5, 1.5);
+  }
 }

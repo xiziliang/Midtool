@@ -96,7 +96,6 @@ function onClick() {
         type="danger"
         @click.stop="$emit('delete', content)"
       >
-        x
       </el-button>
       <span><slot name="icon"></slot> {{ text }}</span>
       <slot></slot>
