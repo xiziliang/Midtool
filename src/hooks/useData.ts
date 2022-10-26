@@ -59,9 +59,12 @@ export const useMidJourneyData = () => {
     localStorage
   );
 
+  const default5CardList = ref<CardItem[]>([]);
+  const default5KeyWordList = ref<CustomKeyWord[]>([]);
+
   // TODO: 使用watch + ref
-  const defaultCardList = computed(() => reactive([...cardCustomList.value]));
-  const defaultKeyWordList = computed(() => reactive([...keyWordCustomList.value]));
+  const defaultCardList = computed(() => reactive([...cardCustomList.value, ...default5CardList.value]));
+  const defaultKeyWordList = computed(() => reactive([...keyWordCustomList.value, ...default5KeyWordList.value]));
   const defaultDpiList = computed(() => reactive([...dpiCustomsList.value]));
   const defaultParamList = computed(() => reactive([...paramCustomsList.value]));
   const defaultImgList = computed(() => reactive([...imgCustomsList.value]));
@@ -102,7 +105,8 @@ export const useMidJourneyData = () => {
     ].forEach(x => x.isSelected = false);
   }
 
-  function formatData(data: CardItem[]) {
+  function formatData(data: CardItem[] & KeyWord[], _default = false) {
+    _default ? data.forEach(x => x.isDefault = true) : null
     return data.map((x) => ({
       ...x,
       fileUrl: x.image === "yes" ? `/img-style/${x.promptEN}.png` : "/img-style/empty.png",
@@ -113,12 +117,14 @@ export const useMidJourneyData = () => {
 
   async function fetchCardListData() {
     const { data } = await useFetch("/json/midjourneyStyle.json");
-    cardList.value = formatData(JSON.parse(data.value as string));
+    default5CardList.value = formatData(JSON.parse(data.value as string), true).slice(0, 5);
+    cardList.value = formatData(JSON.parse(data.value as string)).slice(5);
   }
 
   async function fetchKeyWordData() {
     const { data } = await useFetch("/json/midjourneyPrompt.json");
-    keyWordList.value = formatData(JSON.parse(data.value as string));
+    default5KeyWordList.value = formatData(JSON.parse(data.value as string), true).slice(0, 5) as CustomKeyWord[];
+    keyWordList.value = formatData(JSON.parse(data.value as string)).slice(5);
   }
 
   async function fetchParamsData() {

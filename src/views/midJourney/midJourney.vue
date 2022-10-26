@@ -202,7 +202,7 @@ async function onCloseCardDialog() {
   cardCustomList.value = cardDialogRef.value?.cardCustomList;
   cardHistoryList.value = cardDialogRef.value?.cardHistoryList;
 
-  defaultCardList.value.push(...cardHistoryList.value.filter((x) => x.isSelected));
+  defaultCardList.value.unshift(...cardHistoryList.value.filter((x) => x.isSelected));
 }
 
 async function onCloseDpiDialog() {
@@ -233,7 +233,9 @@ async function onCloseKeyWordDialog() {
   keyWordCustomList.value = keywordDialogRef.value?.keyWordCustomList;
   keyWordHistoryList.value = keywordDialogRef.value?.keyWordHistoryList;
 
-  defaultKeyWordList.value.push(...keyWordHistoryList.value.filter((x) => x.isSelected));
+  defaultKeyWordList.value.unshift(
+    ...keyWordHistoryList.value.filter((x) => x.isSelected)
+  );
 }
 
 function onCloseWriteCardDialog() {
@@ -253,7 +255,7 @@ function onCloseWriteCardDialog() {
       isCustom: true,
     }) as CardItem;
     cardHistoryList.value.push(newItem);
-    defaultCardList.value.push(newItem);
+    defaultCardList.value.unshift(newItem);
   }
   newCardValue.value = "";
 }
@@ -276,7 +278,7 @@ function onCloseWriteKeyWordDialog() {
     }) as CustomKeyWord;
     keyWordHistoryList.value.push(newItem);
 
-    defaultKeyWordList.value.push(newItem);
+    defaultKeyWordList.value.unshift(newItem);
   }
   newKeyWordValue.value = "";
 }
@@ -296,6 +298,8 @@ function onCloseWriteCustomDialog() {
     weight: 1,
     showWeight: false,
   } as CustomKeyWord);
+
+  newCustomKeyWord.value = "";
 }
 
 function onSelectAIParams(
