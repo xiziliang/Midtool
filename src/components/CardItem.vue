@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { Plus, Remove } from "@element-plus/icons-vue";
+import { computed } from "vue";
 
-defineProps<{
+const props = defineProps<{
   Level1Label: string;
   KeyWord: string;
   KeyWord2: string;
@@ -25,6 +25,14 @@ defineEmits([
   /** 权重++ */
   "add-weight",
 ]);
+
+const addDisable = computed(() =>
+  props.weightType === "mid" ? props.weight! >= 5 : props.weight! >= 10
+);
+
+const reduceDisable = computed(() =>
+  props.weightType === "mid" ? props.weight! <= -1 : props.weight! <= 1
+);
 </script>
 
 <template>
@@ -34,34 +42,22 @@ defineEmits([
     </div>
     <div class="card-name" text-16px pb-0 p-2>{{ promptZH }}</div>
 
-    <el-button-group v-show="showWeight" class="weight-group" flex absolute>
-      <el-button
-        type="danger"
-        :icon="Remove"
-        :disabled="weightType === 'mid' ? weight! <= -1 : weight! <= 1"
-        @click="$emit('reduce-weight', weight)"
+    <div v-show="showWeight" class="weight-group bottom--26%" flex absolute items-center>
+      <i
+        class="icon-reduce"
+        :class="{
+          'is-disabled': reduceDisable,
+        }"
+        @click="!reduceDisable && $emit('reduce-weight', weight)"
       />
-      <el-button bg-white min-w-90px hover:bg-white text
-        >权重 {{ weight || 1 }}</el-button
-      >
-      <el-button
-        type="primary"
-        :icon="Plus"
-        :disabled="weightType === 'mid' ? weight! >= 5 : weight! >= 10"
-        @click="$emit('add-weight', weight)"
+      <div min-w-80px text-center>权重 {{ weight === undefined ? 1 : weight }}</div>
+      <i
+        class="icon-add"
+        :class="{
+          'is-disabled': addDisable,
+        }"
+        @click="!addDisable && $emit('add-weight', weight)"
       />
-    </el-button-group>
+    </div>
   </div>
 </template>
-<style lang="scss" scoped>
-.weight-group {
-  left: 50%;
-  bottom: -40px;
-  margin-left: -78px;
-  z-index: 10;
-
-  :deep(.el-button) {
-    padding: 8px 10px;
-  }
-}
-</style>

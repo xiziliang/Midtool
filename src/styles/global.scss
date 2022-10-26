@@ -331,6 +331,14 @@ span,
   animation: fadeRotate .6s linear infinite;
 }
 
+.icon-add {
+  content: url("../assets/img/add.svg");
+}
+
+.icon-reduce {
+  content: url("../assets/img/reduce.svg");
+}
+
 .dialogBtn {
   width: 128px;
 }
@@ -403,5 +411,21 @@ span,
   .el-tabs__item.is-active {
     color: #fff;
     background-color: #222222;
+  }
+}
+
+// 权重 style
+.weight-group {
+  left: 50%;
+  margin-left: -73px;
+  z-index: 10;
+  background: #eaeff3;
+  border: 1px solid #222222;
+  border-radius: 38px;
+  user-select: none;
+
+  i.is-disabled {
+    cursor: not-allowed;
+    opacity: 0.4;
   }
 }
