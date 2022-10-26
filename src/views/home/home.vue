@@ -2,20 +2,22 @@
 import { ref, computed } from "vue";
 import { useRouter, useRoute } from "vue-router";
 import type { TabsPaneContext } from "element-plus";
+import { ElMessage } from "element-plus";
 
 import TooltipTag from "@/components/TooltipTag.vue";
 import { ApiPrefix, ReplaceKey } from "@/constants";
-import { copyText } from "@/utils";
-import { useFetch, useElementBounding } from "@vueuse/core";
+import { copyText, addParentheses } from "@/utils";
+import { useFetch, useElementBounding, onClickOutside } from "@vueuse/core";
 import { $routes } from "@/router";
 
 import NovelAi from "../novelAi/novelAi.vue";
 import MidJourney from "../midJourney/midJourney.vue";
 
-type Instance = typeof MidJourney | typeof NovelAi;
+type Instance = typeof MidJourney & typeof NovelAi;
 // instance
 const headerRef = ref<HTMLElement | null>(null);
 const currentTabRef = ref<InstanceType<Instance>>();
+const clearBtnRef = ref<HTMLElement | null>();
 
 // computed
 const tipsList = computed(() => currentTabRef.value?.tipsList || []);
@@ -24,10 +26,14 @@ const stringField = computed(() => currentTabRef.value?.stringField || "");
 // hooks
 const { top: headRefTop } = useElementBounding(headerRef);
 
+onClickOutside(clearBtnRef, () => {
+  clearBtnVisible.value = true;
+});
+
 // route
 const router = useRouter();
 const route = useRoute();
-const currentRouter = ref(route.name);
+const currentRouter = computed(() => route.name);
 const routerList = ref(
   $routes[0].children?.map((x) => ({
     title: x.meta?.title as string,
@@ -58,6 +64,7 @@ const website = ref([
     value: "https://openai.com/dall-e-2/",
   },
 ]);
+const clearBtnVisible = ref(true);
 
 function onClickTab(context: TabsPaneContext) {
   router.push({
@@ -68,7 +75,20 @@ function onClickTab(context: TabsPaneContext) {
 function copy(type: "input" | "translation") {
   switch (type) {
     case "input":
-      copyText(inputValue.value);
+      if (inputValue.value) {
+        copyText(inputValue.value);
+      } else {
+        let copyString = "";
+        for (let i = 0; i < tipsList.value.length; i++) {
+          copyString +=
+            tipsList.value[i]?.promptZH ||
+            tipsList.value[i]?.options ||
+            tipsList.value[i]?.img;
+          copyString += i == tipsList.value.length - 1 ? "" : "，";
+        }
+        copyText(String(copyString));
+      }
+      // copyText(inputValue.value);
 
       break;
     case "translation":
@@ -78,32 +98,53 @@ function copy(type: "input" | "translation") {
 }
 
 async function translation() {
-  // NOTE: 拼接keyWord
-  // const keyWord = currentTabRef.value?.defaultKeyWordList
-  //   .filter((x) => x.isCustom && x.isSelected)
-  //   .map((x) => x.promptZH)
-  //   .join(",");
-  // loading.value = true;
-  // const { data } = await useFetch(`${ApiPrefix}/translate`).post({
-  //   origin: keyWord ? inputValue.value + "," + keyWord : inputValue.value,
-  // });
-  // loading.value = false;
-  // translationResult.value = stringField.value.replace(
-  //   ReplaceKey,
-  //   JSON.parse(data.value as string).data
-  // );
+  let others: string | undefined;
+
+  if (!inputValue.value) {
+    translationResult.value = "";
+    ElMessage.warning("请输入描述");
+    return;
+  }
+
+  if (currentRouter.value === "novelAi") {
+    // NOTE: 拼接自定义 keyWord
+    others = currentTabRef.value?.others
+      .map((x) => addParentheses(x.promptZH, x.weight))
+      .join(" ");
+  } else if (currentRouter.value === "midJourney") {
+    // NOTE: 拼接自定义 keyWord
+    others = currentTabRef.value?.others
+      .map((x) => (x.weight === 0 ? x.promptZH : x.promptZH + ":" + x.weight))
+      .join(" ");
+  }
+
+  loading.value = true;
+  const { data } = await useFetch(`${ApiPrefix}/translate`).post({
+    origin: others ? inputValue.value + "," + others : inputValue.value,
+  });
+  loading.value = false;
+  translationResult.value = stringField.value.replace(
+    ReplaceKey,
+    JSON.parse(data.value as string).data
+  );
+}
+
+function onClickClearBtn() {
+  clearBtnVisible.value = true;
+  currentTabRef.value?.allDefaultData.forEach((x: any) => (x.isSelected = false));
+  ElMessage.success("选中数据清空完成");
 }
 </script>
 
 <template>
   <div class="home-page" style="min-height: calc(100vh - 180px)">
-    <div class="logo" max-h-194px pt-4 overflow-hidden>
+    <div class="logo" max-h-224px pt-30px overflow-hidden>
       <img w-572px ma src="@/assets/img/logo.png" alt="logo" />
       <div class="tips" p="t-2 x-2" absolute w-full top-0px flex>
         <label class="title" text-18px font-600
           ><span>prompt</span> <span>Tool</span> <span>词图</span></label
         >
-        <span class="qq-style btn" m="l-a">
+        <span class="qq-style btn" text-12px m="l-a">
           <i class="icon-ren icon" mb-3px></i>
           QQ群 {{ qq }}</span
         >
@@ -124,7 +165,7 @@ async function translation() {
           h-auto
           p="x-0.2rem y-0.2rem"
           flex="~ grow shrink wrap gap-2"
-          border="2 gray-800 rounded-12px"
+          border="2 #222 rounded-12px"
         >
           <el-input
             text-16px
@@ -136,7 +177,7 @@ async function translation() {
             @keypress.enter.prevent="translation"
           />
           <el-button
-            class="copy hover:bg-gray-200 active:bg-gray-300 h-48px"
+            class="copy h-48px"
             type="primary"
             size="default"
             @click="copy('input')"
@@ -146,14 +187,15 @@ async function translation() {
           <div
             v-show="tipsList.length"
             class="tooltiplist"
-            flex="~ gap-3"
-            p="b-20px x-20px"
+            flex="~ gap-2"
+            p="b-16px x-15px"
           >
             <TooltipTag
-              v-for="item in tipsList"
+              v-for="item in tipsList.slice(0, 5)"
               :content="item?.promptZH || item?.options || item?.img"
               :slice="16"
             ></TooltipTag>
+            <TooltipTag v-show="tipsList.length > 5" content="..." />
           </div>
         </div>
         <el-button
@@ -168,7 +210,7 @@ async function translation() {
         </el-button>
       </div>
       <div class="translation-result" flex="~" px-4 justify-center items-start>
-        <div class="lt-md:w-600px md:w-790px" p="y-15px x-4px" flex="~ gap-3">
+        <div class="lt-md:w-600px md:w-784px" p="y-15px x-2px" flex="~ gap-3">
           <template v-if="!translationResult.length && !loading">
             <p class="color-[#aaa]">
               翻译结果: A lazy cat prone on the ground of the window
@@ -179,11 +221,11 @@ async function translation() {
             <p class="color-[#aaa]">正在翻译...</p>
           </template>
           <template v-else-if="translationResult.length > 0 && !loading">
-            <code class="tracking-0.5px w-36.7rem" color-dark-400 text-20px break-words>{{
+            <code class="tracking-0.5px w-37rem" color-dark-400 text-20px break-words>{{
               translationResult
             }}</code>
             <el-button
-              class="copy hover:bg-gray-200 active:bg-gray-300 h-48px"
+              class="copy h-48px"
               type="primary"
               size="default"
               @click="copy('translation')"
@@ -197,7 +239,7 @@ async function translation() {
     <div
       class="container-params ma lt-lg:max-w-660px lg:max-w-828px xl:max-w-1176px 2xl:max-w-1336px"
     >
-      <el-tabs v-model="currentRouter" @tab-click="onClickTab">
+      <el-tabs class="home-tabs" v-model="currentRouter" @tab-click="onClickTab">
         <el-tab-pane v-for="route in routerList" :label="route.title" :name="route.name">
         </el-tab-pane>
       </el-tabs>
@@ -206,12 +248,12 @@ async function translation() {
       <component :ref="(el: any) => currentTabRef = el" :is="Component" />
     </RouterView>
   </div>
-  <footer class="bg-[#333333]">
+  <footer class="bg-[#333333] mt-52px">
     <div
       class="footer ma lt-lg:max-w-660px lg:max-w-828px xl:max-w-1176px 2xl:max-w-1332px"
       flex="~ col"
     >
-      <div min-h-180px flex="~ col" justify-center p="y-8" text-white>
+      <div min-h-180px flex="~ col" justify-center p="t-18px b-8" text-white>
         <div p="y-4" text-20px>复制翻译结果后，可以去这些网站完成绘画</div>
         <div flex="~ gap-4" text-14px>
           <a v-for="item in website" :href="item.value" target="_black">{{
@@ -219,12 +261,45 @@ async function translation() {
           }}</a>
         </div>
       </div>
-      <div></div>
+    </div>
+    <div border="t-1 solid gray-700"></div>
+    <div flex="~ col" relative>
+      <div min-h-80px flex="~" justify-center items-center py-24px text-white>
+        <p>我们还有很多想法，当然，我们更想听听你们的想法，这里有一份</p>
+        <p text-emerald>问卷</p>
+      </div>
+      <el-button
+        v-if="clearBtnVisible"
+        class="cleatBtn"
+        type="primary"
+        @click="clearBtnVisible = false"
+        >清空所有选中</el-button
+      >
+      <div
+        v-else
+        ref="clearBtnRef"
+        class="cleatBtn"
+        top--11
+        right-30px
+        flex="~ col gap-4"
+      >
+        <el-button type="primary" @click="onClickClearBtn">确定</el-button>
+        <el-button m-0 @click="clearBtnVisible = true">取消清空</el-button>
+      </div>
     </div>
   </footer>
 </template>
 <style scoped>
 :deep(.container-input .el-textarea__inner) {
   color: #222;
+  padding-left: 15px;
+  padding-right: 15px;
+  line-height: 1.4;
+}
+
+.cleatBtn {
+  position: absolute;
+  top: calc(50% - 18px);
+  right: 10px;
 }
 </style>

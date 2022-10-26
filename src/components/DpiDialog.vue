@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { watchEffect, reactive, computed } from "vue";
+import { watchEffect, reactive, computed, ref } from "vue";
 import { cloneDeep } from "lodash";
 
 import { DPI_CUSTOM_LIST } from "@/constants";
@@ -18,6 +18,21 @@ const dpiCustom = reactive({
 });
 
 const dpiCustomsList = useStorage<DpiOptions[]>(DPI_CUSTOM_LIST, [], localStorage);
+
+function sizeInputWidthFocusFun() {
+  sizeInputWidthClass.value = "input-focus";
+}
+function sizeInputHeightFocusFun() {
+  sizeInputHeightClass.value = "input-focus";
+}
+function sizeInputWidthBlurFun() {
+  sizeInputWidthClass.value = "";
+}
+function sizeInputHeightBlurFun() {
+  sizeInputHeightClass.value = "";
+}
+const sizeInputWidthClass = ref("");
+const sizeInputHeightClass = ref("");
 
 const formatList = computed<Record<string, DpiOptions[]>>(() => {
   const obj: any = {};
@@ -66,17 +81,20 @@ defineExpose({
 </script>
 <template>
   <div h-xl overflow-auto will-change-scroll>
-    <div p-4>
+    <div p="x-4 t-4 b-2">
       <div flex="~" mb-4 class="readmore-title">
         <div flex>
-          <p>添加尺寸/比例</p>
+          <p class="readmore-title-dialog">添加尺寸/比例</p>
         </div>
       </div>
-      <div flex="~ gap-3 wrap" justify-start items-stretch class="more">
+      <div flex="~ gap-3 wrap" justify-start items-stretch class="more size-box">
         <div flex="~ gap-3" max-w-156px items-center>
           <el-input
+            :class="sizeInputWidthClass"
             v-model="dpiCustom.width"
             oninput="value=value.replace(/[^0-9.]/g,'')"
+            @focus="sizeInputWidthFocusFun"
+            @blur="sizeInputWidthBlurFun"
           >
             <template #prepend>宽:</template>
           </el-input>
@@ -85,6 +103,9 @@ defineExpose({
           <el-input
             v-model="dpiCustom.height"
             oninput="value=value.replace(/[^0-9.]/g,'')"
+            @focus="sizeInputHeightFocusFun"
+            @blur="sizeInputHeightBlurFun"
+            :class="sizeInputHeightClass"
           >
             <template #prepend>高:</template>
           </el-input>
@@ -100,10 +121,10 @@ defineExpose({
         </div>
       </div>
     </div>
-    <div p-4 v-for="(dpilist, label) in formatList">
+    <div p="x-4 t-4 b-2" v-for="(dpilist, label) in formatList">
       <div flex="~" mb-4 class="readmore-title">
         <div flex>
-          <p>{{ label }}</p>
+          <p class="readmore-title-dialog">{{ label }}</p>
         </div>
       </div>
       <div flex="~ gap-3 wrap" justify-start items-stretch class="more">
@@ -121,3 +142,37 @@ defineExpose({
     </div>
   </div>
 </template>
+<style lang="scss" scoped>
+.readmore-title-dialog {
+  margin-bottom: 8px;
+  font-size: 16px;
+  line-height: 32px;
+  font-weight: 700;
+  color: #222;
+}
+.size-box {
+  :deep(.el-input-group__prepend) {
+    background-color: #fff;
+    padding-right: 10px;
+    padding-left: 15px;
+  }
+  :deep(.el-input__wrapper) {
+    padding-left: 0;
+    box-shadow: none;
+  }
+  :deep(.el-input-group__prepend) {
+    box-shadow: none;
+  }
+  .el-input,
+  .el-button {
+    height: 38px;
+  }
+  .el-input {
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    &.input-focus {
+      border-color: rgb(13, 215, 144);
+    }
+  }
+}
+</style>

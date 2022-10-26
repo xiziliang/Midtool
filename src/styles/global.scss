@@ -61,7 +61,7 @@ body,
     position: absolute;
     background-color: var(--el-color-primary);
     right: -8px;
-    top: -8px;
+    bottom: -8px;
     color: var(--el-color-white);
     border-radius: 50%;
     display: inline;
@@ -123,7 +123,7 @@ span,
 // 选中的样式
 .selected {
   &::after {
-    border: 0.2em solid var(--el-color-primary) !important;
+    border: 2px solid var(--el-color-primary) !important;
   }
 
   border-color: transparent;
@@ -175,17 +175,22 @@ span,
 // delete icon style
 .delete-icon.el-button {
   position: absolute;
-  right: 0.5px;
+  right: -0.5px;
   bottom: 0.5px;
   height: 20px;
   padding: 2px;
   width: 20px;
   z-index: 9;
   background-color: #EAEFF3;
+  background: url(../assets/img/shangchu@2x.png) no-repeat center;
+  background-size: 20px 20px;
 
   border: none;
   border-top-right-radius: 0;
   border-bottom-left-radius: 0;
+  &:hover {
+    background-image: url(../assets/img/shangchu_hover@2x.png);
+  }
 
   span {
     line-height: 1px;
@@ -276,6 +281,7 @@ span,
 .tooltiplist {
   width: 100%;
   overflow: hidden;
+  margin-top: -6px;
 }
 
 .tooltip-tag {
@@ -286,7 +292,7 @@ span,
 
   background: #F5F5F5;
   border-radius: 8px;
-  border: 1px solid var(--el-border-color);
+  border: 1px solid  #F5F5F5;
   cursor: pointer;
   @include hover-style-tooltip-tag;
   
@@ -330,6 +336,16 @@ span,
 .icon-loading {
   content: url("../assets/img/loading.png");
   animation: fadeRotate .6s linear infinite;
+  position: relative;
+  top: 4px;
+}
+
+.icon-add {
+  content: url("../assets/img/add.svg");
+}
+
+.icon-reduce {
+  content: url("../assets/img/reduce.svg");
 }
 
 .dialogBtn {
@@ -373,77 +389,68 @@ span,
   }
 }
 
-.el-dialog {
-  .el-dialog__header {
-    padding-bottom: 20px;
-  }
-  .el-dialog__header .el-dialog__title {
-    font-size: 20px;
-    font-weight: bold;
-  }
-  .el-dialog__body {
-    padding-bottom: 0;
-    padding-top: 0;
-    .el-textarea {
-      margin-bottom: -8px;
-      .el-input__count {
-        bottom: 9px;
-        opacity: 0.6;
-      }
-      .el-textarea__inner {
-        padding-top: 9px;
-        padding-bottom: 9px;
-      }
-    }
-  }
-  .el-dialog__footer {
-    padding-top: 24px;
-    padding-bottom: 24px;
-  }
-  &.dialog-media {
-    max-width: 892px;
-    width: 100%;
-    margin: var(--el-dialog-margin-top, 15vh) auto 50px;
-    @media screen and (max-width: 912px) {
-      width: auto;
-      margin: var(--el-dialog-margin-top, 15vh) 10px 50px;
-    }
-  }
-}
-
-.el-tabs__item {
-  color: #666;
-}
-
-.el-tabs__nav-wrap::after {
-  height : 1px;
-}
-
-.el-tabs__active-bar {
-  height: 3px;
-  border-radius: var(--el-border-radius-base);
-}
-
-.el-tabs {
-  .el-tabs__header {
-    margin-bottom: 0;
-  }
-}
-
-.el-dialog__close svg {
-  transform: scale(1.5, 1.5);
-}
-
 .i-carbon-copy {
+  width: 24px !important;
+  height: 24px !important;
   --un-icon: none !important;
   background-image: url(../assets/img/fuzhi_kedian.png) !important;
   background-size: 1.2em 1.2em !important;
+  background-size: 24px 24px !important;
   background-color: #fff !important;
+  transition: 0.1s;
+  opacity: 0.3;
 }
 
 .el-button.copy:hover {
   .i-carbon-copy {
-    background-color: rgb(229, 231, 235) !important;
+    opacity: 1;
+  }
+}
+
+code {
+  font-family: Arial, PingFang SC, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+.dialog-border {
+  .el-dialog__header {
+    border-bottom: 1px solid #EAEFF3;
+  }
+}
+
+// Home tabs style
+.home-tabs.el-tabs {
+  .el-tabs__active-bar  {
+    display: none;
+  }
+
+  .el-tabs__item {
+    height: 26px;
+    line-height: 26px;
+    color: #666666;
+    background: #EAEFF3;
+    border-radius: 10px 10px 0px 0px;
+    padding-right: 20px !important;
+    padding-left: 20px !important;
+  }
+  .el-tabs__item.is-active {
+    color: #fff;
+    background-color: #222222;
+  }
+}
+
+// 权重 style
+.weight-group {
+  left: 50%;
+  margin-left: -70px;
+  z-index: 10;
+  background: #eaeff3;
+  border: 1px solid #222222;
+  border-radius: 38px;
+  user-select: none;
+
+  i.is-disabled {
+    cursor: not-allowed;
+    opacity: 0.4;
   }
 }
 

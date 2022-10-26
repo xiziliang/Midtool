@@ -6,7 +6,7 @@ export interface CardItem {
   promptZH: string;
   promptEN: string;
   image: 'yes' | 'no';
-  imgUrl?: string;
+  fileUrl?: string;
   /** 是否主页选中 */
   isSelected?: boolean;
   /** 是否是用户自定义 */
@@ -15,6 +15,8 @@ export interface CardItem {
   weight: number;
   /** 是否显示权重 */
   showWeight: boolean;
+  /** 是否是默认展示在主页的数据 */
+  isDefault?: boolean;
 }
 
 export interface PromptTemplate {
@@ -25,7 +27,7 @@ export interface PromptTemplate {
   promptZH: string;
   promptEN: string;
   image: 'yes' | 'no';
-  imgUrl?: string;
+  // fileUrl?: string;
   imageLocation: string;
   title: string;
   detagEN: string;
@@ -57,6 +59,8 @@ export interface KeyWord {
   showWeight: boolean;
   /** 权重 */
   weight: number;
+  /** 是否是默认展示数据 */
+  isDefault?: boolean;
 }
 
  export interface CustomKeyWord extends KeyWord {
@@ -64,16 +68,11 @@ export interface KeyWord {
   isCustom: boolean;
 }
 
-export interface HistoryKeyWord extends CustomKeyWord {
-  /** 是否删除 */
-  isDelete: boolean;
-}
-
 export type OptionType = 'none' | 'textbox' | 'selector'| 'drag' | 'percentage';
 
 export type MidJourneyParams = 'card' | 'keyword' | 'params' | 'dpi' | 'img';
 
-export type NovelAiParams = 'prompt' | 'people' | 'body' | 'style' | 'composeKeyWord' | 'positiveKeyWord' | 'custom';
+export type NovelAiParams = 'prompt' | 'people' | 'body' | 'style' | 'composeKeyWord' | 'positiveKeyWord' | 'customKeyword';
 
 interface Option {
   [key: string]: string;

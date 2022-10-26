@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { Plus, Remove } from "@element-plus/icons-vue";
 
 const props = defineProps<{
   content: string;
@@ -10,6 +9,8 @@ const props = defineProps<{
   isSelected?: boolean;
   /** 是否是自定义 */
   isCustom?: boolean;
+  /** 权重类型 */
+  weightType?: "mid" | "novel";
   /** 是否展示权重 */
   showWeight?: boolean;
   /** 权重 */
@@ -52,6 +53,14 @@ const text = computed(() => {
   }
 });
 
+const addDisable = computed(() =>
+  props.weightType === "mid" ? props.weight! >= 5 : props.weight! >= 10
+);
+
+const reduceDisable = computed(() =>
+  props.weightType === "mid" ? props.weight! <= -1 : props.weight! <= 1
+);
+
 const isDisable = computed(() =>
   !props.tooltip ? true : !limit.value ? true : props.content.length < limit.value
 );
@@ -72,8 +81,12 @@ function onClick() {
       relative
       flex="~ col"
       class="keyword-tag px-20px py-6px"
-      :class="{ selected: isSelected, dpiStyle: type === 'dpi' }"
-      :data-weight="weight"
+      :class="{
+        selected: isSelected,
+        dpiStyle: type === 'dpi',
+        'no-mark-tag': !isSelected,
+      }"
+      :data-weight="Math.trunc(weight!)"
       v-bind="$attrs"
       @click.stop.self="onClick"
     >
@@ -83,46 +96,38 @@ function onClick() {
         type="danger"
         @click.stop="$emit('delete', content)"
       >
-        x
       </el-button>
       <span><slot name="icon"></slot> {{ text }}</span>
       <slot></slot>
-      <el-button-group
+      <div
         v-show="showWeight"
         class="weight-group"
-        :style="{ bottom: $slots.default ? '-72%' : '-122%' }"
+        :style="{ bottom: $slots.default ? '-72%' : '-110%' }"
         flex
         absolute
+        items-center
       >
-        <el-button
-          type="danger"
-          :icon="Remove"
-          :disabled="weight! <= 1"
-          @click="$emit('reduce-weight', weight)"
+        <i
+          class="icon-reduce"
+          :class="{
+            'is-disabled': reduceDisable,
+          }"
+          @click="!reduceDisable && $emit('reduce-weight', weight)"
         />
-        <el-button bg-white hover:bg-white text>词权重 {{ weight || 1 }}</el-button>
-        <el-button
-          type="primary"
-          :icon="Plus"
-          :disabled="weight! >= 9"
-          @click="$emit('add-weight', weight)"
+        <div min-w-80px text-center>权重 {{ weight === undefined ? 1 : weight }}</div>
+        <i
+          class="icon-add"
+          :class="{
+            'is-disabled': addDisable,
+          }"
+          @click="!addDisable && $emit('add-weight', weight)"
         />
-      </el-button-group>
+      </div>
     </span>
   </el-tooltip>
 </template>
 <style lang="scss" scoped>
 .dpiStyle {
   min-width: 156px;
-}
-
-.weight-group {
-  left: 50%;
-  margin-left: -78px;
-  z-index: 10;
-
-  :deep(.el-button) {
-    padding: 8px 10px;
-  }
 }
 </style>

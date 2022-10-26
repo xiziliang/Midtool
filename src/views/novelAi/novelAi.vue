@@ -1,23 +1,20 @@
 <script setup lang="ts">
-import { ref, reactive, nextTick, computed, onBeforeUnmount } from "vue";
+import { ref, reactive, onBeforeUnmount, unref, computed } from "vue";
+import type { Ref } from "vue";
 import { ElMessage } from "element-plus";
 import { cloneDeep } from "lodash";
 
-import type {
-  NovelAiParams,
-  HistoryKeyWord,
-  DpiOptions,
-  CustomKeyWord,
-  CardItem,
-} from "@/models";
+import type { NovelAiParams, DpiOptions, CustomKeyWord, CardItem } from "@/models";
 
-import Card from "@/components/Card.vue";
+import NovelCard from "@/components/NovelCard.vue";
 import Tag from "@/components/Tag.vue";
 import PromptItem from "@/components/PromptItem.vue";
-import KeywordDialog from "@/components/KeywordDialog.vue";
+import NovelKeywordDialog from "@/components/NovelKeywordDialog.vue";
+import NovelCardDialog from "@/components/NovelCardDialog.vue";
 import PromptTemplateDialog from "@/components/PromptTemplateDialog.vue";
-import CardDialog from "@/components/CardDialog.vue";
 
+import { ReplaceKey } from "@/constants";
+import { addParentheses } from "@/utils";
 import { useEventListener } from "@vueuse/core";
 import { useNovelAiData } from "@/hooks";
 
@@ -44,21 +41,51 @@ const {
   defaultComposeKeyWord,
   defaultPositiveKeyWord,
   defaultCustomKeyWord,
-  tooltiplist,
 
   // 所有数据
   allDefaultData,
+
+  // input提示词
+  tooltiplist,
 
   fetch,
 } = useNovelAiData();
 
 fetch();
 
+// instance
+const cardRef = ref<InstanceType<typeof NovelCardDialog>>();
+const keywordRef = ref<InstanceType<typeof NovelKeywordDialog>>();
+
 const newCustomKeyWord = ref("");
 const newComposeKeyWord = ref("");
 const newPositiveKeyWord = ref("");
 
-const currentShowWeightTag = ref("");
+const others = computed(() => {
+  const keyword1 = defaultComposeKeyWord.value.filter((x) => x.isSelected && x.isCustom);
+  const keyword2 = defaultPositiveKeyWord.value.filter((x) => x.isSelected && x.isCustom);
+  const keyword3 = defaultCustomKeyWord.value.filter((x) => x.isSelected && x.isCustom);
+  return [...keyword1, ...keyword2, ...keyword3];
+});
+
+const stringField = computed(() => {
+  const prompt = [
+    ...defaultDrawPeople.value,
+    ...defaultDrawBody.value,
+    ...defaultDrawStyle.value,
+  ]
+    .filter((x) => x.isSelected && !x.isCustom)
+    .map((x) => addParentheses(x.promptEN, x.weight))
+    .join(",");
+
+  // NOTE:keyword不包含defaultCustomKeyWord， 因为defaultCustomKeyWord要进翻译
+  const keyWord = [...defaultComposeKeyWord.value, ...defaultPositiveKeyWord.value]
+    .filter((x) => x.isSelected && !x.isCustom)
+    .map((x) => addParentheses(x.promptEN, x.weight))
+    .join(",");
+
+  return ReplaceKey + "," + (prompt ? prompt + "," : "") + keyWord;
+});
 
 const dialogVisible = reactive({
   prompt: false,
@@ -124,14 +151,22 @@ function onSelectParams(
 
 function clearWeight() {
   allDefaultData.value.forEach((x: any) => (x.showWeight = false));
-  currentShowWeightTag.value = "";
 }
 
-function onShowWeightTag(content: string, item: CustomKeyWord) {
-  item.isSelected = !item.isSelected;
-  if (currentShowWeightTag.value === content) return;
+function onShowWeightTag(item: CustomKeyWord, type?: NovelAiParams, index?: number) {
+  if (!(item.isCustom || item.isDefault) && item.isSelected) {
+    switch (type) {
+      case "composeKeyWord":
+        defaultComposeKeyWord.value.splice(index!, 1);
+        break;
+      case "positiveKeyWord":
+        defaultPositiveKeyWord.value.splice(index!, 1);
+        break;
+    }
+  } else {
+    item.isSelected = !item.isSelected;
+  }
 
-  currentShowWeightTag.value = content;
   allDefaultData.value.forEach((x: any) => (x.showWeight = false));
   item.showWeight = true;
 }
@@ -144,7 +179,95 @@ function onAddWeight(weight: number, item: any) {
   item.weight = weight + 1;
 }
 
-function closeDislog() {
+function initKeyword<T>(name: Ref<T> | T) {
+  return {
+    promptZH: unref(name),
+    isCustom: true,
+    isSelected: true,
+    weight: 1,
+    showWeight: false,
+  } as any;
+}
+
+function onClosePeople() {
+  onCloseDialog();
+  // 从dialog中选择后
+  const HistoryData = cardRef.value?.selectedList as any[];
+
+  // NOTE:对应历史数据合并
+  HistoryData.forEach((x) => {
+    const has = defaultDrawPeople.value.find((y) => y.promptEN === x.promptEN);
+    has ? Object.assign(has, x) : defaultDrawPeople.value.unshift(x);
+  });
+}
+
+function onCloseBody() {
+  onCloseDialog();
+  // 从dialog中选择后
+  const HistoryData = cardRef.value?.selectedList as any[];
+
+  // NOTE:对应历史数据合并
+  HistoryData.forEach((x) => {
+    const has = defaultDrawBody.value.find((y) => y.promptEN === x.promptEN);
+    has ? Object.assign(has, x) : defaultDrawBody.value.unshift(x);
+  });
+}
+
+function onCloseStyle() {
+  onCloseDialog();
+  // 从dialog中选择后
+  const HistoryData = cardRef.value?.selectedList as any[];
+
+  // NOTE:对应历史数据合并
+  HistoryData.forEach((x) => {
+    const has = defaultDrawStyle.value.find((y) => y.promptEN === x.promptEN);
+    has ? Object.assign(has, x) : defaultDrawStyle.value.unshift(x);
+  });
+}
+
+function onCloseComposeKeyword() {
+  onCloseDialog();
+
+  if (newComposeKeyWord.value) {
+    defaultComposeKeyWord.value.unshift(initKeyword(newComposeKeyWord));
+    newComposeKeyWord.value = "";
+  } else {
+    // 从dialog中选择后
+    const HistoryData = keywordRef.value?.selectedList as any[];
+
+    // NOTE:对应历史数据合并
+    HistoryData.forEach((x) => {
+      const has = defaultComposeKeyWord.value.find((y) => y.promptEN === x.promptEN);
+      has ? Object.assign(has, x) : defaultComposeKeyWord.value.unshift(x);
+    });
+  }
+}
+
+function onClosePositiveKeyword() {
+  onCloseDialog();
+
+  if (newPositiveKeyWord.value) {
+    defaultPositiveKeyWord.value.unshift(initKeyword(newPositiveKeyWord));
+    newPositiveKeyWord.value = "";
+  } else {
+    // 从dialog中选择后
+    const HistoryData = keywordRef.value?.selectedList as any[];
+
+    // NOTE:对应历史数据合并
+    HistoryData.forEach((x) => {
+      const has = defaultPositiveKeyWord.value.find((y) => y.promptEN === x.promptEN);
+      has ? Object.assign(has, x) : defaultPositiveKeyWord.value.unshift(x);
+    });
+  }
+}
+
+function onCloseCustomKeyword() {
+  onCloseDialog();
+
+  defaultCustomKeyWord.value.push(initKeyword(newCustomKeyWord));
+}
+
+function onCloseDialog() {
   dialogVisible.prompt = false;
   dialogVisible.people = false;
   dialogVisible.body = false;
@@ -157,16 +280,33 @@ function closeDislog() {
   dialogVisible.writeCustomKeyWord = false;
 }
 
+function onDeleteKeyword(type: NovelAiParams, index: number) {
+  switch (type) {
+    case "composeKeyWord":
+      defaultComposeKeyWord.value.splice(index, 1);
+      break;
+    case "positiveKeyWord":
+      defaultPositiveKeyWord.value.splice(index, 1);
+      break;
+    case "customKeyword":
+      defaultCustomKeyWord.value.splice(index, 1);
+      break;
+  }
+  ElMessage.success("删除成功");
+}
+function closePromptTemplateDialog(){
+  dialogVisible.prompt = false;
+}
+
 defineExpose({
-  // tipsList: tooltiplist,
-  tipsList: [
-    {
-      promptZH: "test",
-      options: "2",
-      img: "3",
-    },
-  ],
-  stringField: "",
+  // 杂项
+  others,
+  // input的提示
+  tipsList: tooltiplist,
+  // 拼接字符串数据
+  stringField,
+  // 所有默认数据
+  allDefaultData,
 });
 </script>
 
@@ -207,7 +347,7 @@ defineExpose({
     <div flex="~" mt-8 mb-3 class="readmore-title">
       <div cursor-pointer flex @click="onSelectParams('people')">
         <p text-20px color-dark-400>
-          <i class="icon-tishici icon-big mr-2 -mb-1"></i>画个人
+          <i class="icon-fengge icon-big mr-2 -mb-1"></i>画个人
         </p>
         <div i-carbon:add></div>
         <p self-center text-14px class="text-[#AAAAAA]">
@@ -223,12 +363,12 @@ defineExpose({
       p="y-2 x-2px"
       class="more"
     >
-      <Card :data="defaultDrawPeople"></Card>
+      <NovelCard :data="defaultDrawPeople" :all-default-data="allDefaultData"></NovelCard>
     </div>
     <div flex="~" mt-28px mb-5px class="readmore-title">
       <div cursor-pointer flex @click="onSelectParams('body')">
         <p text-20px color-dark-400>
-          <i class="icon-tishici icon-big mr-2 -mb-1"></i>画个物体
+          <i class="icon-fengge icon-big mr-2 -mb-1"></i>画个物体
         </p>
         <div i-carbon:add></div>
         <p self-center text-14px class="text-[#AAAAAA]">添加物体/只画物体</p>
@@ -242,12 +382,12 @@ defineExpose({
       p="y-2 x-2px"
       class="more"
     >
-      <Card :data="defaultDrawBody"></Card>
+      <NovelCard :data="defaultDrawBody" :all-default-data="allDefaultData"></NovelCard>
     </div>
     <div flex="~" mt-28px mb-5px class="readmore-title">
       <div cursor-pointer flex @click="onSelectParams('style')">
         <p text-20px color-dark-400>
-          <i class="icon-tishici icon-big mr-2 -mb-1"></i>画风
+          <i class="icon-fengge icon-big mr-2 -mb-1"></i>画风
         </p>
         <div i-carbon:add></div>
         <p self-center text-14px class="text-[#AAAAAA]">动漫绘画为主</p>
@@ -261,7 +401,7 @@ defineExpose({
       p="y-2 x-2px"
       class="more"
     >
-      <Card :data="defaultDrawStyle"></Card>
+      <NovelCard :data="defaultDrawStyle" :all-default-data="allDefaultData"></NovelCard>
     </div>
     <div flex="~" mt-28px mb-5px class="readmore-title">
       <div cursor-pointer flex @click="onSelectParams('composeKeyWord')">
@@ -282,16 +422,18 @@ defineExpose({
       </Tag>
       <Tag
         slice
-        v-for="item in defaultComposeKeyWord"
+        v-for="(item, index) in defaultComposeKeyWord"
+        weight-type="novel"
         :content="item.promptZH!"
         :is-selected="item.isSelected"
         :is-custom="item.isCustom"
         :weight="item.weight"
         :show-weight="item.showWeight"
         @click.stop.self
+        @delete="onDeleteKeyword('composeKeyWord', index)"
         @reduce-weight="(value) => onReduceWeight(value, item)"
         @add-weight="(value) => onAddWeight(value, item)"
-        @click-tag="(value) => onShowWeightTag(value, item)"
+        @click-tag="onShowWeightTag(item, 'composeKeyWord', index)"
       ></Tag>
     </div>
     <div flex="~" mt-28px mb-8px class="readmore-title">
@@ -312,16 +454,18 @@ defineExpose({
       </Tag>
       <Tag
         slice
-        v-for="item in defaultPositiveKeyWord"
+        v-for="(item, index) in defaultPositiveKeyWord"
+        weight-type="novel"
         :content="item.promptZH!"
         :is-selected="item.isSelected"
         :is-custom="item.isCustom"
         :weight="item.weight"
         :show-weight="item.showWeight"
         @click.stop.self
+        @delete="onDeleteKeyword('positiveKeyWord', index)"
         @reduce-weight="(value) => onReduceWeight(value, item)"
         @add-weight="(value) => onAddWeight(value, item)"
-        @click-tag="(value) => onShowWeightTag(value, item)"
+        @click-tag="onShowWeightTag(item, 'positiveKeyWord', index)"
       ></Tag>
     </div>
     <div flex="~" mt-28px mb-8px class="readmore-title">
@@ -342,16 +486,18 @@ defineExpose({
       </Tag>
       <Tag
         slice
-        v-for="item in defaultCustomKeyWord"
+        v-for="(item, index) in defaultCustomKeyWord"
+        weight-type="novel"
         :content="item.promptZH!"
         :is-selected="item.isSelected"
         :is-custom="item.isCustom"
         :weight="item.weight"
         :show-weight="item.showWeight"
         @click.stop.self
+        @delete="onDeleteKeyword('customKeyword', index)"
         @reduce-weight="(value) => onReduceWeight(value, item)"
         @add-weight="(value) => onAddWeight(value, item)"
-        @click-tag="(value) => onShowWeightTag(value, item)"
+        @click-tag="onShowWeightTag(item)"
       ></Tag>
     </div>
   </main>
@@ -370,7 +516,7 @@ defineExpose({
       ref="promptTemplateRef"
       :list="promptTemplateList"
       :dialog-visible="dialogVisible.prompt"
-      @childClose="closeDislog"
+      @childClose="closePromptTemplateDialog"
     ></PromptTemplateDialog>
   </el-dialog>
   <el-dialog
@@ -384,9 +530,17 @@ defineExpose({
     draggable
     :close-on-click-modal="false"
   >
+    <NovelCardDialog
+      :ref="(el) => (cardRef = el)"
+      :list="drawPeopleList"
+      :dialog-visible="dialogVisible.people"
+      :default-data="defaultDrawPeople"
+    />
     <template #footer>
       <span>
-        <el-button class="dialogBtn" type="primary">完成</el-button>
+        <el-button class="dialogBtn" type="primary" @click="onClosePeople"
+          >完成</el-button
+        >
       </span>
     </template>
   </el-dialog>
@@ -401,9 +555,15 @@ defineExpose({
     draggable
     :close-on-click-modal="false"
   >
+    <NovelCardDialog
+      :ref="(el) => (cardRef = el)"
+      :list="drawBodyList"
+      :dialog-visible="dialogVisible.body"
+      :default-data="defaultDrawBody"
+    />
     <template #footer>
       <span>
-        <el-button class="dialogBtn" type="primary">完成</el-button>
+        <el-button class="dialogBtn" type="primary" @click="onCloseBody">完成</el-button>
       </span>
     </template>
   </el-dialog>
@@ -418,9 +578,15 @@ defineExpose({
     draggable
     :close-on-click-modal="false"
   >
+    <NovelCardDialog
+      :ref="(el) => (cardRef = el)"
+      :list="drawStyleList"
+      :dialog-visible="dialogVisible.style"
+      :default-data="defaultDrawStyle"
+    />
     <template #footer>
       <span>
-        <el-button class="dialogBtn" type="primary">完成</el-button>
+        <el-button class="dialogBtn" type="primary" @click="onCloseStyle">完成</el-button>
       </span>
     </template>
   </el-dialog>
@@ -433,13 +599,17 @@ defineExpose({
     draggable
     :close-on-click-modal="false"
   >
-    <KeywordDialog
+    <NovelKeywordDialog
+      :ref="(el) => (keywordRef = el)"
       :list="composeKeyWord"
+      :default-data="defaultComposeKeyWord"
       :dialog-visible="dialogVisible.composeKeyWord"
-    ></KeywordDialog>
+    ></NovelKeywordDialog>
     <template #footer>
       <span>
-        <el-button class="dialogBtn" type="primary">完成</el-button>
+        <el-button class="dialogBtn" type="primary" @click="onCloseComposeKeyword"
+          >完成</el-button
+        >
       </span>
     </template>
   </el-dialog>
@@ -452,13 +622,17 @@ defineExpose({
     draggable
     :close-on-click-modal="false"
   >
-    <KeywordDialog
+    <NovelKeywordDialog
+      :ref="(el) => (keywordRef = el)"
       :list="positiveKeyWord"
+      :default-data="defaultPositiveKeyWord"
       :dialog-visible="dialogVisible.positiveKeyWord"
-    ></KeywordDialog>
+    ></NovelKeywordDialog>
     <template #footer>
       <span>
-        <el-button class="dialogBtn" type="primary">完成</el-button>
+        <el-button class="dialogBtn" type="primary" @click="onClosePositiveKeyword"
+          >完成</el-button
+        >
       </span>
     </template>
   </el-dialog>
@@ -481,7 +655,9 @@ defineExpose({
     ></el-input>
     <template #footer>
       <span>
-        <el-button class="dialogBtn" type="primary">完成</el-button>
+        <el-button class="dialogBtn" type="primary" @click="onCloseComposeKeyword"
+          >完成</el-button
+        >
       </span>
     </template>
   </el-dialog>
@@ -504,7 +680,9 @@ defineExpose({
     ></el-input>
     <template #footer>
       <span>
-        <el-button class="dialogBtn" type="primary">完成</el-button>
+        <el-button class="dialogBtn" type="primary" @click="onClosePositiveKeyword"
+          >完成</el-button
+        >
       </span>
     </template>
   </el-dialog>
@@ -527,7 +705,9 @@ defineExpose({
     ></el-input>
     <template #footer>
       <span>
-        <el-button class="dialogBtn" type="primary">完成</el-button>
+        <el-button class="dialogBtn" type="primary" @click="onCloseCustomKeyword"
+          >完成</el-button
+        >
       </span>
     </template>
   </el-dialog>

@@ -1,5 +1,5 @@
 import { ref, reactive, computed } from "vue";
-import { cloneDeep } from 'lodash'
+import { cloneDeep } from 'lodash';
 
 import type {
   DpiOptions,
@@ -8,7 +8,6 @@ import type {
   CustomKeyWord,
   CardItem,
   ImgOptions,
-  HistoryKeyWord,
   PromptTemplate,
 } from "@/models";
 import {
@@ -19,11 +18,12 @@ import {
   PARAM_CUSTOM_LIST,
   IMG_CUSTOM_LIST,
   KEYWORD_HISTORY_LIST,
+  CARD_HISTORY_LIST,
 } from "@/constants";
 
 import { useFetch, useStorage } from "@vueuse/core";
 
-export const useMidJourneyData= () => {
+export const useMidJourneyData = () => {
   const dpiParams = reactive<{
     options: string;
     isSelected: boolean;
@@ -55,11 +55,15 @@ export const useMidJourneyData= () => {
   const paramCustomsList = useStorage<Options[]>(PARAM_CUSTOM_LIST, [], localStorage);
   const imgCustomsList = useStorage<ImgOptions[]>(IMG_CUSTOM_LIST, [], localStorage);
 
-  const keyWordHistoryList = useStorage<HistoryKeyWord[]>(
+  const cardHistoryList = useStorage<CardItem[]>(CARD_HISTORY_LIST, [], localStorage);
+  const keyWordHistoryList = useStorage<CustomKeyWord[]>(
     KEYWORD_HISTORY_LIST,
     [],
     localStorage
   );
+
+  const default5CardList = ref<CardItem[]>([]);
+  const default5KeyWordList = ref<CustomKeyWord[]>([]);
 
   // TODO: 使用watch + ref
   const defaultCardList = computed(() => reactive([...cardCustomList.value]));
@@ -68,6 +72,24 @@ export const useMidJourneyData= () => {
   const defaultDpiList = computed(() => reactive([...dpiCustomsList.value]));
   const defaultParamList = computed(() => reactive([...paramCustomsList.value]));
   const defaultImgList = computed(() => reactive([...imgCustomsList.value]));
+  const defaultCustomKeyWord = ref<CustomKeyWord[]>([]);
+
+  // 默认权重数据
+  const defaultWeightData = computed(() => [
+    ...defaultKeyWordList.value,
+    ...defaultCustomKeyWord.value,
+    ...defaultCardList.value,
+  ])
+
+  // 默认所有数据
+  const allDefaultData = computed(() => [
+    ...defaultCardList.value,
+    ...defaultKeyWordList.value,
+    ...defaultDpiList.value,
+    ...defaultParamList.value,
+    ...defaultImgList.value,
+    ...defaultCustomKeyWord.value,
+  ])
 
   const tooltiplist = computed<(CardItem & DpiOptions & CustomKeyWord & ImgOptions)[]>(
     () => {
@@ -81,20 +103,18 @@ export const useMidJourneyData= () => {
     }
   );
 
-  // function initCustomList() {
-  //   [
-  //     ...cardCustomList.value,
-  //     ...keyWordCustomList.value,
-  //     ...keyWordHistoryList.value,
-  //     ...dpiCustomsList.value,
-  //     ...imgCustomsList.value,
-  //   ].forEach((x) => (x.isSelected = false));
-  // }
+  function initCustomList() {
+    [
+      ...cardHistoryList.value, 
+      ...keyWordHistoryList.value
+    ].forEach(x => x.isSelected = false);
+  }
 
-  function formatData(data: CardItem[]) {
+  function formatData(data: CardItem[] & KeyWord[], _default = false) {
+    _default ? data.forEach(x => x.isDefault = true) : null
     return data.map((x) => ({
       ...x,
-      imgUrl: x.image === "yes" ? `/img-style/${x.promptEN}.png` : "/img-style/empty.png",
+      fileUrl: x.image === "yes" ? `/img-style/${x.promptEN}.png` : "/img-style/empty.png",
       weight: 1,
       showWeight: false,
     }));
@@ -102,7 +122,8 @@ export const useMidJourneyData= () => {
 
   async function fetchCardListData() {
     const { data } = await useFetch("/json/midjourneyStyle.json");
-    cardList.value = formatData(JSON.parse(data.value as string));
+    default5CardList.value = formatData(JSON.parse(data.value as string), true).slice(0, 5);
+    cardList.value = formatData(JSON.parse(data.value as string)).slice(5);
   }
 
   async function fetchPromptListData() {
@@ -112,25 +133,28 @@ export const useMidJourneyData= () => {
   
   async function fetchKeyWordData() {
     const { data } = await useFetch("/json/midjourneyPrompt.json");
-    keyWordList.value = JSON.parse(data.value as string);
+    default5KeyWordList.value = formatData(JSON.parse(data.value as string), true).slice(0, 5) as CustomKeyWord[];
+    keyWordList.value = formatData(JSON.parse(data.value as string)).slice(5);
   }
-  
+
   async function fetchParamsData() {
     const { data } = await useFetch("/json/midjourneyParameter.json");
     paramsList.value = JSON.parse(data.value as string);
   }
-  
+
   async function fetchDpiData() {
     const { data } = await useFetch("/json/midjourneyCanvas.json");
     dpiList.value = JSON.parse(data.value as string);
   }
-  
+
   function fetch() {
     fetchKeyWordData();
     fetchCardListData();
     fetchPromptListData();
     fetchParamsData();
     fetchDpiData();
+
+    initCustomList();
   }
 
   return {
@@ -149,6 +173,7 @@ export const useMidJourneyData= () => {
     paramCustomsList,
     imgCustomsList,
     keyWordHistoryList,
+    cardHistoryList,
 
     // computed data
     defaultCardList,
@@ -156,7 +181,14 @@ export const useMidJourneyData= () => {
     defaultDpiList,
     defaultParamList,
     defaultImgList,
+    defaultCustomKeyWord,
+    allDefaultData,
+    // 默认有权重的数据
+    defaultWeightData,
     tooltiplist,
+
+    // 画面比例自定义
+    dpiParams,
 
     // fn
     fetch
@@ -192,12 +224,25 @@ export const useNovelAiData = () => {
     ...defaultCustomKeyWord.value,
   ])
 
+  const tooltiplist = computed(() => {
+    return allDefaultData.value.filter(x => x.isSelected)
+  })
+
   function formatData(data: any[]) {
-    
+
     data.forEach(x => {
       x.weight = 1;
       x.showWeight = false;
+    })
 
+    return data;
+  }
+
+  function formatDefaultData(data: any[]) {
+
+    data.forEach(x => {
+      x.weight = 1;
+      x.showWeight = false;
       // 默认数据
       x.isDefault = true;
     })
@@ -207,33 +252,33 @@ export const useNovelAiData = () => {
 
   async function fetchPrompt() {
     const { data } = await useFetch("/json/NovelAI_cankaotu.json");
-    promptTemplateList.value = JSON.parse(data.value as string);
-    defaultPromptTemplate.value = cloneDeep(promptTemplateList.value.slice(0, 5));
+    defaultPromptTemplate.value = cloneDeep(formatDefaultData(JSON.parse(data.value as string).slice(0, 5)));
+    promptTemplateList.value = formatData(JSON.parse(data.value as string).slice(5));
   }
   async function fetchPeople() {
     const { data } = await useFetch("/json/NovelAI_huageren.json");
-    drawPeopleList.value = formatData(JSON.parse(data.value as string));
-    defaultDrawPeople.value = cloneDeep(drawPeopleList.value.slice(0, 5));
+    defaultDrawPeople.value = cloneDeep(formatDefaultData(JSON.parse(data.value as string).slice(0, 5)));
+    drawPeopleList.value = formatData(JSON.parse(data.value as string)).slice(5);
   }
   async function fetchBody() {
     const { data } = await useFetch("/json/NovelAI_huagewuti.json");
-    drawBodyList.value = formatData(JSON.parse(data.value as string));
-    defaultDrawBody.value = cloneDeep(drawBodyList.value.slice(0, 5));
+    defaultDrawBody.value = cloneDeep(formatDefaultData(JSON.parse(data.value as string).slice(0, 5)));
+    drawBodyList.value = formatData(JSON.parse(data.value as string)).slice(5);
   }
   async function fetchStyle() {
     const { data } = await useFetch("/json/midjourneyStyle.json");
-    drawStyleList.value = formatData(JSON.parse(data.value as string));
-    defaultDrawStyle.value = cloneDeep(drawStyleList.value.slice(0, 5));
+    defaultDrawStyle.value = cloneDeep(formatDefaultData(JSON.parse(data.value as string).slice(0, 5)));
+    drawStyleList.value = formatData(JSON.parse(data.value as string)).slice(5);
   }
   async function fetchComposeKeyWord() {
     const { data } = await useFetch("/json/NovelAI_goutu.json");
-    composeKeyWord.value = formatData(JSON.parse(data.value as string));
-    defaultComposeKeyWord.value = cloneDeep(composeKeyWord.value.slice(0, 5));
+    defaultComposeKeyWord.value = cloneDeep(formatDefaultData(JSON.parse(data.value as string).slice(0, 5)));
+    composeKeyWord.value = formatData(JSON.parse(data.value as string)).slice(5);
   }
   async function fetchPositiveKeyWord() {
     const { data } = await useFetch("/json/NovelAI_zhengmiantag.json");
-    positiveKeyWord.value = formatData(JSON.parse(data.value as string));
-    defaultPositiveKeyWord.value = cloneDeep(positiveKeyWord.value.slice(0, 5));
+    defaultPositiveKeyWord.value = cloneDeep(formatDefaultData(JSON.parse(data.value as string).slice(0, 5)));
+    positiveKeyWord.value = formatData(JSON.parse(data.value as string)).slice(5);
   }
 
   function fetch() {
@@ -263,6 +308,9 @@ export const useNovelAiData = () => {
     defaultPositiveKeyWord,
     defaultCustomKeyWord,
     allDefaultData,
+
+    /** input提示词 */
+    tooltiplist,
 
     fetch,
   }

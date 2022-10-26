@@ -11,7 +11,7 @@ defineProps<{
   detagEN: string;
   parameter: string;
   author: string;
-  imgUrl?: string;
+  fileUrl?: string;
   /** 是否主页选中 */
   isSelected?: boolean;
 }>();
@@ -23,10 +23,10 @@ defineProps<{
     <div
       class="card-img"
       :style="{
-        'background-image': `url(${imgUrl})`,
+        'background-image': `url(${fileUrl})`,
       }"
     >
-      <!-- <img height="160" width="156" :src="imgUrl" /> -->
+      <!-- <img height="160" width="156" :src="fileUrl" /> -->
     </div>
     <div class="card-name ellipsis" p="x-3 t-3" text-16px color-dark-400>{{ title }}</div>
     <div class="card-enname ellipsis" p="x-3 b-3">{{ promptZH }}</div>
