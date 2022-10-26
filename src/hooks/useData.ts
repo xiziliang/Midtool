@@ -42,9 +42,10 @@ export const useMidJourneyData= () => {
   const keyWordList = ref<Partial<CustomKeyWord>[]>([]);
   const paramsList = ref<Options[]>([]);
   const dpiList = ref<DpiOptions[]>([]);
+  const promptList = ref<PromptTemplate[]>([]);
 
   const cardCustomList = useStorage<CardItem[]>(CARD_CUSTOM_LIST, [], localStorage);
-  const promptCustomList = useStorage<CardItem[]>(PROMPT_CUSTOM_LIST, [], localStorage);
+  const promptCustomList = useStorage<PromptTemplate[]>(PROMPT_CUSTOM_LIST, [], localStorage);
   const keyWordCustomList = useStorage<CustomKeyWord[]>(
     KEYWORD_CUSTOM_LIST,
     [],
@@ -103,6 +104,11 @@ export const useMidJourneyData= () => {
     const { data } = await useFetch("/json/midjourneyStyle.json");
     cardList.value = formatData(JSON.parse(data.value as string));
   }
+
+  async function fetchPromptListData() {
+    const { data } = await useFetch("/json/midjourneyStyle.json");
+    promptList.value = JSON.parse(data.value as string);
+  }
   
   async function fetchKeyWordData() {
     const { data } = await useFetch("/json/midjourneyPrompt.json");
@@ -122,6 +128,7 @@ export const useMidJourneyData= () => {
   function fetch() {
     fetchKeyWordData();
     fetchCardListData();
+    fetchPromptListData();
     fetchParamsData();
     fetchDpiData();
   }
@@ -132,6 +139,7 @@ export const useMidJourneyData= () => {
     keyWordList,
     paramsList,
     dpiList,
+    promptList,
 
     // Storage data
     cardCustomList,

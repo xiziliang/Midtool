@@ -11,6 +11,7 @@ const props = defineProps<{
   list: PromptTemplate[];
   dialogVisible: boolean;
 }>();
+const emit = defineEmits(['childClose'])
 const clearUp = useEventListener("click", () => {
   allData.value.forEach((x) => (x.showWeight = false));
   currentShowWeightCard.value = "";
@@ -159,7 +160,7 @@ function onTrigger(item: PromptTemplate) {
 //   item.showWeight = true;
 // }
 // 点击展开详情dialog
-let detailData = ref<PromptTemplate[]>([])
+let detailData = ref<PromptTemplate>()
 function showDetailDialog(item: PromptTemplate){
   dialogVisible.detail = true;
   detailData.value = item;
@@ -169,6 +170,17 @@ function showDetailDialog(item: PromptTemplate){
 const dialogVisible = reactive({
   detail: false
 })
+
+// 关闭详情
+function closeDetailDialog(){
+  dialogVisible.detail = false;
+}
+// 使用详情
+async function useDetailData(){
+  dialogVisible.detail = false;
+  emit('childClose');
+  await nextTick();
+}
 </script>
 
 <template>
@@ -241,6 +253,7 @@ const dialogVisible = reactive({
     width="60%"
     destroy-on-close
     draggable
+    class="detail-dialog"
     :close-on-click-modal="false"
   >
     <DetailDialog
@@ -250,7 +263,10 @@ const dialogVisible = reactive({
     ></DetailDialog>
     <template #footer>
       <span>
-        <el-button>完成</el-button>
+        <el-button class="detail-back" @click="closeDetailDialog">返回</el-button>
+      </span>
+      <span>
+        <el-button class="detail-use" @click="useDetailData">使用</el-button>
       </span>
     </template>
   </el-dialog>
@@ -263,4 +279,5 @@ const dialogVisible = reactive({
 :deep(.el-overlay) {
   background: none;
 }
+
 </style>

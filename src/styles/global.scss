@@ -452,3 +452,48 @@ span,
   text-overflow: ellipsis;
   overflow: hidden;
 }
+
+.detail-dialog {
+  .el-dialog__header,
+  .el-dialog__body {
+    padding: 0;
+  }
+  .el-dialog__headerbtn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #fff;
+    top: -18px;
+    right: -40px;
+    .el-dialog__close {
+      width: 20px;
+      height: 20px;
+      top: 2px;
+      left: 1px;
+      svg {
+        transform: scale(1.7, 1.7);
+      }
+    }
+  }
+  .el-dialog__footer {
+    .el-button {
+      width: 128px;
+      height: 38px;
+      border-radius: 12px;
+      font-size: 14px;
+      line-height: 38px;
+      font-weight: 600;
+      box-sizing: border-box;
+    }
+    .detail-use {
+      background: #0DD790;
+      color: #fff
+    }
+    .detail-back {
+      background: #fff;
+      color: #0DD790;
+      border: 2px solid #0DD790;
+      margin-right: 50px;
+    }
+  }
+}

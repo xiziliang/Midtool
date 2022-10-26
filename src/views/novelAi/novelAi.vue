@@ -44,6 +44,7 @@ const {
   defaultComposeKeyWord,
   defaultPositiveKeyWord,
   defaultCustomKeyWord,
+  tooltiplist,
 
   // 所有数据
   allDefaultData,
@@ -157,11 +158,12 @@ function closeDislog() {
 }
 
 defineExpose({
+  // tipsList: tooltiplist,
   tipsList: [
     {
-      promptZH: "",
-      options: "",
-      img: "",
+      promptZH: "test",
+      options: "2",
+      img: "3",
     },
   ],
   stringField: "",
@@ -368,6 +370,7 @@ defineExpose({
       ref="promptTemplateRef"
       :list="promptTemplateList"
       :dialog-visible="dialogVisible.prompt"
+      @childClose="closeDislog"
     ></PromptTemplateDialog>
   </el-dialog>
   <el-dialog
