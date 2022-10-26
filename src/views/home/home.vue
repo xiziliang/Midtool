@@ -114,7 +114,7 @@ async function translation() {
   } else if (currentRouter.value === "midJourney") {
     // NOTE: 拼接自定义 keyWord
     others = currentTabRef.value?.others
-      .map((x) => x.promptZH + ":" + x.weight)
+      .map((x) => (x.weight === 0 ? x.promptZH : x.promptZH + ":" + x.weight))
       .join(" ");
   }
 

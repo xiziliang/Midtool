@@ -118,7 +118,7 @@ export const useMidJourneyData = () => {
 
   async function fetchKeyWordData() {
     const { data } = await useFetch("/json/midjourneyPrompt.json");
-    keyWordList.value = JSON.parse(data.value as string);
+    keyWordList.value = formatData(JSON.parse(data.value as string));
   }
 
   async function fetchParamsData() {

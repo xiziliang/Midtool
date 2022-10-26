@@ -75,13 +75,13 @@ const newCustomKeyWord = ref("");
 const stringField = computed(() => {
   const cardListString = defaultCardList.value
     .filter((x) => x.isSelected && !x.isCustom)
-    .map((x) => x.promptEN + ":" + x.weight)
+    .map((x) => (x.weight === 0 ? x.promptEN : x.promptEN + ":" + x.weight))
     .join(",");
 
   // midJourney 关键词和权重直接拼接用:
   const keyWordString = defaultKeyWordList.value
     .filter((x) => x.isSelected && !x.isCustom)
-    .map((x) => x.promptEN + ":" + x.weight)
+    .map((x) => (x.weight === 0 ? x.promptEN : x.promptEN + ":" + x.weight))
     .join(",");
 
   // NOTE: paramsList or defaultParamList
