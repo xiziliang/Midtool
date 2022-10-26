@@ -61,7 +61,7 @@ body,
     position: absolute;
     background-color: var(--el-color-primary);
     right: -8px;
-    top: -8px;
+    bottom: -8px;
     color: var(--el-color-white);
     border-radius: 50%;
     display: inline;
@@ -370,67 +370,6 @@ span,
       color:rgba(12,201,135, 0.8);
     }
   }
-}
-
-.el-dialog {
-  .el-dialog__header {
-    padding-bottom: 20px;
-  }
-  .el-dialog__header .el-dialog__title {
-    font-size: 20px;
-    font-weight: bold;
-  }
-  .el-dialog__body {
-    padding-bottom: 0;
-    padding-top: 0;
-    .el-textarea {
-      margin-bottom: -8px;
-      .el-input__count {
-        bottom: 9px;
-        opacity: 0.6;
-      }
-      .el-textarea__inner {
-        padding-top: 9px;
-        padding-bottom: 9px;
-      }
-    }
-  }
-  .el-dialog__footer {
-    padding-top: 24px;
-    padding-bottom: 24px;
-  }
-  &.dialog-media {
-    max-width: 892px;
-    width: 100%;
-    margin: var(--el-dialog-margin-top, 15vh) auto 50px;
-    @media screen and (max-width: 912px) {
-      width: auto;
-      margin: var(--el-dialog-margin-top, 15vh) 10px 50px;
-    }
-  }
-}
-
-.el-tabs__item {
-  color: #666;
-}
-
-.el-tabs__nav-wrap::after {
-  height : 1px;
-}
-
-.el-tabs__active-bar {
-  height: 3px;
-  border-radius: var(--el-border-radius-base);
-}
-
-.el-tabs {
-  .el-tabs__header {
-    margin-bottom: 0;
-  }
-}
-
-.el-dialog__close svg {
-  transform: scale(1.5, 1.5);
 }
 
 .i-carbon-copy {

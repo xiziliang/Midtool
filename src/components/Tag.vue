@@ -74,7 +74,11 @@ function onClick() {
       relative
       flex="~ col"
       class="keyword-tag px-20px py-6px"
-      :class="{ selected: isSelected, dpiStyle: type === 'dpi' }"
+      :class="{
+        selected: isSelected,
+        dpiStyle: type === 'dpi',
+        'no-mark-tag': !isSelected,
+      }"
       :data-weight="Math.trunc(weight!)"
       v-bind="$attrs"
       @click.stop.self="onClick"
@@ -103,7 +107,7 @@ function onClick() {
           @click="$emit('reduce-weight', weight)"
         />
         <el-button bg-white hover:bg-white min-w-90px text
-          >权重 {{ weight || 1 }}</el-button
+          >权重 {{ weight === undefined ? 1 : weight }}</el-button
         >
         <el-button
           type="primary"
