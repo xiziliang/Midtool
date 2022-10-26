@@ -138,7 +138,7 @@ function onClickClearBtn() {
 
 <template>
   <div class="home-page" style="min-height: calc(100vh - 180px)">
-    <div class="logo" max-h-194px pt-4 overflow-hidden>
+    <div class="logo" max-h-224px pt-30px overflow-hidden>
       <img w-572px ma src="@/assets/img/logo.png" alt="logo" />
       <div class="tips" p="t-2 x-2" absolute w-full top-0px flex>
         <label class="title" text-18px font-600
