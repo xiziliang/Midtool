@@ -47,7 +47,7 @@ watch(
       <img height="160" width="156" :src="item.imgUrl" />
     </div>
     <div class="card-name" text-16px p-2 pb-0>{{ item.promptZH }}</div>
-    <div class="card-enname" p-2>{{ item.promptEN }}</div>
+    <div class="card-enname" p="b-2 x-2">{{ item.promptEN }}</div>
   </div>
   <div
     class="card"
@@ -60,6 +60,6 @@ watch(
       <img height="160" width="156" :src="item.imgUrl" />
     </div>
     <div class="card-name" text-16px p-2 pb-0>{{ item.promptZH }}</div>
-    <div class="card-enname" p-2>{{ item.promptEN }}</div>
+    <div class="card-enname" p="b-2 x-2">{{ item.promptEN }}</div>
   </div>
 </template>

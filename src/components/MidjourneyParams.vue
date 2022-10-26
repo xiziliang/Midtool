@@ -56,11 +56,11 @@ watch(
             cursor-pointer
             @click="item.checked = !item.checked"
           >
-            <strong color-gray-9 mr-2>{{ item.options }}</strong>
+            <strong color-gray-9 mr-2px>{{ item.options }}</strong>
             <small text="[0.95em]" inline-block p="y-1" rounded color-gray-9>{{
               item.parameter
             }}</small>
-            <small class="color-[#AAAAAA]" text="[0.95em]" inline-block p-3 pl-2>{{
+            <small class="color-[#AAAAAA]" text="[0.95em]" inline-block p-3 pl-2 style="font-weight: 300;">{{
               item.describe
             }}</small>
           </label>
@@ -155,9 +155,8 @@ watch(
   padding-left: 0;
 }
 
-.params-list-container .el-slider,
-.params-list-container .el-input {
-  padding-left: 28px;
+.params-list-container .el-slider {
+  padding-left: 30px;
 }
 
 .params-list-text {

@@ -249,9 +249,9 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
   >
     <div flex="~" mt-4 mb-1 class="readmore-title">
       <div cursor-pointer flex @click="onSelectAIParams('card')">
-        <p text-20px color-dark-400><i class="icon-fengge icon-big mr-2 -mb-1"></i>选择作画风格</p>
+        <p text-20px color-dark-400 style="font-weight: 600;"><i class="icon-fengge icon-big mr-2 -mb-1"></i>选择作画风格</p>
         <div i-carbon:add></div>
-        <p self-center text-14px class="text-[#AAAAAA]">
+        <p self-center pl-8px text-14px class="text-[#AAAAAA]">
           这些词可能会让画面更好看，选中它，翻译时就会加在句尾
         </p>
       </div>
@@ -267,9 +267,9 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
     >
       <Card :data="defaultCardList"></Card>
     </div>
-    <div flex="~" mt-8 mb-3 class="readmore-title" @click="onSelectAIParams('keyword')">
+    <div flex="~" mt-6 mb-3 class="readmore-title" @click="onSelectAIParams('keyword')">
       <div cursor-pointer flex>
-        <p text-20px color-dark-400><i class="icon-tishici icon-big mr-2 -mb-1"></i>选择提示词</p>
+        <p text-20px color-dark-400 style="font-weight: 600;"><i class="icon-tishici icon-big mr-2 -mb-1"></i>选择提示词</p>
         <div i-carbon:add></div>
       </div>
     </div>
@@ -289,7 +289,7 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
     </div>
     <div flex="~" m="t-8 b-3" class="readmore-title">
       <div cursor-pointer flex @click="onSelectAIParams('dpi')">
-        <p text-20px color-dark-400><i class="icon-bili icon-big mr-2 -mb-1"></i>选择画面比例</p>
+        <p text-20px color-dark-400 style="font-weight: 600;"><i class="icon-bili icon-big mr-2 -mb-1"></i>选择画面比例</p>
         <div i-carbon:add></div>
       </div>
     </div>
@@ -321,13 +321,13 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
     </div>
     <div flex="~" mt-8 class="readmore-title -mb-1">
       <div cursor-pointer flex @click="onSelectAIParams('params')">
-        <p text-20px color-dark-400><i class="icon-canshu icon-big mr-2 -mb-1"></i>选择作画参数</p>
+        <p text-20px color-dark-400 style="font-weight: 600;"><i class="icon-canshu icon-big mr-2 -mb-1"></i>选择作画参数</p>
         <div i-carbon:add></div>
       </div>
     </div>
     <div flex="~" mt-8 mb-1 class="readmore-title">
       <div cursor-pointer flex @click="onSelectAIParams('img')">
-        <p text-20px color-dark-400><i class="icon-wangzhi icon-big mr-2 -mb-1"></i>参考图片网址</p>
+        <p text-20px color-dark-400 style="font-weight: 600;"><i class="icon-wangzhi icon-big mr-2 -mb-1"></i>参考图片网址</p>
         <div i-carbon:add></div>
       </div>
     </div>
@@ -420,7 +420,7 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
   </el-dialog>
   <el-dialog
     title="画面比例"
-    class="dialog-media"
+    class="dialog-media dialog-border"
     v-model="dialogVisible.dpi"
     center
     destroy-on-close
@@ -446,7 +446,7 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
     v-model="dialogVisible.params"
     top="30px"
     title="作画参数"
-    class="dialog-media"
+    class="dialog-media dialog-border"
     center
     :close-on-click-modal="false"
   >
@@ -504,5 +504,15 @@ function onSelectAIParams(type: AIParams | "writekeyword") {
 <style scoped>
 .readmore-title .icon-big {
   width: 24px;
+}
+:deep(.el-textarea__inner) {
+  color: #222;
+}
+:deep(.params-list-item .el-slider__button) {
+  width: 8px;
+  height: 8px;
+  border: 0;
+  background: #0DD790;
+  margin-right: -7px;
 }
 </style>
