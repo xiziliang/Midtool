@@ -115,13 +115,12 @@ body,
   }
 }
 
-span,
-.card-enname {
-  font-weight: 600;
-}
-
 // 选中的样式
 .selected {
+  span {
+    font-weight: 600;
+  }
+
   &::after {
     border: 2px solid var(--el-color-primary) !important;
   }
@@ -228,6 +227,7 @@ span,
     color: #AAAAAA;
     line-height: 22px;
     font-size: 14px;
+    font-weight: 600;;
   }
 
   .card-img,

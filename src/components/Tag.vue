@@ -114,7 +114,9 @@ function onClick() {
           }"
           @click="!reduceDisable && $emit('reduce-weight', weight)"
         />
-        <div min-w-80px text-center>权重 {{ weight === undefined ? 1 : weight }}</div>
+        <div min-w-80px text-center font-400>
+          权重 {{ weight === undefined ? 1 : weight }}
+        </div>
         <i
           class="icon-add"
           :class="{
