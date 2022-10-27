@@ -94,7 +94,7 @@ defineExpose({
 });
 </script>
 <template>
-  <el-tabs v-model="currentTab">
+  <el-tabs class="tabs-style" v-model="currentTab">
     <el-tab-pane v-for="keyword1 in tabList" :label="keyword1" :name="keyword1">
       <template #label
         ><div
@@ -121,7 +121,14 @@ defineExpose({
           :name="keyword2"
         ></el-tab-pane>
       </el-tabs>
-      <div ref="scrollBoxRef" :class="keyword1 + 'scrollBox'" pt-15px h-lg overflow-auto>
+      <div
+        ref="scrollBoxRef"
+        class="scrollBox"
+        :class="keyword1 + 'scrollBox'"
+        pt-5px
+        h-lg
+        overflow-auto
+      >
         <div
           ref="tab2Ref"
           v-for="keyword2 in keyword2label(keyword1!)"

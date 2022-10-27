@@ -80,7 +80,7 @@ defineExpose({
 });
 </script>
 <template>
-  <div h-xl overflow-auto will-change-scroll>
+  <div h-full overflow-auto will-change-scroll>
     <div p="x-4 t-4 b-2">
       <div flex="~" mb-4 class="readmore-title">
         <div flex>

@@ -542,6 +542,7 @@ function onSelectAIParams(
   </main>
   <el-dialog
     v-model="dialogVisible.card"
+    class="dialog-media"
     title="作画风格"
     center
     draggable
@@ -624,7 +625,6 @@ function onSelectAIParams(
   <el-dialog
     title="提示词"
     class="dialog-media"
-    width="456px"
     v-model="dialogVisible.keyWord"
     center
     destroy-on-close
@@ -672,13 +672,11 @@ function onSelectAIParams(
     title="作画参数"
     class="dialog-media"
     v-model="dialogVisible.params"
-    top="30px"
-    width="60%"
     center
     :close-on-click-modal="false"
   >
     <MidjourneyParams
-      class="max-h-2xl min-h-lg overflow-auto"
+      class="h-full overflow-auto"
       ref="parameterRef"
       :data="cloneDeep(paramsList)"
       :dialog-visible="dialogVisible.params"

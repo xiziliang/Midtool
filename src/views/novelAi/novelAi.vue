@@ -524,7 +524,6 @@ defineExpose({
     class="dialog-media"
     v-model="dialogVisible.people"
     center
-    width="70%"
     destroy-on-close
     draggable
     :close-on-click-modal="false"
@@ -548,7 +547,6 @@ defineExpose({
     class="dialog-media"
     v-model="dialogVisible.body"
     center
-    width="70%"
     destroy-on-close
     draggable
     :close-on-click-modal="false"

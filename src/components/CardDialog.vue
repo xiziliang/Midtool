@@ -105,7 +105,7 @@ watchEffect(() => {
 });
 </script>
 <template>
-  <el-tabs v-model="currentTab">
+  <el-tabs class="tabs-style" v-model="currentTab">
     <el-tab-pane v-for="keyword1 in tabList" :label="keyword1" :name="keyword1">
       <template #label
         ><div
@@ -132,7 +132,14 @@ watchEffect(() => {
           :name="keyword2"
         ></el-tab-pane>
       </el-tabs>
-      <div ref="scrollBoxRef" :class="keyword1 + 'scrollBox'" pt-15px h-lg overflow-auto>
+      <div
+        ref="scrollBoxRef"
+        class="scrollBox"
+        :class="keyword1 + 'scrollBox'"
+        pt-5px
+        h-lg
+        overflow-auto
+      >
         <div
           ref="tab2Ref"
           v-for="keyword2 in keyword2label(keyword1!)"
@@ -162,7 +169,7 @@ watchEffect(() => {
       </div>
     </el-tab-pane>
     <el-tab-pane label="历史记录" name="history">
-      <div h-lg overflow-auto p-x-20px>
+      <div h-full overflow-auto p-x-20px>
         <div flex="~ gap-3 wrap" p="y-4" justify-start items-start>
           <Tag
             slice
