@@ -222,7 +222,7 @@ watch(
             >
               <CardItemComp
                 v-bind="item"
-                weight-type="mid"
+                weight-type="novel"
                 @add-weight="(value) => onAddWeight(value, item)"
                 @reduce-weight="(value) => onReduceWeight(value, item)"
               ></CardItemComp>
