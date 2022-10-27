@@ -221,9 +221,13 @@ function onClickClearBtn() {
             <p class="color-[#aaa]">正在翻译...</p>
           </template>
           <template v-else-if="translationResult.length > 0 && !loading">
-            <code class="tracking-0.5px w-37rem" color-dark-400 text-20px break-words>{{
-              translationResult
-            }}</code>
+            <code
+              class="tracking-0.5px w-37rem text-3line"
+              color-dark-400
+              text-20px
+              break-words
+              >{{ translationResult }}</code
+            >
             <el-button
               class="copy h-48px"
               type="primary"
@@ -299,5 +303,12 @@ function onClickClearBtn() {
   position: fixed;
   right: 30px;
   bottom: 30px;
+}
+.text-3line {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 </style>
