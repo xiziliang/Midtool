@@ -66,9 +66,9 @@ export const useMidJourneyData = () => {
   const default5KeyWordList = ref<CustomKeyWord[]>([]);
 
   // TODO: 使用watch + ref
-  const defaultCardList = computed(() => reactive([...cardCustomList.value]));
+  const defaultCardList = computed(() => reactive([...cardCustomList.value, ...default5CardList.value]));
   const defaultPromptList = computed(() => reactive([...promptCustomList.value]));
-  const defaultKeyWordList = computed(() => reactive([...keyWordCustomList.value]));
+  const defaultKeyWordList = computed(() => reactive([...keyWordCustomList.value, ...default5KeyWordList.value]));
   const defaultDpiList = computed(() => reactive([...dpiCustomsList.value]));
   const defaultParamList = computed(() => reactive([...paramCustomsList.value]));
   const defaultImgList = computed(() => reactive([...imgCustomsList.value]));
