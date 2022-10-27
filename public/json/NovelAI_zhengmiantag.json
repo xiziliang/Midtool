@@ -1,41 +1,101 @@
-[{
-    "Level1Label": "gather",
-    "KeyWord": "高质量集合",
-    "SecondLabel": "all",
-    "KeyWord2": "全部",
-    "promptEN": "masterpiece,best quality,official art,extremely detailed CG unity 8k wallpaper, plateau, ",
-    "promptZH": "代表作，质量最优，官方艺术，极其详细的CG unity 8k壁纸，高原"
-  },
-  {
-    "Level1Label": "High quality parameters",
-    "KeyWord": "高质量参数",
-    "SecondLabel": "image",
-    "KeyWord2": "图像",
-    "promptEN": "highres",
-    "promptZH": "高分辨率"
-  },
-  {
-    "Level1Label": "High quality parameters",
-    "KeyWord": "高质量参数",
-    "SecondLabel": "image",
-    "KeyWord2": "图像",
-    "promptEN": "absurdres",
-    "promptZH": "超高分辨率"
-  },
-  {
-    "Level1Label": "High quality parameters",
-    "KeyWord": "高质量参数",
-    "SecondLabel": "image",
-    "KeyWord2": "图像",
-    "promptEN": "incredibly_absurdres",
-    "promptZH": "极高分辨率"
-  },
-  {
-    "Level1Label": "High quality parameters",
-    "KeyWord": "高质量参数",
-    "SecondLabel": "image",
-    "KeyWord2": "图像",
-    "promptEN": "huge_filesize",
-    "promptZH": "超级高分辨率/大文件"
-  }
+﻿[
+    {
+        "Level1Label": "Total",
+        "KeyWord": "全部",
+        "SecondLabel": "combination",
+        "KeyWord2": "组合句",
+        "promptEN": "best quality ,masterpiece, illustration, an extremely delicate and beautiful, extremely detailed ,CG ,unity ,8k wallpaper, Amazing, finely detail, masterpiece,best quality,official art,extremely detailed CG unity 8k wallpaper",
+        "promptZH": "优秀作品咒语",
+        "frequency": null,
+        "hoover": "yes",
+        "details": "极品，大作，插画，一张极其精致漂亮，极其细节，CG，unity，8k壁纸，惊艳，细碎细节，大作，极品，官方美术，极其细节CG unity 8k"
+    },
+    {
+        "Level1Label": "Total",
+        "KeyWord": "全部",
+        "SecondLabel": "combination",
+        "KeyWord2": "组合句",
+        "promptEN": "absurdres,  incredibly absurdres, huge filesize , ultra-detailed, highres, extremely detailed",
+        "promptZH": "高清晰度咒语",
+        "frequency": null,
+        "hoover": "yes",
+        "details": "超高分辨率，难以置信的分辨率，巨大的文件大小，超详细，高分辨率，极其详细"
+    },
+    {
+        "Level1Label": "Total",
+        "KeyWord": "全部",
+        "SecondLabel": "combination",
+        "KeyWord2": "组合句",
+        "promptEN": "detailed light, cinematic lighting, lens flare, light leaks, sunlight , shine , beautiful detailed glow",
+        "promptZH": "光效咒语",
+        "frequency": null,
+        "hoover": "yes",
+        "details": "细节光，电影灯光，镜头眩光，漏光，阳光，发光，美丽的细节辉光"
+    },
+    {
+        "Level1Label": "Total",
+        "KeyWord": "全部",
+        "SecondLabel": "combination",
+        "KeyWord2": "组合句",
+        "promptEN": "beautiful detailed girl, extremely detailed eyes and face, beautiful detailed eyes",
+        "promptZH": "人物描写咒语",
+        "frequency": null,
+        "hoover": "yes",
+        "details": "美丽细致的女孩，极其细致的眼睛和脸，美丽细致的眼睛，"
+    },
+    {
+        "Level1Label": "Total",
+        "KeyWord": "全部",
+        "SecondLabel": "combination",
+        "KeyWord2": "组合句",
+        "promptEN": "dynamic angle, floating, frills, painting, depth of field, Depth of field,nature",
+        "promptZH": "其他高频咒语",
+        "frequency": null,
+        "hoover": "yes",
+        "details": "动态角度，浮动，褶边，绘画，景深，景深，自然"
+    },
+    {
+        "Level1Label": "Total",
+        "KeyWord": "全部",
+        "SecondLabel": "single",
+        "KeyWord2": "单个tag",
+        "promptEN": "best quality",
+        "promptZH": "最佳质量",
+        "frequency": "61",
+        "hoover": "no",
+        "details": null
+    },
+    {
+        "Level1Label": "Total",
+        "KeyWord": "全部",
+        "SecondLabel": "single",
+        "KeyWord2": "单个tag",
+        "promptEN": "masterpiece",
+        "promptZH": "杰作",
+        "frequency": "56",
+        "hoover": "no",
+        "details": null
+    },
+    {
+        "Level1Label": "Total",
+        "KeyWord": "全部",
+        "SecondLabel": "single",
+        "KeyWord2": "单个tag",
+        "promptEN": "illustration",
+        "promptZH": "插图",
+        "frequency": "46",
+        "hoover": "no",
+        "details": null
+    },
+    {
+        "Level1Label": "Total",
+        "KeyWord": "全部",
+        "SecondLabel": "single",
+        "KeyWord2": "单个tag",
+        "promptEN": "beautiful detailed eyes",
+        "promptZH": "美丽细致的眼睛",
+        "frequency": "38",
+        "hoover": "no",
+        "details": null
+    }
 ]

@@ -1,0 +1,101 @@
+﻿[
+    {
+        "Level1Label": null,
+        "KeyWord": null,
+        "SecondLabel": null,
+        "KeyWord2": null,
+        "promptEN": "poorly drawn,bad anatomy,bad,blurry,text,missing fingers,low quality,error,signature,normal quality,cropped,username,watermark,fewer digits,worst quality,extra digit,owres,jpeg artifacts,bad feet,disfigured,long neck,ugly,mutation,malformed,bad proportions,duplicate,font,extra legs,more than 2 nipples,extra limbs,morbid,long body,multiple breasts,liqd,missing limb,cloned face,malformed mutated,mutilated,lowers,ears,futa,nsfw,face,eyes,tranny,hands,jpeg,mouth,crotch,gap,tentacles,unclear eyes,frame,artifacts,low-quality,extra arms,deformed,mutated,fused anus,artist name,seam,breasts,black tongue",
+        "promptZH": "高频负50词",
+        "frequency": null,
+        "hoover": "yes",
+        "details": "画得不好,糟糕的解剖,严重的,模糊的,文本,缺失的手指,低品质,错误,签名,正常质量,裁切不正的,用户名,水印,更少的数字,最差质量,额外数字,奥雷斯,jpeg伪像,坏脚,用户界面,丑八怪,长颈,丑陋的,变化,畸形的,比例不当,复制,字体,多余的腿,超过2个乳头,多余的肢体,病态的,长身,多乳房,光致量子点,缺失肢体,克隆脸,畸形突变,切断,降低,三维,耳朵,federal unemployment tax act 联邦失业税金法,无视频,脸,眼睛,晶体管收音机,手,联合图象专家组,口,胯部,缝隙,触须,模糊的眼睛,设计,史前古器物,劣等,额外的手臂,畸形的,突变,融合肛门,艺术家姓名,缝合,乳房,黑舌头"
+    },
+    {
+        "Level1Label": "Total",
+        "KeyWord": "全部",
+        "SecondLabel": "combination",
+        "KeyWord2": "组合句",
+        "promptEN": "poorly drawn,bad anatomy,bad,blurry,text,missing fingers,low quality,error,signature,normal quality,cropped,username,watermark,fewer digits,worst quality,extra digit,owres,jpeg artifacts,bad feet,disfigured,long neck,ugly,mutation,malformed,bad proportions,duplicate,font,extra legs,more than 2 nipples,extra limbs,morbid,long body,multiple breasts,liqd,missing limb,cloned face,malformed mutated,mutilated,lowers,ears,futa,nsfw,face,eyes,tranny,hands,jpeg,mouth,crotch,gap,tentacles,unclear eyes,frame,artifacts,low-quality,extra arms,deformed,mutated,fused anus,artist name,seam,breasts,black tongue,more than 2 thighs,Humpbacked,shadow,game,cum,clit,feet,shoes,gloves,hairs,limbs,animal,worstquality,negative,prompt,fused ears,uncoordinated body,liquid body,fused pussy,bad pussy,bad anus,missing asshole,fused asshole,bad asshole,disappearing legs,disappearing calf,disappearing thigh,disappearing arms,missing hand,fused hand,huge calf,huge thighs,sleeveles,mountain,wort",
+        "promptZH": "高频负100词",
+        "frequency": null,
+        "hoover": "yes",
+        "details": "画得不好,糟糕的解剖,严重的,模糊的,文本,缺失的手指,低品质,错误,签名,正常质量,裁切不正的,用户名,水印,更少的数字,最差质量,额外数字,奥雷斯,jpeg伪像,坏脚,用户界面,丑八怪,长颈,丑陋的,变化,畸形的,比例不当,复制,字体,多余的腿,超过2个乳头,多余的肢体,病态的,长身,多乳房,光致量子点,缺失肢体,克隆脸,畸形突变,切断,降低,三维,耳朵,federal unemployment tax act 联邦失业税金法,无视频,脸,眼睛,晶体管收音机,手,联合图象专家组,口,胯部,缝隙,触须,模糊的眼睛,设计,史前古器物,劣等,额外的手臂,畸形的,突变,融合肛门,艺术家姓名,缝合,乳房,黑舌头,超过2条大腿,驼背的,阴影,比赛,和,阴蒂,脚,鞋子,手套,毛发,肢,动物,最差质量,否定,提示,融合耳朵,不协调的身体,液体,融合的阴部,坏猫咪,肛门不好,失踪的混蛋,融合屁眼,坏混蛋,消失的腿,消失的小牛,消失的大腿,消失的手臂,缺失的手,融合手,巨大的小牛,巨大的大腿,无袖,山,麦芽汁"
+    },
+    {
+        "Level1Label": "Total",
+        "KeyWord": "全部",
+        "SecondLabel": "combination",
+        "KeyWord2": "组合句",
+        "promptEN": "bad hands, fused fingers, mutated hands, too many fingers, missing fingers, malformed hands , fingers",
+        "promptZH": "不画手词包",
+        "frequency": null,
+        "hoover": "yes",
+        "details": "坏的手,手指,融合变异的手,太多的手指,失踪的手指,畸形的手,手指"
+    },
+    {
+        "Level1Label": "Total",
+        "KeyWord": "全部",
+        "SecondLabel": "single",
+        "KeyWord2": "单个tag",
+        "promptEN": "poorly drawn",
+        "promptZH": "画得不好",
+        "frequency": "103",
+        "hoover": "no",
+        "details": null
+    },
+    {
+        "Level1Label": "Total",
+        "KeyWord": "全部",
+        "SecondLabel": "single",
+        "KeyWord2": "单个tag",
+        "promptEN": "bad anatomy",
+        "promptZH": "糟糕的解剖",
+        "frequency": "92",
+        "hoover": "no",
+        "details": null
+    },
+    {
+        "Level1Label": "Total",
+        "KeyWord": "全部",
+        "SecondLabel": "single",
+        "KeyWord2": "单个tag",
+        "promptEN": "bad",
+        "promptZH": "严重的",
+        "frequency": "80",
+        "hoover": "no",
+        "details": null
+    },
+    {
+        "Level1Label": "Total",
+        "KeyWord": "全部",
+        "SecondLabel": "single",
+        "KeyWord2": "单个tag",
+        "promptEN": "blurry",
+        "promptZH": "模糊的",
+        "frequency": "76",
+        "hoover": "no",
+        "details": null
+    },
+    {
+        "Level1Label": "Total",
+        "KeyWord": "全部",
+        "SecondLabel": "single",
+        "KeyWord2": "单个tag",
+        "promptEN": "text",
+        "promptZH": "文本",
+        "frequency": "73",
+        "hoover": "no",
+        "details": null
+    },
+    {
+        "Level1Label": "Total",
+        "KeyWord": "全部",
+        "SecondLabel": "single",
+        "KeyWord2": "单个tag",
+        "promptEN": "bad hands",
+        "promptZH": "糟糕的手",
+        "frequency": "73",
+        "hoover": "no",
+        "details": null
+    }
+]

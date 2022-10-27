@@ -1,0 +1,92 @@
+﻿[
+    {
+        "Level1Label": "Picture description",
+        "KeyWord": "画面描述",
+        "SecondLabel": "Common",
+        "KeyWord2": "常用词",
+        "promptEN": "style",
+        "promptZH": "风格化的",
+        "hoover": "no",
+        "details": null
+    },
+    {
+        "Level1Label": "Picture description",
+        "KeyWord": "画面描述",
+        "SecondLabel": "Common",
+        "KeyWord2": "常用词",
+        "promptEN": "detailed",
+        "promptZH": "详细的",
+        "hoover": "no",
+        "details": null
+    },
+    {
+        "Level1Label": "Picture description",
+        "KeyWord": "画面描述",
+        "SecondLabel": "Common",
+        "KeyWord2": "常用词",
+        "promptEN": "8K",
+        "promptZH": "8K",
+        "hoover": "no",
+        "details": null
+    },
+    {
+        "Level1Label": "Picture description",
+        "KeyWord": "画面描述",
+        "SecondLabel": "Common",
+        "KeyWord2": "常用词",
+        "promptEN": "4K",
+        "promptZH": "4K",
+        "hoover": "no",
+        "details": null
+    },
+    {
+        "Level1Label": "layout",
+        "KeyWord": "构图",
+        "SecondLabel": "Lens",
+        "KeyWord2": "镜头",
+        "promptEN": "cinematic shot",
+        "promptZH": "电影镜头",
+        "hoover": "no",
+        "details": null
+    },
+    {
+        "Level1Label": "layout",
+        "KeyWord": "构图",
+        "SecondLabel": "Lens",
+        "KeyWord2": "镜头",
+        "promptEN": "Fast shutter speed",
+        "promptZH": "高速摄影",
+        "hoover": "no",
+        "details": null
+    },
+    {
+        "Level1Label": "layout",
+        "KeyWord": "构图",
+        "SecondLabel": "Lens",
+        "KeyWord2": "镜头",
+        "promptEN": "Slow shutter speed",
+        "promptZH": "延迟摄影",
+        "hoover": "no",
+        "details": null
+    },
+    {
+        "Level1Label": "layout",
+        "KeyWord": "构图",
+        "SecondLabel": "Lens",
+        "KeyWord2": "镜头",
+        "promptEN": "Telephoto lens",
+        "promptZH": "长焦镜头",
+        "hoover": "no",
+        "details": null
+    },
+    {
+        "Level1Label": "layout",
+        "KeyWord": "构图",
+        "SecondLabel": "Lens",
+        "KeyWord2": "镜头",
+        "promptEN": "Macro lens",
+        "promptZH": "微焦镜头",
+        "hoover": "no",
+        "details": null
+    }
+]

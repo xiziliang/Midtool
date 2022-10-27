@@ -121,7 +121,7 @@ export const useMidJourneyData = () => {
   }
 
   async function fetchCardListData() {
-    const { data } = await useFetch("/json/midjourneyStyle.json");
+    const { data } = await useFetch("/json/midjourney_cankaotu.json");
     default5CardList.value = formatData(JSON.parse(data.value as string), true).slice(0, 5);
     cardList.value = formatData(JSON.parse(data.value as string)).slice(5);
   }
@@ -132,7 +132,7 @@ export const useMidJourneyData = () => {
   }
   
   async function fetchKeyWordData() {
-    const { data } = await useFetch("/json/midjourneyPrompt.json");
+    const { data } = await useFetch("/json/midjourney_tishici.json");
     default5KeyWordList.value = formatData(JSON.parse(data.value as string), true).slice(0, 5) as CustomKeyWord[];
     keyWordList.value = formatData(JSON.parse(data.value as string)).slice(5);
   }
@@ -266,7 +266,7 @@ export const useNovelAiData = () => {
     drawBodyList.value = formatData(JSON.parse(data.value as string)).slice(5);
   }
   async function fetchStyle() {
-    const { data } = await useFetch("/json/midjourneyStyle.json");
+    const { data } = await useFetch("/json/NovelAI_huafeng.json");
     defaultDrawStyle.value = cloneDeep(formatDefaultData(JSON.parse(data.value as string).slice(0, 5)));
     drawStyleList.value = formatData(JSON.parse(data.value as string)).slice(5);
   }
