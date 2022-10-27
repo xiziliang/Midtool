@@ -200,14 +200,7 @@ watch(
           :name="keyword2"
         ></el-tab-pane>
       </el-tabs>
-      <div
-        ref="scrollBoxRef"
-        :class="keyword1 + 'scrollBox'"
-        pt-15px
-        max-h-2xl
-        min-h-lg
-        overflow-auto
-      >
+      <div ref="scrollBoxRef" :class="keyword1 + 'scrollBox'" pt-15px h-lg overflow-auto>
         <div
           ref="keyword2Ref"
           v-for="keyword2 in keyword2label(keyword1!)"

@@ -542,9 +542,7 @@ function onSelectAIParams(
   </main>
   <el-dialog
     v-model="dialogVisible.card"
-    top="30px"
     title="作画风格"
-    width="70%"
     center
     draggable
     destroy-on-close
@@ -626,6 +624,7 @@ function onSelectAIParams(
   <el-dialog
     title="提示词"
     class="dialog-media"
+    width="456px"
     v-model="dialogVisible.keyWord"
     center
     destroy-on-close

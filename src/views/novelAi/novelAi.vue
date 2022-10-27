@@ -294,7 +294,7 @@ function onDeleteKeyword(type: NovelAiParams, index: number) {
   }
   ElMessage.success("删除成功");
 }
-function closePromptTemplateDialog(){
+function closePromptTemplateDialog() {
   dialogVisible.prompt = false;
 }
 
@@ -523,7 +523,6 @@ defineExpose({
     title="画个人"
     class="dialog-media"
     v-model="dialogVisible.people"
-    top="30px"
     center
     width="70%"
     destroy-on-close
@@ -548,7 +547,6 @@ defineExpose({
     title="画个物体"
     class="dialog-media"
     v-model="dialogVisible.body"
-    top="30px"
     center
     width="70%"
     destroy-on-close
@@ -571,7 +569,6 @@ defineExpose({
     title="画风"
     class="dialog-media"
     v-model="dialogVisible.style"
-    top="30px"
     center
     width="70%"
     destroy-on-close
