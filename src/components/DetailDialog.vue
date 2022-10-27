@@ -12,7 +12,7 @@ defineExpose({
   data
 });
 function handleWeight(data:string){
-  data = data.replace(/,/g, "，").replace(/（|）/g, "").replace(/[(]|[)]/g, "").replace(/[{]|[}]/g, "");
+  data = data.replace(/,/g, "，").replace(/[(]|[)]|[{]|[}]|[（]|[）]|\s*/g, "")
   return data
 }
 watch(
@@ -30,22 +30,24 @@ watch(
 <template>
   <div class="detail-box">
     <div class="header-img">
-      <img src="http://localhost:3000/img-style/empty.png" alt="">
+      <img :src="props.detailData.fileUrl" alt="">
     </div>
-    <div class="detail-title" p="x-25px t-8px">
-      {{props.detailData.title}}
-    </div>
-    <div class="detail-tag-positive clamp2 detail-text" p="x-25px t-8px">
-      正面tag：{{dataZH}}
-    </div>
-    <div class="detail-tag-side clamp2 detail-text" p="x-25px t-12px">
-      反面tag：{{dataEN}}
-    </div>
-    <div class="detail-tag-parameter detail-text" p="x-25px t-12px">
-      参数：{{props.detailData.detagEN}}
-    </div>
-    <div class="detail-tag-author detail-text" p="x-25px t-12px">
-      作者：{{props.detailData.author}}
+    <div style="height: 230px">
+      <div class="detail-title" p="x-25px t-8px">
+        {{props.detailData.title}}
+      </div>
+      <div class="detail-tag-positive clamp2 detail-text" p="x-25px t-8px">
+        正面tag：{{dataZH}}
+      </div>
+      <div class="detail-tag-side clamp2 detail-text" p="x-25px t-12px">
+        反面tag：{{dataEN}}
+      </div>
+      <div class="detail-tag-parameter clamp2 detail-text" p="x-25px t-12px">
+        参数：{{props.detailData.detagEN}}
+      </div>
+      <div class="detail-tag-author detail-text" p="x-25px t-12px">
+        作者：{{props.detailData.author}}
+      </div>
     </div>
   </div>
 </template>

@@ -264,11 +264,10 @@ function onClosePositiveKeyword() {
     });
   }
 }
-
+// 自己添加
 function onCloseCustomKeyword() {
   onCloseDialog();
-
-  defaultCustomKeyWord.value.push(initKeyword(newCustomKeyWord));
+  defaultCustomKeyWord.value.unshift(initKeyword(newCustomKeyWord));
 }
 
 function onCloseDialog() {
@@ -298,8 +297,27 @@ function onDeleteKeyword(type: NovelAiParams, index: number) {
   }
   ElMessage.success("删除成功");
 }
-function closePromptTemplateDialog() {
+function closePromptTemplateDialog(detailList:object[]){
   dialogVisible.prompt = false;
+  defaultPromptTemplate.value.forEach(item => {
+    item.isSelected = false;
+  })
+  defaultDrawPeople.value.forEach(item => {
+    item.isSelected = false;
+  })
+  defaultDrawStyle.value.forEach(item => {
+    item.isSelected = false;
+  })
+  defaultDrawBody.value.forEach(item => {
+    item.isSelected = false;
+  })
+  defaultComposeKeyWord.value.forEach(item => {
+    item.isSelected = false;
+  })
+  defaultPositiveKeyWord.value.forEach(item => {
+    item.isSelected = false;
+  })
+  defaultCustomKeyWord.value = detailList;
 }
 
 defineExpose({
@@ -509,6 +527,7 @@ defineExpose({
   <el-dialog
     v-model="dialogVisible.prompt"
     top="0"
+    class="prompt-dialog"
     width="100%"
     title="选择参考图"
     center

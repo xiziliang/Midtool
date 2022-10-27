@@ -461,6 +461,8 @@ code {
 }
 
 .detail-dialog {
+  max-width: 788px;
+  min-width: 500px;
   .el-dialog__header,
   .el-dialog__body {
     padding: 0;
@@ -494,6 +496,7 @@ code {
     }
     .detail-use {
       background: #0DD790;
+      border-color: #0DD790;
       color: #fff
     }
     .detail-back {
@@ -528,4 +531,9 @@ code {
       }
     }
   }
+}
+.prompt-dialog {
+  margin-bottom: 0;
+  height: 100%;
+  border-radius: 0;
 }

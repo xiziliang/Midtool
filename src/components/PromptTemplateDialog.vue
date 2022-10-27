@@ -147,7 +147,6 @@ function addElementVisibility() {
 }
 function onTrigger(item: PromptTemplate) {
   item.isSelected = !item.isSelected;
-
   // onClickCard(item.promptEN, item);
   showDetailDialog(item)
 }
@@ -160,10 +159,10 @@ function onTrigger(item: PromptTemplate) {
 //   item.showWeight = true;
 // }
 // 点击展开详情dialog
-let detailData = ref<PromptTemplate>()
+let detailItemData = ref<PromptTemplate>()
 function showDetailDialog(item: PromptTemplate){
   dialogVisible.detail = true;
-  detailData.value = item;
+  detailItemData.value = item;
 }
 
 // 详情dialog
@@ -178,8 +177,43 @@ function closeDetailDialog(){
 // 使用详情
 async function useDetailData(){
   dialogVisible.detail = false;
-  emit('childClose');
   await nextTick();
+  let list = detailTagList(detailItemData);
+  emit('childClose',list);
+}
+// 生成tag数据
+function detailTagList(data:PromptTemplate){
+  let list = data.value.promptZH.replace(/\s*/g, "").replace(/,/g, "，").replace(/（/g, "(").replace(/）/g, ")").split("，");
+  let newList:object[] = [];
+  list.forEach((item:string)=>{
+    let matchArr1 = item.match(/[(]/gi);
+    let matchArr2 = item.match(/[{]/gi);
+    if(matchArr1 || matchArr2){
+      let weightNum:number = 1;
+      if(matchArr1){
+        weightNum += matchArr1.length * 2;
+      }else if(matchArr2){
+        weightNum += matchArr2.length * 1;
+      }
+      let itemPromptZH = item.replace(/[(]|[)]|[{]|[}]|[（]|[）]|\s*/g, "")
+      newList.push({
+        promptZH: itemPromptZH,
+        isCustom: true,
+        isSelected: true,
+        weight: weightNum,
+        showWeight: false
+      })
+    }else {
+      newList.push({
+        promptZH: item,
+        isCustom: true,
+        isSelected: true,
+        weight: 1,
+        showWeight: false
+      })
+    }
+  })
+  return newList
 }
 </script>
 
@@ -213,10 +247,11 @@ async function useDetailData(){
       <div
         ref="scrollBoxRef"
         :class="keyword1 + 'scrollBox'"
+        class="max-height-box"
         pt-15px
-        max-h-2xl
         min-h-lg
         overflow-auto
+        style="max-height: calc(100vh - 182px);"
       >
         <div
           ref="keyword2Ref"
@@ -233,7 +268,6 @@ async function useDetailData(){
               class="card"
               v-for="item in allData.filter((x) => x.KeyWord2 === keyword2)"
               :key="item.promptEN"
-              :class="{ selected: item.isSelected }"
               :data-weight="item.weight"
               @click.stop.self="onTrigger(item)"
             >
@@ -250,7 +284,7 @@ async function useDetailData(){
     title=""
     v-model="dialogVisible.detail"
     center
-    width="60%"
+    width="50%"
     destroy-on-close
     draggable
     class="detail-dialog"
@@ -258,7 +292,7 @@ async function useDetailData(){
   >
     <DetailDialog
       ref="detailDialogRef"
-      :detailData="detailData"
+      :detailData="detailItemData"
       :dialog-visible="dialogVisible.detail"
     ></DetailDialog>
     <template #footer>
