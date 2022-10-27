@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { ref, watch, reactive, computed, nextTick, onBeforeUnmount } from "vue";
+import { reactive, computed, onBeforeUnmount } from "vue";
 import type { TabsPaneContext } from "element-plus";
 import { cloneDeep } from "lodash";
 
 import type { CardItem } from "@/models";
-import { useIntersectionObserver, useEventListener } from "@vueuse/core";
+import { useTabScroll } from "@/hooks";
+import { useEventListener } from "@vueuse/core";
 
 import CardItemComp from "./CardItem.vue";
 
@@ -22,16 +23,6 @@ onBeforeUnmount(() => {
   clearUp();
 });
 
-// instance
-const keyword2Ref = ref<HTMLElement[] | null>();
-const scrollBoxRef = ref<HTMLElement[] | null>();
-
-const isClickScroll = ref(false);
-// tab-pane是否在页面中显示的映射
-const map = ref<Record<string, any>>({});
-const currentTab = ref<string>();
-const currentTab2 = ref<string>();
-
 // computed data
 const allData = computed(() => {
   const list = reactive(cloneDeep(props.list));
@@ -46,44 +37,23 @@ const allData = computed(() => {
   }
   return list;
 });
-const tabList = computed(() => Array.from(new Set(allData.value.map((x) => x.KeyWord))));
-const tab2List = computed(() => {
-  return Array.from(
-    new Set(
-      allData.value.filter((x) => x.KeyWord === currentTab?.value).map((x) => x.KeyWord2)
-    )
-  );
-});
 const selectedList = computed(() => allData.value.filter((x) => x.isSelected));
 
-/** 添加监听: 元素显示0r隐藏 */
-function addElementVisibility() {
-  const scrollTarget = scrollBoxRef.value?.find((x) =>
-    x.className.includes(currentTab.value!)
-  );
+const {
+  tab2Ref,
+  scrollBoxRef,
 
-  const targets = keyword2Ref.value?.filter((x) => {
-    return tab2List.value.includes(x.classList[1]);
-  });
+  isClickScroll,
 
-  targets?.forEach((x) => {
-    const isVisible = ref(false);
-    const { stop } = useIntersectionObserver(
-      x,
-      ([{ isIntersecting }]) => {
-        isVisible.value = isIntersecting;
-      },
-      {
-        root: scrollTarget,
-      }
-    );
+  currentTab,
+  currentTab2,
 
-    map.value[x.classList[1]] = {
-      stop,
-      isVisible,
-    };
-  });
-}
+  tabList,
+  tab2List,
+
+  // fn
+  scrollTo,
+} = useTabScroll(allData);
 
 function keyword2label(label: string) {
   return Array.from(
@@ -98,19 +68,6 @@ function onClickKeyword2Tab(context: TabsPaneContext) {
   setTimeout(() => {
     isClickScroll.value = false;
   }, 1000);
-}
-
-function scrollTo(className: string) {
-  document.getElementsByClassName(className)[0].scrollIntoView({
-    behavior: "smooth",
-  });
-}
-
-function clearScroll() {
-  for (const key in map.value) {
-    map.value[key].stop();
-  }
-  map.value = {};
 }
 
 function onTrigger(item: CardItem) {
@@ -135,43 +92,6 @@ function onAddWeight(weight: number, item: CardItem) {
 defineExpose({
   selectedList,
 });
-
-watch(
-  tabList,
-  () => {
-    currentTab.value = tabList?.value[0];
-  },
-  { immediate: true }
-);
-
-watch(
-  tab2List,
-  async () => {
-    if (!tab2List.value.length) return;
-
-    currentTab2.value = tab2List.value[0];
-
-    await nextTick();
-    currentTab2.value ? scrollTo(currentTab2.value) : undefined;
-
-    clearScroll();
-    addElementVisibility();
-  },
-  { immediate: true }
-);
-
-watch(
-  map,
-  () => {
-    if (Object.entries(map.value).length < 0) return;
-
-    if (isClickScroll.value) return;
-
-    const firstShowEl = Object.entries(map.value).find((x) => x[1].isVisible);
-    currentTab2.value = firstShowEl?.[0];
-  },
-  { deep: true }
-);
 </script>
 <template>
   <el-tabs v-model="currentTab">
@@ -189,6 +109,7 @@ watch(
       >
       <el-tabs
         py-1
+        mt-1px
         class="keyword2Tab"
         v-model="currentTab2"
         @tab-click="onClickKeyword2Tab"
@@ -202,7 +123,7 @@ watch(
       </el-tabs>
       <div ref="scrollBoxRef" :class="keyword1 + 'scrollBox'" pt-15px h-lg overflow-auto>
         <div
-          ref="keyword2Ref"
+          ref="tab2Ref"
           v-for="keyword2 in keyword2label(keyword1!)"
           :class="['keyword2', keyword2]"
         >
@@ -255,15 +176,5 @@ watch(
 
 :deep(.el-tabs__header) {
   margin: 0;
-}
-.keyword2Tab {
-  position: sticky;
-  top: 0;
-  background: #fff;
-  z-index: 1;
-
-  :deep(.el-tabs__nav-wrap::after) {
-    content: none;
-  }
 }
 </style>

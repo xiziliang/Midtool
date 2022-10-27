@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { ref, computed, watchEffect, watch, onBeforeUnmount } from "vue";
 import { cloneDeep } from "lodash";
+import type { TabsPaneContext } from "element-plus";
 
+import { useTabScroll } from "@/hooks";
 import { useStorage, useEventListener } from "@vueuse/core";
 import { CARD_CUSTOM_LIST, CARD_HISTORY_LIST } from "@/constants";
 import Tag from "@/components/Tag.vue";
@@ -26,21 +28,35 @@ const cardHistoryList = useStorage<CardItem[]>(CARD_HISTORY_LIST, [], localStora
 
 const allData = ref<Partial<CardItem>[]>([]);
 
-const currentTab = computed({
-  get: () => tabList.value[0] || "history",
-  set() {},
-});
-const tabList = computed(() => Array.from(new Set(allData.value.map((x) => x.KeyWord))));
+const {
+  tab2Ref,
+  scrollBoxRef,
+
+  isClickScroll,
+
+  currentTab,
+  currentTab2,
+
+  tabList,
+  tab2List,
+
+  // fn
+  scrollTo,
+} = useTabScroll(allData);
+
+function onClickKeyword2Tab(context: TabsPaneContext) {
+  isClickScroll.value = true;
+  scrollTo(context.paneName + "");
+
+  setTimeout(() => {
+    isClickScroll.value = false;
+  }, 1000);
+}
 
 function keyword2label(label: string) {
   return Array.from(
     new Set(allData.value.filter((x) => x.KeyWord === label).map((x) => x.KeyWord2))
   );
-}
-
-function onClickKeyWordTag(item: Partial<CardItem>) {
-  item.isSelected = !item.isSelected;
-  item.showWeight = true;
 }
 
 function onReduceWeight(weight: number, item: Partial<CardItem>) {
@@ -51,7 +67,9 @@ function onAddWeight(weight: number, item: Partial<CardItem>) {
   item.weight = weight + 0.25;
 }
 
-function onShowWeightTag(content: string, item: Partial<CardItem>) {
+function onTrigger(item: Partial<CardItem>) {
+  item.isSelected = !item.isSelected;
+
   [...allData.value, ...cardHistoryList.value].forEach((x) => (x.showWeight = false));
   item.showWeight = true;
 }
@@ -89,11 +107,40 @@ watchEffect(() => {
 <template>
   <el-tabs v-model="currentTab">
     <el-tab-pane v-for="keyword1 in tabList" :label="keyword1" :name="keyword1">
-      <div h-lg overflow-auto will-change-scroll p="x-20px t-15px">
-        <div v-for="keyword2 in keyword2label(keyword1!)" class="keyword2">
-          <div flex="~" m="y-4">
+      <template #label
+        ><div
+          class="tab-pane-title"
+          :data-count="
+            allData.filter((x) => x.KeyWord === keyword1 && x.isSelected).length
+          "
+          :class="{ isSelected: currentTab === keyword1 }"
+        >
+          {{ keyword1 }}
+        </div></template
+      >
+      <el-tabs
+        py-1
+        mt-1px
+        class="keyword2Tab"
+        v-model="currentTab2"
+        @tab-click="onClickKeyword2Tab"
+      >
+        <el-tab-pane
+          v-for="keyword2 in tab2List"
+          :key="keyword2"
+          :label="keyword2"
+          :name="keyword2"
+        ></el-tab-pane>
+      </el-tabs>
+      <div ref="scrollBoxRef" :class="keyword1 + 'scrollBox'" pt-15px h-lg overflow-auto>
+        <div
+          ref="tab2Ref"
+          v-for="keyword2 in keyword2label(keyword1!)"
+          :class="['keyword2', keyword2]"
+        >
+          <div flex="~" mt-4 text-16px color-dark-400>
             <div flex>
-              <p>{{ keyword2 }}</p>
+              <p font-600>{{ keyword2 }}</p>
             </div>
           </div>
           <div flex="~ gap-3 wrap" justify-start items-start>
@@ -105,10 +152,10 @@ watchEffect(() => {
               :weight="item.weight"
               :show-weight="item.showWeight"
               :is-selected="item.isSelected"
-              @click.stop.self="onClickKeyWordTag(item)"
+              @click.stop.self
               @reduce-weight="(value) => onReduceWeight(value, item)"
               @add-weight="(value) => onAddWeight(value, item)"
-              @click-tag="(value) => onShowWeightTag(value, item)"
+              @click-tag="onTrigger(item)"
             ></Tag>
           </div>
         </div>
@@ -125,13 +172,18 @@ watchEffect(() => {
             :weight="item.weight"
             :show-weight="item.showWeight"
             :is-selected="item.isSelected"
-            @click.stop.self="onClickKeyWordTag(item)"
+            @click.stop.self
             @reduce-weight="(value) => onReduceWeight(value, item)"
             @add-weight="(value) => onAddWeight(value, item)"
-            @click-tag="(value) => onShowWeightTag(value, item)"
+            @click-tag="onTrigger(item)"
           ></Tag>
         </div>
       </div>
     </el-tab-pane>
   </el-tabs>
 </template>
+<style lang="scss" scoped>
+:deep(.el-tabs__header) {
+  margin: 0;
+}
+</style>

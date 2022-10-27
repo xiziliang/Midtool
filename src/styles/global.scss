@@ -504,3 +504,13 @@ code {
     }
   }
 }
+
+.keyword2Tab {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 1;
+  .el-tabs__nav-wrap::after {
+    content: none;
+  }
+}
