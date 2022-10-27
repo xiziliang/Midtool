@@ -270,21 +270,19 @@ function onClickClearBtn() {
       </div>
       <el-button
         v-if="clearBtnVisible"
+        w-128px
+        h-38px
+        text-14px
         class="cleatBtn"
         type="primary"
         @click="clearBtnVisible = false"
-        >清空所有选中</el-button
+        >清空全部选中</el-button
       >
-      <div
-        v-else
-        ref="clearBtnRef"
-        class="cleatBtn"
-        top--11
-        right-30px
-        flex="~ col gap-4"
-      >
-        <el-button type="primary" @click="onClickClearBtn">确定</el-button>
-        <el-button m-0 @click="clearBtnVisible = true">取消清空</el-button>
+      <div v-else ref="clearBtnRef" class="cleatBtn" flex="~ col">
+        <el-button w-128px text-14px @click="clearBtnVisible = true">取消清空</el-button>
+        <el-button w-128px text-14px m-0 mt-30px type="primary" @click="onClickClearBtn"
+          >确定</el-button
+        >
       </div>
     </div>
   </footer>
@@ -299,7 +297,7 @@ function onClickClearBtn() {
 
 .cleatBtn {
   position: absolute;
-  top: calc(50% - 18px);
-  right: 10px;
+  right: 30px;
+  bottom: 30px;
 }
 </style>

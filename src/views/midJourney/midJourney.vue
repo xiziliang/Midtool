@@ -6,7 +6,6 @@ import { cloneDeep } from "lodash";
 import type { MidJourneyParams, DpiOptions, CustomKeyWord, CardItem } from "@/models";
 import { ReplaceKey } from "@/constants";
 
-import Card from "@/components/Card.vue";
 import ImgCard from "@/components/ImgCard.vue";
 import Tag from "@/components/Tag.vue";
 import MidjourneyParams from "@/components/MidjourneyParams.vue";
