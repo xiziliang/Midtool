@@ -181,10 +181,12 @@ function onDeleteDpi() {
 }
 
 function onReduceWeight(weight: number, item: CustomKeyWord | CardItem) {
+  !item.isSelected ? (item.isSelected = true) : null;
   item.weight = weight - 0.25;
 }
 
 function onAddWeight(weight: number, item: CustomKeyWord | CardItem) {
+  !item.isSelected ? (item.isSelected = true) : null;
   item.weight = weight + 0.25;
 }
 

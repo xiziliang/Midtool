@@ -82,10 +82,14 @@ function onClickCard(item: CardItem) {
 }
 
 function onReduceWeight(weight: number, item: CardItem) {
+  !item.isSelected ? (item.isSelected = true) : null;
+
   item.weight = weight - 1;
 }
 
 function onAddWeight(weight: number, item: CardItem) {
+  !item.isSelected ? (item.isSelected = true) : null;
+
   item.weight = weight + 1;
 }
 

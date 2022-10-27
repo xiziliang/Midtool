@@ -60,10 +60,14 @@ function keyword2label(label: string) {
 }
 
 function onReduceWeight(weight: number, item: Partial<CardItem>) {
+  !item.isSelected ? (item.isSelected = true) : null;
+
   item.weight = weight - 0.25;
 }
 
 function onAddWeight(weight: number, item: Partial<CardItem>) {
+  !item.isSelected ? (item.isSelected = true) : null;
+
   item.weight = weight + 0.25;
 }
 

@@ -68,10 +68,14 @@ function onClickKeyword2Tab(context: TabsPaneContext) {
 }
 
 function onReduceWeight(weight: number, item: Partial<CustomKeyWord>) {
+  !item.isSelected ? (item.isSelected = true) : null;
+
   item.weight = weight - 0.25;
 }
 
 function onAddWeight(weight: number, item: Partial<CustomKeyWord>) {
+  !item.isSelected ? (item.isSelected = true) : null;
+
   item.weight = weight + 0.25;
 }
 

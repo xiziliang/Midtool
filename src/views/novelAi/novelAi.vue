@@ -172,10 +172,14 @@ function onShowWeightTag(item: CustomKeyWord, type?: NovelAiParams, index?: numb
 }
 
 function onReduceWeight(weight: number, item: any) {
+  !item.isSelected ? (item.isSelected = true) : null;
+
   item.weight = weight - 1;
 }
 
 function onAddWeight(weight: number, item: any) {
+  !item.isSelected ? (item.isSelected = true) : null;
+
   item.weight = weight + 1;
 }
 

@@ -77,10 +77,14 @@ function onTrigger(item: Partial<CustomKeyWord>) {
 }
 
 function onReduceWeight(weight: number, item: Partial<CustomKeyWord>) {
+  !item.isSelected ? (item.isSelected = true) : null;
+
   item.weight = weight - 1;
 }
 
 function onAddWeight(weight: number, item: Partial<CustomKeyWord>) {
+  !item.isSelected ? (item.isSelected = true) : null;
+
   item.weight = weight + 1;
 }
 
