@@ -9,7 +9,7 @@
         "image": "yes",
         "fileUrl": "https://prompttool-1257994487.cos.ap-shanghai.myqcloud.com/NovelAI%E7%94%BB%E9%A3%8E/watercolor.png",
         "hoover": "no",
-        "details": null
+        "details": ""
     },
     {
         "Level1Label": "style",
@@ -21,7 +21,7 @@
         "image": "yes",
         "fileUrl": "https://prompttool-1257994487.cos.ap-shanghai.myqcloud.com/NovelAI%E7%94%BB%E9%A3%8E/monochrome.png",
         "hoover": "no",
-        "details": null
+        "details": ""
     },
     {
         "Level1Label": "style",
@@ -33,7 +33,7 @@
         "image": "yes",
         "fileUrl": "https://prompttool-1257994487.cos.ap-shanghai.myqcloud.com/NovelAI%E7%94%BB%E9%A3%8E/pencils.png",
         "hoover": "no",
-        "details": null
+        "details": ""
     },
     {
         "Level1Label": "style",
@@ -45,7 +45,7 @@
         "image": "yes",
         "fileUrl": "https://prompttool-1257994487.cos.ap-shanghai.myqcloud.com/NovelAI%E7%94%BB%E9%A3%8E/greyscale.png",
         "hoover": "no",
-        "details": null
+        "details": ""
     },
     {
         "Level1Label": "style",
@@ -57,7 +57,7 @@
         "image": "yes",
         "fileUrl": "https://prompttool-1257994487.cos.ap-shanghai.myqcloud.com/NovelAI%E7%94%BB%E4%B8%AA%E4%BA%BA/realistic.png",
         "hoover": "no",
-        "details": null
+        "details": ""
     },
     {
         "Level1Label": "style",
@@ -69,7 +69,7 @@
         "image": "yes",
         "fileUrl": "https://prompttool-1257994487.cos.ap-shanghai.myqcloud.com/NovelAI%E7%94%BB%E9%A3%8E/3D.png",
         "hoover": "no",
-        "details": null
+        "details": ""
     },
     {
         "Level1Label": "style",
@@ -81,7 +81,7 @@
         "image": "yes",
         "fileUrl": "https://prompttool-1257994487.cos.ap-shanghai.myqcloud.com/NovelAI%E7%94%BB%E9%A3%8E/pixel%20art.png",
         "hoover": "no",
-        "details": null
+        "details": ""
     },
     {
         "Level1Label": "style",
@@ -93,7 +93,7 @@
         "image": "yes",
         "fileUrl": "https://prompttool-1257994487.cos.ap-shanghai.myqcloud.com/NovelAI%E7%94%BB%E9%A3%8E/sepia.png",
         "hoover": "no",
-        "details": null
+        "details": ""
     },
     {
         "Level1Label": "style",
@@ -105,6 +105,101 @@
         "image": "yes",
         "fileUrl": "https://prompttool-1257994487.cos.ap-shanghai.myqcloud.com/NovelAI%E7%94%BB%E9%A3%8E/high%20contrast.png",
         "hoover": "no",
-        "details": null
+        "details": ""
+    },
+    {
+        "Level1Label": "style",
+        "KeyWord": "画布风格",
+        "SecondLabel": "background",
+        "KeyWord2": "背景",
+        "promptEN": "patterned background",
+        "promptZH": "图案背景",
+        "image": "yes",
+        "fileUrl": "https://prompttool-1257994487.cos.ap-shanghai.myqcloud.com/NovelAI%E7%94%BB%E9%A3%8E/patterned%20background.png",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "style",
+        "KeyWord": "画布风格",
+        "SecondLabel": "age",
+        "KeyWord2": "年代",
+        "promptEN": "1980s style",
+        "promptZH": "1980年代",
+        "image": "yes",
+        "fileUrl": "https://prompttool-1257994487.cos.ap-shanghai.myqcloud.com/NovelAI%E7%94%BB%E9%A3%8E/1980s%20style.png",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "layout",
+        "KeyWord": "构图",
+        "SecondLabel": "Camera filters",
+        "KeyWord2": "相机滤镜",
+        "promptEN": "AutoChrome",
+        "promptZH": "绿粉色滤镜",
+        "image": "yes",
+        "fileUrl": "https://prompttool-1257994487.cos.ap-shanghai.myqcloud.com/NovelAI%E7%94%BB%E9%A3%8E/AutoChrome.png",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "layout",
+        "KeyWord": "构图",
+        "SecondLabel": "Camera filters",
+        "KeyWord2": "相机滤镜",
+        "promptEN": "Polaroid",
+        "promptZH": "拍立得",
+        "image": "yes",
+        "fileUrl": "https://prompttool-1257994487.cos.ap-shanghai.myqcloud.com/NovelAI%E7%94%BB%E9%A3%8E/Polaroid.png",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "layout",
+        "KeyWord": "构图",
+        "SecondLabel": "Camera filters",
+        "KeyWord2": "相机滤镜",
+        "promptEN": "Cyanotype",
+        "promptZH": "底片",
+        "image": "yes",
+        "fileUrl": "https://prompttool-1257994487.cos.ap-shanghai.myqcloud.com/NovelAI%E7%94%BB%E9%A3%8E/Cyanotype.png",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "layout",
+        "KeyWord": "构图",
+        "SecondLabel": "Camera filters",
+        "KeyWord2": "相机滤镜",
+        "promptEN": "Black and white",
+        "promptZH": "黑白摄影",
+        "image": "yes",
+        "fileUrl": "https://prompttool-1257994487.cos.ap-shanghai.myqcloud.com/NovelAI%E7%94%BB%E9%A3%8E/Black and white.png",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "layout",
+        "KeyWord": "构图",
+        "SecondLabel": "Camera filters",
+        "KeyWord2": "相机滤镜",
+        "promptEN": "Infrared photography",
+        "promptZH": "红外摄影",
+        "image": "yes",
+        "fileUrl": "https://prompttool-1257994487.cos.ap-shanghai.myqcloud.com/NovelAI%E7%94%BB%E9%A3%8E/Infrared photography.png",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "layout",
+        "KeyWord": "构图",
+        "SecondLabel": "Camera filters",
+        "KeyWord2": "相机滤镜",
+        "promptEN": "Anaglyph",
+        "promptZH": "3D浮雕",
+        "image": "yes",
+        "fileUrl": "https://prompttool-1257994487.cos.ap-shanghai.myqcloud.com/NovelAI%E7%94%BB%E9%A3%8E/Anaglyph.png",
+        "hoover": "no"
     }
 ]

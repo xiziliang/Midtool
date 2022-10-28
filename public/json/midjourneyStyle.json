@@ -7,8 +7,7 @@
         "promptEN": "Baroque",
         "promptZH": "巴洛克",
         "hoover": "no",
-        "details": null,
-        "": ""
+        "details": ""
     },
     {
         "Level1Label": "Style",
@@ -18,8 +17,7 @@
         "promptEN": "Art Nouveau",
         "promptZH": "新艺术",
         "hoover": "no",
-        "details": null,
-        "": ""
+        "details": ""
     },
     {
         "Level1Label": "Style",
@@ -29,8 +27,7 @@
         "promptEN": "Renaissance",
         "promptZH": "洛可可",
         "hoover": "no",
-        "details": null,
-        "": ""
+        "details": ""
     },
     {
         "Level1Label": "Style",
@@ -40,8 +37,7 @@
         "promptEN": "Renaissance",
         "promptZH": "文艺复兴",
         "hoover": "no",
-        "details": null,
-        "": ""
+        "details": ""
     },
     {
         "Level1Label": "Style",
@@ -51,8 +47,7 @@
         "promptEN": "Fauvism",
         "promptZH": "野兽派",
         "hoover": "no",
-        "details": null,
-        "": ""
+        "details": ""
     },
     {
         "Level1Label": "Style",
@@ -62,8 +57,7 @@
         "promptEN": "Cubism",
         "promptZH": "立体派",
         "hoover": "no",
-        "details": null,
-        "": ""
+        "details": ""
     },
     {
         "Level1Label": "Style",
@@ -73,8 +67,7 @@
         "promptEN": "Abstract Art",
         "promptZH": "抽象表现主义",
         "hoover": "no",
-        "details": null,
-        "": ""
+        "details": ""
     },
     {
         "Level1Label": "Style",
@@ -84,8 +77,7 @@
         "promptEN": "Surrealism",
         "promptZH": "超现实主义",
         "hoover": "no",
-        "details": null,
-        "": ""
+        "details": ""
     },
     {
         "Level1Label": "Style",
@@ -95,7 +87,1215 @@
         "promptEN": "Pop Art",
         "promptZH": "普普艺术",
         "hoover": "no",
-        "details": null,
-        "": ""
+        "details": ""
+    },
+    {
+        "Level1Label": "Style",
+        "KeyWord": "风格",
+        "SecondLabel": "time",
+        "KeyWord2": "时期",
+        "promptEN": "Optical Art",
+        "promptZH": "欧普艺术",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Style",
+        "KeyWord": "风格",
+        "SecondLabel": "time",
+        "KeyWord2": "时期",
+        "promptEN": "Victorian",
+        "promptZH": "维多利亚时代",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Style",
+        "KeyWord": "风格",
+        "SecondLabel": "time",
+        "KeyWord2": "时期",
+        "promptEN": "futuristic ",
+        "promptZH": "未来主义",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Style",
+        "KeyWord": "风格",
+        "SecondLabel": "theme",
+        "KeyWord2": "题材",
+        "promptEN": "Vaporwave",
+        "promptZH": "蒸汽波",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Style",
+        "KeyWord": "风格",
+        "SecondLabel": "theme",
+        "KeyWord2": "题材",
+        "promptEN": "Post-apocalypitc",
+        "promptZH": "后启示录",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Style",
+        "KeyWord": "风格",
+        "SecondLabel": "theme",
+        "KeyWord2": "题材",
+        "promptEN": "Gothic",
+        "promptZH": "哥特/奇幻",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Style",
+        "KeyWord": "风格",
+        "SecondLabel": "theme",
+        "KeyWord2": "题材",
+        "promptEN": "Cybernetic",
+        "promptZH": "赛博科幻",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Style",
+        "KeyWord": "风格",
+        "SecondLabel": "theme",
+        "KeyWord2": "题材",
+        "promptEN": "Afrofuturism",
+        "promptZH": "未来主义",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Style",
+        "KeyWord": "风格",
+        "SecondLabel": "theme",
+        "KeyWord2": "题材",
+        "promptEN": "Memphis",
+        "promptZH": "孟菲斯风格",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Style",
+        "KeyWord": "风格",
+        "SecondLabel": "theme",
+        "KeyWord2": "题材",
+        "promptEN": "Steampunk",
+        "promptZH": "蒸汽风格",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Style",
+        "KeyWord": "风格",
+        "SecondLabel": "theme",
+        "KeyWord2": "题材",
+        "promptEN": "Dieselpunk",
+        "promptZH": "柴油朋克",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Style",
+        "KeyWord": "风格",
+        "SecondLabel": "theme",
+        "KeyWord2": "题材",
+        "promptEN": "Cyberpunk",
+        "promptZH": "赛博朋克",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Style",
+        "KeyWord": "风格",
+        "SecondLabel": "theme",
+        "KeyWord2": "题材",
+        "promptEN": "Biopunk",
+        "promptZH": "有机朋克",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Style",
+        "KeyWord": "风格",
+        "SecondLabel": "Monochrome style",
+        "KeyWord2": "单色风格",
+        "promptEN": "Ballpoint pen art",
+        "promptZH": "圆珠笔素描",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Style",
+        "KeyWord": "风格",
+        "SecondLabel": "Monochrome style",
+        "KeyWord2": "单色风格",
+        "promptEN": "realistic",
+        "promptZH": "写实的",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Style",
+        "KeyWord": "风格",
+        "SecondLabel": "Monochrome style",
+        "KeyWord2": "单色风格",
+        "promptEN": "Ballpoint pen art",
+        "promptZH": "圆珠笔素描",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Style",
+        "KeyWord": "风格",
+        "SecondLabel": "Monochrome style",
+        "KeyWord2": "单色风格",
+        "promptEN": "Pencil sketch",
+        "promptZH": "铅笔素描",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Style",
+        "KeyWord": "风格",
+        "SecondLabel": "Monochrome style",
+        "KeyWord2": "单色风格",
+        "promptEN": "Pencil drawing",
+        "promptZH": "铅笔画",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Style",
+        "KeyWord": "风格",
+        "SecondLabel": "Monochrome style",
+        "KeyWord2": "单色风格",
+        "promptEN": "Political cartoon form newspaper",
+        "promptZH": "报纸漫画",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Style",
+        "KeyWord": "风格",
+        "SecondLabel": "Monochrome style",
+        "KeyWord2": "单色风格",
+        "promptEN": "Coloruing-in sheet",
+        "promptZH": "提取线",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Style",
+        "KeyWord": "风格",
+        "SecondLabel": "Color style",
+        "KeyWord2": "彩色风格",
+        "promptEN": "Crayon",
+        "promptZH": "蜡笔",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Style",
+        "KeyWord": "风格",
+        "SecondLabel": "Color style",
+        "KeyWord2": "彩色风格",
+        "promptEN": "Acrylic on canvas",
+        "promptZH": "布面丙烯",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Style",
+        "KeyWord": "风格",
+        "SecondLabel": "Color style",
+        "KeyWord2": "彩色风格",
+        "promptEN": "Watercolor",
+        "promptZH": "水彩",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Style",
+        "KeyWord": "风格",
+        "SecondLabel": "Color style",
+        "KeyWord2": "彩色风格",
+        "promptEN": "Coloured pencil",
+        "promptZH": "彩铅",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Style",
+        "KeyWord": "风格",
+        "SecondLabel": "Color style",
+        "KeyWord2": "彩色风格",
+        "promptEN": "Oil painting",
+        "promptZH": "油画",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Style",
+        "KeyWord": "风格",
+        "SecondLabel": "Color style",
+        "KeyWord2": "彩色风格",
+        "promptEN": "Ukiyo-e",
+        "promptZH": "浮世绘",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Style",
+        "KeyWord": "风格",
+        "SecondLabel": "Color style",
+        "KeyWord2": "彩色风格",
+        "promptEN": "Chinese watercolor",
+        "promptZH": "中国画",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Style",
+        "KeyWord": "风格",
+        "SecondLabel": "Color style",
+        "KeyWord2": "彩色风格",
+        "promptEN": "Pastels",
+        "promptZH": "粉笔",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Style",
+        "KeyWord": "风格",
+        "SecondLabel": "Color style",
+        "KeyWord2": "彩色风格",
+        "promptEN": "Airbursh",
+        "promptZH": "喷枪",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Style",
+        "KeyWord": "风格",
+        "SecondLabel": "digital illustrations",
+        "KeyWord2": "数字插画",
+        "promptEN": "Alegria",
+        "promptZH": "扁平风格",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Style",
+        "KeyWord": "风格",
+        "SecondLabel": "digital illustrations",
+        "KeyWord2": "数字插画",
+        "promptEN": "Collage",
+        "promptZH": "杂志拼贴",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Style",
+        "KeyWord": "风格",
+        "SecondLabel": "digital illustrations",
+        "KeyWord2": "数字插画",
+        "promptEN": "Vector art",
+        "promptZH": "矢量插画",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Style",
+        "KeyWord": "风格",
+        "SecondLabel": "digital illustrations",
+        "KeyWord2": "数字插画",
+        "promptEN": "Screen printing",
+        "promptZH": "丝网印刷",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Style",
+        "KeyWord": "风格",
+        "SecondLabel": "digital illustrations",
+        "KeyWord2": "数字插画",
+        "promptEN": "Low poly",
+        "promptZH": "低面数",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Style",
+        "KeyWord": "风格",
+        "SecondLabel": "digital illustrations",
+        "KeyWord2": "数字插画",
+        "promptEN": "Layered paper",
+        "promptZH": "剪纸拼贴",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Style",
+        "KeyWord": "风格",
+        "SecondLabel": "digital illustrations",
+        "KeyWord2": "数字插画",
+        "promptEN": "Sticker illustration",
+        "promptZH": "剪纸",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Style",
+        "KeyWord": "风格",
+        "SecondLabel": "digital illustrations",
+        "KeyWord2": "数字插画",
+        "promptEN": "Storybook",
+        "promptZH": "绘本",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Style",
+        "KeyWord": "风格",
+        "SecondLabel": "digital illustrations",
+        "KeyWord2": "数字插画",
+        "promptEN": "Digital pating",
+        "promptZH": "数字绘画",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Style",
+        "KeyWord": "风格",
+        "SecondLabel": "digital illustrations",
+        "KeyWord2": "数字插画",
+        "promptEN": "Pixel wind",
+        "promptZH": "像素风",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Style",
+        "KeyWord": "风格",
+        "SecondLabel": "digital illustrations",
+        "KeyWord2": "数字插画",
+        "promptEN": "Character set",
+        "promptZH": "角色设定",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Style",
+        "KeyWord": "风格",
+        "SecondLabel": "digital illustrations",
+        "KeyWord2": "数字插画",
+        "promptEN": "comic book",
+        "promptZH": "漫画书",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Style",
+        "KeyWord": "风格",
+        "SecondLabel": "digital illustrations",
+        "KeyWord2": "数字插画",
+        "promptEN": "japanese animation",
+        "promptZH": "日本动画",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Style",
+        "KeyWord": "风格",
+        "SecondLabel": "drawings",
+        "KeyWord2": "图纸",
+        "promptEN": "Blueprint",
+        "promptZH": "蓝图",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Style",
+        "KeyWord": "风格",
+        "SecondLabel": "drawings",
+        "KeyWord2": "图纸",
+        "promptEN": "Patent drawing",
+        "promptZH": "设计稿",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Style",
+        "KeyWord": "风格",
+        "SecondLabel": "drawings",
+        "KeyWord2": "图纸",
+        "promptEN": "Cutaway",
+        "promptZH": "剖面图",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Style",
+        "KeyWord": "风格",
+        "SecondLabel": "drawings",
+        "KeyWord2": "图纸",
+        "promptEN": "IKEA amnual",
+        "promptZH": "用户手册",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Style",
+        "KeyWord": "风格",
+        "SecondLabel": "drawings",
+        "KeyWord2": "图纸",
+        "promptEN": "Instruction manual",
+        "promptZH": "使用说明书",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Style",
+        "KeyWord": "风格",
+        "SecondLabel": "drawings",
+        "KeyWord2": "图纸",
+        "promptEN": "Mythological map",
+        "promptZH": "地图",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Style",
+        "KeyWord": "风格",
+        "SecondLabel": "drawings",
+        "KeyWord2": "图纸",
+        "promptEN": "Voynich manuscript",
+        "promptZH": "伏尼契手稿",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Style",
+        "KeyWord": "风格",
+        "SecondLabel": "drawings",
+        "KeyWord2": "图纸",
+        "promptEN": "Scientific diagram",
+        "promptZH": "科学插图",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Style",
+        "KeyWord": "风格",
+        "SecondLabel": "3D illustrations",
+        "KeyWord2": "3D插图",
+        "promptEN": "Clay animation",
+        "promptZH": "粘土动画",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Style",
+        "KeyWord": "风格",
+        "SecondLabel": "3D illustrations",
+        "KeyWord2": "3D插图",
+        "promptEN": "felt",
+        "promptZH": "毛毡",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Style",
+        "KeyWord": "风格",
+        "SecondLabel": "3D illustrations",
+        "KeyWord2": "3D插图",
+        "promptEN": "fabric",
+        "promptZH": "面料",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Style",
+        "KeyWord": "风格",
+        "SecondLabel": "3D illustrations",
+        "KeyWord2": "3D插图",
+        "promptEN": "Metal scratch",
+        "promptZH": "金属划痕",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Style",
+        "KeyWord": "风格",
+        "SecondLabel": "film studio",
+        "KeyWord2": "电影制片厂",
+        "promptEN": "pixar",
+        "promptZH": "皮克斯",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Style",
+        "KeyWord": "风格",
+        "SecondLabel": "film studio",
+        "KeyWord2": "电影制片厂",
+        "promptEN": "ghibli",
+        "promptZH": "吉卜力",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Style",
+        "KeyWord": "风格",
+        "SecondLabel": "film studio",
+        "KeyWord2": "电影制片厂",
+        "promptEN": "Disney",
+        "promptZH": "迪士尼",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "cartoon",
+        "KeyWord2": "卡通画家",
+        "promptEN": "Hayao miyazaki",
+        "promptZH": "宫崎骏",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "cartoon",
+        "KeyWord2": "卡通画家",
+        "promptEN": "Osamu Tezuka",
+        "promptZH": "手冢治虫",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "cartoon",
+        "KeyWord2": "卡通画家",
+        "promptEN": "Inoue Takehiko",
+        "promptZH": "井上彦雄",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "cartoon",
+        "KeyWord2": "卡通画家",
+        "promptEN": "Hirohiko Araki",
+        "promptZH": "荒木飞吕彦",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "cartoon",
+        "KeyWord2": "卡通画家",
+        "promptEN": "Togashi Yoshihiro",
+        "promptZH": "富坚义博",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "cartoon",
+        "KeyWord2": "卡通画家",
+        "promptEN": "Murata Yusuke",
+        "promptZH": "村田雄介",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "cartoon",
+        "KeyWord2": "卡通画家",
+        "promptEN": "Isayama Hajime",
+        "promptZH": "谏山创",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "cartoon",
+        "KeyWord2": "卡通画家",
+        "promptEN": "Hideaki Anno",
+        "promptZH": "庵野秀明",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "cartoon",
+        "KeyWord2": "卡通画家",
+        "promptEN": "Akira Toriyama",
+        "promptZH": "岛山明",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "cartoon",
+        "KeyWord2": "卡通画家",
+        "promptEN": "Yoshitaka Amano",
+        "promptZH": "天野喜孝",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "cartoon",
+        "KeyWord2": "卡通画家",
+        "promptEN": "Katsuhiro Otomo",
+        "promptZH": "大友克洋",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "cartoon",
+        "KeyWord2": "卡通画家",
+        "promptEN": "Yoshitomo Nara",
+        "promptZH": "奈良美智",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "cartoon",
+        "KeyWord2": "卡通画家",
+        "promptEN": "Takashi Murakami",
+        "promptZH": "村上隆",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "cartoon",
+        "KeyWord2": "卡通画家",
+        "promptEN": "ghibli studio",
+        "promptZH": "吉卜力工作室",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "cartoon",
+        "KeyWord2": "卡通画家",
+        "promptEN": "Shinkai Makoto",
+        "promptZH": "新海诚",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "cartoon",
+        "KeyWord2": "卡通画家",
+        "promptEN": "Fuji Choko",
+        "promptZH": "藤ちょこ",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "cartoon",
+        "KeyWord2": "卡通画家",
+        "promptEN": "Junji Ito",
+        "promptZH": "伊藤润二",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "Classical painter",
+        "KeyWord2": "古典画家",
+        "promptEN": "Alfons Maria Mucha",
+        "promptZH": "阿尔丰斯·慕夏",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "Classical painter",
+        "KeyWord2": "古典画家",
+        "promptEN": "pablo picasso",
+        "promptZH": "毕卡索",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "Classical painter",
+        "KeyWord2": "古典画家",
+        "promptEN": "Seurat",
+        "promptZH": "秀拉",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "Classical painter",
+        "KeyWord2": "古典画家",
+        "promptEN": "Raffaello Sanzio da Urbino",
+        "promptZH": "拉斐尔",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "Classical painter",
+        "KeyWord2": "古典画家",
+        "promptEN": "Michelangelo",
+        "promptZH": "米开朗基罗",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "Classical painter",
+        "KeyWord2": "古典画家",
+        "promptEN": "Leonardo da Vinci",
+        "promptZH": "达文西",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "Classical painter",
+        "KeyWord2": "古典画家",
+        "promptEN": "Paul Cézanne",
+        "promptZH": "保罗 塞尚",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "Classical painter",
+        "KeyWord2": "古典画家",
+        "promptEN": "Vincent Van Gogh",
+        "promptZH": "文森梵谷",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "Classical painter",
+        "KeyWord2": "古典画家",
+        "promptEN": "Paul Gauguin",
+        "promptZH": "保罗高更",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "Classical painter",
+        "KeyWord2": "古典画家",
+        "promptEN": "Salvador Dali",
+        "promptZH": "达利",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "Classical painter",
+        "KeyWord2": "古典画家",
+        "promptEN": "Monet",
+        "promptZH": "莫内",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "Classical painter",
+        "KeyWord2": "古典画家",
+        "promptEN": "Wassily Kandinsky",
+        "promptZH": "康丁斯基",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "Classical painter",
+        "KeyWord2": "古典画家",
+        "promptEN": "O'Keeffe",
+        "promptZH": "欧姬芙",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "Classical painter",
+        "KeyWord2": "古典画家",
+        "promptEN": "Kazimir Malevich",
+        "promptZH": "马列维奇",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "Classical painter",
+        "KeyWord2": "古典画家",
+        "promptEN": "Piet Mondrian",
+        "promptZH": "蒙德里安",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "Classical painter",
+        "KeyWord2": "古典画家",
+        "promptEN": "Andy Warhol",
+        "promptZH": "安迪沃荷",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "Classical painter",
+        "KeyWord2": "古典画家",
+        "promptEN": "Katsushika Hokusai",
+        "promptZH": "葛饰北斎",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "Classical painter",
+        "KeyWord2": "古典画家",
+        "promptEN": "TAKEHISA YUMEJI",
+        "promptZH": "竹久梦二",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "Classical painter",
+        "KeyWord2": "古典画家",
+        "promptEN": "Gustave Doré",
+        "promptZH": "古斯塔夫·多雷",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "Classical painter",
+        "KeyWord2": "古典画家",
+        "promptEN": "Tang Yin",
+        "promptZH": "唐寅",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "Other artists",
+        "KeyWord2": "其他艺术家",
+        "promptEN": "Hiroshi Yoshida",
+        "promptZH": "吉田博",
+        "hoover": "yes",
+        "details": "日本洋画家，版画家。"
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "Other artists",
+        "KeyWord2": "其他艺术家",
+        "promptEN": "Max Ernst",
+        "promptZH": "马克斯·恩斯特",
+        "hoover": "yes",
+        "details": "德国画家、雕塑家、图像艺术家及诗人。"
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "Other artists",
+        "KeyWord2": "其他艺术家",
+        "promptEN": "Paul Signac",
+        "promptZH": "保罗·希涅克",
+        "hoover": "yes",
+        "details": "法国新印象主义画派的画家，点描派的代表人物"
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "Other artists",
+        "KeyWord2": "其他艺术家",
+        "promptEN": "James Gurney",
+        "promptZH": "詹姆斯·格尼",
+        "hoover": "yes",
+        "details": "古生物艺术家，擅长画已灭绝的动物，如鸟类和非鸟类的恐龙"
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "Other artists",
+        "KeyWord2": "其他艺术家",
+        "promptEN": "M.C. Escher",
+        "promptZH": "詹姆斯·格尼",
+        "hoover": "yes",
+        "details": "荷兰著名版画艺术家-错觉艺术作品/平面视觉艺术"
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "Other artists",
+        "KeyWord2": "其他艺术家",
+        "promptEN": "Thomas Kinkade",
+        "promptZH": "汤玛斯·金凯德",
+        "hoover": "yes",
+        "details": "美国画家，擅长写实，田园和田园诗般的题材"
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "Other artists",
+        "KeyWord2": "其他艺术家",
+        "promptEN": "Ivan Aivazovsky",
+        "promptZH": "伊凡·康斯坦丁诺维奇·艾瓦佐夫斯基",
+        "hoover": "yes",
+        "details": "俄罗斯亚美尼亚画家，他以海景画著名(浪漫主义)"
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "Other artists",
+        "KeyWord2": "其他艺术家",
+        "promptEN": "Italo Calvino",
+        "promptZH": "卡尔维诺",
+        "hoover": "yes",
+        "details": "义大利作家。奇特和充满想像的作品"
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "Other artists",
+        "KeyWord2": "其他艺术家",
+        "promptEN": "Norman Rockwell",
+        "promptZH": "诺曼·洛克威尔",
+        "hoover": "yes",
+        "details": "\"美国20世纪早期的重要画家及插画家，"
+    },
+    {
+        "Level1Label": "作品主要横跨商业宣传与美国文化(四大自由)\""
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "Other artists",
+        "KeyWord2": "其他艺术家",
+        "promptEN": "Albert Bierstadt",
+        "promptZH": "阿尔伯特·比尔施塔特",
+        "hoover": "yes",
+        "details": "德裔美国风景画家，擅长绘制美国西部风景"
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "Other artists",
+        "KeyWord2": "其他艺术家",
+        "promptEN": "Giorgio de Chirico",
+        "promptZH": "乔治欧·德·奇里诃",
+        "hoover": "yes",
+        "details": "义大利画家，擅长超现实画派大师"
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "Other artists",
+        "KeyWord2": "其他艺术家",
+        "promptEN": "Rene Magritte",
+        "promptZH": "雷内·马格利特",
+        "hoover": "yes",
+        "details": "\"绘画哲学家，超现实主义作品中带有些许诙谐"
+    },
+    {
+        "Level1Label": "以及许多引人审思的符号语言而闻名\""
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "Other artists",
+        "KeyWord2": "其他艺术家",
+        "promptEN": "John Harris",
+        "promptZH": "约翰·哈里斯",
+        "hoover": "yes",
+        "details": "英国画家，擅长科幻场景"
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "Other artists",
+        "KeyWord2": "其他艺术家",
+        "promptEN": "Hilma af Klint",
+        "promptZH": "希尔玛·阿芙·克林特",
+        "hoover": "yes",
+        "details": "瑞典艺术家和神秘主义者，抽像艺术风格"
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "Other artists",
+        "KeyWord2": "其他艺术家",
+        "promptEN": "George Inness",
+        "promptZH": "乔治·英尼斯",
+        "hoover": "yes",
+        "details": "美国著名的风景画家"
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "Other artists",
+        "KeyWord2": "其他艺术家",
+        "promptEN": "William Blake",
+        "promptZH": "威廉·布莱克",
+        "hoover": "yes",
+        "details": "画家和版画家。浪漫时代诗歌和视觉艺术史上的开创性人物。"
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "Other artists",
+        "KeyWord2": "其他艺术家",
+        "promptEN": "Studio Ghibli",
+        "promptZH": "吉卜力工作室",
+        "hoover": "yes",
+        "details": "日本动画(宫崎骏与高畑勋风格的出图)"
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "Other artists",
+        "KeyWord2": "其他艺术家",
+        "promptEN": "Gerald Brom",
+        "promptZH": "杰拉德·布罗姆",
+        "hoover": "yes",
+        "details": "Brom是美国哥特式奇幻艺术家和插画家"
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "Other artists",
+        "KeyWord2": "其他艺术家",
+        "promptEN": "Ivan Bilibin",
+        "promptZH": "伊万·比里宾",
+        "hoover": "yes",
+        "details": "俄罗斯插画家和舞台设计师"
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "Other artists",
+        "KeyWord2": "其他艺术家",
+        "promptEN": "Arthur Rackham",
+        "promptZH": "亚瑟·拉克姆",
+        "hoover": "yes",
+        "details": "英国插画家。“黄金时代”代表画家之一"
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "Other artists",
+        "KeyWord2": "其他艺术家",
+        "promptEN": "Edmund Dulac",
+        "promptZH": "埃德蒙·杜拉克",
+        "hoover": "yes",
+        "details": "东方主义时期的法国画家"
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "Other artists",
+        "KeyWord2": "其他艺术家",
+        "promptEN": "John William Waterhouse",
+        "promptZH": "约翰·威廉·瓦特豪斯",
+        "hoover": "yes",
+        "details": "\"英国新古典主义与前拉斐尔派画家。鲜明色彩和"
+    },
+    {
+        "Level1Label": "神秘画风/古典神话。\""
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "Other artists",
+        "KeyWord2": "其他艺术家",
+        "promptEN": "Michael Whelan",
+        "promptZH": "麦可·惠伦",
+        "hoover": "yes",
+        "details": "超现实主义，当代科幻和奇幻艺术家"
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "Other artists",
+        "KeyWord2": "其他艺术家",
+        "promptEN": "Wes Anderson",
+        "promptZH": "魏斯·安德森",
+        "hoover": "yes",
+        "details": "独特色彩与构图"
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "Other artists",
+        "KeyWord2": "其他艺术家",
+        "promptEN": "Shaun Tan",
+        "promptZH": "陈志勇",
+        "hoover": "yes",
+        "details": "澳洲插画家"
+    },
+    {
+        "Level1Label": "Artist",
+        "KeyWord": "艺术家",
+        "SecondLabel": "Other artists",
+        "KeyWord2": "其他艺术家",
+        "promptEN": "Hiroki Takeda",
+        "promptZH": "タケダヒロキ",
+        "hoover": "yes",
+        "details": "擅长水彩画的艺术家。擅长描绘逼真的三维动物"
     }
 ]

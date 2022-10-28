@@ -9,7 +9,7 @@
         "image": "yes",
         "fileUrl": "https://prompttool-1257994487.cos.ap-shanghai.myqcloud.com/NovelAI%E6%9E%84%E5%9B%BE/Overhead%20view.png",
         "hoover": "no",
-        "details": null
+        "details": ""
     },
     {
         "Level1Label": "layout",
@@ -21,7 +21,7 @@
         "image": "yes",
         "fileUrl": "https://prompttool-1257994487.cos.ap-shanghai.myqcloud.com/NovelAI%E6%9E%84%E5%9B%BE/Low%20angle.png",
         "hoover": "no",
-        "details": null
+        "details": ""
     },
     {
         "Level1Label": "layout",
@@ -33,7 +33,7 @@
         "image": "yes",
         "fileUrl": "https://prompttool-1257994487.cos.ap-shanghai.myqcloud.com/NovelAI%E6%9E%84%E5%9B%BE/Aerial%20view.png",
         "hoover": "no",
-        "details": null
+        "details": ""
     },
     {
         "Level1Label": "layout",
@@ -45,7 +45,7 @@
         "image": "yes",
         "fileUrl": "https://prompttool-1257994487.cos.ap-shanghai.myqcloud.com/NovelAI%E6%9E%84%E5%9B%BE/Extreme%20close-up.png",
         "hoover": "no",
-        "details": null
+        "details": ""
     },
     {
         "Level1Label": "layout",
@@ -57,7 +57,7 @@
         "image": "yes",
         "fileUrl": "https://prompttool-1257994487.cos.ap-shanghai.myqcloud.com/NovelAI%E6%9E%84%E5%9B%BE/close-up.png",
         "hoover": "no",
-        "details": null
+        "details": ""
     },
     {
         "Level1Label": "layout",
@@ -69,7 +69,7 @@
         "image": "yes",
         "fileUrl": "https://prompttool-1257994487.cos.ap-shanghai.myqcloud.com/NovelAI%E6%9E%84%E5%9B%BE/Medium%20shot.png",
         "hoover": "no",
-        "details": null
+        "details": ""
     },
     {
         "Level1Label": "layout",
@@ -81,7 +81,7 @@
         "image": "yes",
         "fileUrl": "https://prompttool-1257994487.cos.ap-shanghai.myqcloud.com/NovelAI%E6%9E%84%E5%9B%BE/Long%20shot.png",
         "hoover": "no",
-        "details": null
+        "details": ""
     },
     {
         "Level1Label": "layout",
@@ -93,7 +93,7 @@
         "image": "yes",
         "fileUrl": "https://prompttool-1257994487.cos.ap-shanghai.myqcloud.com/NovelAI%E6%9E%84%E5%9B%BE/Golden%20hour.png",
         "hoover": "no",
-        "details": null
+        "details": ""
     },
     {
         "Level1Label": "layout",
@@ -105,6 +105,113 @@
         "image": "yes",
         "fileUrl": "https://prompttool-1257994487.cos.ap-shanghai.myqcloud.com/NovelAI%E6%9E%84%E5%9B%BE/Tactical%20use%20of%20shadow.png",
         "hoover": "no",
-        "details": null
+        "details": ""
+    },
+    {
+        "Level1Label": "layout",
+        "KeyWord": "构图",
+        "SecondLabel": "light",
+        "KeyWord2": "灯光",
+        "promptEN": "Warm lighting",
+        "promptZH": "暖光",
+        "image": "yes",
+        "fileUrl": "https://prompttool-1257994487.cos.ap-shanghai.myqcloud.com/NovelAI%E6%9E%84%E5%9B%BE/Warm%20lighting.png",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "layout",
+        "KeyWord": "构图",
+        "SecondLabel": "light",
+        "KeyWord2": "灯光",
+        "promptEN": "Colourful lighting",
+        "promptZH": "彩色光源",
+        "image": "yes",
+        "fileUrl": "https://prompttool-1257994487.cos.ap-shanghai.myqcloud.com/NovelAI%E6%9E%84%E5%9B%BE/Colourful%20lighting.png",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "layout",
+        "KeyWord": "构图",
+        "SecondLabel": "light",
+        "KeyWord2": "灯光",
+        "promptEN": "Defined ‘real’ light source",
+        "promptZH": "真实光源",
+        "image": "yes",
+        "fileUrl": "https://prompttool-1257994487.cos.ap-shanghai.myqcloud.com/NovelAI%E6%9E%84%E5%9B%BE/Defined%20%E2%80%98real%E2%80%99%20light%20source.png",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "layout",
+        "KeyWord": "构图",
+        "SecondLabel": "light",
+        "KeyWord2": "灯光",
+        "promptEN": "High-key lighting",
+        "promptZH": "强光源",
+        "image": "yes",
+        "fileUrl": "https://prompttool-1257994487.cos.ap-shanghai.myqcloud.com/NovelAI%E6%9E%84%E5%9B%BE/High-key%20lighting.png",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "layout",
+        "KeyWord": "构图",
+        "SecondLabel": "light",
+        "KeyWord2": "灯光",
+        "promptEN": "Low-key lighting",
+        "promptZH": "弱光源",
+        "image": "yes",
+        "fileUrl": "https://prompttool-1257994487.cos.ap-shanghai.myqcloud.com/NovelAI%E6%9E%84%E5%9B%BE/Low-key%20lighting.png",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "layout",
+        "KeyWord": "构图",
+        "SecondLabel": "light",
+        "KeyWord2": "灯光",
+        "promptEN": "Backlighting",
+        "promptZH": "背光",
+        "image": "yes",
+        "fileUrl": "https://prompttool-1257994487.cos.ap-shanghai.myqcloud.com/NovelAI%E6%9E%84%E5%9B%BE/Backlighting.png",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "layout",
+        "KeyWord": "构图",
+        "SecondLabel": "light",
+        "KeyWord2": "灯光",
+        "promptEN": "Studio lighting",
+        "promptZH": "顶光",
+        "image": "yes",
+        "fileUrl": "https://prompttool-1257994487.cos.ap-shanghai.myqcloud.com/NovelAI%E6%9E%84%E5%9B%BE/Studio%20lighting.png",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "layout",
+        "KeyWord": "构图",
+        "SecondLabel": "light",
+        "KeyWord2": "灯光",
+        "promptEN": "volumetric lighting",
+        "promptZH": "体积光",
+        "image": "yes",
+        "fileUrl": "https://prompttool-1257994487.cos.ap-shanghai.myqcloud.com/NovelAI%E6%9E%84%E5%9B%BE/volumetric%20lighting.png",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "layout",
+        "KeyWord": "构图",
+        "SecondLabel": "light",
+        "KeyWord2": "灯光",
+        "promptEN": "mood lighting",
+        "promptZH": "气氛光",
+        "image": "yes",
+        "fileUrl": "https://prompttool-1257994487.cos.ap-shanghai.myqcloud.com/NovelAI%E6%9E%84%E5%9B%BE/mood%20lighting.png",
+        "hoover": "no"
     }
 ]

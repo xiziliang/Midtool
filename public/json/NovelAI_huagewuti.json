@@ -8,7 +8,8 @@
         "promptZH": "没有人类",
         "image": "yes",
         "fileUrl": "https://prompttool-1257994487.cos.ap-shanghai.myqcloud.com/NovelAI%E7%94%BB%E4%B8%AA%E7%89%A9%E4%BD%93/no%20humans.png",
-        "hoover": "no"
+        "hoover": "no",
+        "details": ""
     },
     {
         "Level1Label": "items",
@@ -19,7 +20,8 @@
         "promptZH": "猫",
         "image": "yes",
         "fileUrl": "https://prompttool-1257994487.cos.ap-shanghai.myqcloud.com/NovelAI%E7%94%BB%E4%B8%AA%E7%89%A9%E4%BD%93/cat.png",
-        "hoover": "no"
+        "hoover": "no",
+        "details": ""
     },
     {
         "Level1Label": "items",
@@ -30,7 +32,8 @@
         "promptZH": "汉堡",
         "image": "yes",
         "fileUrl": "https://prompttool-1257994487.cos.ap-shanghai.myqcloud.com/NovelAI%E7%94%BB%E4%B8%AA%E7%89%A9%E4%BD%93/hambugers.png",
-        "hoover": "no"
+        "hoover": "no",
+        "details": ""
     },
     {
         "Level1Label": "items",
@@ -41,7 +44,8 @@
         "promptZH": "摩托车",
         "image": "yes",
         "fileUrl": "https://prompttool-1257994487.cos.ap-shanghai.myqcloud.com/NovelAI%E7%94%BB%E4%B8%AA%E7%89%A9%E4%BD%93/motorcycle.png",
-        "hoover": "no"
+        "hoover": "no",
+        "details": ""
     },
     {
         "Level1Label": "items",
@@ -52,7 +56,8 @@
         "promptZH": "飞机",
         "image": "yes",
         "fileUrl": "https://prompttool-1257994487.cos.ap-shanghai.myqcloud.com/NovelAI%E7%94%BB%E4%B8%AA%E7%89%A9%E4%BD%93/%20aircraft.png",
-        "hoover": "no"
+        "hoover": "no",
+        "details": ""
     },
     {
         "Level1Label": "items",
@@ -63,7 +68,8 @@
         "promptZH": "苹果",
         "image": "yes",
         "fileUrl": "https://prompttool-1257994487.cos.ap-shanghai.myqcloud.com/NovelAI%E7%94%BB%E4%B8%AA%E7%89%A9%E4%BD%93/%20apple.png",
-        "hoover": "no"
+        "hoover": "no",
+        "details": ""
     },
     {
         "Level1Label": "items",
@@ -74,7 +80,8 @@
         "promptZH": "鳄梨",
         "image": "yes",
         "fileUrl": "https://prompttool-1257994487.cos.ap-shanghai.myqcloud.com/NovelAI%E7%94%BB%E4%B8%AA%E7%89%A9%E4%BD%93/%20Avocado.png",
-        "hoover": "no"
+        "hoover": "no",
+        "details": ""
     },
     {
         "Level1Label": "items",
@@ -85,7 +92,8 @@
         "promptZH": "香蕉",
         "image": "yes",
         "fileUrl": "https://prompttool-1257994487.cos.ap-shanghai.myqcloud.com/NovelAI%E7%94%BB%E4%B8%AA%E7%89%A9%E4%BD%93/%20banana.png",
-        "hoover": "no"
+        "hoover": "no",
+        "details": ""
     },
     {
         "Level1Label": "items",
@@ -96,6 +104,102 @@
         "promptZH": "美国",
         "image": "yes",
         "fileUrl": "https://prompttool-1257994487.cos.ap-shanghai.myqcloud.com/NovelAI%E7%94%BB%E4%B8%AA%E7%89%A9%E4%BD%93/America.png",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "items",
+        "KeyWord": "物品",
+        "SecondLabel": "items",
+        "KeyWord2": "物品",
+        "promptEN": "agriculture",
+        "promptZH": "农业",
+        "image": "yes",
+        "fileUrl": "https://prompttool-1257994487.cos.ap-shanghai.myqcloud.com/NovelAI%E7%94%BB%E4%B8%AA%E7%89%A9%E4%BD%93/agriculture.png",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "items",
+        "KeyWord": "物品",
+        "SecondLabel": "items",
+        "KeyWord2": "物品",
+        "promptEN": "bacteria",
+        "promptZH": "细菌",
+        "image": "yes",
+        "fileUrl": "https://prompttool-1257994487.cos.ap-shanghai.myqcloud.com/NovelAI%E7%94%BB%E4%B8%AA%E7%89%A9%E4%BD%93/bacteria.png",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "items",
+        "KeyWord": "物品",
+        "SecondLabel": "items",
+        "KeyWord2": "物品",
+        "promptEN": "chips",
+        "promptZH": "筹码",
+        "image": "yes",
+        "fileUrl": "https://prompttool-1257994487.cos.ap-shanghai.myqcloud.com/NovelAI%E7%94%BB%E4%B8%AA%E7%89%A9%E4%BD%93/chips.png",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "items",
+        "KeyWord": "物品",
+        "SecondLabel": "items",
+        "KeyWord2": "物品",
+        "promptEN": "sandwitch",
+        "promptZH": "三明治",
+        "image": "yes",
+        "fileUrl": "https://prompttool-1257994487.cos.ap-shanghai.myqcloud.com/NovelAI%E7%94%BB%E4%B8%AA%E7%89%A9%E4%BD%93/sandwitch.png",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "items",
+        "KeyWord": "物品",
+        "SecondLabel": "UI",
+        "KeyWord2": "游戏UI",
+        "promptEN": "magic bottle with light",
+        "promptZH": "带灯的瓶子",
+        "image": "yes",
+        "fileUrl": "https://prompttool-1257994487.cos.ap-shanghai.myqcloud.com/NovelAI%E7%94%BB%E4%B8%AA%E7%89%A9%E4%BD%93/%20magic%20bottle%20with%20light.png",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "items",
+        "KeyWord": "物品",
+        "SecondLabel": "UI",
+        "KeyWord2": "游戏UI",
+        "promptEN": "magic book with light",
+        "promptZH": "魔法书",
+        "image": "yes",
+        "fileUrl": "https://prompttool-1257994487.cos.ap-shanghai.myqcloud.com/NovelAI%E7%94%BB%E4%B8%AA%E7%89%A9%E4%BD%93/magic%20book%20with%20light.png",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "background",
+        "KeyWord": "背景",
+        "SecondLabel": "long shot",
+        "KeyWord2": "远景",
+        "promptEN": "scenery",
+        "promptZH": "风景",
+        "image": "yes",
+        "fileUrl": "https://prompttool-1257994487.cos.ap-shanghai.myqcloud.com/NovelAI%E7%94%BB%E4%B8%AA%E7%89%A9%E4%BD%93/scenery.png",
+        "hoover": "no",
+        "details": ""
+    },
+    {
+        "Level1Label": "background",
+        "KeyWord": "背景",
+        "SecondLabel": "long shot",
+        "KeyWord2": "远景",
+        "promptEN": "cityscape",
+        "promptZH": "城市风景",
+        "image": "yes",
+        "fileUrl": "https://prompttool-1257994487.cos.ap-shanghai.myqcloud.com/NovelAI%E7%94%BB%E4%B8%AA%E7%89%A9%E4%BD%93/cityscape.png",
         "hoover": "no"
     }
 ]
