@@ -194,33 +194,51 @@ function initKeyword<T>(name: Ref<T> | T) {
 }
 
 /** 关闭弹窗后，选中数据和现有历史数据合并 */
-function assignHistoyData(data: Ref<any[]>) {
+function assignHistoyData(elRef: Ref<any>, data: Ref<any[]>) {
   // 从dialog中选择后
-  const HistoryData = cardRef.value?.selectedList as any[];
+  const HistoryData = (elRef.value?.selectedList as any[]) || [];
 
-  // NOTE:对应历史数据合并
-  HistoryData.forEach((x) => {
-    const has = data.value.find((y) => y.promptEN === x.promptEN);
-    has ? Object.assign(has, x) : data.value.unshift(x);
-  });
+  const currentSelected = data.value.filter((x) => x.isSelected);
+  const historySelected = HistoryData.filter((x) => x.isSelected);
+
+  // NOTE: 当前选中的个数大于弹窗选中的个数，表示在弹窗是是进行了取消选中的操作
+  //       需要把从弹窗返回的数据取出isDefault为true的数据，和默认的5条数据进行合并
+  if (currentSelected.length > historySelected.length) {
+    const default5 = data.value.filter((x) => x.isDefault);
+    const remainDefault5 = HistoryData.filter((x) => x.isDefault && x.isSelected);
+    const remainOther = HistoryData.filter((x) => !x.isDefault && x.isSelected);
+
+    default5.forEach((x) => {
+      const has = remainDefault5.find((y) => y.promptEN === x.promptEN);
+      has ? Object.assign(has, x) : (x.isSelected = false);
+    });
+
+    data.value = [...remainOther, ...default5];
+  } else {
+    // NOTE:对应历史数据合并
+    HistoryData.forEach((x) => {
+      const has = data.value.find((y) => y.promptEN === x.promptEN);
+      has ? Object.assign(has, x) : data.value.unshift(x);
+    });
+  }
 }
 
 function onClosePeople() {
   onCloseDialog();
 
-  assignHistoyData(defaultDrawPeople);
+  assignHistoyData(cardRef, defaultDrawPeople);
 }
 
 function onCloseBody() {
   onCloseDialog();
 
-  assignHistoyData(defaultDrawBody);
+  assignHistoyData(cardRef, defaultDrawBody);
 }
 
 function onCloseStyle() {
   onCloseDialog();
 
-  assignHistoyData(defaultDrawStyle);
+  assignHistoyData(cardRef, defaultDrawStyle);
 }
 
 function onCloseComposeKeyword() {
@@ -230,7 +248,7 @@ function onCloseComposeKeyword() {
     defaultComposeKeyWord.value.unshift(initKeyword(newComposeKeyWord));
     newComposeKeyWord.value = "";
   } else {
-    assignHistoyData(defaultComposeKeyWord);
+    assignHistoyData(keywordRef, defaultComposeKeyWord);
   }
 }
 
@@ -241,7 +259,7 @@ function onClosePositiveKeyword() {
     defaultPositiveKeyWord.value.unshift(initKeyword(newPositiveKeyWord));
     newPositiveKeyWord.value = "";
   } else {
-    assignHistoyData(defaultPositiveKeyWord);
+    assignHistoyData(keywordRef, defaultPositiveKeyWord);
   }
 }
 // 自己添加
