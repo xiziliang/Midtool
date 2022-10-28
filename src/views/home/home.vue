@@ -142,12 +142,12 @@ function onClickClearBtn() {
       <img w-572px ma src="@/assets/img/logo.png" alt="logo" />
       <div class="tips" p="t-2 x-2" absolute w-full top-0px flex>
         <label class="title" text-18px font-600
-          ><span>prompt</span> <span>Tool</span> <span>词图</span></label
+          ><span>搜罗好词、给词配图、一键翻译，让AI画家更好的作画</span></label
         >
-        <span class="qq-style btn" text-12px m="l-a">
+        <!-- <span class="qq-style btn" text-12px m="l-a">
           <i class="icon-ren icon" mb-3px></i>
           QQ群 {{ qq }}</span
-        >
+        > -->
       </div>
     </div>
     <header
@@ -173,7 +173,7 @@ function onClickClearBtn() {
             v-model="inputValue"
             :autosize="{ minRows: 1, maxRows: 3 }"
             type="textarea"
-            placeholder="搜罗好词、给词配图、一键翻译，让AI画家更好的作画。"
+            placeholder="这里描述画面，在下方选择标签"
             @keypress.enter.prevent="translation"
           />
           <el-button
@@ -213,7 +213,7 @@ function onClickClearBtn() {
         <div class="lt-md:w-600px md:w-784px" p="y-15px x-2px" flex="~ gap-3">
           <template v-if="!translationResult.length && !loading">
             <p class="color-[#aaa]">
-              翻译结果: A lazy cat prone on the ground of the window
+              翻译结果: 点击翻译按钮，复制这里的英文，就可以去绘画啦
             </p>
           </template>
           <template v-if="loading">
@@ -226,6 +226,8 @@ function onClickClearBtn() {
               color-dark-400
               text-20px
               break-words
+              cursor-pointer
+              @click="copy('translation')"
               >{{ translationResult }}</code
             >
             <el-button
