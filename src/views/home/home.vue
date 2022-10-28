@@ -33,7 +33,12 @@ onClickOutside(clearBtnRef, () => {
 // route
 const router = useRouter();
 const route = useRoute();
-const currentRouter = computed(() => route.name);
+const currentRouter = computed({
+  set: (value) => {
+    console.log(value);
+  },
+  get: () => route.name,
+});
 const routerList = ref(
   $routes[0].children?.map((x) => ({
     title: x.meta?.title as string,

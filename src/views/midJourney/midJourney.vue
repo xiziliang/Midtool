@@ -672,6 +672,7 @@ function onSelectAIParams(
   <el-dialog
     title="作画参数"
     class="dialog-media"
+    style="width: 890px"
     v-model="dialogVisible.params"
     center
     :close-on-click-modal="false"

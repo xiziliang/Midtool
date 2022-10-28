@@ -96,8 +96,7 @@
   }
   &.dialog-media {
     height: calc(100% - 64px);
-    max-width: 892px;
-    width: 100%;
+    width: calc(100% - 128px);
     margin-top: 32px;
     margin-bottom: 32px;
 
