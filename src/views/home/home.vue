@@ -318,7 +318,6 @@ function onClickClearBtn() {
   color: #222;
   padding-left: 15px;
   padding-right: 15px;
-  line-height: 1.4;
 }
 
 .cleatBtn {
