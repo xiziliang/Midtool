@@ -170,10 +170,9 @@ function onClickClearBtn() {
       ref="headerRef"
       :style="{
         'box-shadow': headRefTop === 0 ? '0px 2px 16px rgba(0, 0, 0, 0.15)' : '',
-        'padding-top': headRefTop === 0 ? '1rem' : '',
       }"
       class="container-input"
-      p="b-4 x-2"
+      p="b-4 x-2 t-4"
     >
       <div class="input-group" flex="~" justify-center items-stretch w="100%">
         <div
