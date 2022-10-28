@@ -3,7 +3,7 @@ import type { ComputedRef, Ref } from "vue";
 
 import { useIntersectionObserver } from "@vueuse/core";
 
-export const useTabScroll = (allData: ComputedRef<any[]> | Ref<any[]>) => {
+export function useTabScroll<T extends Array<any>>(allData: ComputedRef<T> | Ref<T>) {
   // instance
   const tab2Ref = ref<HTMLElement[] | null>();
   const scrollBoxRef = ref<HTMLElement[] | null>();

@@ -193,40 +193,34 @@ function initKeyword<T>(name: Ref<T> | T) {
   } as any;
 }
 
-function onClosePeople() {
-  onCloseDialog();
+/** 关闭弹窗后，选中数据和现有历史数据合并 */
+function assignHistoyData(data: Ref<any[]>) {
   // 从dialog中选择后
   const HistoryData = cardRef.value?.selectedList as any[];
 
   // NOTE:对应历史数据合并
   HistoryData.forEach((x) => {
-    const has = defaultDrawPeople.value.find((y) => y.promptEN === x.promptEN);
-    has ? Object.assign(has, x) : defaultDrawPeople.value.unshift(x);
+    const has = data.value.find((y) => y.promptEN === x.promptEN);
+    has ? Object.assign(has, x) : data.value.unshift(x);
   });
+}
+
+function onClosePeople() {
+  onCloseDialog();
+
+  assignHistoyData(defaultDrawPeople);
 }
 
 function onCloseBody() {
   onCloseDialog();
-  // 从dialog中选择后
-  const HistoryData = cardRef.value?.selectedList as any[];
 
-  // NOTE:对应历史数据合并
-  HistoryData.forEach((x) => {
-    const has = defaultDrawBody.value.find((y) => y.promptEN === x.promptEN);
-    has ? Object.assign(has, x) : defaultDrawBody.value.unshift(x);
-  });
+  assignHistoyData(defaultDrawBody);
 }
 
 function onCloseStyle() {
   onCloseDialog();
-  // 从dialog中选择后
-  const HistoryData = cardRef.value?.selectedList as any[];
 
-  // NOTE:对应历史数据合并
-  HistoryData.forEach((x) => {
-    const has = defaultDrawStyle.value.find((y) => y.promptEN === x.promptEN);
-    has ? Object.assign(has, x) : defaultDrawStyle.value.unshift(x);
-  });
+  assignHistoyData(defaultDrawStyle);
 }
 
 function onCloseComposeKeyword() {
@@ -236,14 +230,7 @@ function onCloseComposeKeyword() {
     defaultComposeKeyWord.value.unshift(initKeyword(newComposeKeyWord));
     newComposeKeyWord.value = "";
   } else {
-    // 从dialog中选择后
-    const HistoryData = keywordRef.value?.selectedList as any[];
-
-    // NOTE:对应历史数据合并
-    HistoryData.forEach((x) => {
-      const has = defaultComposeKeyWord.value.find((y) => y.promptEN === x.promptEN);
-      has ? Object.assign(has, x) : defaultComposeKeyWord.value.unshift(x);
-    });
+    assignHistoyData(defaultComposeKeyWord);
   }
 }
 
@@ -254,14 +241,7 @@ function onClosePositiveKeyword() {
     defaultPositiveKeyWord.value.unshift(initKeyword(newPositiveKeyWord));
     newPositiveKeyWord.value = "";
   } else {
-    // 从dialog中选择后
-    const HistoryData = keywordRef.value?.selectedList as any[];
-
-    // NOTE:对应历史数据合并
-    HistoryData.forEach((x) => {
-      const has = defaultPositiveKeyWord.value.find((y) => y.promptEN === x.promptEN);
-      has ? Object.assign(has, x) : defaultPositiveKeyWord.value.unshift(x);
-    });
+    assignHistoyData(defaultPositiveKeyWord);
   }
 }
 // 自己添加

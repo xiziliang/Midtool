@@ -27,10 +27,8 @@ onBeforeUnmount(() => {
 const allData = computed(() => {
   const list = reactive(cloneDeep(props.list));
   if (props.defaultData) {
-    const defaultData = props.defaultData.filter((x) => !x.isDefault);
-
     // NOTE:对应历史数据合并
-    defaultData.forEach((x) => {
+    props.defaultData.forEach((x) => {
       const item = list.find((y) => x.promptEN === y.promptEN);
       if (item) Object.assign(item, x);
     });

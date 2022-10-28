@@ -258,27 +258,27 @@ export const useNovelAiData = () => {
   async function fetchPeople() {
     const { data } = await useFetch("/json/NovelAI_huageren.json");
     defaultDrawPeople.value = cloneDeep(formatDefaultData(JSON.parse(data.value as string).slice(0, 5)));
-    drawPeopleList.value = formatData(JSON.parse(data.value as string)).slice(5);
+    drawPeopleList.value = formatData(JSON.parse(data.value as string));
   }
   async function fetchBody() {
     const { data } = await useFetch("/json/NovelAI_huagewuti.json");
     defaultDrawBody.value = cloneDeep(formatDefaultData(JSON.parse(data.value as string).slice(0, 5)));
-    drawBodyList.value = formatData(JSON.parse(data.value as string)).slice(5);
+    drawBodyList.value = formatData(JSON.parse(data.value as string));
   }
   async function fetchStyle() {
     const { data } = await useFetch("/json/NovelAI_huafeng.json");
     defaultDrawStyle.value = cloneDeep(formatDefaultData(JSON.parse(data.value as string).slice(0, 5)));
-    drawStyleList.value = formatData(JSON.parse(data.value as string)).slice(5);
+    drawStyleList.value = formatData(JSON.parse(data.value as string));
   }
   async function fetchComposeKeyWord() {
     const { data } = await useFetch("/json/NovelAI_goutu.json");
     defaultComposeKeyWord.value = cloneDeep(formatDefaultData(JSON.parse(data.value as string).slice(0, 5)));
-    composeKeyWord.value = formatData(JSON.parse(data.value as string)).slice(5);
+    composeKeyWord.value = formatData(JSON.parse(data.value as string));
   }
   async function fetchPositiveKeyWord() {
     const { data } = await useFetch("/json/NovelAI_zhengmiantag.json");
     defaultPositiveKeyWord.value = cloneDeep(formatDefaultData(JSON.parse(data.value as string).slice(0, 5)));
-    positiveKeyWord.value = formatData(JSON.parse(data.value as string)).slice(5);
+    positiveKeyWord.value = formatData(JSON.parse(data.value as string));
   }
 
   function fetch() {
