@@ -84,7 +84,7 @@ const stringField = computed(() => {
     .map((x) => addParentheses(x.promptEN, x.weight))
     .join(",");
 
-  return ReplaceKey + "," + (prompt ? prompt + "," : "") + keyWord;
+  return ReplaceKey + (prompt ? prompt + "," : "") + keyWord;
 });
 
 const dialogVisible = reactive({
@@ -297,26 +297,26 @@ function onDeleteKeyword(type: NovelAiParams, index: number) {
   }
   ElMessage.success("删除成功");
 }
-function closePromptTemplateDialog(detailList:object[]){
+function closePromptTemplateDialog(detailList: object[]) {
   dialogVisible.prompt = false;
-  defaultPromptTemplate.value.forEach(item => {
+  defaultPromptTemplate.value.forEach((item) => {
     item.isSelected = false;
-  })
-  defaultDrawPeople.value.forEach(item => {
+  });
+  defaultDrawPeople.value.forEach((item) => {
     item.isSelected = false;
-  })
-  defaultDrawStyle.value.forEach(item => {
+  });
+  defaultDrawStyle.value.forEach((item) => {
     item.isSelected = false;
-  })
-  defaultDrawBody.value.forEach(item => {
+  });
+  defaultDrawBody.value.forEach((item) => {
     item.isSelected = false;
-  })
-  defaultComposeKeyWord.value.forEach(item => {
+  });
+  defaultComposeKeyWord.value.forEach((item) => {
     item.isSelected = false;
-  })
-  defaultPositiveKeyWord.value.forEach(item => {
+  });
+  defaultPositiveKeyWord.value.forEach((item) => {
     item.isSelected = false;
-  })
+  });
   defaultCustomKeyWord.value = detailList;
 }
 

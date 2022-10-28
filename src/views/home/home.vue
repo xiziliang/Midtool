@@ -44,7 +44,6 @@ const routerList = ref(
 // input value
 const loading = ref(false);
 const inputValue = ref("");
-const translationResult = ref("");
 const qq = ref(123456789);
 const website = ref([
   {
@@ -65,6 +64,29 @@ const website = ref([
   },
 ]);
 const clearBtnVisible = ref(true);
+/** 翻译结果 */
+const translationResult = ref("");
+/** 翻译展示字段 */
+const translationShow = computed(() => {
+  let others: string | undefined;
+  if (translationResult.value) {
+    return stringField.value.replace(ReplaceKey, translationResult.value + ",");
+  } else {
+    if (currentRouter.value === "novelAi") {
+      // NOTE: 拼接自定义 keyWord
+      others = currentTabRef.value?.others
+        .map((x) => addParentheses(x.promptZH, x.weight))
+        .join(" ");
+    } else if (currentRouter.value === "midJourney") {
+      // NOTE: 拼接自定义 keyWord
+      others = currentTabRef.value?.others
+        .map((x) => (x.weight === 0 ? x.promptZH : x.promptZH + ":" + x.weight))
+        .join(" ");
+    }
+
+    return stringField.value.replace(ReplaceKey, others ? others + "," : "");
+  }
+});
 
 function onClickTab(context: TabsPaneContext) {
   router.push({
@@ -88,23 +110,16 @@ function copy(type: "input" | "translation") {
         }
         copyText(String(copyString));
       }
-      // copyText(inputValue.value);
 
       break;
     case "translation":
-      copyText(translationResult.value);
+      copyText(translationShow.value);
       break;
   }
 }
 
 async function translation() {
   let others: string | undefined;
-
-  if (!inputValue.value) {
-    translationResult.value = "";
-    ElMessage.warning("请输入描述");
-    return;
-  }
 
   if (currentRouter.value === "novelAi") {
     // NOTE: 拼接自定义 keyWord
@@ -123,10 +138,11 @@ async function translation() {
     origin: others ? inputValue.value + "," + others : inputValue.value,
   });
   loading.value = false;
-  translationResult.value = stringField.value.replace(
-    ReplaceKey,
-    JSON.parse(data.value as string).data
-  );
+  translationResult.value = JSON.parse(data.value as string).data;
+  // translationResult.value = stringField.value.replace(
+  //   ReplaceKey,
+  //   JSON.parse(data.value as string).data
+  // );
 }
 
 function onClickClearBtn() {
@@ -211,7 +227,7 @@ function onClickClearBtn() {
       </div>
       <div class="translation-result" flex="~" px-4 justify-center items-start>
         <div class="lt-md:w-600px md:w-784px" p="y-15px x-2px" flex="~ gap-3">
-          <template v-if="!translationResult.length && !loading">
+          <template v-if="!translationShow.length && !loading">
             <p class="color-[#aaa]">
               翻译结果: 点击翻译按钮，复制这里的英文，就可以去绘画啦
             </p>
@@ -220,7 +236,7 @@ function onClickClearBtn() {
             <i class="icon-loading icon"></i>
             <p class="color-[#aaa]">正在翻译...</p>
           </template>
-          <template v-else-if="translationResult.length > 0 && !loading">
+          <template v-else-if="translationShow.length > 0 && !loading">
             <code
               class="tracking-0.5px w-37rem text-3line"
               color-dark-400
@@ -228,7 +244,7 @@ function onClickClearBtn() {
               break-words
               cursor-pointer
               @click="copy('translation')"
-              >{{ translationResult }}</code
+              >{{ translationShow }}</code
             >
             <el-button
               class="copy h-48px"

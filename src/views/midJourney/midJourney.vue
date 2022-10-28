@@ -103,7 +103,6 @@ const stringField = computed(() => {
   return (
     (imglist ? imglist + "," : "") +
     ReplaceKey +
-    "," +
     (cardListString ? cardListString + "," : "") +
     (keyWordString ? keyWordString + "," : "") +
     (dpiParams.isSelected
