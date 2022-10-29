@@ -38,7 +38,7 @@ const emits = defineEmits([
 
 const limit = computed(() => {
   if (props.slice) {
-    return typeof props.slice === "number" ? props.slice : 5;
+    return typeof props.slice === "number" ? props.slice : 6;
   }
   return false;
 });
