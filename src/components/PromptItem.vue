@@ -16,6 +16,7 @@ defineProps<{
   isSelected?: boolean;
 }>();
 function handleData(data:string){
+  // console.log(data)
   let newData = data.replace(/,/g, "，").replace(/[(]|[)]|[{]|[}]|[（]|[）]|\s*/g, "")
   return newData
 }

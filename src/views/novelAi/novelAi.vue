@@ -3,6 +3,7 @@ import { ref, reactive, onBeforeUnmount, unref, computed } from "vue";
 import type { Ref } from "vue";
 import { ElMessage } from "element-plus";
 import { cloneDeep } from "lodash";
+import type { PromptTemplate } from "@/models";
 
 import type { NovelAiParams, DpiOptions, CustomKeyWord, CardItem } from "@/models";
 
@@ -12,6 +13,7 @@ import PromptItem from "@/components/PromptItem.vue";
 import NovelKeywordDialog from "@/components/NovelKeywordDialog.vue";
 import NovelCardDialog from "@/components/NovelCardDialog.vue";
 import PromptTemplateDialog from "@/components/PromptTemplateDialog.vue";
+import DetailDialog from "@/components/DetailDialog.vue"
 
 import { ReplaceKey } from "@/constants";
 import { addParentheses } from "@/utils";
@@ -23,7 +25,7 @@ const clearUp = useEventListener("click", clearWeight);
 onBeforeUnmount(() => {
   clearUp();
 });
-
+const detailItemData = ref<PromptTemplate>();
 const {
   // JSON数据
   promptTemplateList,
@@ -94,6 +96,7 @@ const dialogVisible = reactive({
   style: false,
   composeKeyWord: false,
   positiveKeyWord: false,
+  detail: false,
 
   writeComposeKeyWord: false,
   writePositiveKeyWord: false,
@@ -317,7 +320,61 @@ function closePromptTemplateDialog(detailList: object[]) {
   });
   defaultCustomKeyWord.value = detailList;
 }
-
+function adddefaultPromptTemplate(list:object[],detailItemData:PromptTemplate){
+  defaultPromptTemplate.value.unshift(detailItemData.value);
+  closePromptTemplateDialog(list);
+}
+// 详情dialog
+function clickCard(item:PromptTemplate){
+  dialogVisible.detail = true;
+  detailItemData.value = item;
+}
+// 关闭详情
+function closeDetailDialog(){
+  dialogVisible.detail = false;
+}
+// 使用详情
+async function useDetailData(){
+  dialogVisible.detail = false;
+  let list = detailTagList(detailItemData);
+  closePromptTemplateDialog(list)
+}
+// 生成tag数据
+function detailTagList(data:PromptTemplate){
+  let list = data.value.promptZH.replace(/\s*/g, "").replace(/,/g, "，").replace(/（/g, "(").replace(/）/g, ")").split("，");
+  let newList:object[] = [];
+  list.forEach((item:string)=>{
+    if(item){
+      let matchArr1 = item.match(/[(|)]/gi);
+      let matchArr2 = item.match(/[{|}]/gi);
+      if(matchArr1 || matchArr2){
+        let weightNum:number = 1;
+        if(matchArr1){
+          weightNum += matchArr1.length * 2;
+        }else if(matchArr2){
+          weightNum += matchArr2.length * 1;
+        }
+        let itemPromptZH = item.replace(/[(]|[)]|[{]|[}]|[（]|[）]|\s*/g, "")
+        newList.push({
+          promptZH: itemPromptZH,
+          isCustom: true,
+          isSelected: true,
+          weight: weightNum,
+          showWeight: false
+        })
+      }else {
+        newList.push({
+          promptZH: item,
+          isCustom: true,
+          isSelected: true,
+          weight: 1,
+          showWeight: false
+        })
+      }
+    }
+  })
+  return newList
+}
 defineExpose({
   // 杂项
   others,
@@ -358,7 +415,7 @@ defineExpose({
         v-for="item in defaultPromptTemplate"
         :key="item.promptEN"
         :class="{ selected: item.isSelected }"
-        @click="item.isSelected = !item.isSelected"
+        @click="clickCard(item)"
       >
         <PromptItem v-bind="item" />
       </div>
@@ -536,7 +593,7 @@ defineExpose({
       ref="promptTemplateRef"
       :list="promptTemplateList"
       :dialog-visible="dialogVisible.prompt"
-      @childClose="closePromptTemplateDialog"
+      @childClose="adddefaultPromptTemplate"
     ></PromptTemplateDialog>
   </el-dialog>
   <el-dialog
@@ -723,6 +780,30 @@ defineExpose({
         <el-button class="dialogBtn" type="primary" @click="onCloseCustomKeyword"
           >完成</el-button
         >
+      </span>
+    </template>
+  </el-dialog>
+  <el-dialog
+    title=""
+    v-model="dialogVisible.detail"
+    center
+    width="50%"
+    destroy-on-close
+    draggable
+    class="detail-dialog"
+    :close-on-click-modal="false"
+  >
+    <DetailDialog
+      ref="detailDialogRef"
+      :detailData="detailItemData"
+      :dialog-visible="dialogVisible.detail"
+    ></DetailDialog>
+    <template #footer>
+      <span>
+        <el-button class="detail-back" @click="closeDetailDialog">返回</el-button>
+      </span>
+      <span>
+        <el-button class="detail-use" @click="useDetailData">使用</el-button>
       </span>
     </template>
   </el-dialog>

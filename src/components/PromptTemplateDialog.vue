@@ -179,38 +179,40 @@ async function useDetailData(){
   dialogVisible.detail = false;
   await nextTick();
   let list = detailTagList(detailItemData);
-  emit('childClose',list);
+  emit('childClose',list, detailItemData);
 }
 // 生成tag数据
 function detailTagList(data:PromptTemplate){
   let list = data.value.promptZH.replace(/\s*/g, "").replace(/,/g, "，").replace(/（/g, "(").replace(/）/g, ")").split("，");
   let newList:object[] = [];
   list.forEach((item:string)=>{
-    let matchArr1 = item.match(/[(]/gi);
-    let matchArr2 = item.match(/[{]/gi);
-    if(matchArr1 || matchArr2){
-      let weightNum:number = 1;
-      if(matchArr1){
-        weightNum += matchArr1.length * 2;
-      }else if(matchArr2){
-        weightNum += matchArr2.length * 1;
+    if(item){
+      let matchArr1 = item.match(/[(|)]/gi);
+      let matchArr2 = item.match(/[{|}]/gi);
+      if(matchArr1 || matchArr2){
+        let weightNum:number = 1;
+        if(matchArr1){
+          weightNum += matchArr1.length * 2;
+        }else if(matchArr2){
+          weightNum += matchArr2.length * 1;
+        }
+        let itemPromptZH = item.replace(/[(]|[)]|[{]|[}]|[（]|[）]|\s*/g, "")
+        newList.push({
+          promptZH: itemPromptZH,
+          isCustom: true,
+          isSelected: true,
+          weight: weightNum,
+          showWeight: false
+        })
+      }else {
+        newList.push({
+          promptZH: item,
+          isCustom: true,
+          isSelected: true,
+          weight: 1,
+          showWeight: false
+        })
       }
-      let itemPromptZH = item.replace(/[(]|[)]|[{]|[}]|[（]|[）]|\s*/g, "")
-      newList.push({
-        promptZH: itemPromptZH,
-        isCustom: true,
-        isSelected: true,
-        weight: weightNum,
-        showWeight: false
-      })
-    }else {
-      newList.push({
-        promptZH: item,
-        isCustom: true,
-        isSelected: true,
-        weight: 1,
-        showWeight: false
-      })
     }
   })
   return newList

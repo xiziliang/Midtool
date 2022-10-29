@@ -18,9 +18,11 @@ function handleWeight(data:string){
 watch(
   () => props.detailData,
   (value) => {
-    data.value = value;
-    dataZH.value = handleWeight(props.detailData.promptZH);
-    dataEN.value = handleWeight(props.detailData.promptEN);
+    if(value){
+      data.value = value;
+      dataZH.value = handleWeight(props.detailData.promptZH);
+      dataEN.value = handleWeight(props.detailData.promptEN);
+    }
   },
   {
     immediate: true,
