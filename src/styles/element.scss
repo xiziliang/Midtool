@@ -94,7 +94,6 @@
     }
   }
   .el-dialog__footer {
-    border-top: 1px solid #EAEFF3;
     padding-top: 24px;
     padding-bottom: 24px;
   }
@@ -104,6 +103,9 @@
     margin-top: 32px;
     margin-bottom: 32px;
 
+    .el-dialog__footer {
+      border-top: 1px solid #EAEFF3;
+    }
     @media screen and (max-width: 912px) {
       width: auto;
       margin: var(--el-dialog-margin-top, 15vh) 10px 50px;
