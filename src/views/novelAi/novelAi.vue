@@ -333,15 +333,14 @@ defineExpose({
 <template>
   <main
     class="container-params ma lt-lg:max-w-660px lg:max-w-828px xl:max-w-1176px 2xl:max-w-1336px"
-    mb-60px
   >
-    <div flex="~" mt-4 mb-1 class="readmore-title">
+    <div flex="~" mt-4 mb-8px class="readmore-title">
       <div cursor-pointer flex @click="onSelectParams('prompt')">
         <p text-20px color-dark-400>
           <i class="icon-fengge icon-big mr-2 -mb-1"></i>选择参考图
         </p>
         <div i-carbon:add></div>
-        <p self-center text-14px class="text-[#AAAAAA]">
+        <p ml-8px self-center text-14px class="text-[#AAAAAA]">
           我们会自动选中对应的参考词，让画面与原图更接近，这些词会自动加在翻译的句尾
         </p>
       </div>
@@ -351,7 +350,7 @@ defineExpose({
       justify-start
       items-stretch
       will-change-scroll
-      p="y-2 x-2px"
+      p="x-2px"
       class="more"
     >
       <div
@@ -364,13 +363,13 @@ defineExpose({
         <PromptItem v-bind="item" />
       </div>
     </div>
-    <div flex="~" mt-8 mb-3 class="readmore-title">
+    <div flex="~" mt-8 mb-8px class="readmore-title">
       <div cursor-pointer flex @click="onSelectParams('people')">
         <p text-20px color-dark-400>
           <i class="icon-fengge icon-big mr-2 -mb-1"></i>画个人
         </p>
         <div i-carbon:add></div>
-        <p self-center text-14px class="text-[#AAAAAA]">
+        <p ml-8px self-center text-14px class="text-[#AAAAAA]">
           角色/身份/头发/面部/姿势/情绪/衣着...
         </p>
       </div>
@@ -380,18 +379,18 @@ defineExpose({
       justify-start
       items-stretch
       will-change-scroll
-      p="y-2 x-2px"
+      p="x-2px"
       class="more"
     >
       <NovelCard :data="defaultDrawPeople" :all-default-data="allDefaultData"></NovelCard>
     </div>
-    <div flex="~" mt-28px mb-5px class="readmore-title">
+    <div flex="~" mt-28px mb-8px class="readmore-title">
       <div cursor-pointer flex @click="onSelectParams('body')">
         <p text-20px color-dark-400>
           <i class="icon-fengge icon-big mr-2 -mb-1"></i>画个物体
         </p>
         <div i-carbon:add></div>
-        <p self-center text-14px class="text-[#AAAAAA]">添加物体/只画物体</p>
+        <p ml-8px self-center text-14px class="text-[#AAAAAA]">添加物体/只画物体</p>
       </div>
     </div>
     <div
@@ -399,18 +398,18 @@ defineExpose({
       justify-start
       items-stretch
       will-change-scroll
-      p="y-2 x-2px"
+      p="x-2px"
       class="more"
     >
       <NovelCard :data="defaultDrawBody" :all-default-data="allDefaultData"></NovelCard>
     </div>
-    <div flex="~" mt-28px mb-5px class="readmore-title">
+    <div flex="~" mt-28px mb-8px class="readmore-title">
       <div cursor-pointer flex @click="onSelectParams('style')">
         <p text-20px color-dark-400>
           <i class="icon-fengge icon-big mr-2 -mb-1"></i>画风
         </p>
         <div i-carbon:add></div>
-        <p self-center text-14px class="text-[#AAAAAA]">动漫绘画为主</p>
+        <p ml-8px self-center text-14px class="text-[#AAAAAA]">动漫绘画为主</p>
       </div>
     </div>
     <div
@@ -418,21 +417,21 @@ defineExpose({
       justify-start
       items-stretch
       will-change-scroll
-      p="y-2 x-2px"
+      p="x-2px"
       class="more"
     >
       <NovelCard :data="defaultDrawStyle" :all-default-data="allDefaultData"></NovelCard>
     </div>
-    <div flex="~" mt-28px mb-5px class="readmore-title">
+    <div flex="~" mt-28px mb-8px class="readmore-title">
       <div cursor-pointer flex @click="onSelectParams('composeKeyWord')">
         <p text-20px color-dark-400>
           <i class="icon-tishici icon-big mr-2 -mb-1"></i>构图
         </p>
         <div i-carbon:add></div>
-        <p self-center text-14px class="text-[#AAAAAA]">焦距/距离/灯光...</p>
+        <p ml-8px self-center text-14px class="text-[#AAAAAA]">焦距/距离/灯光...</p>
       </div>
     </div>
-    <div flex="~ gap-3 wrap" justify-start items-stretch class="more">
+    <div flex="~ gap-3 wrap" justify-start items-stretch p="x-2px" class="more">
       <Tag
         class="no-mark-tag"
         content="自定义"
@@ -464,7 +463,7 @@ defineExpose({
         <div i-carbon:add></div>
       </div>
     </div>
-    <div flex="~ gap-3 wrap" justify-start items-stretch class="more">
+    <div flex="~ gap-3 wrap" justify-start items-stretch p="x-2px" class="more">
       <Tag
         class="no-mark-tag"
         content="自定义"
@@ -496,7 +495,7 @@ defineExpose({
         <div i-carbon:add></div>
       </div>
     </div>
-    <div flex="~ gap-3 wrap" justify-start items-stretch class="more">
+    <div flex="~ gap-3 wrap" justify-start items-stretch p="x-2px" class="more">
       <Tag
         class="no-mark-tag"
         content="自定义"

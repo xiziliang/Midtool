@@ -80,7 +80,7 @@ function onClick() {
     <span
       relative
       flex="~ col"
-      class="keyword-tag px-20px py-6px"
+      class="keyword-tag py-6px"
       :class="{
         selected: isSelected,
         dpiStyle: type === 'dpi',

@@ -274,7 +274,7 @@ function onClickClearBtn() {
       <component :ref="(el: any) => currentTabRef = el" :is="Component" />
     </RouterView>
   </div>
-  <footer class="bg-[#333333] mt-52px">
+  <footer class="bg-[#333333] mt-28px">
     <div
       class="footer ma lt-lg:max-w-660px lg:max-w-828px xl:max-w-1176px 2xl:max-w-1332px"
       flex="~ col"

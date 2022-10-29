@@ -106,11 +106,10 @@ const stringField = computed(() => {
     (cardListString ? cardListString + "," : "") +
     (keyWordString ? keyWordString + "," : "") +
     (dpiParams.isSelected
-      ? `--ar ${dpiParams.height}:${dpiParams.width}`
+      ? `--ar ${dpiParams.height}:${dpiParams.width}` + ","
       : defaultDpiList.value.filter((x) => x.isSelected).length
-      ? `--ar ${defaultDpiList.value[0].height}:${defaultDpiList.value[0].width}`
-      : "--ar 1:1") +
-    "," +
+      ? `--ar ${defaultDpiList.value[0].height}:${defaultDpiList.value[0].width}` + ","
+      : "") +
     (paramsListString ? paramsListString : "")
   );
 });
@@ -353,13 +352,13 @@ function onSelectAIParams(
   <main
     class="container-params ma lt-lg:max-w-660px lg:max-w-828px xl:max-w-1176px 2xl:max-w-1336px"
   >
-    <div flex="~" mt-4 mb-1 class="readmore-title">
+    <div flex="~" mt-4 mb-8px class="readmore-title">
       <div cursor-pointer flex>
         <p text-20px color-dark-400>
           <i class="icon-fengge icon-big mr-2 -mb-1"></i>选择参考图
         </p>
         <div i-carbon:add></div>
-        <p self-center text-14px class="text-[#AAAAAA]">
+        <p ml-8px self-center text-14px class="text-[#AAAAAA]">
           我们会自动选中对应的参考词，让画面与原图更接近，这些词会自动加在翻译的句尾
         </p>
       </div>
@@ -369,16 +368,16 @@ function onSelectAIParams(
       justify-start
       items-stretch
       will-change-scroll
-      p="y-2 x-2px"
+      p="x-2px"
       class="more"
     ></div>
-    <div flex="~" mt-8 mb-3 class="readmore-title">
+    <div flex="~" mt-4 mb-8px class="readmore-title">
       <div cursor-pointer flex @click="onSelectAIParams('card')">
         <p text-20px color-dark-400>
           <i class="icon-fengge icon-big mr-2 -mb-1"></i>选择作画风格
         </p>
         <div i-carbon:add></div>
-        <p self-center text-14px class="text-[#AAAAAA]">
+        <p ml-8px self-center text-14px class="text-[#AAAAAA]">
           这些词可能会让画面更好看，选中它，翻译时就会加在句尾
         </p>
       </div>
@@ -388,7 +387,7 @@ function onSelectAIParams(
       justify-start
       items-stretch
       will-change-scroll
-      p="y-2 x-2px"
+      p="x-2px"
       class="more"
     >
       <Tag class="no-mark-tag" content="自定义" @click="onSelectAIParams('writeCard')">
@@ -410,7 +409,7 @@ function onSelectAIParams(
         @click-tag="(value) => onShowWeightTag(value, item)"
       ></Tag>
     </div>
-    <div flex="~" mt-8 mb-3 class="readmore-title">
+    <div flex="~" mt-4 mb-8px class="readmore-title">
       <div cursor-pointer flex @click="onSelectAIParams('keyword')">
         <p text-20px color-dark-400>
           <i class="icon-tishici icon-big mr-2 -mb-1"></i>选择提示词
@@ -418,7 +417,7 @@ function onSelectAIParams(
         <div i-carbon:add></div>
       </div>
     </div>
-    <div flex="~ gap-3 wrap" p="y-2 x-2px" justify-start items-stretch class="more">
+    <div flex="~ gap-3 wrap" p="x-2px" justify-start items-stretch class="more">
       <Tag class="no-mark-tag" content="自定义" @click="onSelectAIParams('writekeyword')">
         <template #icon> <i class="icon-zidingyi icon"></i></template>
       </Tag>
@@ -438,7 +437,7 @@ function onSelectAIParams(
         @click-tag="(value) => onShowWeightTag(value, item)"
       ></Tag>
     </div>
-    <div flex="~" m="t-4 b-4" class="readmore-title">
+    <div flex="~" mt-4 mb-8px class="readmore-title">
       <div cursor-pointer flex @click="onSelectAIParams('dpi')">
         <p text-20px color-dark-400>
           <i class="icon-bili icon-big mr-2 -mb-1"></i>选择画面比例
@@ -446,7 +445,7 @@ function onSelectAIParams(
         <div i-carbon:add></div>
       </div>
     </div>
-    <div flex="~ gap-3 wrap col" p="y-2 x-2px" items-start class="more">
+    <div flex="~ gap-3 wrap col" p="x-2px" items-start class="more">
       <div flex="~ gap-3 wrap">
         <Tag
           v-if="dpiParams.width && dpiParams.height"
@@ -474,7 +473,7 @@ function onSelectAIParams(
         </Tag>
       </div>
     </div>
-    <div flex="~" mt-4 mb-4 class="readmore-title">
+    <div flex="~" mt-4 mb-8px class="readmore-title">
       <div cursor-pointer flex @click="onSelectAIParams('params')">
         <p text-20px color-dark-400>
           <i class="icon-canshu icon-big mr-2 -mb-1"></i>选择作画参数
@@ -482,14 +481,14 @@ function onSelectAIParams(
         <div i-carbon:add></div>
       </div>
     </div>
-    <div p="y-2 x-2px" class="more">
+    <div p="x-2px" class="more">
       <MidjourneyParams
         :data="paramsList"
         :is-hide-no-selected="true"
         :dialog-visible="dialogVisible.params"
       ></MidjourneyParams>
     </div>
-    <div flex="~" mt-4 mb-4 class="readmore-title">
+    <div flex="~" mt-4 mb-8px class="readmore-title">
       <div cursor-pointer flex @click="onSelectAIParams('img')">
         <p text-20px color-dark-400>
           <i class="icon-wangzhi icon-big mr-2 -mb-1"></i>参考图片网址
@@ -499,7 +498,7 @@ function onSelectAIParams(
     </div>
     <div
       class="more"
-      p="y-2 x-2px"
+      p="x-2px"
       overflow-auto
       flex="~ gap-4"
       justify-start
@@ -508,7 +507,7 @@ function onSelectAIParams(
     >
       <ImgCard :data="defaultImgList"></ImgCard>
     </div>
-    <div flex="~" mt-4 mb-4 class="readmore-title">
+    <div flex="~" mt-4 mb-8px class="readmore-title">
       <div cursor-pointer flex>
         <p text-20px color-dark-400>
           <i class="icon-tishici icon-big mr-2 -mb-1"></i>自己添加
@@ -516,7 +515,7 @@ function onSelectAIParams(
         <div i-carbon:add></div>
       </div>
     </div>
-    <div flex="~ gap-3 wrap" p="y-2 x-2px" justify-start items-stretch class="more">
+    <div flex="~ gap-3 wrap" p="x-2px" justify-start items-stretch class="more">
       <Tag
         class="no-mark-tag"
         content="自定义"
