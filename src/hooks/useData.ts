@@ -133,13 +133,13 @@ export const useMidJourneyData = () => {
   }
 
   async function fetchCardListData() {
-    const { data } = await useFetch("/json/midjourney_cankaotu.json");
+    const { data } = await useFetch("/json/midjourneyStyle.json");
     default5CardList.value = formatData(JSON.parse(data.value as string), true).slice(0, 5);
     cardList.value = formatData(JSON.parse(data.value as string));
   }
 
   async function fetchPromptListData() {
-    const { data } = await useFetch("/json/midjourneyStyle.json");
+    const { data } = await useFetch("/json/midjourney_cankaotu.json");
     promptList.value = JSON.parse(data.value as string);
   }
 

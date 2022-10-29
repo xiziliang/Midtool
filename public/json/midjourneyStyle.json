@@ -1120,9 +1120,6 @@
         "details": "\"美国20世纪早期的重要画家及插画家，"
     },
     {
-        "Level1Label": "作品主要横跨商业宣传与美国文化(四大自由)\""
-    },
-    {
         "Level1Label": "Artist",
         "KeyWord": "艺术家",
         "SecondLabel": "Other artists",
@@ -1151,9 +1148,6 @@
         "promptZH": "雷内·马格利特",
         "hoover": "yes",
         "details": "\"绘画哲学家，超现实主义作品中带有些许诙谐"
-    },
-    {
-        "Level1Label": "以及许多引人审思的符号语言而闻名\""
     },
     {
         "Level1Label": "Artist",
@@ -1254,9 +1248,6 @@
         "promptZH": "约翰·威廉·瓦特豪斯",
         "hoover": "yes",
         "details": "\"英国新古典主义与前拉斐尔派画家。鲜明色彩和"
-    },
-    {
-        "Level1Label": "神秘画风/古典神话。\""
     },
     {
         "Level1Label": "Artist",
