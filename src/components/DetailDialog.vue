@@ -21,7 +21,7 @@ watch(
     if(value){
       data.value = value;
       dataZH.value = handleWeight(props.detailData.promptZH);
-      dataEN.value = handleWeight(props.detailData.promptEN);
+      dataEN.value = handleWeight(props.detailData.detagEN);
     }
   },
   {
@@ -45,7 +45,7 @@ watch(
         反面tag：{{dataEN}}
       </div>
       <div class="detail-tag-parameter clamp2 detail-text" p="x-25px t-12px">
-        参数：{{props.detailData.detagEN}}
+        参数：{{props.detailData.parameter}}
       </div>
       <div class="detail-tag-author detail-text" p="x-25px t-12px">
         作者：{{props.detailData.author}}

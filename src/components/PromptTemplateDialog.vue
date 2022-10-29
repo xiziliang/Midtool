@@ -184,11 +184,13 @@ async function useDetailData(){
 // 生成tag数据
 function detailTagList(data:PromptTemplate){
   let list = data.value.promptZH.replace(/\s*/g, "").replace(/,/g, "，").replace(/（/g, "(").replace(/）/g, ")").split("，");
+  let listEN = data.value.promptEN.replace(/[(]|[)]|[{]|[}]|[（]|[）]/g, "").replace(/,/g, "，").split("，");
   let newList:object[] = [];
-  list.forEach((item:string)=>{
+  list.forEach((item:string,index:number)=>{
     if(item){
       let matchArr1 = item.match(/[(|)]/gi);
       let matchArr2 = item.match(/[{|}]/gi);
+      let itemPromptEN = listEN[index];
       if(matchArr1 || matchArr2){
         let weightNum:number = 1;
         if(matchArr1){
@@ -196,9 +198,10 @@ function detailTagList(data:PromptTemplate){
         }else if(matchArr2){
           weightNum += matchArr2.length * 1;
         }
-        let itemPromptZH = item.replace(/[(]|[)]|[{]|[}]|[（]|[）]|\s*/g, "")
+        let itemPromptZH = item.replace(/[(]|[)]|[{]|[}]|[（]|[）]|\s*/g, "");
         newList.push({
           promptZH: itemPromptZH,
+          promptEN: itemPromptEN,
           isCustom: true,
           isSelected: true,
           weight: weightNum,
@@ -207,6 +210,7 @@ function detailTagList(data:PromptTemplate){
       }else {
         newList.push({
           promptZH: item,
+          promptEN: itemPromptEN,
           isCustom: true,
           isSelected: true,
           weight: 1,

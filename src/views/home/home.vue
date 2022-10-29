@@ -80,7 +80,7 @@ const translationShow = computed(() => {
     if (currentRouter.value === "novelAi") {
       // NOTE: 拼接自定义 keyWord
       others = currentTabRef.value?.others
-        .map((x) => addParentheses(x.promptZH, x.weight))
+        .map((x) => addParentheses(x.promptEN, x.weight))
         .join(" ");
     } else if (currentRouter.value === "midJourney") {
       // NOTE: 拼接自定义 keyWord
