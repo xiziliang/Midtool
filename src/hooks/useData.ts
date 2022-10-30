@@ -91,17 +91,21 @@ export const useMidJourneyData = () => {
     ...defaultCustomKeyWord.value,
   ])
 
-  const tooltiplist = computed<(CardItem & DpiOptions & CustomKeyWord & ImgOptions)[]>(
-    () => {
-      return [].concat(
-        defaultCardList.value.filter((x) => x.isSelected) as any || ([] as any),
-        defaultPromptList.value.filter((x) => x.isSelected) as any || ([] as any),
-        defaultKeyWordList.value.find((x) => x.isSelected) || ([] as any),
-        [...defaultDpiList.value, dpiParams].find((x) => x.isSelected) || ([] as any),
-        defaultImgList.value.find((x) => x.isSelected) || ([] as any)
-      );
-    }
-  );
+  const tooltiplist = computed(() => {
+    return allDefaultData.value.filter(x => x.isSelected)
+  })
+
+  // const tooltiplist = computed<(CardItem & DpiOptions & CustomKeyWord & ImgOptions)[]>(
+  //   () => {
+  //     return [].concat(
+  //       defaultCardList.value.filter((x) => x.isSelected) as any || ([] as any),
+  //       defaultPromptList.value.filter((x) => x.isSelected) as any || ([] as any),
+  //       defaultKeyWordList.value.find((x) => x.isSelected) || ([] as any),
+  //       [...defaultDpiList.value, dpiParams].find((x) => x.isSelected) || ([] as any),
+  //       defaultImgList.value.find((x) => x.isSelected) || ([] as any)
+  //     );
+  //   }
+  // );
 
   function initCustomList() {
     [
@@ -188,6 +192,7 @@ export const useMidJourneyData = () => {
     cardHistoryList,
 
     // computed data
+    defaultPromptList,
     defaultCardList,
     defaultKeyWordList,
     defaultDpiList,

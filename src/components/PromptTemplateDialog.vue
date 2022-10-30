@@ -146,7 +146,7 @@ function addElementVisibility() {
   });
 }
 function onTrigger(item: PromptTemplate) {
-  item.isSelected = !item.isSelected;
+  item.isSelected = true;
   // onClickCard(item.promptEN, item);
   showDetailDialog(item)
 }
@@ -177,6 +177,7 @@ function closeDetailDialog(){
 // 使用详情
 async function useDetailData(){
   dialogVisible.detail = false;
+  window.scrollTo(0, document.documentElement.clientHeight * 2);
   await nextTick();
   let list = detailTagList(detailItemData);
   emit('childClose',list, detailItemData);
@@ -275,6 +276,8 @@ function detailTagList(data:PromptTemplate){
               v-for="item in allData.filter((x) => x.KeyWord2 === keyword2)"
               :key="item.promptEN"
               :data-weight="item.weight"
+              :data-weight-none="item.weight == 1 ? 'none' : ''"
+              :title="item.details ? item.details : ''"
               @click.stop.self="onTrigger(item)"
             >
               <PromptItem
@@ -290,7 +293,6 @@ function detailTagList(data:PromptTemplate){
     title=""
     v-model="dialogVisible.detail"
     center
-    width="50%"
     destroy-on-close
     draggable
     class="detail-dialog"

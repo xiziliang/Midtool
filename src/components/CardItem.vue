@@ -40,7 +40,7 @@ const reduceDisable = computed(() =>
     <div class="card-img" v-lazy="fileUrl">
       <!-- <img height="160" width="156" :src="fileUrl" /> -->
     </div>
-    <div class="card-name" text-16px pb-0 p-2>{{ promptZH }}</div>
+    <div class="card-name ellipsis" text-16px p="x-6px y-4px">{{ promptZH }}</div>
 
     <div v-show="showWeight" class="weight-group bottom--26%" flex absolute items-center>
       <i

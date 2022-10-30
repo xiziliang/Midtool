@@ -2,6 +2,7 @@
 import { ref, reactive, nextTick, computed, onBeforeUnmount } from "vue";
 import { ElMessage } from "element-plus";
 import { cloneDeep } from "lodash";
+import type { PromptTemplate } from "@/models";
 
 import type { MidJourneyParams, DpiOptions, CustomKeyWord, CardItem } from "@/models";
 import { ReplaceKey } from "@/constants";
@@ -13,12 +14,15 @@ import DpiDialog from "@/components/DpiDialog.vue";
 import KeywordDialog from "@/components/KeywordDialog.vue";
 import CardDialog from "@/components/CardDialog.vue";
 import PromptItem from "@/components/PromptItem.vue";
+import PromptTemplateDialog from "@/components/PromptTemplateDialog.vue";
+import DetailDialog from "@/components/DetailDialog.vue"
 
 import { useEventListener } from "@vueuse/core";
 import { useMidJourneyData } from "@/hooks";
 
 const {
   // JSON data
+  promptList,
   cardList,
   keyWordList,
   paramsList,
@@ -34,6 +38,7 @@ const {
   cardHistoryList,
 
   // computed data
+  defaultPromptList,
   defaultCardList,
   defaultKeyWordList,
   defaultDpiList,
@@ -50,7 +55,6 @@ const {
 
   fetch,
 } = useMidJourneyData();
-
 const clearUp = useEventListener("click", () => {
   defaultWeightData.value.forEach((x) => (x.showWeight = false));
 });
@@ -130,6 +134,8 @@ const dialogVisible = reactive({
   writeCard: false,
   writeKeyWord: false,
   writeCustomKeyWord: false,
+  detail: false,
+  prompt: false
 });
 
 defineExpose({
@@ -302,9 +308,13 @@ function onCloseWriteCustomDialog() {
 }
 
 function onSelectAIParams(
-  type: MidJourneyParams | "writeCard" | "writekeyword" | "writeCustomKeyWord"
+  type: MidJourneyParams | "writeCard" | "writekeyword" | "writeCustomKeyWord" | ""
 ) {
   switch (type) {
+    case "prompt":
+      dialogVisible.prompt = true;
+
+      break;
     case "card":
       dialogVisible.card = true;
 
@@ -346,6 +356,88 @@ function onSelectAIParams(
       break;
   }
 }
+const detailItemData = ref<PromptTemplate>();
+function addDefaultPromptList(list:object[],detailItemData:PromptTemplate){
+  if(defaultPromptList.value.filter(item =>{
+    return item.fileUrl == detailItemData.value.fileUrl
+  }).length == 0){
+    defaultPromptList.value.unshift(detailItemData.value);
+  }
+  closePromptTemplateDialog(list);
+}
+// 详情dialog
+function clickCard(item:PromptTemplate){
+  dialogVisible.detail = true;
+  item.isSelected = true;
+  detailItemData.value = item;
+}
+// 关闭详情
+function closeDetailDialog(){
+  dialogVisible.detail = false;
+}
+// 使用详情
+async function useDetailData(){
+  dialogVisible.detail = false;
+  window.scrollTo(0, document.documentElement.clientHeight * 2);
+  let list = detailTagList(detailItemData);
+  closePromptTemplateDialog(list)
+}
+function closePromptTemplateDialog(detailList: object[]) {
+  dialogVisible.prompt = false;
+  // defaultPromptList.value.forEach((item) => {
+  //   item.isSelected = false;
+  // });
+  defaultCardList.value.forEach((item) => {
+    item.isSelected = false;
+  });
+  defaultKeyWordList.value.forEach((item) => {
+    item.isSelected = false;
+  });
+  defaultDpiList.value.forEach((item) => {
+    item.isSelected = false;
+  });
+  defaultCustomKeyWord.value = detailList;
+}
+// 生成tag数据
+function detailTagList(data:PromptTemplate){
+  let list = data.value.promptZH.replace(/\s*/g, "").replace(/,/g, "，").replace(/（/g, "(").replace(/）/g, ")").split("，");
+  let listEN = data.value.promptEN.replace(/[(]|[)]|[{]|[}]|[（]|[）]/g, "").replace(/,/g, "，").split("，");
+  let newList:object[] = [];
+  list.forEach((item:string,index:number)=>{
+    if(item){
+      let matchArr1 = item.match(/[(|)]/gi);
+      let matchArr2 = item.match(/[{|}]/gi);
+      let itemPromptEN = listEN[index];
+      if(matchArr1 || matchArr2){
+        let weightNum:number = 1;
+        if(matchArr1){
+          weightNum += matchArr1.length * 2;
+        }else if(matchArr2){
+          weightNum += matchArr2.length * 1;
+        }
+        let itemPromptZH = item.replace(/[(]|[)]|[{]|[}]|[（]|[）]|\s*/g, "")
+        newList.push({
+          promptZH: itemPromptZH,
+          promptEN: itemPromptEN,
+          isCustom: true,
+          isSelected: true,
+          weight: weightNum,
+          showWeight: false
+        })
+      }else {
+        newList.push({
+          promptZH: item,
+          promptEN: itemPromptEN,
+          isCustom: true,
+          isSelected: true,
+          weight: 1,
+          showWeight: false
+        })
+      }
+    }
+  })
+  return newList
+}
 </script>
 
 <template>
@@ -353,13 +445,13 @@ function onSelectAIParams(
     class="container-params ma lt-lg:max-w-660px lg:max-w-828px xl:max-w-1176px 2xl:max-w-1336px"
   >
     <div flex="~" mt-4 mb-8px class="readmore-title">
-      <div cursor-pointer flex>
+      <div cursor-pointer flex @click="onSelectAIParams('prompt')">
         <p text-20px color-dark-400>
           <i class="icon-fengge icon-big mr-2 -mb-1"></i>选择参考图
         </p>
         <div i-carbon:add></div>
         <p ml-8px self-center text-14px class="text-[#AAAAAA]">
-          我们会自动选中对应的参考词，让画面与原图更接近，这些词会自动加在翻译的句尾
+          画一张相似的，让画面与原图更接近，这些词会自动加在翻译的句尾
         </p>
       </div>
     </div>
@@ -370,13 +462,25 @@ function onSelectAIParams(
       will-change-scroll
       p="x-2px"
       class="more"
-    ></div>
+    >
+      <div
+        class="card prompt-item no-mark-tag"
+        v-for="item in defaultPromptList"
+        :key="item.promptEN"
+        @click="clickCard(item)"
+        :title="item.details ? item.details : ''"
+      >
+        <PromptItem v-bind="item" />
+      </div>
+    </div>
     <div flex="~" mt-4 mb-8px class="readmore-title">
       <div cursor-pointer flex @click="onSelectAIParams('card')">
-        <p text-20px color-dark-400>
-          <i class="icon-fengge icon-big mr-2 -mb-1"></i>选择作画风格
-        </p>
-        <div i-carbon:add></div>
+        <div hover:bg-gray-200 flex style="border-radius: 5px">
+          <p text-20px color-dark-400>
+            <i class="icon-fengge icon-big mr-2 -mb-1"></i>选择作画风格
+          </p>
+          <div i-carbon:add></div>
+        </div>
         <p ml-8px self-center text-14px class="text-[#AAAAAA]">
           这些词可能会让画面更好看，选中它，翻译时就会加在句尾
         </p>
@@ -411,10 +515,12 @@ function onSelectAIParams(
     </div>
     <div flex="~" mt-4 mb-8px class="readmore-title">
       <div cursor-pointer flex @click="onSelectAIParams('keyword')">
-        <p text-20px color-dark-400>
-          <i class="icon-tishici icon-big mr-2 -mb-1"></i>选择提示词
-        </p>
-        <div i-carbon:add></div>
+        <div hover:bg-gray-200 flex style="border-radius: 5px">
+          <p text-20px color-dark-400>
+            <i class="icon-tishici icon-big mr-2 -mb-1"></i>选择提示词
+          </p>
+          <div i-carbon:add></div>
+        </div>
       </div>
     </div>
     <div flex="~ gap-3 wrap" p="x-2px" justify-start items-stretch class="more">
@@ -439,10 +545,12 @@ function onSelectAIParams(
     </div>
     <div flex="~" mt-4 mb-8px class="readmore-title">
       <div cursor-pointer flex @click="onSelectAIParams('dpi')">
-        <p text-20px color-dark-400>
-          <i class="icon-bili icon-big mr-2 -mb-1"></i>选择画面比例
-        </p>
-        <div i-carbon:add></div>
+        <div hover:bg-gray-200 flex style="border-radius: 5px">
+          <p text-20px color-dark-400>
+            <i class="icon-bili icon-big mr-2 -mb-1"></i>选择画面比例
+          </p>
+          <div i-carbon:add></div>
+        </div>
       </div>
     </div>
     <div flex="~ gap-3 wrap col" p="x-2px" items-start class="more">
@@ -475,10 +583,12 @@ function onSelectAIParams(
     </div>
     <div flex="~" mt-4 mb-8px class="readmore-title">
       <div cursor-pointer flex @click="onSelectAIParams('params')">
-        <p text-20px color-dark-400>
-          <i class="icon-canshu icon-big mr-2 -mb-1"></i>选择作画参数
-        </p>
-        <div i-carbon:add></div>
+        <div hover:bg-gray-200 flex style="border-radius: 5px">
+          <p text-20px color-dark-400>
+            <i class="icon-canshu icon-big mr-2 -mb-1"></i>选择作画参数
+          </p>
+          <div i-carbon:add></div>
+        </div>
       </div>
     </div>
     <div p="x-2px" class="more">
@@ -490,10 +600,12 @@ function onSelectAIParams(
     </div>
     <div flex="~" mt-4 mb-8px class="readmore-title">
       <div cursor-pointer flex @click="onSelectAIParams('img')">
-        <p text-20px color-dark-400>
-          <i class="icon-wangzhi icon-big mr-2 -mb-1"></i>参考图片网址
-        </p>
-        <div i-carbon:add></div>
+        <div hover:bg-gray-200 flex style="border-radius: 5px">
+          <p text-20px color-dark-400>
+            <i class="icon-wangzhi icon-big mr-2 -mb-1"></i>参考图片网址
+          </p>
+          <div i-carbon:add></div>
+        </div>
       </div>
     </div>
     <div
@@ -509,10 +621,12 @@ function onSelectAIParams(
     </div>
     <div flex="~" mt-4 mb-8px class="readmore-title">
       <div cursor-pointer flex>
-        <p text-20px color-dark-400>
-          <i class="icon-tishici icon-big mr-2 -mb-1"></i>自己添加
-        </p>
-        <div i-carbon:add></div>
+        <div hover:bg-gray-200 flex style="border-radius: 5px">
+          <p text-20px color-dark-400>
+            <i class="icon-tishici icon-big mr-2 -mb-1"></i>参考图tag
+          </p>
+          <div i-carbon:add></div>
+        </div>
       </div>
     </div>
     <div flex="~ gap-3 wrap" p="x-2px" justify-start items-stretch class="more">
@@ -540,6 +654,24 @@ function onSelectAIParams(
       ></Tag>
     </div>
   </main>
+  <el-dialog
+    v-model="dialogVisible.prompt"
+    top="0"
+    class="prompt-dialog"
+    width="100%"
+    title="选择参考图"
+    center
+    draggable
+    destroy-on-close
+    :close-on-click-modal="false"
+  >
+    <PromptTemplateDialog
+      ref="promptTemplateRef"
+      :list="promptList"
+      :dialog-visible="dialogVisible.prompt"
+      @childClose="addDefaultPromptList"
+    ></PromptTemplateDialog>
+  </el-dialog>
   <el-dialog
     v-model="dialogVisible.card"
     class="dialog-media"
@@ -728,7 +860,7 @@ function onSelectAIParams(
     </template>
   </el-dialog>
   <el-dialog
-    title="自己添加"
+    title="参考图tag"
     v-model="dialogVisible.writeCustomKeyWord"
     center
     width="456px"
@@ -749,6 +881,29 @@ function onSelectAIParams(
         <el-button class="dialogBtn" type="primary" @click="onCloseWriteCustomDialog"
           >完成</el-button
         >
+      </span>
+    </template>
+  </el-dialog>
+  <el-dialog
+    title=""
+    v-model="dialogVisible.detail"
+    center
+    destroy-on-close
+    draggable
+    class="detail-dialog"
+    :close-on-click-modal="false"
+  >
+    <DetailDialog
+      ref="detailDialogRef"
+      :detailData="detailItemData"
+      :dialog-visible="dialogVisible.detail"
+    ></DetailDialog>
+    <template #footer>
+      <span>
+        <el-button class="detail-back" @click="closeDetailDialog">返回</el-button>
+      </span>
+      <span>
+        <el-button class="detail-use" @click="useDetailData">使用</el-button>
       </span>
     </template>
   </el-dialog>

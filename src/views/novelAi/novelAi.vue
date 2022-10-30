@@ -52,9 +52,7 @@ const {
 
   fetch,
 } = useNovelAiData();
-
 fetch();
-
 // instance
 const cardRef = ref<InstanceType<typeof NovelCardDialog>>();
 const keywordRef = ref<InstanceType<typeof NovelKeywordDialog>>();
@@ -265,10 +263,10 @@ function onClosePositiveKeyword() {
     assignHistoyData(keywordRef, defaultPositiveKeyWord);
   }
 }
-// 自己添加
+// 参考图tag
 function onCloseCustomKeyword() {
   onCloseDialog();
-  defaultCustomKeyWord.value.unshift(initKeyword(newCustomKeyWord));
+  defaultCustomKeyWord.value.push(initKeyword(newCustomKeyWord));
 }
 
 function onCloseDialog() {
@@ -321,7 +319,11 @@ function closePromptTemplateDialog(detailList: object[]) {
   defaultCustomKeyWord.value = detailList;
 }
 function adddefaultPromptTemplate(list:object[],detailItemData:PromptTemplate){
-  defaultPromptTemplate.value.unshift(detailItemData.value);
+  if(defaultPromptTemplate.value.filter(item =>{
+    return item.fileUrl == detailItemData.value.fileUrl
+  }).length == 0){
+    defaultPromptTemplate.value.unshift(detailItemData.value);
+  }
   closePromptTemplateDialog(list);
 }
 // 详情dialog
@@ -336,6 +338,7 @@ function closeDetailDialog(){
 // 使用详情
 async function useDetailData(){
   dialogVisible.detail = false;
+  window.scrollTo(0, document.documentElement.clientHeight * 2);
   let list = detailTagList(detailItemData);
   closePromptTemplateDialog(list)
 }
@@ -402,7 +405,7 @@ defineExpose({
         </p>
         <div i-carbon:add></div>
         <p ml-8px self-center text-14px class="text-[#AAAAAA]">
-          我们会自动选中对应的参考词，让画面与原图更接近，这些词会自动加在翻译的句尾
+          画一张相似的，让画面与原图更接近，这些词会自动加在翻译的句尾
         </p>
       </div>
     </div>
@@ -418,18 +421,20 @@ defineExpose({
         class="card prompt-item no-mark-tag"
         v-for="item in defaultPromptTemplate"
         :key="item.promptEN"
-        :class="{ selected: item.isSelected }"
         @click="clickCard(item)"
+        :title="item.details ? item.details : ''"
       >
         <PromptItem v-bind="item" />
       </div>
     </div>
     <div flex="~" mt-8 mb-8px class="readmore-title">
       <div cursor-pointer flex @click="onSelectParams('people')">
-        <p text-20px color-dark-400>
-          <i class="icon-fengge icon-big mr-2 -mb-1"></i>画个人
-        </p>
-        <div i-carbon:add></div>
+        <div hover:bg-gray-200 flex style="border-radius: 5px">
+          <p text-20px color-dark-400>
+            <i class="icon-fengge icon-big mr-2 -mb-1"></i>画个人
+          </p>
+          <div i-carbon:add></div>
+        </div>
         <p ml-8px self-center text-14px class="text-[#AAAAAA]">
           角色/身份/头发/面部/姿势/情绪/衣着...
         </p>
@@ -447,10 +452,12 @@ defineExpose({
     </div>
     <div flex="~" mt-28px mb-8px class="readmore-title">
       <div cursor-pointer flex @click="onSelectParams('body')">
-        <p text-20px color-dark-400>
-          <i class="icon-fengge icon-big mr-2 -mb-1"></i>画个物体
-        </p>
-        <div i-carbon:add></div>
+        <div hover:bg-gray-200 flex style="border-radius: 5px">
+          <p text-20px color-dark-400>
+            <i class="icon-fengge icon-big mr-2 -mb-1"></i>画个物体
+          </p>
+          <div i-carbon:add></div>
+        </div>
         <p ml-8px self-center text-14px class="text-[#AAAAAA]">添加物体/只画物体</p>
       </div>
     </div>
@@ -466,10 +473,12 @@ defineExpose({
     </div>
     <div flex="~" mt-28px mb-8px class="readmore-title">
       <div cursor-pointer flex @click="onSelectParams('style')">
-        <p text-20px color-dark-400>
-          <i class="icon-fengge icon-big mr-2 -mb-1"></i>画风
-        </p>
-        <div i-carbon:add></div>
+        <div hover:bg-gray-200 flex style="border-radius: 5px">
+          <p text-20px color-dark-400>
+            <i class="icon-fengge icon-big mr-2 -mb-1"></i>画风
+          </p>
+          <div i-carbon:add></div>
+        </div>
         <p ml-8px self-center text-14px class="text-[#AAAAAA]">动漫绘画为主</p>
       </div>
     </div>
@@ -485,14 +494,26 @@ defineExpose({
     </div>
     <div flex="~" mt-28px mb-8px class="readmore-title">
       <div cursor-pointer flex @click="onSelectParams('composeKeyWord')">
-        <p text-20px color-dark-400>
-          <i class="icon-tishici icon-big mr-2 -mb-1"></i>构图
-        </p>
-        <div i-carbon:add></div>
+        <div hover:bg-gray-200 flex style="border-radius: 5px">
+          <p text-20px color-dark-400>
+            <i class="icon-tishici icon-big mr-2 -mb-1"></i>构图
+          </p>
+          <div i-carbon:add></div>
+        </div>
         <p ml-8px self-center text-14px class="text-[#AAAAAA]">焦距/距离/灯光...</p>
       </div>
     </div>
-    <div flex="~ gap-3 wrap" justify-start items-stretch p="x-2px" class="more">
+    <div
+      flex="~ gap-12px wrap"
+      justify-start
+      items-stretch
+      will-change-scroll
+      p="x-2px"
+      class="more"
+    >
+      <NovelCard :data="defaultComposeKeyWord" :all-default-data="allDefaultData"></NovelCard>
+    </div>
+    <!-- <div flex="~ gap-3 wrap" justify-start items-stretch p="x-2px" class="more">
       <Tag
         class="no-mark-tag"
         content="自定义"
@@ -515,13 +536,15 @@ defineExpose({
         @add-weight="(value) => onAddWeight(value, item)"
         @click-tag="onShowWeightTag(item, 'composeKeyWord', index)"
       ></Tag>
-    </div>
+    </div> -->
     <div flex="~" mt-28px mb-8px class="readmore-title">
       <div cursor-pointer flex @click="onSelectParams('positiveKeyWord')">
-        <p text-20px color-dark-400>
-          <i class="icon-tishici icon-big mr-2 -mb-1"></i>正面tag
-        </p>
-        <div i-carbon:add></div>
+        <div hover:bg-gray-200 flex style="border-radius: 5px">
+          <p text-20px color-dark-400>
+            <i class="icon-tishici icon-big mr-2 -mb-1"></i>正面tag
+          </p>
+          <div i-carbon:add></div>
+        </div>
       </div>
     </div>
     <div flex="~ gap-3 wrap" justify-start items-stretch p="x-2px" class="more">
@@ -550,10 +573,12 @@ defineExpose({
     </div>
     <div flex="~" mt-28px mb-8px class="readmore-title">
       <div cursor-pointer flex>
-        <p text-20px color-dark-400>
-          <i class="icon-tishici icon-big mr-2 -mb-1"></i>自己添加
-        </p>
-        <div i-carbon:add></div>
+        <div hover:bg-gray-200 flex style="border-radius: 5px">
+          <p text-20px color-dark-400>
+            <i class="icon-tishici icon-big mr-2 -mb-1"></i>参考图tag
+          </p>
+          <div i-carbon:add></div>
+        </div>
       </div>
     </div>
     <div flex="~ gap-3 wrap" justify-start items-stretch p="x-2px" class="more">
@@ -763,7 +788,7 @@ defineExpose({
     </template>
   </el-dialog>
   <el-dialog
-    title="自己添加"
+    title="参考图tag"
     v-model="dialogVisible.writeCustomKeyWord"
     center
     width="456px"
@@ -791,7 +816,6 @@ defineExpose({
     title=""
     v-model="dialogVisible.detail"
     center
-    width="50%"
     destroy-on-close
     draggable
     class="detail-dialog"

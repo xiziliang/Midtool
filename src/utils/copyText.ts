@@ -29,8 +29,8 @@ export async function copyText(value: string, { successMsg = '复制成功', err
 export function addParentheses(value: string, weight: number, lang: 'EN' | 'ZH' = 'EN') {
   const Parentheses = {
     EN: {
-      leftP: '(',
-      rightP: ')',
+      leftP: '{',
+      rightP: '}',
     },
     ZH: {
       leftP: '（',

@@ -12,11 +12,11 @@ defineProps<{
   parameter: string;
   author: string;
   fileUrl?: string;
+  hoover: string;
   /** 是否主页选中 */
   isSelected?: boolean;
 }>();
 function handleData(data:string){
-  // console.log(data)
   let newData = data.replace(/,/g, "，").replace(/[(]|[)]|[{]|[}]|[（]|[）]|\s*/g, "")
   return newData
 }
@@ -26,9 +26,7 @@ function handleData(data:string){
   <div>
     <div
       class="card-img"
-      :style="{
-        'background-image': `url(${fileUrl})`,
-      }"
+      v-lazy="fileUrl"
     >
       <!-- <img height="160" width="156" :src="fileUrl" /> -->
     </div>

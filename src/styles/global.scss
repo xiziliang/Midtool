@@ -204,7 +204,7 @@ body,
 }
 
 .card {
-  width: 116px;
+  width: 146px;
   background-color: var(--el-color-white);
   color: var(--el-color-black);
 
@@ -233,7 +233,7 @@ body,
   .card-img,
   img {
     width: 100%;
-    height: 122px;
+    height: 144px;
     background-size: cover;
 
     border-top-left-radius: var(--el-border-radius-base);
@@ -245,6 +245,9 @@ body,
   &::before {
     content: none;
   }
+}
+.card[data-weight-none="none"]::before {
+  content: none;
 }
 
 .prompt-item {
@@ -277,6 +280,9 @@ body,
   &::before {
     content: none;
   }
+}
+.keyword-tag[data-weight-none="none"]::before {
+  content: none;
 }
 
 .tooltiplist {
@@ -373,6 +379,11 @@ body,
   bottom: -25px;
   transform: scale(0.5);
 }
+.search-input-black {
+  .search-input::before {
+    content: url(/src/assets/img/jiantou_black.png);
+  }
+}
 
 .container-input {
   position: sticky;
@@ -400,11 +411,14 @@ body,
   background-color: #fff !important;
   transition: 0.1s;
   opacity: 0.3;
+  &.i-carbon-copy-value {
+    opacity: 1;
+  }
 }
 
 .el-button.copy:hover {
-  .i-carbon-copy {
-    opacity: 1;
+  .i-carbon-copy-value {
+    background-image: url(../assets/img/fuzhi_kedian_green.png) !important;
   }
 }
 
@@ -462,8 +476,15 @@ code {
 }
 
 .detail-dialog {
-  max-width: 788px;
-  min-width: 500px;
+  position: absolute;
+  top: 32px;
+  bottom: 32px;
+  margin: 0;
+  width: calc((100vh - 64px) * 1.4);
+  left: 50%;
+  transform: translateX(-50%);
+  // max-width: 788px;
+  // min-width: 500px;
   .el-dialog__header,
   .el-dialog__body {
     padding: 0;
@@ -486,6 +507,11 @@ code {
     }
   }
   .el-dialog__footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-top: 1px solid #EAEFF3;
     .el-button {
       width: 128px;
       height: 38px;

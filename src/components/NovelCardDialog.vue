@@ -148,6 +148,7 @@ defineExpose({
               :key="item.promptEN"
               :class="{ selected: item.isSelected, 'no-mark-tag': !item.isSelected }"
               :data-weight="Math.trunc(item.weight)"
+              :data-weight-none="Math.trunc(item.weight) == 1 ? 'none' : ''"
               @click.stop.self="onTrigger(item)"
             >
               <CardItemComp

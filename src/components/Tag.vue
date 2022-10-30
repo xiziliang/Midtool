@@ -64,7 +64,6 @@ const reduceDisable = computed(() =>
 const isDisable = computed(() =>
   !props.tooltip ? true : !limit.value ? true : props.content.length < limit.value
 );
-
 function onClick() {
   emits("click-tag", props.content);
 }
@@ -87,7 +86,9 @@ function onClick() {
         'no-mark-tag': !isSelected,
       }"
       :data-weight="Math.trunc(weight!)"
+      :data-weight-none="Math.trunc(weight!) == 1 ? 'none' : ''"
       v-bind="$attrs"
+      :title="details ? details : ''"
       @click.stop.self="onClick"
     >
       <el-button

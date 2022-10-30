@@ -5,15 +5,30 @@ const props = defineProps<{
   detailData: PromptTemplate;
 }>();
 const data = ref();//全部数据
-const dataZH = ref<string>();//promptZH
-const dataEN = ref<string>()//promptEN
+let dataZH = ref<string>();//promptZH
+let detagEN = ref<string>()//detagEN
+let dataEN = ref<string>();//promptEN
+let imgClass = ref('header-img header-img-height');
 
 defineExpose({
   data
 });
 function handleWeight(data:string){
-  data = data.replace(/,/g, "，").replace(/[(]|[)]|[{]|[}]|[（]|[）]|\s*/g, "")
+  if(data){
+    data = data.replace(/,/g, "，").replace(/[(]|[)]|[{]|[}]|[（]|[）]/g, "")
+  }else {
+    data = ""
+  }
   return data
+}
+function imgLoad(img:object){
+  let imgWidth = img.path[0].width;
+  let imgHeight = img.path[0].height;
+  if(imgWidth >= (imgHeight * 1.4)){
+    imgClass.value = 'header-img'
+  }else {
+    imgClass.value = 'header-img header-img-height'
+  }
 }
 watch(
   () => props.detailData,
@@ -21,7 +36,8 @@ watch(
     if(value){
       data.value = value;
       dataZH.value = handleWeight(props.detailData.promptZH);
-      dataEN.value = handleWeight(props.detailData.detagEN);
+      detagEN.value = handleWeight(props.detailData.detagEN);
+      dataEN.value = handleWeight(props.detailData.promptEN);
     }
   },
   {
@@ -31,8 +47,8 @@ watch(
 </script>
 <template>
   <div class="detail-box">
-    <div class="header-img">
-      <img :src="props.detailData.fileUrl" alt="">
+    <div :class="imgClass">
+      <img :src="props.detailData.fileUrl" alt="" @load="imgLoad">
     </div>
     <div style="height: 230px">
       <div class="detail-title" p="x-25px t-8px">
@@ -41,13 +57,16 @@ watch(
       <div class="detail-tag-positive clamp2 detail-text" p="x-25px t-8px">
         正面tag：{{dataZH}}
       </div>
-      <div class="detail-tag-side clamp2 detail-text" p="x-25px t-12px">
-        反面tag：{{dataEN}}
+      <div class="detail-tag-side clamp2 detail-text" p="x-25px t-12px" v-if="detagEN">
+        反面tag：{{detagEN}}
       </div>
-      <div class="detail-tag-parameter clamp2 detail-text" p="x-25px t-12px">
+      <div class="detail-tag-side clamp2 detail-text" p="x-25px t-12px" v-else>
+        正面tag：{{dataEN}}
+      </div>
+      <div class="detail-tag-parameter clamp2 detail-text" p="x-25px t-12px" v-if="props.detailData.parameter">
         参数：{{props.detailData.parameter}}
       </div>
-      <div class="detail-tag-author detail-text" p="x-25px t-12px">
+      <div class="detail-tag-author detail-text" p="x-25px t-12px" v-if="props.detailData.author">
         作者：{{props.detailData.author}}
       </div>
     </div>
@@ -77,8 +96,17 @@ watch(
   height: 0;
   width: 100%;
   display: block;
-  padding-bottom: 50%;
+  padding-bottom: calc((100vh - 64px) * 0.6);
   overflow: hidden;
+  &.header-img-height {
+    height: calc((100vh - 64px) * 0.6);
+    padding-bottom: 0;
+    img {
+      height: 100%;
+      width: auto;
+      margin: 0 auto;
+    }
+  }
   img {
     width: 100%;
   }

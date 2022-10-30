@@ -5,25 +5,25 @@ export const $routes: RouteRecordRaw[] = [
     path: '/',
     name: 'home',
     component: () => import('@/views/home/home.vue'),
-    redirect: { name: 'novelAi' },
+    redirect: { name: 'NovelAI' },
     meta: {
       title: '首页',
     },
     children: [
       {
-        path: 'novelAi',
-        name: 'novelAi',
+        path: 'NovelAI',
+        name: 'NovelAI',
         component: () => import('@/views/novelAi/novelAi.vue'),
         meta: {
           title: 'NovelAi',
         }
       },
       {
-        path: 'midJourney',
-        name: 'midJourney',
+        path: 'midjourney',
+        name: 'midjourney',
         component: () => import('@/views/midJourney/midJourney.vue'),
         meta: {
-          title: 'MidJourney',
+          title: 'midjourney',
         }
       },
     ],

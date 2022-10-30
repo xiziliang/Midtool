@@ -53,7 +53,7 @@ const qq = ref(123456789);
 const website = ref([
   {
     label: "midjourney",
-    value: "https://www.midjourney.com/home/",
+    value: "https://www.midjourney.com",
   },
   {
     label: "DreamStudio",
@@ -65,7 +65,7 @@ const website = ref([
   },
   {
     label: "DALL·E 2",
-    value: "https://openai.com/dall-e-2/",
+    value: "https://openai.com/dall-e-2",
   },
 ]);
 const clearBtnVisible = ref(true);
@@ -77,21 +77,25 @@ const translationShow = computed(() => {
   if (translationResult.value) {
     return stringField.value.replace(ReplaceKey, translationResult.value + ",");
   } else {
-    if (currentRouter.value === "novelAi") {
+    if (currentRouter.value === "NovelAI") {
       // NOTE: 拼接自定义 keyWord
+      
       others = currentTabRef.value?.others
+      // others = tipsList.value
         .map((x) => addParentheses(x.promptEN, x.weight))
-        .join(" ");
-    } else if (currentRouter.value === "midJourney") {
+        .join(",");
+    } else if (currentRouter.value === "midjourney") {
       // NOTE: 拼接自定义 keyWord
       others = currentTabRef.value?.others
-        .map((x) => (x.weight === 0 ? x.promptZH : x.promptZH + ":" + x.weight))
+        .map((x) => (x.weight === 0 ? x.promptEN : x.promptEN + ":" + x.weight))
+        // .map((x) => x.promptEN)
         .join(" ");
     }
-
     return stringField.value.replace(ReplaceKey, others ? others + "," : "");
   }
 });
+
+
 
 function onClickTab(context: TabsPaneContext) {
   router.push({
@@ -126,12 +130,12 @@ function copy(type: "input" | "translation") {
 async function translation() {
   let others: string | undefined;
 
-  if (currentRouter.value === "novelAi") {
+  if (currentRouter.value === "NovelAI") {
     // NOTE: 拼接自定义 keyWord
     others = currentTabRef.value?.others
       .map((x) => addParentheses(x.promptZH, x.weight))
       .join(" ");
-  } else if (currentRouter.value === "midJourney") {
+  } else if (currentRouter.value === "midjourney") {
     // NOTE: 拼接自定义 keyWord
     others = currentTabRef.value?.others
       .map((x) => (x.weight === 0 ? x.promptZH : x.promptZH + ":" + x.weight))
@@ -143,7 +147,7 @@ async function translation() {
     origin: others ? inputValue.value + "," + others : inputValue.value,
   });
   loading.value = false;
-  translationResult.value = JSON.parse(data.value as string).data;
+  // translationResult.value = JSON.parse(data.value as string).data;
   // translationResult.value = stringField.value.replace(
   //   ReplaceKey,
   //   JSON.parse(data.value as string).data
@@ -162,7 +166,7 @@ function onClickClearBtn() {
     <div class="logo" max-h-224px pt-30px overflow-hidden>
       <img w-572px ma src="@/assets/img/logo.png" alt="logo" />
       <div class="tips" p="t-2 x-2" absolute w-full top-0px flex>
-        <label class="title" text-18px font-600
+        <label class="title" text-16px font-400
           ><span>搜罗好词、给词配图、一键翻译，让AI画家更好的作画</span></label
         >
         <!-- <span class="qq-style btn" text-12px m="l-a">
@@ -179,7 +183,7 @@ function onClickClearBtn() {
       class="container-input"
       p="b-4 x-2 t-4"
     >
-      <div class="input-group" flex="~" justify-center items-stretch w="100%">
+      <div class="input-group" :class="translationShow.length > 0 ? 'search-input-black' : ''" flex="~" justify-center items-stretch w="100%">
         <div
           class="lt-md:max-w-500px md:max-w-688px search-input relative"
           h-auto
@@ -202,7 +206,7 @@ function onClickClearBtn() {
             size="default"
             @click="copy('input')"
           >
-            <div class="i-carbon-copy"></div>
+            <div :class="inputValue || tipsList.length ? 'i-carbon-copy i-carbon-copy-value' : 'i-carbon-copy'"></div>
           </el-button>
           <div
             v-show="tipsList.length"
@@ -256,7 +260,7 @@ function onClickClearBtn() {
               size="default"
               @click="copy('translation')"
             >
-              <div class="i-carbon-copy"></div>
+              <div :class="translationShow.length > 0 && !loading ? 'i-carbon-copy i-carbon-copy-value' : 'i-carbon-copy'"></div>
             </el-button>
           </template>
         </div>
