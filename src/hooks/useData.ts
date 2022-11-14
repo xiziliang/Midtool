@@ -92,20 +92,14 @@ export const useMidJourneyData = () => {
   ])
 
   const tooltiplist = computed(() => {
-    return allDefaultData.value.filter(x => x.isSelected)
+    return [
+      ...defaultCardList.value,
+      ...defaultKeyWordList.value,
+      ...defaultDpiList.value,
+      ...defaultImgList.value,
+      ...defaultCustomKeyWord.value,
+    ].filter((x) => x.isSelected)
   })
-
-  // const tooltiplist = computed<(CardItem & DpiOptions & CustomKeyWord & ImgOptions)[]>(
-  //   () => {
-  //     return [].concat(
-  //       defaultCardList.value.filter((x) => x.isSelected) as any || ([] as any),
-  //       defaultPromptList.value.filter((x) => x.isSelected) as any || ([] as any),
-  //       defaultKeyWordList.value.find((x) => x.isSelected) || ([] as any),
-  //       [...defaultDpiList.value, dpiParams].find((x) => x.isSelected) || ([] as any),
-  //       defaultImgList.value.find((x) => x.isSelected) || ([] as any)
-  //     );
-  //   }
-  // );
 
   function initCustomList() {
     [
