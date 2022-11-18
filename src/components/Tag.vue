@@ -64,6 +64,7 @@ const reduceDisable = computed(() =>
 const isDisable = computed(() =>
   !props.tooltip ? true : !limit.value ? true : props.content.length < limit.value
 );
+
 function onClick() {
   emits("click-tag", props.content);
 }

@@ -95,8 +95,6 @@ const translationShow = computed(() => {
   }
 });
 
-
-
 function onClickTab(context: TabsPaneContext) {
   router.push({
     name: context.paneName as string,
@@ -179,9 +177,10 @@ function onClickClearBtn() {
       ref="headerRef"
       :style="{
         'box-shadow': headRefTop === 0 ? '0px 2px 16px rgba(0, 0, 0, 0.15)' : '',
+        'padding-top': headRefTop === 0 ? '1rem' : '',
       }"
       class="container-input"
-      p="b-4 x-2 t-4"
+      p="b-4 x-2"
     >
       <div class="input-group" :class="translationShow.length > 0 ? 'search-input-black' : ''" flex="~" justify-center items-stretch w="100%">
         <div

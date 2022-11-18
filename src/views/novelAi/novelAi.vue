@@ -87,7 +87,9 @@ const stringField = computed(() => {
   return ReplaceKey + (prompt ? prompt + "," : "") + keyWord;
 });
 
-const dialogVisible = reactive({
+const dialogVisible = reactive<{
+  [key: string]: boolean;
+}>({
   prompt: false,
   people: false,
   body: false,
@@ -108,44 +110,8 @@ function onSelectParams(
     | "writePositiveKeyWord"
     | "writeCustomKeyWord"
 ) {
-  switch (type) {
-    case "prompt":
-      dialogVisible.prompt = true;
 
-      break;
-    case "people":
-      dialogVisible.people = true;
-
-      break;
-    case "body":
-      dialogVisible.body = true;
-
-      break;
-    case "style":
-      dialogVisible.style = true;
-
-      break;
-    case "composeKeyWord":
-      dialogVisible.composeKeyWord = true;
-
-      break;
-    case "writeComposeKeyWord":
-      dialogVisible.writeComposeKeyWord = true;
-
-      break;
-    case "positiveKeyWord":
-      dialogVisible.positiveKeyWord = true;
-
-      break;
-    case "writePositiveKeyWord":
-      dialogVisible.writePositiveKeyWord = true;
-
-      break;
-    case "writeCustomKeyWord":
-      dialogVisible.writeCustomKeyWord = true;
-
-      break;
-  }
+  dialogVisible[type] = true;
 
   clearWeight();
 }
@@ -298,24 +264,12 @@ function onDeleteKeyword(type: NovelAiParams, index: number) {
 }
 function closePromptTemplateDialog(detailList: object[]) {
   dialogVisible.prompt = false;
-  defaultPromptTemplate.value.forEach((item) => {
-    item.isSelected = false;
-  });
-  defaultDrawPeople.value.forEach((item) => {
-    item.isSelected = false;
-  });
-  defaultDrawStyle.value.forEach((item) => {
-    item.isSelected = false;
-  });
-  defaultDrawBody.value.forEach((item) => {
-    item.isSelected = false;
-  });
-  defaultComposeKeyWord.value.forEach((item) => {
-    item.isSelected = false;
-  });
-  defaultPositiveKeyWord.value.forEach((item) => {
-    item.isSelected = false;
-  });
+  defaultPromptTemplate.value.forEach(item => item.isSelected = false);
+  defaultDrawPeople.value.forEach(item => item.isSelected = false);
+  defaultDrawStyle.value.forEach(item => item.isSelected = false);
+  defaultDrawBody.value.forEach(item => item.isSelected = false);
+  defaultComposeKeyWord.value.forEach(item => item.isSelected = false);
+  defaultPositiveKeyWord.value.forEach(item => item.isSelected = false);
   defaultCustomKeyWord.value = detailList;
 }
 function adddefaultPromptTemplate(list:object[],detailItemData:PromptTemplate){

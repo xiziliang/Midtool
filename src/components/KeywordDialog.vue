@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, watchEffect, watch, onBeforeUnmount } from "vue";
+import { ref, watchEffect, watch, onBeforeUnmount } from "vue";
 import { cloneDeep } from "lodash";
 import type { TabsPaneContext } from "element-plus";
 
