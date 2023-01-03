@@ -79,9 +79,9 @@ const translationShow = computed(() => {
   } else {
     if (currentRouter.value === "NovelAI") {
       // NOTE: 拼接自定义 keyWord
-      
+
       others = currentTabRef.value?.others
-      // others = tipsList.value
+        // others = tipsList.value
         .map((x) => addParentheses(x.promptEN, x.weight))
         .join(",");
     } else if (currentRouter.value === "midjourney") {
@@ -157,6 +157,10 @@ function onClickClearBtn() {
   currentTabRef.value?.allDefaultData.forEach((x: any) => (x.isSelected = false));
   ElMessage.success("选中数据清空完成");
 }
+
+
+
+console.log("main");
 </script>
 
 <template>
@@ -182,7 +186,14 @@ function onClickClearBtn() {
       class="container-input"
       p="b-4 x-2"
     >
-      <div class="input-group" :class="translationShow.length > 0 ? 'search-input-black' : ''" flex="~" justify-center items-stretch w="100%">
+      <div
+        class="input-group"
+        :class="translationShow.length > 0 ? 'search-input-black' : ''"
+        flex="~"
+        justify-center
+        items-stretch
+        w="100%"
+      >
         <div
           class="lt-md:max-w-500px md:max-w-688px search-input relative"
           h-auto
@@ -205,7 +216,13 @@ function onClickClearBtn() {
             size="default"
             @click="copy('input')"
           >
-            <div :class="inputValue || tipsList.length ? 'i-carbon-copy i-carbon-copy-value' : 'i-carbon-copy'"></div>
+            <div
+              :class="
+                inputValue || tipsList.length
+                  ? 'i-carbon-copy i-carbon-copy-value'
+                  : 'i-carbon-copy'
+              "
+            ></div>
           </el-button>
           <div
             v-show="tipsList.length"
@@ -259,7 +276,13 @@ function onClickClearBtn() {
               size="default"
               @click="copy('translation')"
             >
-              <div :class="translationShow.length > 0 && !loading ? 'i-carbon-copy i-carbon-copy-value' : 'i-carbon-copy'"></div>
+              <div
+                :class="
+                  translationShow.length > 0 && !loading
+                    ? 'i-carbon-copy i-carbon-copy-value'
+                    : 'i-carbon-copy'
+                "
+              ></div>
             </el-button>
           </template>
         </div>
