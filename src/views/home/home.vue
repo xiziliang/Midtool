@@ -159,6 +159,9 @@ function onClickClearBtn() {
 }
 
 console.log("dev");
+
+
+console.log("dev test2")
 </script>
 
 <template>
