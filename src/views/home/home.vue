@@ -161,6 +161,10 @@ function onClickClearBtn() {
 
 
 console.log("main");
+console.log("dev");
+
+
+console.log("dev test2")
 </script>
 
 <template>
