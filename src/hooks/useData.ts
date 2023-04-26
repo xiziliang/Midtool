@@ -299,12 +299,9 @@ export const useNovelAiData = () => {
   }
 
   function fetch() {
-    fetchPrompt();
-    fetchPeople();
-    fetchBody();
-    fetchStyle();
-    fetchComposeKeyWord();
-    fetchPositiveKeyWord();
+    try {
+      Promise.allSettled([fetchPrompt, fetchPeople, fetchBody, fetchStyle, fetchComposeKeyWord, fetchComposeKeyWord])
+    } catch (error) {}
   }
 
   return {
