@@ -299,6 +299,7 @@ export const useNovelAiData = () => {
   }
 
   function fetch() {
+    console.log(1);
     try {
       Promise.allSettled([fetchPrompt, fetchPeople, fetchBody, fetchStyle, fetchComposeKeyWord, fetchComposeKeyWord])
     } catch (error) {}
